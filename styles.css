@@ -221,10 +221,10 @@ footer p {
     top: 50%;
     right: 10px;
     transform: translateY(-140%);
-    background-color: #fff;
+    background-color: #46056b;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(19, 19, 19, 0.2);
     z-index: 9999; /* Certifique-se de que o formulário fique sobreposto a outros elementos */
 }
 
@@ -234,7 +234,7 @@ footer p {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #79002e;
 }
 
 #login-form button {
