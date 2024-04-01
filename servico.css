@@ -80,73 +80,6 @@ footer p {
     font-size: 14px;
 }
 
-.project-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-}
-
-.project-highlight {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.project-highlight h3 {
-    font-size: 24px;
-    color: #000;
-    margin-bottom: 10px;
-}
-
-.project-highlight p {
-    color: #000;
-    font-size: 18px;
-}
-
-.project-highlight .btn {
-    display: inline-block;
-    background-color: #ff7e5f;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.project-highlight .btn:hover {
-    background-color: #ff9d88;
-}
-
-
-#sobre-container {
-    background-color: #ffffff5d; /* Define o fundo como branco */
-    border-radius: 12px; /* Arredonda as bordas */
-    padding: 20px; /* Adiciona um espaço interno */
-    color: #000; /* Define a cor do texto como preto */
-}
-
-#sobre p {
-    font-size: 17px; /* Reduz o tamanho da fonte dos parágrafos */
-    line-height: 1.6;
-    margin-bottom: 10px;
-    text-shadow: 0.1px 0.1px 1px rgba(0, 0, 0, 0.5); /* Ajusta a sombra do texto para ser visível */
-}
-
-
-
-#admin-area {
-    color: transparent; /* Torna o texto transparente */
-    cursor: pointer; /* Muda o cursor para indicar que é clicável */
-}
-
-#admin-area:hover {
-    color: inherit; /* Restaura a cor do texto quando passa o mouse sobre ele */
-}
-
 /* Estilos para telas menores */
 @media only screen and (max-width: 768px) {
     header h1 {
@@ -159,26 +92,6 @@ footer p {
 
     section h2 {
         font-size: 24px; /* Reduz o tamanho da fonte dos títulos das seções */
-    }
-
-    #sobre p {
-        font-size: 16px; /* Reduz o tamanho da fonte dos parágrafos da seção 'Sobre' */
-    }
-
-    .project-highlight h3 {
-        font-size: 20px; /* Reduz o tamanho da fonte dos títulos dos projetos */
-    }
-
-    .project-highlight p {
-        font-size: 14px; /* Reduz o tamanho da fonte das descrições dos projetos */
-    }
-
-    .project-highlight .btn {
-        font-size: 12px; /* Reduz o tamanho da fonte dos botões dos projetos */
-    }
-
-    footer p {
-        font-size: 12px; /* Reduz o tamanho da fonte do texto do rodapé */
     }
 }
 
@@ -194,6 +107,8 @@ footer p {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Certifique-se de que o formulário fique sobreposto a outros elementos */
+    width: 90%;
+    max-width: 300px;
 }
 
 #login-form input {
@@ -331,4 +246,3 @@ footer p {
 #submit-btn:hover {
     background-color: #8f021e;
 }
-
