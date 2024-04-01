@@ -256,9 +256,10 @@ footer p {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: background-color 0.3s ease; /* Adicione uma transição para suavizar a mudança de cor */
+    transition: background-color 0.8s ease; /* Adicione uma transição para suavizar a mudança de cor */
+    margin-left: 1px; /* Adiciona margem à esquerda */
 }
 
 .header-scrolled {
-    background: linear-gradient(to right, #3f5efb, #8f021e); /* Defina a cor de fundo desejada */
+    background: linear-gradient(to right top, #051937, #004d7a, #008793, #c50b0bb7, #410902d3); /* Defina a cor de fundo desejada */
 }
