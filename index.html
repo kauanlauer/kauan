@@ -17,11 +17,26 @@
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#contato">Contato</a></li>
                     <li><a href="https://drive.google.com/file/d/1F1VCqID8jcpNZuv_v9ucKs-PIzOAvTi6/view?usp=sharing" target="_blank">Currículo</a></li>
-            </ul>
+                </ul>
+                <!-- Adicione o botão de login aqui -->
+                <button id="login-btn" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+
             </nav>
         </div>
     </header>
-
+    
+    <div id="login-form" style="display: none;">
+        <form onsubmit="return login()">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+    
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+    
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
     <section id="portfolio">
         <div class="container">
             <h2>Portfólio</h2>
@@ -65,8 +80,9 @@
             </div>
         </div>
     </section>
+    
     <script src="admin.js"></script>
-    <footer>
+       <footer>
         <div class="container">
             <p>&copy; 2024 Kauan Lauer. Todos os direitos reservados. <span id="admin-area" onclick="verificarSenha()">!</span></p>
         </div>

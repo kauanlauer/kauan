@@ -186,3 +186,55 @@ footer p {
         font-size: 12px; /* Reduz o tamanho da fonte do texto do rodapé */
     }
 }
+
+
+#login-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-140%);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999; /* Certifique-se de que o formulário fique sobreposto a outros elementos */
+}
+
+#login-form input {
+    display: block;
+    width: calc(100% - 20px); /* Leva em consideração o padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#login-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3f5efb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-form button:hover {
+    background-color: #8f021e;
+}
+.login-btn {
+    position: absolute;
+    top: 20px; /* Ajuste conforme necessário */
+    right: 20px; /* Ajuste conforme necessário */
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-btn i {
+    margin-right: 5px;
+}

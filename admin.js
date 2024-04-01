@@ -1,11 +1,22 @@
-// admin.js
-
-function verificarSenha() {
-    var senha = prompt("Digite a senha para acessar a área do administrador:");
-
-    if (senha === "3396") {
-        window.location.href = "areadaformatacao.html";
+document.getElementById("login-btn").addEventListener("click", function() {
+    var loginForm = document.getElementById("login-form");
+    if (loginForm.style.display === "none" || loginForm.style.display === "") {
+        loginForm.style.display = "block";
     } else {
-        alert("Senha incorreta. Tente novamente.");
+        loginForm.style.display = "none";
+    }
+});
+
+
+function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    if (username === "kauanlauer" && password === "3396") {
+        window.location.href = "areadaformatação.html";
+        return false;
+    } else {
+        alert("Usuário ou senha incorretos.");
+        return false;
     }
 }
