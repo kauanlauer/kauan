@@ -4,12 +4,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: linear-gradient(to right, #667eea, #764ba2);
+    background-image: url('fundo.gif');
+    background-size: cover;
     color: #fff;
 }
 
+
 header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -64,6 +66,7 @@ section ul li a {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    display: inline-block; /* Para que os links fiquem em linha */
 }
 
 section ul li a:hover {
@@ -72,55 +75,75 @@ section ul li a:hover {
 }
 
 footer {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     color: white;
     text-align: center;
     padding: 20px 0;
 }
 
-
 /* Estilizando o Dropdown Menu */
 .dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.9);
     min-width: 160px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {
+}
+
+.dropdown-content a:hover {
     background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-  }
-  
-  /* Estilizando o Ícone do Dropdown */
-  .dropbtn {
+}
+
+/* Estilizando o Ícone do Dropdown */
+.dropbtn {
     background-color: transparent;
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-  }
-  
+}
 
-  footer {
+/* Estilo para links do menu */
+.pagina-inicial, .download1, .download2 {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Estilizando o Ícone do Dropdown */
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
