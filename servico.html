@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kauan Lauer - Serviços</title>
+    <link rel="stylesheet" href="servico.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header id="main-header">
+        <h1>&nbsp;&nbsp;&nbsp;Kauan Lauer - Serviços - Peça seu Orçamento</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">&nbsp;&nbsp;&nbsp;Início</a></li>
+            </ul>
+            <button id="login-btn" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </nav>
+    </header>
+
+    <div id="login-form" style="display: none;">
+        <form onsubmit="return login()">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <section id="contato">
+        <div class="container">
+            <br><br><br>
+            <form id="contact-form">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="location">Cidade/Bairro:</label>
+                <input type="text" id="location" name="location">
+
+                <label for="service">Serviço:</label>
+                <select id="service" name="service">
+                    <option value="Formatação">Formatação</option>
+                    <option value="Microsoft Office">Microsoft Office</option>
+                    <option value="Manutenção">Manutenção</option>
+                    <option value="Limpeza">Limpeza</option>
+                    <option value="Criação de Site">Criação de Site</option>
+                    <option value="Outros">Outros Serviços</option>
+                </select>
+
+                <label for="message">Observações:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <button type="submit" id="submit-btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kauan Lauer. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="servico.js"></script>
+</body>
+</html>

@@ -32,21 +32,3 @@ window.addEventListener('scroll', function() {
     }
 });
 
-
-// Adicione um evento de carregamento da página para iniciar a animação
-window.addEventListener('load', function() {
-    const texto = document.getElementById('texto-sobre');
-    const textoCompleto = texto.innerHTML;
-    texto.innerHTML = '';
-
-    // Separe as palavras do texto
-    const palavras = textoCompleto.split(' ');
-
-    // Adicione cada palavra com um pequeno atraso para criar o efeito de escrita
-    palavras.forEach(function(palavra, index) {
-        setTimeout(function() {
-            texto.innerHTML += palavra + ' ';
-        }, index * 100); // Ajuste o atraso conforme necessário
-    });
-});
-

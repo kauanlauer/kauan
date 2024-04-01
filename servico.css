@@ -16,8 +16,8 @@ body {
 
 header {
     background: linear-gradient(to right, #3f5efb, #8f021e);
-    color: #fff;
-    padding: 20px 0;
+    color: #000000;
+    padding: 10px 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -31,7 +31,7 @@ header {
 }
 
 header h1 {
-    font-size: 36px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -263,3 +263,72 @@ footer p {
 .header-scrolled {
     background: linear-gradient(to right top, #051937, #004d7a, #008793, #c50b0bb7, #410902d3); /* Defina a cor de fundo desejada */
 }
+/* Estilos para o formulário de contato */
+
+#contato {
+    background-color: #f9f9f900;
+    padding: 20px 0;
+}
+
+#contato .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contato h2 {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+#contact-form {
+    width: 90%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+#contact-form label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#contact-form input,
+#contact-form textarea,
+#contact-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    font-size: 14px;
+}
+
+#contact-form select {
+    height: 35px;
+}
+
+#contact-form textarea {
+    height: 80px;
+}
+
+#submit-btn {
+    background-color: #3f5efb;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submit-btn:hover {
+    background-color: #8f021e;
+}
+
