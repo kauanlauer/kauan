@@ -21,3 +21,14 @@ function login() {
     }
 }
 
+window.addEventListener('scroll', function() {
+    var header = document.getElementById('main-header');
+    var scrollPosition = window.scrollY;
+
+    if (scrollPosition > 0) {
+        header.style.background = 'linear-gradient(to right, #3f5efb, #8f021e)';
+    } else {
+        header.style.background = 'transparent';
+    }
+});
+

@@ -247,3 +247,18 @@ footer p {
 .social-icons a:hover {
     color: #000; /* Altera a cor dos ícones quando passa o mouse sobre eles */
 }
+
+#main-header {
+    background: transparent;
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease; /* Adicione uma transição para suavizar a mudança de cor */
+}
+
+.header-scrolled {
+    background: linear-gradient(to right, #3f5efb, #8f021e); /* Defina a cor de fundo desejada */
+}
