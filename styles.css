@@ -11,7 +11,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #c50b0bb7, #410902d3);
-    color: #222020;
+    color: #fff;
 }
 
 header {
@@ -22,6 +22,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 .container {
@@ -85,14 +86,31 @@ footer p {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     margin-top: 40px;
+    animation: fadeIn 1s ease forwards; /* Adiciona animação de fadeIn */
 }
 
-.project-highlight {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.project-container .project-highlight {
+    opacity: 0;
+    animation: slideIn 1s ease forwards; /* Adiciona animação de slideIn */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px);
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .project-highlight h3 {
@@ -119,6 +137,20 @@ footer p {
 
 .project-highlight .btn:hover {
     background-color: #ff9d88;
+}
+
+#show-projects-btn {
+    background-color: #2044a788;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#show-projects-btn:hover {
+    background-color: #cf1a1a77;
 }
 
 
@@ -256,10 +288,29 @@ footer p {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: background-color 0.8s ease; /* Adicione uma transição para suavizar a mudança de cor */
     margin-left: 1px; /* Adiciona margem à esquerda */
+    animation: changeColor 1s infinite alternate; /* Adiciona uma animação de mudança de cor */
 }
+
+#main-header h1:hover {
+    color: #2c0aa8; /* Altere a cor desejada */
+    transition: color 0.3s ease; /* Adicione uma transição suave */
+}
+
+
+@keyframes changeColor {
+    from {
+        background-color: transparent; /* Define a cor inicial */
+    }
+    to {
+        background-color: #3f5efb; /* Define a cor final */
+    }
+}
+
 
 .header-scrolled {
     background: linear-gradient(to right top, #051937, #004d7a, #008793, #c50b0bb7, #410902d3); /* Defina a cor de fundo desejada */
 }
+
+
+

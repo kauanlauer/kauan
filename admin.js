@@ -32,3 +32,18 @@ window.addEventListener('scroll', function() {
     }
 });
 
+
+document.addEventListener("DOMContentLoaded", function() {
+    var showProjectsBtn = document.getElementById("show-projects-btn");
+    var projectsContainer = document.getElementById("projects-container");
+
+    showProjectsBtn.addEventListener("click", function() {
+        if (projectsContainer.style.display === "none" || projectsContainer.style.display === "") {
+            projectsContainer.style.display = "block";
+            showProjectsBtn.textContent = "Ocultar Projetos"; // Altera o texto do botão
+        } else {
+            projectsContainer.style.display = "none";
+            showProjectsBtn.textContent = "Mostrar Projetos"; // Altera o texto do botão
+        }
+    });
+});

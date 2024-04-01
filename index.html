@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kauan Lauer - Portfólio</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -37,22 +38,26 @@
     </div>
     
     <section id="portfolio">
-        <div class="container"> <br><br><br><br>
-            <h2>Portfólio</h2>
-            <div class="project-container">
-                <div class="project-highlight">
-                    <h3>Projeto Serralheria</h3>
-                    <p>Um projeto no GitHub!</p>
-                    <a href="https://github.com/kauanlauer/gabriel" target="_blank" class="btn">Ver Projeto <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="project-highlight">
-                    <h3>Site Metalúrgica Colombo</h3>
-                    <p>Um site desenvolvido para a Metalúrgica Colombo!</p>
-                    <a href="https://www.metalicacolombo.com.br/" target="_blank" class="btn">Visitar Site <i class="fas fa-external-link-alt"></i></a>
+        <div class="container">
+            <br><br><br><br><h2>Portfólio</h2>
+            <button id="show-projects-btn">Mostrar Projetos</button> <!-- Botão para mostrar/ocultar os projetos -->
+            <div id="projects-container" style="display: none;"> <!-- Container para os projetos, inicialmente oculto -->
+                <div class="project-container">
+                    <div class="project-highlight">
+                        <h3>Projeto Serralheria</h3>
+                        <p>Um projeto no GitHub!</p>
+                        <a href="https://github.com/kauanlauer/gabriel" target="_blank" class="btn">Ver Projeto <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-highlight">
+                        <h3>Site Metalúrgica Colombo</h3>
+                        <p>Um site desenvolvido para a Metalúrgica Colombo!</p>
+                        <a href="https://www.metalicacolombo.com.br/" target="_blank" class="btn">Visitar Site <i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    
     
     <section id="sobre">
         <div class="container">
