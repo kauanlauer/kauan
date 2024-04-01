@@ -68,19 +68,29 @@
             </div>
         </div>
     </section>
-    
-   
+
     <section id="contato">
         <div class="container">
             <h2>Contato</h2>
             <div class="social-icons">
                 <a href="https://github.com/kauanlauer" target="_blank"><i class="fab fa-github"></i> GitHub</a> <br>
                 <a href="https://www.linkedin.com/in/kauan-lauer-730955211/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a><br>
-                <a href="https://www.instagram.com/erickkauanlauer/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.instagram.com/erickkauanlauer/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><br>
+                <a href="#contato" id="email-link"><i class="fas fa-envelope"></i> E-mail</a>
+                <p id="email-hidden" style="display: none;">erickkauanlauer@gmail.com</p>
             </div>
         </div>
     </section>
-    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("email-link").addEventListener("click", function() {
+                var emailHidden = document.getElementById("email-hidden");
+                emailHidden.style.display = (emailHidden.style.display === "none" || emailHidden.style.display === "") ? "block" : "none";
+            });
+        });
+    </script>
+
     <script src="admin.js"></script>
        <footer>
         <div class="container">
