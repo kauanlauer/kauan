@@ -44,13 +44,57 @@
     
     <section id="meio">
         <h2>Lembretes</h2>
-        <ul>
-            
+        <ul id="anotacoes-lista">
+            <!-- As anotações serão inseridas aqui dinamicamente -->
         </ul>
+        <textarea id="anotacao-input" placeholder="Digite suas anotações aqui..."></textarea>
+        <button id="salvar-btn">Salvar</button>
+        <button id="limpar-btn">Limpar</button>
     </section>
-    
     <footer>
         <p>&copy; 2024 Kauan Lauer. Todos os direitos reservados.</p>
     </footer>
+    <script>
+        // Função para carregar as anotações salvas
+        function carregarAnotacoes() {
+            const anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
+            const lista = document.getElementById('anotacoes-lista');
+            lista.innerHTML = '';
+
+            anotacoes.forEach((anotacao, index) => {
+                const li = document.createElement('li');
+                li.textContent = anotacao;
+                lista.appendChild(li);
+            });
+        }
+
+        // Função para salvar as anotações
+        function salvarAnotacao() {
+            const input = document.getElementById('anotacao-input');
+            const anotacao = input.value.trim();
+
+            if (anotacao !== '') {
+                const anotacoes = JSON.parse(localStorage.getItem('anotacoes')) || [];
+                anotacoes.push(anotacao);
+                localStorage.setItem('anotacoes', JSON.stringify(anotacoes));
+
+                input.value = '';
+                carregarAnotacoes(); // Atualiza a lista de anotações exibida
+            }
+        }
+
+        // Função para limpar as anotações
+        function limparAnotacoes() {
+            localStorage.removeItem('anotacoes');
+            carregarAnotacoes(); // Atualiza a lista de anotações exibida
+        }
+
+        // Event listeners para os botões
+        document.getElementById('salvar-btn').addEventListener('click', salvarAnotacao);
+        document.getElementById('limpar-btn').addEventListener('click', limparAnotacoes);
+
+        // Carrega as anotações salvas ao carregar a página
+        carregarAnotacoes();
+    </script>
 </body>
 </html>

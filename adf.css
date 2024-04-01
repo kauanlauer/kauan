@@ -152,3 +152,69 @@ footer {
     padding: 20px;
     text-align: center;
 }
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    resize: vertical; /* Permite redimensionar verticalmente apenas */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
+}
+
+textarea:focus {
+    background-color: #e0e0e0;
+    outline: none;
+}
+
+/* Estilo CSS para os lembretes */
+#meio {
+    margin-top: 20px;
+}
+#meio h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+#meio ul {
+    list-style-type: none;
+    padding: 0;
+}
+#meio li {
+    margin-bottom: 20px;
+} 
+#salvar-btn {
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor do mouse */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave da cor de fundo */
+}
+
+/* Estilos quando o cursor passa sobre o botão */
+#salvar-btn:hover {
+    background-color: #45a049; /* Cor de fundo mais escura */
+}
+#limpar-btn {
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor do mouse */
+    font-size: 16px; /* Tamanho da fonte */
+    transition: background-color 0.3s; /* Transição suave da cor de fundo */
+}
+
+/* Estilos quando o cursor passa sobre o botão */
+#limpar-btn:hover {
+    background-color: #45a049; /* Cor de fundo mais escura */
+}
