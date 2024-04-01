@@ -1,0 +1,143 @@
+/* Reset CSS básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: linear-gradient(to right, #3f5efb, #8f021e);
+    color: #fff;
+    padding: 20px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Certifique-se de que o menu esteja na frente de outros elementos */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative; /* Adicione position relative para compensar a barra fixa */
+    z-index: 1; /* Certifique-se de que o conteúdo esteja por trás do menu fixo */
+}
+
+/* Adicione um espaço abaixo do menu fixo para que o conteúdo não seja ocultado por ele */
+body {
+    padding-top: 70px; /* Ajuste conforme necessário */
+}
+
+
+header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    opacity: 0.8;
+}
+
+section {
+    padding: 40px 0;
+}
+
+section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+#portfolio,
+#sobre,
+#contato {
+    background: linear-gradient(to right, rgba(63, 94, 251, 0.7), rgba(252, 70, 107, 0.7));
+    color:rgb(0, 0, 0, 0.5);
+    padding: 80px 0;
+}
+
+footer {
+    background: linear-gradient(to right, #3f5efb, #fc466b);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 14px;
+}
+.project-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.project-highlight {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 100%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+.project-highlight h3 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.project-highlight p {
+    color: #000;
+    font-size: 18px;
+}
+
+.project-highlight .btn {
+    display: inline-block;
+    background-color: #ff7e5f;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.project-highlight .btn:hover {
+    background-color: #ff9d88;
+}
+#sobre {
+    background: linear-gradient(to right, rgba(63, 94, 251, 0.7), rgba(252, 70, 107, 0.7));
+    color: #333; /* Cor do texto ajustada para melhorar legibilidade */
+    padding: 80px 0;
+    text-align: justify;
+}
+
+
+#sobre p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
