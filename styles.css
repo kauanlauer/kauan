@@ -263,3 +263,21 @@ footer p {
 .header-scrolled {
     background: linear-gradient(to right top, #051937, #004d7a, #008793, #c50b0bb7, #410902d3); /* Defina a cor de fundo desejada */
 }
+
+
+/* Adicione as propriedades de animação */
+#texto-sobre {
+    overflow: hidden; /* Esconda o texto que ainda não foi animado */
+    white-space: nowrap; /* Evite que as palavras quebrem */
+    animation: escrevendo 1s steps(40, end); /* Defina a animação */
+}
+
+/* Defina a animação */
+@keyframes escrevendo {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
