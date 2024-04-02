@@ -220,7 +220,7 @@ footer p {
     position: fixed;
     top: 50%;
     right: 10px;
-    transform: translateY(-140%);
+    transform: translateY(-226%);
     background-color: #46056b;
     padding: 10px;
     border-radius: 10px;
@@ -230,7 +230,7 @@ footer p {
 
 #login-form input {
     display: block;
-    width: calc(100% - 20px); /* Leva em consideração o padding */
+    width: calc(100% - 0px); /* Leva em consideração o padding */
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
