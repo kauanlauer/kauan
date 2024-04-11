@@ -89,12 +89,17 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("thank-btn").addEventListener("click", function() {
-                alert("Obrigado por visitar meu site! Se gostar do meu Portfólio por favor, entre em contato!");
+            document.getElementById("email-link").addEventListener("click", function() {
+                var emailHidden = document.getElementById("email-hidden");
+                emailHidden.style.display = (emailHidden.style.display === "none" || emailHidden.style.display === "") ? "block" : "none";
             });
         });
+        document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("thank-btn").addEventListener("click", function() {
+            alert("Obrigado por visitar meu site! Se gostar do meu Portfólio por favor, entre em contato!");
+        });
+    });
     </script>
-    
 
     <script src="admin.js"></script>
     <footer>
