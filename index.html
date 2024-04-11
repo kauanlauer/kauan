@@ -63,14 +63,16 @@
         <div class="container">
             <h2>Sobre Mim</h2>
             <div id="sobre-container">
-                <p>Meu nome é Kauan Lauer, nascido em 1998 e atualmente moro em Curitiba - PR. Estou cursando Análise e Desenvolvimento de Sistemas na faculdade UniEnsino – Centro Universitário do Paraná, atualmente no 3º período do curso.</p>
-                <p>No decorrer do meu tempo na faculdade, tive o prazer de aprender lógica de programação, algoritmos e diversas linguagens de programação, incluindo HTML, CSS, C e Java. Descobri uma paixão especial pelo desenvolvimento web, principalmente pela criação de páginas usando HTML e CSS, assim como pela programação em Java.</p>
-                <p>Meu objetivo é construir uma carreira na área da tecnologia, desenvolvendo projetos pessoais e também atuando na área de infraestrutura. Possuo conhecimentos em formatação de sistemas operacionais como Windows e Linux (incluindo Ubuntu e Kali Linux), além de experiência em manutenção e montagem de computadores. Costumo prestar serviços de formatação e manutenção de computadores para amigos e familiares, e dedico meu tempo livre para aprender cada vez mais, seja estudando ou assistindo cursos online.</p>
-                <p>Estou em busca de oportunidades profissionais onde possa crescer e contribuir com meu esforço e dedicação. Gostaria de fazer parte de uma empresa que investe no futuro de seus colaboradores, onde eu possa continuar aprendendo e evoluindo na área da tecnologia.</p>
-                <p>Estou disponível para contratações e comprometo-me a dedicar-me com afinco e responsabilidade a qualquer oportunidade que surgir.</p>
+                <p>Olá! Meu nome é Erick Kauan dos Santos Pereira Lauer e sou apaixonado pelo mundo da tecnologia. Nasci em 24/08/1998 e atualmente resido em Tatuquara, Curitiba - PR. </p>
+                <p>Atualmente, estou cursando Análise e Desenvolvimento de Sistemas na Faculdade UniEnsino – Centro Universitário do Paraná, no 3º período. Durante minha jornada acadêmica, adquiri habilidades em lógica de programação, algoritmos e linguagens como HTML, CSS, C e Java. Desenvolvi uma paixão especial pelo desenvolvimento web e programação em Java.</p>
+                <p>Além dos estudos, possuo experiência profissional diversificada. Trabalhei na MANUPACKAGING FITASA DO BRASIL SA, onde desempenhei diversas funções, incluindo auxiliar de produção, auxiliar administrativo (PCP), assistente de PCP e assistente comercial. Durante essa experiência, aprimorei habilidades em Excel, SAP, CRM, gestão de estoque, entre outras.</p>
+                <p>Também servi no Exército Brasileiro como soldado, onde além de cumprir minhas obrigações constitucionais, participei de treinamentos militares e serviços de segurança.</p>
+                <p>Busco constantemente novos desafios e oportunidades de crescimento na área da tecnologia. Estou disponível para contratações e comprometo-me a contribuir com dedicação e profissionalismo para qualquer projeto que eu faça parte.</p>
+                <p>Se você procura alguém comprometido, apaixonado por tecnologia e disposto a aprender e evoluir, ficarei feliz em fazer parte do seu time.</p>
             </div>
         </div>
     </section>
+    
 
     <section id="contato">
         <div class="container">
@@ -87,19 +89,21 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("email-link").addEventListener("click", function() {
-                var emailHidden = document.getElementById("email-hidden");
-                emailHidden.style.display = (emailHidden.style.display === "none" || emailHidden.style.display === "") ? "block" : "none";
+            document.getElementById("thank-btn").addEventListener("click", function() {
+                alert("Obrigado por visitar meu site! Se gostar do meu Portfólio por favor, entre em contato!");
             });
         });
     </script>
+    
 
     <script src="admin.js"></script>
-       <footer>
+    <footer>
         <div class="container">
             <p>&copy; 2024 Kauan Lauer. Todos os direitos reservados.</p>
+            <button id="thank-btn">Agradecer</button>
         </div>
     </footer>
+    
     
 </body>
 </html>
