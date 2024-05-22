@@ -21,44 +21,37 @@
             background: rgba(255, 255, 255, 0.8);
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            padding: 5vw;
+            padding: 50px;
             text-align: center;
         }
 
         h1 {
-            font-size: 6vw;
-            margin-bottom: 5vw;
+            font-size: 3em;
+            margin-bottom: 20px;
             color: #ff6f61;
             animation: shake 0.5s;
             animation-iteration-count: infinite;
         }
 
         button {
-            margin: 2vw;
-            padding: 4vw 8vw;
-            font-size: 3vw;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.5em;
             cursor: pointer;
             border: none;
-            border-radius: 2vw;
+            border-radius: 10px;
             transition: transform 0.3s, background 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-        }
-
-        #sim {
             background-color: #77dd77;
             color: white;
         }
 
-        #sim:hover {
+        button:hover {
+            transform: scale(1.1);
             background-color: #5ba55b;
         }
 
         #nao {
             background-color: #ff6961;
-            color: white;
         }
 
         #nao:hover {
@@ -66,35 +59,62 @@
         }
 
         @keyframes shake {
-            0% { transform: translate(1vw, 1vw) rotate(0deg); }
-            10% { transform: translate(-1vw, -2vw) rotate(-1deg); }
-            20% { transform: translate(-3vw, 0vw) rotate(1deg); }
-            30% { transform: translate(3vw, 2vw) rotate(0deg); }
-            40% { transform: translate(1vw, -1vw) rotate(1deg); }
-            50% { transform: translate(-1vw, 2vw) rotate(-1deg); }
-            60% { transform: translate(-3vw, 1vw) rotate(0deg); }
-            70% { transform: translate(3vw, 1vw) rotate(-1deg); }
-            80% { transform: translate(-1vw, -1vw) rotate(1deg); }
-            90% { transform: translate(1vw, 2vw) rotate(0deg); }
-            100% { transform: translate(1vw, -2vw) rotate(-1deg); }
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
        
         #personagem1 {
-            position: absolute;
-            top: 50%;
-            left: -10vw;
-            width: 10vw;
-            height: auto;
-            animation: caminhar1 10s linear infinite;
+            display: none;
         }
 
         #personagem2 {
-            position: absolute;
-            top: 50%;
-            right: -10vw;
-            width: 10vw;
-            height: auto;
-            animation: caminhar2 10s linear infinite;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 5vw;
+            }
+
+            h1 {
+                font-size: 6vw;
+                margin-bottom: 5vw;
+            }
+
+            button {
+                padding: 4vw 8vw;
+                font-size: 3vw;
+                margin: 2vw;
+            }
+
+            #personagem1 {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: -10vw;
+                width: 10vw;
+                height: auto;
+                animation: caminhar1 10s linear infinite;
+            }
+
+            #personagem2 {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: -10vw;
+                width: 10vw;
+                height: auto;
+                animation: caminhar2 10s linear infinite;
+            }
         }
 
         @keyframes caminhar1 {
