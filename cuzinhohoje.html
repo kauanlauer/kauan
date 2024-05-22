@@ -6,10 +6,6 @@
     <title>Cuzinho Hoje?</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             margin: 0;
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -17,28 +13,33 @@
         }
 
         .container {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             background: rgba(255, 255, 255, 0.8);
-            padding: 50px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 5vw;
+            text-align: center;
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
+            font-size: 6vw;
+            margin-bottom: 5vw;
             color: #ff6f61;
             animation: shake 0.5s;
             animation-iteration-count: infinite;
         }
 
         button {
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1.5em;
+            margin: 2vw;
+            padding: 4vw 8vw;
+            font-size: 3vw;
             cursor: pointer;
             border: none;
-            border-radius: 10px;
+            border-radius: 2vw;
             transition: transform 0.3s, background 0.3s;
         }
 
@@ -65,24 +66,24 @@
         }
 
         @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            0% { transform: translate(1vw, 1vw) rotate(0deg); }
+            10% { transform: translate(-1vw, -2vw) rotate(-1deg); }
+            20% { transform: translate(-3vw, 0vw) rotate(1deg); }
+            30% { transform: translate(3vw, 2vw) rotate(0deg); }
+            40% { transform: translate(1vw, -1vw) rotate(1deg); }
+            50% { transform: translate(-1vw, 2vw) rotate(-1deg); }
+            60% { transform: translate(-3vw, 1vw) rotate(0deg); }
+            70% { transform: translate(3vw, 1vw) rotate(-1deg); }
+            80% { transform: translate(-1vw, -1vw) rotate(1deg); }
+            90% { transform: translate(1vw, 2vw) rotate(0deg); }
+            100% { transform: translate(1vw, -2vw) rotate(-1deg); }
         }
        
         #personagem1 {
             position: absolute;
             top: 50%;
-            left: -100px;
-            width: 100px;
+            left: -10vw;
+            width: 10vw;
             height: auto;
             animation: caminhar1 10s linear infinite;
         }
@@ -90,33 +91,33 @@
         #personagem2 {
             position: absolute;
             top: 50%;
-            right: -100px;
-            width: 100px;
+            right: -10vw;
+            width: 10vw;
             height: auto;
             animation: caminhar2 10s linear infinite;
         }
 
         @keyframes caminhar1 {
             0% {
-                transform: translateX(-100px) scaleX(-1);
+                transform: translateX(-10vw) scaleX(-1);
             }
             50% {
-                transform: translateX(calc(50vw - 100px)) scaleX(-1);
+                transform: translateX(calc(50vw - 10vw)) scaleX(-1);
             }
             100% {
-                transform: translateX(-100px) scaleX(-1);
+                transform: translateX(-10vw) scaleX(-1);
             }
         }
 
         @keyframes caminhar2 {
             0% {
-                transform: translateX(calc(100vw + 100px)) scaleX(1);
+                transform: translateX(calc(100vw + 10vw)) scaleX(1);
             }
             50% {
-                transform: translateX(calc(50vw + 100px)) scaleX(1);
+                transform: translateX(calc(50vw + 10vw)) scaleX(1);
             }
             100% {
-                transform: translateX(calc(100vw + 100px)) scaleX(1);
+                transform: translateX(calc(100vw + 10vw)) scaleX(1);
             }
         }
     </style>
