@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testador de Cliques - Kauan Lauer</title>
+    <link rel="stylesheet" href="testarmouse.css">
+</head>
+<body>
+    <div class="info">
+        <p id="clicks-counter">Total de cliques: 0</p>
+        <p id="birds-killed">Pássaros mortos: 0</p>
+        <p id="clicks-per-minute">Cliques em 1 minuto: 0</p>
+        <p id="mouse-location">Posição do mouse: (0, 0)</p>
+        <p id="timer">Tempo: 00:00</p>
+        <p id="dpi-time">Último tempo DPI: --</p>
+        <div class="modes">
+            <button id="normal-mode">Modo Tiros</button>
+            <button id="painter-mode">Modo Pintor</button>
+            <button id="dpi-mode">Modo DPI</button>
+            <button id="reset-mode">Resetar Modo</button>
+            <button id="sound-toggle">Som: Ligado</button>
+        </div>
+        <div class="difficulty" style="display: none;">
+            <button id="easy-mode">Fácil</button>
+            <button id="medium-mode">Médio</button>
+            <button id="hard-mode">Difícil</button>
+        </div>
+    </div>
+    <div class="gun-container">
+        <img src="metralhadora.png" alt="Metralhadora" class="metralhadora">
+    </div>
+    <audio id="gunshot-sound" src="gunshot.mp3"></audio>
+    <script src="testarmouse.js"></script>
+</body>
+</html>
