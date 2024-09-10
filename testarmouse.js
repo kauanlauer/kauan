@@ -152,10 +152,13 @@ function countClicks(event) {
         // Verificar se o clique acertou um pássaro
         const passaroClicado = document.elementFromPoint(event.clientX, event.clientY);
         if (passaroClicado && passaroClicado.classList.contains('passaro')) {
-            passaroClicado.remove();
-            passaros = passaros.filter(p => p !== passaroClicado);
-            birdsKilled++; // Incrementar o contador de pássaros mortos
-            birdsKilledDisplay.textContent = `Pássaros mortos: ${birdsKilled}`; // Atualizar exibição
+            passaroClicado.style.display = 'none'; // Ocultar o pássaro
+            setTimeout(() => {
+                passaroClicado.remove(); // Remover o pássaro após a animação
+                passaros = passaros.filter(p => p !== passaroClicado);
+                birdsKilled++; // Incrementar o contador de pássaros mortos
+                birdsKilledDisplay.textContent = `Pássaros mortos: ${birdsKilled}`; // Atualizar exibição
+            }, 500); // Aguardar 0.5 segundos antes de remover o pássaro
         }
     } else if (mode === 'painter') {
         const mancha = document.createElement('div');
@@ -171,7 +174,6 @@ function countClicks(event) {
         lastClickTime = currentTime;
     }
 }
-
 
 function createBolinha() {
     const bolinha = document.createElement('div');
@@ -264,7 +266,7 @@ function createPassaro() {
             passaro.remove();
             passaros = passaros.filter(p => p !== passaro);
         }
-    }, velocidade * 5000);
+    }, velocidade * 8000);
 }
 
 // Adicione o intervalo de criação de pássaros ao iniciar o modo normal
