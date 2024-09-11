@@ -67,6 +67,7 @@ function fetchMessages() {
 
             // Verifica se há novas mensagens
             if (lastMessageId > lastReadMessageId) {
+                notificationSound.currentTime = 0; // Reinicia o som para tocar novamente
                 notificationSound.play(); // Toca o som de notificação
                 document.title = "Nova Mensagem!"; // Atualiza o título da página para indicar nova mensagem
                 lastReadMessageId = lastMessageId; // Atualiza o ID da última mensagem lida
