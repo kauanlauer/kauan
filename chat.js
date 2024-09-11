@@ -69,11 +69,11 @@ function fetchMessages() {
             if (lastMessageId > lastReadMessageId) {
                 notificationSound.play(); // Toca o som de notificação
                 document.title = "Nova Mensagem!"; // Atualiza o título da página para indicar nova mensagem
+                lastReadMessageId = lastMessageId; // Atualiza o ID da última mensagem lida
             } else {
                 document.title = "Chat"; // Reseta o título se não houver novas mensagens
             }
 
-            lastReadMessageId = lastMessageId; // Atualiza o ID da última mensagem lida
             chatMessages.scrollTop = chatMessages.scrollHeight; // Rola para o final do chat
         })
         .catch(error => console.error('Erro ao obter mensagens:', error));
