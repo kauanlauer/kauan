@@ -56,7 +56,7 @@ function fetchMessages() {
 async function sendMessage() {
     const name = nameInput.value.trim();
     const message = messageInput.value.trim();
-    
+
     if (name && message) {
         // Exibe um indicador de carregamento
         sendButton.disabled = true; // Desabilita o botão para evitar cliques múltiplos
