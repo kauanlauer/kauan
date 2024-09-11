@@ -14,21 +14,21 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    padding: 20px; /* Adicionado para espaçamento em telas pequenas */
+    padding: 20px;
 }
 
 .chat-container {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Ajustado para melhor responsividade */
-    width: 100%; /* Ajustado para 100% para ocupar toda a largura disponível */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
     max-width: 600px;
     transition: box-shadow 0.3s ease;
 }
 
 .chat-container:hover {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .chat-messages {
@@ -36,9 +36,8 @@ body {
     overflow-y: scroll;
     margin-bottom: 20px;
     padding-right: 10px;
-    transition: opacity 0.5s ease;
     display: flex;
-    flex-direction: column; /* Garante que as mensagens fiquem em coluna */
+    flex-direction: column;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -57,7 +56,6 @@ body {
 .chat-input {
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte em telas pequenas */
 }
 
 #name-input, #message-input {
@@ -68,7 +66,6 @@ body {
     font-size: 16px;
     margin-right: 10px;
     transition: border-color 0.3s;
-    min-width: 150px; /* Define uma largura mínima para os campos */
 }
 
 #name-input:focus, #message-input:focus {
@@ -96,7 +93,7 @@ body {
     padding: 10px 16px;
     border-radius: 20px;
     margin-bottom: 10px;
-    display: block; /* Garante que cada mensagem ocupe uma linha */
+    display: block;
     max-width: 70%;
     transition: transform 0.3s ease;
 }
@@ -116,31 +113,38 @@ h4 {
     font-size: 12px;
 }
 
+/* Indicador de digitação */
+#typing-indicator {
+    font-style: italic;
+    color: #888;
+    margin-bottom: 10px;
+}
+
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .chat-container {
-        padding: 15px; /* Ajusta o padding em telas menores */
+        padding: 15px;
     }
 
     #name-input, #message-input {
-        margin-right: 5px; /* Reduz o espaço entre os campos em telas menores */
+        margin-right: 5px;
     }
 
     #send-button {
-        padding: 10px 20px; /* Ajusta o padding do botão em telas menores */
+        padding: 10px 20px;
     }
 
     .message {
-        max-width: 90%; /* Aumenta a largura máxima das mensagens em telas menores */
+        max-width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     #name-input, #message-input {
-        font-size: 14px; /* Diminui o tamanho da fonte em telas muito pequenas */
+        font-size: 14px;
     }
 
     #send-button {
-        font-size: 14px; /* Diminui o tamanho da fonte do botão em telas muito pequenas */
+        font-size: 14px;
     }
 }
