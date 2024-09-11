@@ -121,8 +121,24 @@ messageInput.addEventListener('keydown', (event) => {
     }
 });
 
+const loginContainer = document.getElementById('login-container');
+const chatContainer = document.getElementById('chat-container');
+const passwordInput = document.getElementById('password-input');
+const loginButton = document.getElementById('login-button');
+
+loginButton.addEventListener('click', () => {
+    const password = passwordInput.value;
+    if (password === 'abc') {
+        loginContainer.style.display = 'none'; // Oculta a tela de login
+        chatContainer.style.display = 'block'; // Exibe o chat
+        fetchMessages(); // Carrega as mensagens ao entrar no chat
+    } else {
+        alert('Senha incorreta. Tente novamente.');
+    }
+});
+
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 500);
+setInterval(fetchMessages, 100);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
