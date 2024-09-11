@@ -8,6 +8,7 @@ const spreadsheetId = '1IFeDuSMgjfGjHN2uTw8ZiDolnBt4deZ8kGfAT8PyveQ';
 const appScriptUrl = 'https://script.google.com/macros/s/AKfycbzr7zNb0yMi3ooMV2W9VU_Tcn1v-5EH986x5cXy3cekHQPC_t0rl7WM2SU3SfH7YR-F/exec';
 
 let lastReadMessageId = 0; // ID da última mensagem lida
+const notificationSound = document.getElementById('notification-sound');
 
 // Função para definir um cookie
 function setCookie(name, value, days) {
@@ -66,7 +67,10 @@ function fetchMessages() {
 
             // Verifica se há novas mensagens
             if (lastMessageId > lastReadMessageId) {
+                notificationSound.play(); // Toca o som de notificação
                 document.title = "Nova Mensagem!"; // Atualiza o título da página para indicar nova mensagem
+            } else {
+                document.title = "Chat"; // Reseta o título se não houver novas mensagens
             }
 
             lastReadMessageId = lastMessageId; // Atualiza o ID da última mensagem lida
@@ -121,6 +125,7 @@ messageInput.addEventListener('keydown', (event) => {
     }
 });
 
+// Lógica de Login
 const loginContainer = document.getElementById('login-container');
 const chatContainer = document.getElementById('chat-container');
 const passwordInput = document.getElementById('password-input');
@@ -138,7 +143,7 @@ loginButton.addEventListener('click', () => {
 });
 
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 100);
+setInterval(fetchMessages, 500);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
