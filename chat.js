@@ -45,7 +45,11 @@ function fetchMessages() {
             data.forEach(row => {
                 const messageElement = document.createElement('div');
                 messageElement.className = 'message'; // Adiciona a classe para estilização
-                messageElement.innerHTML = `<span class="name">${row[1]}:</span> ${row[2]}`; // Nome e mensagem separados
+                
+                // Constrói a mensagem com o nome e todos os comentários
+                const nome = row[1]; // Nome
+                const comentarios = row.slice(2).filter(comment => comment).join(", "); // Comentários da coluna C até AZ
+                messageElement.innerHTML = `<span class="name">${nome}:</span> ${comentarios}`; // Nome e todos os comentários
                 chatMessages.appendChild(messageElement);
             });
             chatMessages.scrollTop = chatMessages.scrollHeight; // Rola para o final do chat
@@ -62,9 +66,9 @@ async function sendMessage() {
         sendButton.disabled = true; // Desabilita o botão para evitar cliques múltiplos
         sendButton.innerText = 'Enviando...'; // Altera o texto do botão
 
-        // Envia o nome e a mensagem codificada usando "," como delimitador
+        // Envia o nome e a mensagem usando "," como delimitador
         try {
-            const response = await fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name},${encodeURIComponent(message)}`);
+            const response = await fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name},${message}`);
             const data = await response.json();
 
             if (data === "Linha adicionada com sucesso") {
@@ -96,7 +100,7 @@ messageInput.addEventListener('keydown', (event) => {
 });
 
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 100);
+setInterval(fetchMessages, 500);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
