@@ -1,77 +1,59 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-}
-
-#chatContainer {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    max-width: 90%;
+    padding: 0;
+  }
+  
+  .container {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-}
-
-#messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 300px;
-    padding: 15px;
-    border-bottom: 1px solid #e0e0e0;
-    background-color: #f9f9f9;
-}
-
-.message {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .chat-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .chat-messages {
+    height: 300px;
+    overflow-y: scroll;
     margin-bottom: 10px;
-}
-
-.message strong {
-    color: #007bff;
-}
-
-#nameInput, #messageInput {
+  }
+  
+  .chat-input {
+    display: flex;
+  }
+  
+  #message-input {
+    flex-grow: 1;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin: 10px;
-    width: calc(100% - 22px); /* Ajusta a largura para o padding e margem */
-}
-
-#sendButton {
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #send-button, #refresh-button, #clear-button {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#sendButton:hover {
+    margin-left: 10px;
+  }
+  
+  #send-button:hover, #refresh-button:hover, #clear-button:hover {
     background-color: #0056b3;
-}
-
-#nameInput:focus, #messageInput:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-#messages::-webkit-scrollbar {
-    width: 8px;
-}
-
-#messages::-webkit-scrollbar-thumb {
-    background: #007bff;
-    border-radius: 10px;
-}
-
-#messages::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
-}
+  }
+  
+  .controls {
+    margin-top: 20px;
+  }

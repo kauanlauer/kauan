@@ -1,44 +1,54 @@
-const scriptUrl = 'https://script.google.com/macros/s/AKfycbyjcr5t9bACR0Sk2h9MSp4cVY6xKyfd5M4LogbdE39f0aXvT3HV1xaww7sjHKelTwYD/exec'; // Substitua pelo seu URL do Apps Script
+const nameInput = document.getElementById('name-input');
+const messageInput = document.getElementById('message-input');
+const sendButton = document.getElementById('send-button');
+const clearButton = document.getElementById('clear-button');
+const chatMessages = document.getElementById('chat-messages');
 
-document.getElementById('sendButton').addEventListener('click', sendMessage);
+const spreadsheetId = '1IFeDuSMgjfGjHN2uTw8ZiDolnBt4deZ8kGfAT8PyveQ';
+const appScriptUrl = 'https://script.google.com/macros/s/AKfycbzr7zNb0yMi3ooMV2W9VU_Tcn1v-5EH986x5cXy3cekHQPC_t0rl7WM2SU3SfH7YR-F/exec';
 
-function sendMessage() {
-    const nameInput = document.getElementById('nameInput');
-    const messageInput = document.getElementById('messageInput');
-    const name = nameInput.value;
-    const message = messageInput.value;
-
-    if (name && message) {
-        fetch(`${scriptUrl}?name=${encodeURIComponent(name)}&message=${encodeURIComponent(message)}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    messageInput.value = ''; // Limpa o campo de mensagem
-                    loadMessages(); // Atualiza as mensagens após enviar
-                } else {
-                    console.error(data.message);
-                }
-            })
-            .catch(error => console.error('Erro ao enviar mensagem:', error));
-    } else {
-        alert('Por favor, preencha seu nome e mensagem.');
-    }
+function fetchMessages() {
+  fetch(`${appScriptUrl}?func=Read&spreadsheetId=${spreadsheetId}`)
+    .then(response => response.json())
+    .then(data => {
+      chatMessages.innerHTML = '';
+      data.forEach(row => {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${row[1]}: ${row[2]}`;
+        chatMessages.appendChild(messageElement);
+      });
+    })
+    .catch(error => console.error('Erro ao obter mensagens:', error));
 }
 
-function loadMessages() {
-    fetch(`${scriptUrl}?action=getMessages`)
-        .then(response => response.json())
-        .then(messages => {
-            const messagesContainer = document.getElementById('messages');
-            messagesContainer.innerHTML = ''; // Limpa mensagens anteriores
-            messages.forEach(msg => {
-                messagesContainer.innerHTML += `<strong>${msg.name}:</strong> ${msg.message}<br>`;
-            });
-        });
-}
+sendButton.addEventListener('click', () => {
+  const name = nameInput.value.trim();
+  const message = messageInput.value.trim();
+  if (name && message) {
+    fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name}|${message}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        messageInput.value = '';
+        fetchMessages();
+      })
+      .catch(error => console.error('Erro ao enviar mensagem:', error));
+  } else {
+    alert('Por favor, preencha seu nome e a mensagem.');
+  }
+});
 
-// Carrega as mensagens ao iniciar
-loadMessages();
+clearButton.addEventListener('click', () => {
+  if (confirm('Tem certeza que deseja limpar o chat?')) {
+    fetch(`${appScriptUrl}?func=Delete&spreadsheetId=${spreadsheetId}&id=1`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        fetchMessages();
+      })
+      .catch(error => console.error('Erro ao limpar o chat:', error));
+  }
+});
 
-// Atualiza as mensagens a cada 5 segundos
-setInterval(loadMessages, 5000);
+// Atualiza o chat a cada meio segundo
+setInterval(fetchMessages, 500);
