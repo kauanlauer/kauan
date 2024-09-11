@@ -62,9 +62,9 @@ async function sendMessage() {
         sendButton.disabled = true; // Desabilita o botão para evitar cliques múltiplos
         sendButton.innerText = 'Enviando...'; // Altera o texto do botão
 
-        // Envia o nome e a mensagem usando "*" como delimitador
+        // Envia o nome e a mensagem codificada usando "," como delimitador
         try {
-            const response = await fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name}*${message}`);
+            const response = await fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name},${encodeURIComponent(message)}`);
             const data = await response.json();
 
             if (data === "Linha adicionada com sucesso") {
@@ -86,6 +86,7 @@ async function sendMessage() {
         alert('Por favor, preencha seu nome e a mensagem.');
     }
 }
+
 sendButton.addEventListener('click', sendMessage);
 
 messageInput.addEventListener('keydown', (event) => {
