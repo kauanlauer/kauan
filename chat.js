@@ -53,19 +53,35 @@ function fetchMessages() {
         .catch(error => console.error('Erro ao obter mensagens:', error));
 }
 
-function sendMessage() {
+async function sendMessage() {
     const name = nameInput.value.trim();
     const message = messageInput.value.trim();
+    
     if (name && message) {
+        // Exibe um indicador de carregamento
+        sendButton.disabled = true; // Desabilita o botão para evitar cliques múltiplos
+        sendButton.innerText = 'Enviando...'; // Altera o texto do botão
+
         // Envia o nome e a mensagem usando "|" como delimitador
-        fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name}|${message}`)
-            .then(response => response.json())
-            .then(data => {
+        try {
+            const response = await fetch(`${appScriptUrl}?func=Create&spreadsheetId=${spreadsheetId}&values=${name}|${message}`);
+            const data = await response.json();
+
+            if (data === "Linha adicionada com sucesso") {
                 console.log(data);
                 messageInput.value = '';
                 fetchMessages(); // Atualiza as mensagens após enviar
-            })
-            .catch(error => console.error('Erro ao enviar mensagem:', error));
+            } else {
+                alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar mensagem:', error);
+            alert('Erro ao enviar mensagem. Por favor, tente novamente.');
+        } finally {
+            // Restaura o botão
+            sendButton.disabled = false; // Reabilita o botão
+            sendButton.innerText = 'Enviar'; // Restaura o texto original
+        }
     } else {
         alert('Por favor, preencha seu nome e a mensagem.');
     }
@@ -80,7 +96,7 @@ messageInput.addEventListener('keydown', (event) => {
 });
 
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 500);
+setInterval(fetchMessages, 100);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
