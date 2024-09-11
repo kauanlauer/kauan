@@ -91,7 +91,7 @@ clearButton.addEventListener('click', () => {
 });
 
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 500);
+setInterval(fetchMessages, 100);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
