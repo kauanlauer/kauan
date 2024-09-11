@@ -2,6 +2,7 @@ const nameInput = document.getElementById('name-input');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
 const chatMessages = document.getElementById('chat-messages');
+const clearButton = document.getElementById('clear-button');
 
 const spreadsheetId = '1IFeDuSMgjfGjHN2uTw8ZiDolnBt4deZ8kGfAT8PyveQ';
 const appScriptUrl = 'https://script.google.com/macros/s/AKfycbzr7zNb0yMi3ooMV2W9VU_Tcn1v-5EH986x5cXy3cekHQPC_t0rl7WM2SU3SfH7YR-F/exec';
@@ -99,8 +100,21 @@ messageInput.addEventListener('keydown', (event) => {
     }
 });
 
+clearButton.addEventListener('click', () => {
+    // Limpa as mensagens do chat
+    chatMessages.innerHTML = '';
+    
+    // Limpa os dados da planilha
+    fetch(`${appScriptUrl}?func=Clear&spreadsheetId=${spreadsheetId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => console.error('Erro ao limpar mensagens:', error));
+});
+
 // Atualiza o chat a cada meio segundo
-setInterval(fetchMessages, 500);
+setInterval(fetchMessages, 10);
 
 // Pergunta para salvar o nome ao carregar a página
 askToSaveName();
