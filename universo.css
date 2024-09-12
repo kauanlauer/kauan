@@ -10,6 +10,7 @@ body {
   font-family: 'Arial', sans-serif;
   background: url('imagens/fundo.gif') no-repeat center center fixed; /* Fundo GIF */
   background-size: cover; /* Cobre toda a tela, mantendo a qualidade */
+
   color: #fff;
   overflow-x: hidden;
   position: relative;
@@ -309,6 +310,295 @@ footer p {
   }
 
   .constelacao p {
+    font-size: 1rem;
+  }
+}
+
+/* Constelações do Zodíaco section styles */
+#constelacoes-zodiacais {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.constelacao-zodiacal {
+  width: 300px; /* Tamanho fixo para as imagens */
+  margin: 3rem auto; /* Centraliza as constelações */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.constelacao-zodiacal:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.constelacao-zodiacal img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 50%; /* Bordas arredondadas */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.constelacao-zodiacal img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.constelacao-zodiacal h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.constelacao-zodiacal p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .constelacao-zodiacal {
+    width: 250px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .constelacao-zodiacal h3 {
+    font-size: 1.8rem;
+  }
+
+  .constelacao-zodiacal p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .constelacao-zodiacal {
+    width: 200px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .constelacao-zodiacal h3 {
+    font-size: 1.5rem;
+  }
+
+  .constelacao-zodiacal p {
+    font-size: 1rem;
+  }
+}
+
+/* Satélites section styles */
+#satelites {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.satelite {
+  width: 300px; /* Tamanho fixo para as imagens */
+  margin: 3rem auto; /* Centraliza as satélites */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.satelite:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.satelite img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.satelite img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.satelite h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.satelite p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .satelite {
+    width: 250px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .satelite h3 {
+    font-size: 1.8rem;
+  }
+
+  .satelite p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .satelite {
+    width: 200px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .satelite h3 {
+    font-size: 1.5rem;
+  }
+
+  .satelite p {
+    font-size: 1rem;
+  }
+}
+
+/* Estrelas section styles */
+#estrelas, #planetas {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.estrela {
+  width: 300px; /* Tamanho fixo para as imagens */
+  margin: 3rem auto; /* Centraliza as estrelas */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.estrela:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.estrela img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.estrela img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.estrela h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.estrela p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .estrela {
+    width: 250px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .estrela h3 {
+    font-size: 1.8rem;
+  }
+
+  .estrela p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .estrela {
+    width: 200px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .estrela h3 {
+    font-size: 1.5rem;
+  }
+
+  .estrela p {
+    font-size: 1rem;
+  }
+}
+/* Centaurus section styles */
+#centaurus {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.constelacao-centaurus {
+  width: 400px; /* Tamanho fixo para a imagem da constelação */
+  margin: 3rem auto; /* Centraliza a constelação */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.constelacao-centaurus:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.constelacao-centaurus img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.constelacao-centaurus img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.estrela {
+  width: 300px; /* Tamanho fixo para as imagens das estrelas */
+  margin: 3rem auto; /* Centraliza as estrelas */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.estrela:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.estrela img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.estrela img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.estrela h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.estrela p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .constelacao-centaurus, .estrela {
+    width: 250px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .constelacao-centaurus h3, .estrela h3 {
+    font-size: 1.8rem;
+  }
+
+  .constelacao-centaurus p, .estrela p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .constelacao-centaurus, .estrela {
+    width: 200px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .constelacao-centaurus h3, .estrela h3 {
+    font-size: 1.5rem;
+  }
+
+  .constelacao-centaurus p, .estrela p {
     font-size: 1rem;
   }
 }
