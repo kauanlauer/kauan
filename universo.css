@@ -245,3 +245,70 @@ footer p {
   font-size: 1rem;
   margin: 0;
 }
+
+/* Constelação section styles */
+#constelacoes {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.constelacao {
+  width: 400px; /* Tamanho fixo para as imagens */
+  margin: 3rem auto; /* Centraliza as constelações */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.constelacao:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.constelacao img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.constelacao img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.constelacao h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.constelacao p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .constelacao {
+    width: 300px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .constelacao h3 {
+    font-size: 1.8rem;
+  }
+
+  .constelacao p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .constelacao {
+    width: 250px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .constelacao h3 {
+    font-size: 1.5rem;
+  }
+
+  .constelacao p {
+    font-size: 1rem;
+  }
+}
