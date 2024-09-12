@@ -29,19 +29,22 @@ body::before {
 }
 
 /* Header and navigation styles */
+/* Header and navigation styles */
 header {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 1rem;
   position: fixed;
+  top: 0; /* Fixa o cabeçalho no topo da página */
   width: 100%;
   z-index: 1000;
   border-bottom: 2px solid #ffcc00; /* Linha de destaque */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
 }
 
 nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Espaça os itens do menu */
+  align-items: center; /* Alinha verticalmente */
 }
 
 .nav-list {
