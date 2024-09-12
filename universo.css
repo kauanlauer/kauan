@@ -10,7 +10,6 @@ body {
   font-family: 'Arial', sans-serif;
   background: url('imagens/fundo.gif') no-repeat center center fixed; /* Fundo GIF */
   background-size: cover; /* Cobre toda a tela, mantendo a qualidade */
-
   color: #fff;
   overflow-x: hidden;
   position: relative;
@@ -37,6 +36,69 @@ header {
   width: 100%;
   z-index: 1000;
   border-bottom: 2px solid #ffcc00; /* Linha de destaque */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-list li {
+  margin: 0 1.5rem;
+}
+
+.nav-list a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.nav-list a:hover {
+  color: #ffcc00; /* Cor de destaque ao passar o mouse */
+}
+
+/* Menu toggle styles */
+.menu-toggle {
+  display: none; /* Esconde o menu de hambúrguer por padrão */
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none; /* Esconde a lista de navegação em telas menores */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    position: absolute;
+    top: 60px; /* Abaixo do header */
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro para o menu */
+    z-index: 999; /* Coloca acima de outros elementos */
+  }
+
+  .nav-list.active {
+    display: flex; /* Mostra a lista quando ativa */
+  }
+
+  .menu-toggle {
+    display: flex; /* Mostra o menu de hambúrguer em telas menores */
+  }
 }
 
 nav ul {
@@ -83,6 +145,105 @@ nav a:hover {
 #hero p {
   font-size: 1.5rem;
   text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Estrelas section styles */
+#estrelas, #satelites, #nebulosas, #constelacoes-zodiacais, #centaurus {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.estrela, .satelite, .nebulosa, .constelacao-zodiacal, .constelacao-centaurus {
+  width: 300px; /* Tamanho fixo para as imagens */
+  margin: 3rem auto; /* Centraliza as estrelas */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.estrela:hover, .satelite:hover, .nebulosa:hover, .constelacao-zodiacal:hover, .constelacao-centaurus:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.estrela img, .satelite img, .nebulosa img, .constelacao-zodiacal img, .constelacao-centaurus img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.estrela img:hover, .satelite img:hover, .nebulosa img:hover, .constelacao-zodiacal img:hover, .constelacao-centaurus img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  #hero p {
+    font-size: 1.2rem;
+  }
+
+  .estrela, .satelite, .nebulosa, .constelacao-zodiacal, .constelacao-centaurus {
+    width: 250px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  .estrela, .satelite, .nebulosa, .constelacao-zodiacal, .constelacao-centaurus {
+    width: 200px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+/* Footer styles */
+footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
 }
 
 /* Planet section styles */

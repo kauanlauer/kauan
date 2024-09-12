@@ -9,12 +9,18 @@
   <body>
     <header>
       <nav>
-        <ul>
-          <li><a href="#estrelas">Estrelas</a></li>
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
           <li><a href="#planetas">Planetas</a></li>
-          <li><a href="#satelites">Satelite</a></li>
           <li><a href="#nebulosas">Nebulosas</a></li>
           <li><a href="#constelacoes">Constelações</a></li>
+          <li><a href="#satelites">Satélites</a></li>
+          <li><a href="#estrelas">Estrelas</a></li>
+          <li><a href="#centaurus">Centaurus</a></li>
         </ul>
       </nav>
     </header>
@@ -386,5 +392,13 @@
         direitos reservados.
       </p>
     </footer>
+    <script>
+      const mobileMenu = document.getElementById('mobile-menu');
+const navList = document.querySelector('.nav-list');
+
+mobileMenu.addEventListener('click', () => {
+  navList.classList.toggle('active'); // Alterna a classe active para mostrar/ocultar o menu
+});
+    </script>
   </body>
 </html>
