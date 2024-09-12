@@ -1,0 +1,247 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: url('imagens/fundo.gif') no-repeat center center fixed; /* Fundo GIF */
+  background-size: cover; /* Cobre toda a tela, mantendo a qualidade */
+  color: #fff;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Adiciona uma camada de estrelas para um efeito espacial */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('imagens/estrelas.png') repeat; /* Imagem de estrelas */
+  opacity: 0.3; /* Leve transparência para não sobrecarregar */
+  pointer-events: none; /* Permite interação com elementos acima */
+}
+
+/* Header and navigation styles */
+header {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 2px solid #ffcc00; /* Linha de destaque */
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+nav li {
+  margin: 0 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffcc00; /* Cor de destaque ao passar o mouse */
+}
+
+/* Hero section styles */
+#hero {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  margin: 2rem 0;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  border-radius: 15px; /* Bordas arredondadas */
+}
+
+#hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7);
+}
+
+#hero p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Planet section styles */
+#planetas {
+  padding: 5rem 2rem;
+}
+
+.container-planetas {
+  display: flex;
+  flex-direction: column; /* Coloca os planetas em coluna */
+  align-items: center; /* Centraliza os planetas */
+}
+
+.planeta {
+  width: 200px; /* Tamanho fixo para as imagens */
+  margin: 3rem 0; /* Margem para espaçamento entre os planetas */
+  text-align: center;
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.planeta:hover {
+  transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.planeta img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.planeta img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.info-planeta {
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
+  border-radius: 10px;
+  padding: 1rem;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s; /* Transição suave para a visibilidade */
+}
+
+.planeta:hover .info-planeta {
+  opacity: 1; /* Torna visível ao passar o mouse */
+}
+
+.info-planeta h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+}
+
+.info-planeta p {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Nebulosa section styles */
+#nebulosas {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.nebulosa {
+  width: 400px; /* Aumenta o tamanho das imagens */
+  margin: 3rem auto; /* Centraliza as nebulosas */
+  transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
+.nebulosa:hover {
+  transform: scale(1.2); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.nebulosa img {
+  width: 100%; /* Imagem ocupa toda a largura do contêiner */
+  height: auto;
+  border-radius: 0; /* Sem bordas arredondadas */
+  transition: transform 0.3s; /* Transição suave para a rotação */
+}
+
+.nebulosa img:hover {
+  transform: rotate(360deg); /* Rotação ao passar o mouse */
+}
+
+.nebulosa h3 {
+  font-size: 2rem; /* Aumenta o tamanho do título */
+  margin: 1rem 0;
+}
+
+.nebulosa p {
+  font-size: 1.4rem; /* Aumenta o tamanho do texto */
+  line-height: 1.5;
+  color: #ddd; /* Cor do texto */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  #hero p {
+    font-size: 1.2rem;
+  }
+
+  .planeta,
+  .nebulosa {
+    width: 300px; /* Reduz o tamanho das imagens em telas menores */
+  }
+
+  .info-planeta h3,
+  .nebulosa h3 {
+    font-size: 1.8rem;
+  }
+
+  .info-planeta p,
+  .nebulosa p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  .planeta,
+  .nebulosa {
+    width: 250px; /* Reduz ainda mais o tamanho das imagens em telas muito pequenas */
+  }
+
+  .info-planeta h3,
+  .nebulosa h3 {
+    font-size: 1.5rem;
+  }
+
+  .info-planeta p,
+  .nebulosa p {
+    font-size: 1rem;
+  }
+}
+
+/* Footer styles */
+footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  color: #fff;
+  font-size: 1rem;
+  margin: 0;
+}
