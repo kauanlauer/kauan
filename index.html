@@ -27,9 +27,10 @@
     <link href="css/styles.css" rel="stylesheet" />
     <style>
       /* Estilos do Modal de Aceitação dos Termos */
+/* Estilos do Modal de Aceitação dos Termos */
 .modal-content {
   border-radius: 15px; /* Cantos arredondados */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Sombra mais intensa */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Sombra mais intensa */
   border: none; /* Remove a borda padrão */
 }
 
@@ -44,21 +45,40 @@
   background-color: #f9f9f9; /* Cor de fundo do corpo do modal */
   color: #333; /* Cor do texto no corpo */
   font-size: 1.1rem; /* Aumenta o tamanho da fonte para melhor legibilidade */
+  padding: 20px; /* Padding interno para um melhor espaçamento */
 }
 
 .modal-footer {
   border-top: none; /* Remove a borda superior do rodapé */
+  justify-content: space-between; /* Espaça os botões no rodapé */
 }
 
 .btn-primary {
-  background-color: #28a745; /* Cor verde do botão */
+  background-color: #28a745; /* Cor verde do botão Aceitar */
   border-color: #28a745;
-  padding: 10px 20px; /* Aumenta o padding para um botão mais robusto */
+  padding: 12px 25px; /* Aumenta o padding para um botão mais robusto */
   border-radius: 25px; /* Botão arredondado */
+  font-size: 1rem; /* Tamanho da fonte dos botões */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
 }
 
 .btn-primary:hover {
   background-color: #218838; /* Cor ao passar o mouse */
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+}
+
+.btn-danger {
+  background-color: #dc3545; /* Cor vermelha do botão Não Aceitar */
+  border-color: #dc3545;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c82333; /* Cor ao passar o mouse */
+  transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
 }
 
 /* Links dentro do modal */
@@ -70,12 +90,10 @@
 .modal-body a:hover {
   color: #0056b3; /* Cor ao passar o mouse nos links */
 }
-
  /* Estilos do Modal de Aceitação dos Termos */
     </style>
   </head>
   <body id="page-top">
-<!-- Modal de Aceitação dos Termos -->
 <!-- Modal de Aceitação dos Termos -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
