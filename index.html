@@ -70,16 +70,19 @@
 .modal-body a:hover {
   color: #0056b3; /* Cor ao passar o mouse nos links */
 }
+
+ /* Estilos do Modal de Aceitação dos Termos */
     </style>
   </head>
   <body id="page-top">
 <!-- Modal de Aceitação dos Termos -->
-<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+<!-- Modal de Aceitação dos Termos -->
+<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="termsModalLabel">Aceite os Termos de Uso</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModal"></button>
+              <button type="button" class="btn-close" aria-label="Close" id="closeModal"></button>
           </div>
           <div class="modal-body">
               Ao acessar este site, você concorda com nossos 
@@ -88,6 +91,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-primary" id="acceptTerms">Aceitar</button>
+              <button type="button" class="btn btn-danger" id="declineTerms">Não Aceitar</button>
           </div>
       </div>
   </div>
@@ -325,6 +329,11 @@ Comprometo-me a contribuir com dedicação e profissionalismo para qualquer proj
           localStorage.setItem('termsAccepted', 'true'); // Armazena que os termos foram aceitos
           var termsModal = bootstrap.Modal.getInstance(document.getElementById('termsModal'));
           termsModal.hide(); // Fecha o modal
+      });
+  
+      // Adiciona evento ao botão de não aceitar
+      document.getElementById('declineTerms').addEventListener('click', function() {
+          window.location.href = "https://kauanlauer.com.br/erroTermos"; // Redireciona para a página de erro
       });
   
       // Adiciona evento ao botão de fechar (X)
