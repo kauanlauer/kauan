@@ -94,6 +94,38 @@
     </style>
   </head>
   <body id="page-top">
+
+
+<!-- Modal de aviso KL FINANCEIRO -->
+
+<!-- Modal de Aviso -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalLabel">Atenção</h5>
+        <button type="button" class="btn-close" id="closeInfoModal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se você acessou este site por causa do <b>KL Controle de Gastos Financeiro</b>, informo que este é um projeto de TCC hospedado gratuitamente devido à falta de apoio financeiro. Devido a limites mensais, o site poderá ficar indisponível temporariamente, mas deverá retornar ao normal em <b>02 de dezembro</b>.</p>
+        <p>Este é meu portfólio pessoal, então aproveite para explorá-lo e conhecer mais sobre meus projetos. Agradeço pela compreensão e pelo apoio de todos que estão ajudando a tornar este trabalho possível. Manter um site no ar exige custos significativos, e sua colaboração é essencial.</p>
+        <p class="mb-0">Obrigado!<br>— Kauan Lauer</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="closeModalBtn">Entendi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de aviso KL FINANCEIRO -->
+
+
+
+
+
+
 <!-- Modal de Aceitação dos Termos -->
 <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog">
@@ -360,5 +392,36 @@ Comprometo-me a contribuir com dedicação e profissionalismo para qualquer proj
       });
   </script>
       <!-- Aceitação dos Termos -->
+
+
+
+
+<!-- Modal de aviso KL FINANCEIRO -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const modalInstance = new bootstrap.Modal(document.getElementById('infoModal'));
+    const closeModalButton = document.getElementById('closeModalBtn');
+    const closeInfoButton = document.getElementById('closeInfoModal');
+
+    modalInstance.show();
+
+    closeModalButton.addEventListener('click', () => {
+      modalInstance.hide();
+    });
+
+    closeInfoButton.addEventListener('click', () => {
+      modalInstance.hide();
+    });
+  });
+</script>
+
+
+
+
+<!-- Modal de aviso KL FINANCEIRO -->
+
+
+
   </body>
 </html>
