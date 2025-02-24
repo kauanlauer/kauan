@@ -91,14 +91,43 @@
   color: #0056b3; /* Cor ao passar o mouse nos links */
 }
  /* Estilos do Modal de Aceitação dos Termos */
+ /* Estilo para a seção do vídeo */
+section#tcc {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  text-align: center; /* Centraliza o texto */
+  padding: 20px;
+}
+
+/* Estilo para o vídeo */
+video {
+  width: 800px; /* Largura fixa do vídeo */
+  height: auto; /* Altura ajustada automaticamente */
+  max-width: 100%; /* Garante que o vídeo não ultrapasse a largura do contêiner */
+  border: 2px solid #ccc; /* Borda sutil */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra leve */
+}
+
+/* Estilo para o título */
+section#tcc h2 {
+  margin-bottom: 20px; /* Espaço entre o título e o vídeo */
+  font-size: 24px;
+  color: #333;
+}
     </style>
   </head>
   <body id="page-top">
+
+    
 
 
 <!-- Modal de aviso KL FINANCEIRO -->
 
 <!-- Modal de Aviso -->
+ <!-- 
 <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -119,7 +148,7 @@
 </div>
 
 
-<!-- Modal de aviso KL FINANCEIRO -->
+Modal de aviso KL FINANCEIRO -->
 
 
 
@@ -150,7 +179,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">Portifolio</a>
+        <a class="navbar-brand" href="index.html">Portifolio</a>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -177,6 +206,9 @@
             <li class="nav-item">
               <a class="nav-link" href="universo.html">Universo</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#tcc">Meu TCC A.D.S</a>
+          </li>
           </ul>
         </div>
       </div>
@@ -259,7 +291,7 @@ Comprometo-me a contribuir com dedicação e profissionalismo para qualquer proj
                                     Esse foi um site simples feito em HTML, CSS e JavaScript, apenas para que as pessoas olhem o trabalho e consigam entrar em contato com a empresa
                                   </p>
                                   <p class="mb-0 text-white-50">
-                                    <a href="https://metalicacolombo.com.br" target="_blank" class="text-white">Visite o site do projeto</a>
+                                    <a href="https://metalica-colombo-kauanlauer.vercel.app/" target="_blank" class="text-white">Visite o site do projeto</a>
                                   </p>
                 </div>
               </div>
@@ -295,6 +327,15 @@ Comprometo-me a contribuir com dedicação e profissionalismo para qualquer proj
         </div>
       </div>
     </section>
+
+    <section id="tcc">
+      <h2>Meu TCC A.D.S</h2>
+      <video controls width="100%">
+          <source src="video.webm" type="video/webm">
+          Seu navegador não suporta o elemento de vídeo.
+      </video>
+  </section>
+
     <!-- Signup-->
     <section class="signup-section" id="signup">
       <div class="container px-4 px-lg-5">
@@ -319,7 +360,7 @@ Comprometo-me a contribuir com dedicação e profissionalismo para qualquer proj
                 <h4 class="text-uppercase m-0">Paraná-Curitiba</h4>
                 <hr class="my-4 mx-auto" />
                 <div class="small text-black-50">
-                  Morando em Tatuquara 
+                  <a href="https://www.google.com/maps?sca_esv=9f50e05d338b6bab&output=search&q=CURITIBA+MAPS&source=lnms&fbs=ABzOT_BYhiZpMrUAF0c9tORwPGlssxTeO7BMOlalbdyQXag72r1qnNd-MghSp-MLF7ZupKKKXw2S-CPaUBwSHabt59tb74Cm4pMx3MwM_MTLNWSXsiaq4Fhnwqj5pe2eXQa9JPJbDCZykSL0MfmUNSNT8RNhO9uNFLh1h3dK1akRz7okBmryUUOe7s2Nh9-kaX_kAsKHbugqiXvWaqdrqkfKEHg834fASQ&entry=mc&ved=1t:200715&ictx=111" target="_blank">Ver mapa</a>
                 </div>
               </div>
             </div>
