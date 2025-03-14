@@ -158,7 +158,27 @@ ul, ol {
   transform: translateY(0);
 }
 
-/* === CURSOR PERSONALIZADO === */
+/* === CURSOR PERSONALIZADO ATUALIZADO === */
+/* Esconder cursor padrão em todo o site */
+html, 
+body, 
+a, 
+button, 
+input, 
+textarea, 
+select, 
+.project-card, 
+.skill-item, 
+.logo-link, 
+.nav-link, 
+.social-link, 
+.button, 
+.form-input, 
+.form-textarea {
+  cursor: none !important;
+}
+
+/* Cursor personalizado */
 .cursor {
   position: fixed;
   width: 12px;
@@ -169,7 +189,7 @@ ul, ol {
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
   z-index: var(--z-max);
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.3s;
   opacity: 0;
   animation: cursorFadeIn 0.5s 0.5s forwards;
 }
@@ -183,7 +203,7 @@ ul, ol {
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: var(--z-max);
-  transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.1s;
+  transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.1s, opacity 0.3s;
   opacity: 0;
   animation: cursorFadeIn 0.5s 0.5s forwards;
 }
@@ -210,6 +230,43 @@ ul, ol {
   }
 }
 
+/* Esconder cursor personalizado em dispositivos móveis */
+@media (max-width: 992px) {
+  .cursor, .cursor-follower {
+    display: none !important;
+  }
+  
+  /* Restaurar cursor padrão em dispositivos móveis */
+  html, 
+  body, 
+  a, 
+  button, 
+  input, 
+  textarea, 
+  select, 
+  .project-card, 
+  .skill-item, 
+  .logo-link, 
+  .nav-link, 
+  .social-link, 
+  .button, 
+  .form-input, 
+  .form-textarea {
+    cursor: auto !important;
+  }
+  
+  /* Restaurar cursor de pointer em elementos clicáveis */
+  a, 
+  button, 
+  .project-card, 
+  .skill-item, 
+  .logo-link, 
+  .nav-link, 
+  .social-link, 
+  .button {
+    cursor: pointer !important;
+  }
+}
 /* === OVERLAY DE CARREGAMENTO === */
 .loading-overlay {
   position: fixed;
