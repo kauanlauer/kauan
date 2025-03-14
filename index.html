@@ -2012,7 +2012,7 @@ a.detail-value:hover {
               <div class="skill-info">
                 <h4 class="skill-name">CSS3</h4>
                 <div class="skill-level">
-                  <div class="skill-progress" style="width: 85%"></div>
+                  <div class="skill-progress" style="width: 90%"></div>
                 </div>
               </div>
             </li>
@@ -2040,7 +2040,7 @@ a.detail-value:hover {
               <div class="skill-info">
                 <h4 class="skill-name">PHP</h4>
                 <div class="skill-level">
-                  <div class="skill-progress" style="width: 70%"></div>
+                  <div class="skill-progress" style="width: 80%"></div>
                 </div>
               </div>
             </li>
@@ -2051,7 +2051,7 @@ a.detail-value:hover {
               <div class="skill-info">
                 <h4 class="skill-name">MySQL</h4>
                 <div class="skill-level">
-                  <div class="skill-progress" style="width: 75%"></div>
+                  <div class="skill-progress" style="width: 50%"></div>
                 </div>
               </div>
             </li>
@@ -2062,7 +2062,7 @@ a.detail-value:hover {
               <div class="skill-info">
                 <h4 class="skill-name">VBA Excel</h4>
                 <div class="skill-level">
-                  <div class="skill-progress" style="width: 80%"></div>
+                  <div class="skill-progress" style="width: 90%"></div>
                 </div>
               </div>
             </li>
@@ -2142,9 +2142,7 @@ a.detail-value:hover {
               <source src="tcc.webm" type="video/webm">
               Seu navegador não suporta o elemento de vídeo.
             </video>
-            <button class="video-play-button" aria-label="Play video">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            </button>
+           
           </div>
           
           <div class="project-content">
@@ -2286,7 +2284,7 @@ a.detail-value:hover {
         </div>
         
         <div class="contact-form">
-          <form id="contactForm" class="form" action="https://api.web3forms.com/submit" method="POST">
+          <form id="contactForm" class="form">
             <!-- Substituir com sua chave de acesso do Web3Forms -->
             <input type="hidden" name="access_key" value="228a415b-7a3c-4dda-a183-3428a0988ce9">
             
@@ -2311,8 +2309,16 @@ a.detail-value:hover {
             <!-- Campo honeypot para evitar spam -->
             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
             
-            <!-- Página de redirecionamento após envio (opcional) -->
-            <input type="hidden" name="redirect" value="">
+            <div class="form-status" style="display: none; margin-bottom: 15px;">
+              <div class="success-message" style="display: none; color: #10b981; font-weight: 500;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Mensagem enviada com sucesso! Obrigado pelo contato.
+              </div>
+              <div class="error-message" style="display: none; color: #ef4444; font-weight: 500;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.
+              </div>
+            </div>
             
             <button type="submit" class="button primary form-submit">
               <span class="button-text">Enviar mensagem</span>
@@ -2517,21 +2523,69 @@ a.detail-value:hover {
     window.addEventListener('load', fadeInOnScroll);
     
   </script>
-  <!-- Adicione este script ao final do seu arquivo, antes do </body> -->
+ <!-- Script para o formulário de contato -->
 <script>
   // Manipulação do formulário usando Web3Forms
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-      // Não previna o envio padrão, pois queremos que o formulário seja enviado para o Web3Forms
+      e.preventDefault(); // Impede o envio padrão do formulário
       
       const formSubmit = this.querySelector('.form-submit');
+      const formStatus = this.querySelector('.form-status');
+      const successMessage = this.querySelector('.success-message');
+      const errorMessage = this.querySelector('.error-message');
       const originalText = formSubmit.innerHTML;
       
+      // Esconde mensagens de status anteriores
+      formStatus.style.display = 'none';
+      successMessage.style.display = 'none';
+      errorMessage.style.display = 'none';
+      
+      // Altera o botão para indicar que está enviando
       formSubmit.innerHTML = '<span class="button-text">Enviando...</span>';
       formSubmit.disabled = true;
-    
+      
+      // Prepara os dados do formulário
+      const formData = new FormData(contactForm);
+      
+      // Envia os dados para o Web3Forms
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Mostra o status do formulário
+        formStatus.style.display = 'block';
+        
+        if(data.success) {
+          // Mensagem enviada com sucesso
+          successMessage.style.display = 'block';
+          contactForm.reset(); // Limpa o formulário
+        } else {
+          // Erro ao enviar a mensagem
+          errorMessage.style.display = 'block';
+        }
+        
+        // Restaura o botão depois de 3 segundos
+        setTimeout(() => {
+          formSubmit.innerHTML = originalText;
+          formSubmit.disabled = false;
+        }, 3000);
+      })
+      .catch(error => {
+        // Erro na requisição
+        formStatus.style.display = 'block';
+        errorMessage.style.display = 'block';
+        
+        // Restaura o botão depois de 3 segundos
+        setTimeout(() => {
+          formSubmit.innerHTML = originalText;
+          formSubmit.disabled = false;
+        }, 3000);
+      });
     });
   }
 </script>
