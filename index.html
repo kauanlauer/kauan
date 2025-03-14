@@ -1,891 +1,2539 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kauan Lauer</title>
-    <style>
-      @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-    </style>
-  </head>
-  <body>
-    <div id="webcrumbs">
-      <div class="w-full font-sans bg-black text-white">
-        <div class="min-h-screen relative">
-          <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
-            <div
-              class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1539721972319-f0e80a00d424?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20"
-            ></div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-indigo-900/30 to-black"
-            ></div>
-            <div class="stars absolute inset-0">
-              <!-- Estrelas mantidas iguais (omitidas aqui para brevidade) -->
-            </div>
-          </div>
-          <nav
-            class="bg-gradient-to-r from-black/80 to-indigo-950/80 backdrop-blur-md py-4 px-6 transition-all duration-300 sticky top-0 z-50 border-b border-indigo-500/30"
-          >
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-              <a
-                href="#"
-                class="text-2xl font-bold tracking-wide transition-all duration-300 group flex items-center gap-2"
-              >
-                <div class="relative w-8 h-8 overflow-hidden">
-                  <div
-                    class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full animate-pulse"
-                  ></div>
-                  <span
-                    class="absolute inset-0.5 bg-black rounded-full flex items-center justify-center text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
-                    >KL</span
-                  >
-                </div>
-                <span
-                  class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 group-hover:from-cyan-400 group-hover:to-purple-600"
-                  >Kauan Lauer</span
-                >
-              </a>
-              <div class="hidden md:flex space-x-8">
-                <a
-                  href="#about"
-                  class="text-gray-300 hover:text-white relative overflow-hidden group py-2"
-                >
-                  <span
-                    class="relative z-10 group-hover:text-white transition-colors duration-300"
-                    >Sobre mim</span
-                  >
-                  <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"
-                  ></span>
-                  <span
-                    class="absolute bottom-0 left-0 w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-full"
-                  ></span>
-                </a>
-                <a
-                  href="#projects"
-                  class="text-gray-300 hover:text-white relative overflow-hidden group py-2"
-                >
-                  <span
-                    class="relative z-10 group-hover:text-white transition-colors duration-300"
-                    >Projetos</span
-                  >
-                  <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"
-                  ></span>
-                  <span
-                    class="absolute bottom-0 left-0 w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-full"
-                  ></span>
-                </a>
-                <a
-                  href="#contact"
-                  class="text-gray-300 hover:text-white relative overflow-hidden group py-2"
-                >
-                  <span
-                    class="relative z-10 group-hover:text-white transition-colors duration-300"
-                    >Contatos</span
-                  >
-                  <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"
-                  ></span>
-                  <span
-                    class="absolute bottom-0 left-0 w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-full"
-                  ></span>
-                </a>
-                <a
-                  href="#tcc"
-                  class="text-gray-300 hover:text-white relative overflow-hidden group py-2"
-                >
-                  <span
-                    class="relative z-10 group-hover:text-white transition-colors duration-300"
-                    >Meu TCC A.D.S</span
-                  >
-                  <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-300 group-hover:w-full"
-                  ></span>
-                  <span
-                    class="absolute bottom-0 left-0 w-1 h-1 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-full"
-                  ></span>
-                </a>
-              </div>
-              <div class="md:hidden">
-                <details class="relative">
-                  <summary class="list-none cursor-pointer group">
-                    <div
-                      class="w-12 h-12 flex flex-col justify-center items-center gap-1.5 outline-none bg-gradient-to-br from-blue-900/40 to-indigo-900/40 rounded-full border border-indigo-500/40 hover:border-indigo-400 transition-all duration-300 shadow-lg shadow-indigo-600/20"
-                    >
-                      <span
-                        class="w-5 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full transition-all duration-300 group-open:rotate-45 group-open:translate-y-2"
-                      ></span>
-                      <span
-                        class="w-5 h-0.5 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full transition-all duration-300 group-open:opacity-0"
-                      ></span>
-                      <span
-                        class="w-5 h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full transition-all duration-300 group-open:-rotate-45 group-open:-translate-y-2"
-                      ></span>
-                    </div>
-                  </summary>
-                  <div
-                    class="absolute right-0 mt-4 w-64 backdrop-blur-xl bg-gradient-to-br from-black/90 to-indigo-950/90 rounded-2xl border border-indigo-500/40 py-3 z-50 shadow-2xl shadow-indigo-500/20 overflow-hidden"
-                  >
-                    <div
-                      class="absolute inset-0 bg-gradient-to-b from-blue-900/10 to-purple-900/10 opacity-50"
-                    ></div>
-                    <a
-                      href="#about"
-                      class="relative flex items-center px-5 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-900/40 hover:to-indigo-900/40 transition-all duration-300 group"
-                    >
-                      <span class="relative z-10 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-indigo-400 group-hover:text-indigo-300"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                          ></path>
-                        </svg>
-                        Sobre mim
-                      </span>
-                      <span
-                        class="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-indigo-500 opacity-0 group-hover:w-1.5 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300"
-                      ></span>
-                    </a>
-                    <a
-                      href="#projects"
-                      class="relative flex items-center px-5 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-900/40 hover:to-indigo-900/40 transition-all duration-300 group"
-                    >
-                      <span class="relative z-10 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-indigo-400 group-hover:text-indigo-300"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M8 3v3m4-3v3m4-3v3M3 9h18M3 13h18M3 17h18M3 21h18"
-                          ></path>
-                        </svg>
-                        Projetos
-                      </span>
-                      <span
-                        class="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-indigo-500 opacity-0 group-hover:w-1.5 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300"
-                      ></span>
-                    </a>
-                    <a
-                      href="#contact"
-                      class="relative flex items-center px-5 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-900/40 hover:to-indigo-900/40 transition-all duration-300 group"
-                    >
-                      <span class="relative z-10 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-indigo-400 group-hover:text-indigo-300"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                          ></path>
-                        </svg>
-                        Contatos
-                      </span>
-                      <span
-                        class="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-indigo-500 opacity-0 group-hover:w-1.5 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300"
-                      ></span>
-                    </a>
-                    <a
-                      href="#tcc"
-                      class="relative flex items-center px-5 py-3 text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-900/40 hover:to-indigo-900/40 transition-all duration-300 group"
-                    >
-                      <span class="relative z-10 flex items-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 mr-3 text-indigo-400 group-hover:text-indigo-300"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1.5"
-                            d="M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z M12 14l-6-3m6 3l6-3"
-                          ></path>
-                        </svg>
-                        Meu TCC A.D.S
-                      </span>
-                      <span
-                        class="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0 rounded-full bg-indigo-500 opacity-0 group-hover:w-1.5 group-hover:h-1.5 group-hover:opacity-100 transition-all duration-300"
-                      ></span>
-                    </a>
-                  </div>
-                </details>
-              </div>
-            </div>
-          </nav>
-          <header
-            class="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
-          >
-            <div
-              class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-600/20 rounded-full filter blur-[100px] animate-pulse"
-              style="animation-duration: 7s"
-            ></div>
-            <div
-              class="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full filter blur-[100px] animate-pulse"
-              style="animation-duration: 10s"
-            ></div>
-            <div class="relative z-10 text-center px-6 max-w-4xl">
-              <div class="mb-8 flex justify-center">
-                <div
-                  class="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-indigo-500/50 shadow-2xl shadow-indigo-500/20 transform hover:scale-105 transition-all duration-300"
-                >
-                  <img
-                    src="eu.png"
-                    alt="Kauan Lauer"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-indigo-900/60 to-transparent"
-                  ></div>
-                </div>
-              </div>
-              <h1
-                class="text-6xl md:text-7xl font-bold mb-4 relative animate-fadeIn"
-              >
-                <span
-                  class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 hover:from-blue-300 hover:to-purple-400 transform transition-all duration-300"
-                  >Kauan Lauer</span
-                >
-              </h1>
-              <div
-                class="h-1 w-40 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6 hover:w-60 transition-all duration-500"
-              ></div>
-              <h2
-                class="text-xl md:text-2xl text-gray-300 mb-8 opacity-90 leading-relaxed"
-              >
-                <span class="typed-text relative">
-                  Desenvolvedor Front-end & Analista de Sistemas
-                  <span
-                    class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50"
-                  ></span>
-                </span>
-              </h2>
-              <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a
-                  href="#about"
-                  class="group relative px-8 py-4 bg-gradient-to-br from-blue-6 00 to-indigo-700 text-white font-medium rounded-full hover:shadow-lg hover:shadow-indigo-500/40 transition-all duration-300 transform hover:scale-[1.03]"
-                >
-                  <span class="relative z-10 flex items-center gap-2">
-                    <span>Vamos começar</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 transform transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      ></path>
-                    </svg>
-                  </span>
-                  <span
-                    class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
-                  ></span>
-                </a>
-                <a
-                  href="mailto:erickkauanlauer@gmail.com"
-                  class="group relative px-8 py-4 bg-transparent text-white font-medium rounded-full border-2 border-indigo-500/50 hover:border-indigo-400 transition-all duration-300 transform hover:scale-[1.03]"
-                >
-                  <span class="relative z-10 flex items-center gap-2">
-                    <span>Contato</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 transform transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      ></path>
-                    </svg>
-                  </span>
-                </a>
-              </div>
-              <div class="flex justify-center gap-6">
-                <a
-                  href="https://github.com/kauanlauer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-indigo-500/30 hover:border-indigo-400 transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-indigo-500/20"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 text-white group-hover:text-indigo-300 transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    ></path>
-                  </svg>
-                </a>
-                <a
-                  href="https://linkedin.com/in/kauanlauer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-indigo-500/30 hover:border-indigo-400 transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-indigo-500/20"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 text-white group-hover:text-indigo-300 transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"
-                    ></path>
-                  </svg>
-                </a>
-                <a
-                  href="https://api.whatsapp.com/send?phone=554199426605"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-gray-800 to-gray-900 border border-indigo-500/30 hover:border-indigo-400 transition-all duration-300 transform hover:scale-110 hover:shadow-lg hover:shadow-indigo-500/20"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6 text-white group-hover:text-indigo-300 transition-colors duration-300"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div
-              class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-pulse"
-              style="animation-duration: 2s"
-            >
-              <a href="#about" class="group flex flex-col items-center">
-                <span
-                  class="text-sm text-indigo-400 mb-2 opacity-80 group-hover:opacity-100 transition-opacity duration-300"
-                  >Rolar para baixo</span
-                >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-8 w-8 text-indigo-400/70 animate-bounce"
-                  style="animation-duration: 2s"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </header>
-          <section
-            id="about"
-            class="py-24 px-6 relative z-10 bg-gradient-to-b from-black to-indigo-950/20"
-          >
-            <div
-              class="absolute top-0 left-1/4 w-80 h-80 bg-indigo-500/10 rounded-full filter blur-[100px]"
-            ></div>
-            <div
-              class="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-[100px]"
-            ></div>
-            <div class="max-w-6xl mx-auto">
-              <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">
-                  Sobre
-                  <span
-                    class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
-                    >Mim</span
-                  >
-                </h2>
-                <div
-                  class="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"
-                ></div>
-                <p class="text-gray-300 max-w-3xl mx-auto text-lg">
-                  Conheça um pouco mais sobre minha trajetória e experiências
-                  profissionais
-                </p>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-16">
-                <div class="md:col-span-5 order-2 md:order-1">
-                  <div class="relative">
-                    <img
-                      src="eu2.JPG"
-                      alt="Kauan Lauer"
-                      class="rounded-2xl shadow-2xl z-10 relative transform transition-all duration-500 hover:scale-[1.03] hover:shadow-indigo-500/30 border-2 border-indigo-500/30 object-cover h-[450px] w-full"
-                    />
-                    <div
-                      class="absolute -bottom-5 -right-5 w-full h-full border-4 border-purple-500/30 rounded-2xl z-0 animate-pulse"
-                      style="animation-duration: 4s"
-                    ></div>
-                    <div
-                      class="absolute -top-5 -left-5 w-40 h-40 bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-full opacity-70 filter blur-2xl"
-                    ></div>
-                    <div
-                      class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 mix-blend-overlay rounded-2xl z-20 pointer-events-none"
-                    ></div>
-                    <div
-                      class="absolute -bottom-8 -left-8 w-16 h-16 bg-indigo-600 rounded-full opacity-70 blur-xl"
-                    ></div>
-                    <div
-                      class="absolute -top-8 -right-8 w-16 h-16 bg-purple-600 rounded-full opacity-70 blur-xl"
-                    ></div>
-                  </div>
-                </div>
-                <div class="md:col-span-7 order-1 md:order-2 relative">
-                  <div
-                    class="absolute -top-20 -right-20 w-60 h-60 bg-indigo-500/5 rounded-full filter blur-3xl"
-                  ></div>
-                  <div class="space-y-5 text-gray-300">
-                    <h3
-                      class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-5"
-                    >
-                      Erick Kauan dos Santos Pereira Lauer
-                    </h3>
-                    <p class="leading-relaxed text-lg">
-                      Olá! Sou apaixonado pelo mundo da tecnologia e
-                      desenvolvimento. Nascido em 24 de agosto 1998, em Curitiba
-                      – PR, onde atualmente resido e construo minha carreira.
-                    </p>
-                    <p class="leading-relaxed text-lg">
-                      Como estudante de Análise e Desenvolvimento de Sistemas
-                      pela UniEnsino – Centro Universitário do Paraná, tenho me
-                      dedicado a aprimorar minhas habilidades técnicas e
-                      conhecimentos na área.
-                    </p>
-                    <p class="leading-relaxed text-lg">
-                      Minha paixão pela tecnologia começou na adolescência e se
-                      fortaleceu ao longo da minha jornada acadêmica, onde
-                      desenvolvi habilidades em lógica de programação,
-                      algoritmos e diversas linguagens como HTML, CSS,
-                      JavaScript, C e Java.
-                    </p>
-                    <p class="leading-relaxed text-lg">
-                      Encontrei minha realização profissional no desenvolvimento
-                      web e na programação em VBA do Excel, onde pude criar
-                      planilhas totalmente sistematizadas. Atualmente, estou
-                      focado em aperfeiçoar meu inglês e agregar valor ao meu
-                      trabalho, com o objetivo futuro de encontrar oportunidades
-                      no exterior.
-                    </p>
-                  </div>
-                  <div class="mt-10">
-                    <h4 class="text-xl font-semibold mb-4 text-indigo-300">
-                      Habilidades Técnicas
-                    </h4>
-                    <div class="flex flex-wrap gap-3">
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        HTML5
-                      </span>
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        CSS
-                      </span>
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        JavaScript
-                      </span>
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        Desenvolvimento Web
-                      </span>
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        VBA Excel
-                      </span>
-                      <span
-                        class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30 hover:border-indigo-400 hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:scale-105"
-                      >
-                        PHP
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section
-            id="projects"
-            class="py-24 px-6 relative z-10 bg-gradient-to-b from-indigo-950/20 to-black"
-          >
-            <div
-              class="absolute top-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full filter blur-[100px]"
-            ></div>
-            <div
-              class="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-500/10 rounded-full filter blur-[100px]"
-            ></div>
-            <div class="max-w-6xl mx-auto">
-              <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">
-                  Meus
-                  <span
-                    class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
-                    >Projetos</span
-                  >
-                </h2>
-                <div
-                  class="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"
-                ></div>
-                <p class="text-gray-300 max-w-3xl mx-auto text-lg">
-                  Confira alguns dos meus trabalhos recentes e em
-                  desenvolvimento
-                </p>
-              </div>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kauan Lauer | Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* === VARIÁVEIS GLOBAIS === */
+:root {
+  /* Cores principais */
+  --color-bg: #0a0a0a;
+  --color-bg-alt: #0f0f13;
+  --color-text: #f5f5f5;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-primary: #6d28d9;
+  --color-primary-light: #8b5cf6;
+  --color-primary-dark: #5b21b6;
+  --color-secondary: #10b981;
+  --color-secondary-light: #34d399;
+  --color-secondary-dark: #059669;
+  --color-accent: #f59e0b;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  --gradient-primary-hover: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+  --gradient-dark: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(15, 15, 19, 0.95));
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 15px rgba(124, 58, 237, 0.5);
+  
+  /* Tipografia */
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+  
+  /* Spacing */
+  --spacing-xxs: 0.25rem;  /* 4px */
+  --spacing-xs: 0.5rem;    /* 8px */
+  --spacing-sm: 1rem;      /* 16px */
+  --spacing-md: 1.5rem;    /* 24px */
+  --spacing-lg: 2rem;      /* 32px */
+  --spacing-xl: 3rem;      /* 48px */
+  --spacing-xxl: 5rem;     /* 80px */
+  
+  /* Bordas */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  --border-radius-full: 9999px;
+  
+  /* Transições */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-very-slow: 1s ease;
+  
+  /* Z-index */
+  --z-negative: -1;
+  --z-elevate: 1;
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-fixed: 1000;
+  --z-modal: 2000;
+  --z-popover: 5000;
+  --z-tooltip: 9000;
+  --z-toast: 9500;
+  --z-max: 10000;
+}
 
-              <!-- Projeto 1: Metálica Colombo -->
-              <div
-                class="group relative mb-12 overflow-hidden rounded-3xl shadow-2xl shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500 border border-indigo-500/30 hover:border-indigo-500/50 bg-gradient-to-br from-gray-900 to-indigo-950/50"
-              >
-                <div class="relative overflow-hidden z-10 p-8">
-                  <div
-                    class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-                  >
-                    <div>
-                      <h3
-                        class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4"
-                      >
-                        Metálica Colombo
-                      </h3>
-                      <p class="text-gray-300 mb-6 leading-relaxed">
-                        Desenvolvimento de uma solução web para gerenciamento de
-                        estoque e vendas para a empresa Metálica Colombo. O
-                        projeto incluiu interface responsiva, integração com
-                        banco de dados e automação de processos internos.
-                      </p>
-                      <div class="flex flex-wrap gap-3 mb-6">
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          HTML
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          CSS
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          JavaScript
-                        </span>
-                      </div>
-                      <a
-                        href="https://metalica-colombo-kauanlauer.vercel.app/"
-                        class="inline-block px-6 py-3 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-full hover:shadow-lg hover:shadow-indigo-500/40 transition-all duration-300"
-                      >
-                        Ver Projeto
-                      </a>
-                    </div>
-                    <div class="relative">
-                      <img
-                        src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop"
-                        alt="Metálica Colombo"
-                        class="rounded-xl shadow-lg transform transition-all duration-500 group-hover:scale-[1.02] w-full object-cover"
-                      />
-                      <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+/* === RESET & BASE STYLES === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-              <!-- Projeto 2: Meu TCC (com vídeo local) -->
-              <div
-                class="group relative mb-12 overflow-hidden rounded-3xl shadow-2xl shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500 border border-indigo-500/30 hover:border-indigo-500/50 bg-gradient-to-br from-gray-900 to-indigo-950/50"
-              >
-                <div class="relative overflow-hidden z-10 p-8">
-                  <div
-                    class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-                  >
-                    <div>
-                      <h3
-                        class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4"
-                      >
-                        Meu TCC - Análise e Desenvolvimento de Sistemas
-                      </h3>
-                      <p class="text-gray-300 mb-6 leading-relaxed">
-                        Trabalho de Conclusão de Curso desenvolvido como parte
-                        da graduação em Análise e Desenvolvimento de Sistemas.
-                      </p>
-                      <div class="flex flex-wrap gap-3 mb-6">
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          HTML
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          CSS
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          JavaScript
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          PHP
-                        </span>
-                        <span
-                          class="px-4 py-2 bg-gradient-to-r from-indigo-900/40 to-purple-900/40 text-indigo-300 rounded-full border border-indigo-500/30"
-                        >
-                          MySQL
-                        </span>
-                      </div>
-                      <a
-                        href="#tcc"
-                        class="inline-block px-6 py-3 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-full hover:shadow-lg hover:shadow-indigo-500/40 transition-all duration-300"
-                      >
-                        Ver Vídeo
-                      </a>
-                    </div>
-                    <div class="relative">
-                      <video
-                        class="rounded-xl shadow-lg w-full h-[300px] object-cover"
-                        controls
-                      >
-                        <source src="tcc.webm" type="video/webm" />
-                        Seu navegador não suporta o elemento de vídeo.
-                      </video>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Adicione esta seção após a seção #projects e antes do </div> do #webcrumbs -->
-<section
-id="tcc"
-class="py-24 px-6 relative z-10 bg-gradient-to-b from-black to-indigo-950/20"
->
-<div
-  class="absolute top-0 left-1/4 w-80 h-80 bg-indigo-500/10 rounded-full filter blur-[100px]"
-></div>
-<div
-  class="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-[100px]"
-></div>
-<div class="max-w-6xl mx-auto">
-  <div class="text-center mb-16">
-    <h2 class="text-4xl font-bold mb-4">
-      Meu
-      <span
-        class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
-        >TCC</span
-      >
-    </h2>
-    <div
-      class="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6 rounded-full"
-    ></div>
-    <p class="text-gray-300 max-w-3xl mx-auto text-lg">
-      Confira o pré-projeto do meu Trabalho de Conclusão de Curso em Análise e
-      Desenvolvimento de Sistemas
-    </p>
-  </div>
-  <div class="relative">
-    <!-- Exibir o PDF usando iframe -->
-    <iframe
-      src="preprojeto_tcc.pdf"
-      class="w-full h-[800px] rounded-2xl shadow-2xl shadow-indigo-500/20 border border-indigo-500/30"
-      title="Pré-Projeto TCC"
-    ></iframe>
-    <!-- Alternativa: Link para download -->
-    <div class="mt-6 text-center">
-      <a
-        href="preprojeto_tcc.pdf"
-        download="PreProjeto_TCC_Kauan_Lauer.pdf"
-        class="inline-block px-6 py-3 bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-full hover:shadow-lg hover:shadow-indigo-500/40 transition-all duration-300"
-      >
-        Baixar PDF
-      </a>
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+body.loaded {
+  overflow-y: auto;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+button, input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* === UTILITÁRIOS === */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === CURSOR PERSONALIZADO === */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  z-index: var(--z-max);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  opacity: 0;
+  animation: cursorFadeIn 0.5s 0.5s forwards;
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 58, 237, 0.5);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-max);
+  transition: width 0.2s, height 0.2s, border-color 0.2s, transform 0.1s;
+  opacity: 0;
+  animation: cursorFadeIn 0.5s 0.5s forwards;
+}
+
+.cursor-hover {
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-secondary);
+}
+
+.follower-hover {
+  width: 32px;
+  height: 32px;
+  border-color: rgba(16, 185, 129, 0.5);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+@keyframes cursorFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* === OVERLAY DE CARREGAMENTO === */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg);
+  z-index: var(--z-toast);
+  transition: opacity var(--transition-normal);
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+}
+
+.loader {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-glow);
+  animation: pulse 2s infinite;
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  z-index: 1;
+}
+
+.loader-text {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: 2;
+  animation: glow 2s infinite;
+}
+
+.loader-progress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(var(--color-primary) 0%, transparent 0%);
+  -webkit-mask: radial-gradient(transparent 55%, black 56%);
+  mask: radial-gradient(transparent 55%, black 56%);
+  animation: progress 2s linear forwards;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes progress {
+  0% {
+    background: conic-gradient(var(--color-primary) 0%, transparent 0%);
+  }
+  25% {
+    background: conic-gradient(var(--color-primary) 25%, transparent 25%);
+  }
+  50% {
+    background: conic-gradient(var(--color-primary) 50%, transparent 50%);
+  }
+  75% {
+    background: conic-gradient(var(--color-primary) 75%, transparent 75%);
+  }
+  100% {
+    background: conic-gradient(var(--color-primary) 100%, transparent 100%);
+  }
+}
+
+/* === HEADER & NAVEGAÇÃO === */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-md) 0;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: var(--z-sticky);
+  transition: transform var(--transition-normal), padding var(--transition-normal), backdrop-filter var(--transition-normal);
+}
+
+.header.scrolled {
+  padding: var(--spacing-xs) 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  z-index: var(--z-elevate);
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: transform var(--transition-normal);
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: var(--color-text);
+  font-weight: 700;
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-icon::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent, rgba(255, 255, 255, 0.4), transparent 30%);
+  animation: rotate 4s linear infinite;
+}
+
+.logo-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  position: relative;
+  padding: var(--spacing-xs) var(--spacing-xs);
+  font-weight: 500;
+  transition: color var(--transition-normal);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--gradient-primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--color-primary-light);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: var(--z-fixed);
+  transition: transform var(--transition-normal);
+}
+
+.menu-toggle-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: var(--border-radius-full);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.menu-toggle.active {
+  transform: rotate(180deg);
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* === MENU MOBILE === */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-alt);
+  z-index: var(--z-dropdown);
+  transition: right var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-container {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  height: 100%;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: center;
+}
+
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp var(--transition-normal) forwards;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.mobile-nav-link {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: color var(--transition-normal), transform var(--transition-normal);
+  display: inline-block;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary-light);
+  transform: translateX(5px);
+}
+
+.mobile-social {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.mobile-social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.1);
+  transition: background var(--transition-normal), transform var(--transition-normal);
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScale var(--transition-normal) forwards;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.mobile-social-link:hover {
+  background: rgba(124, 58, 237, 0.2);
+  transform: translateY(-5px);
+}
+
+.mobile-social-link svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary);
+  transition: fill var(--transition-normal);
+}
+
+.mobile-social-link:hover svg {
+  fill: var(--color-primary-light);
+}
+
+/* === SEÇÃO HERO === */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--spacing-xxl) 0;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-negative);
+}
+
+.noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom right, rgba(124, 58, 237, 0.2) 0%, transparent 70%),
+              radial-gradient(ellipse at top left, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  z-index: 2;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-intro {
+  padding-right: var(--spacing-xl);
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-greeting {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-name {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: var(--spacing-xs);
+  animation: textShine 3s linear infinite;
+}
+
+.hero-occupation {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-occupation::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 4px;
+  bottom: -10px;
+  left: 0;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-full);
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-full);
+  font-weight: 500;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+  opacity: 0;
+}
+
+.button.primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.button.primary::before {
+  background: var(--gradient-primary-hover);
+}
+
+.button.secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-text);
+}
+
+.button.secondary::before {
+  background: var(--color-primary);
+  opacity: 0;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), 0 0 15px rgba(124, 58, 237, 0.5);
+}
+
+.button:hover::before {
+  opacity: 1;
+}
+
+.button.secondary:hover {
+  color: white;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+  transition: transform var(--transition-normal);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(124, 58, 237, 0.3);
+}
+
+.image-wrapper:hover {
+  transform: perspective(1000px) rotateY(0) rotateX(0);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.image-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(124, 58, 237, 0.2) 0%, rgba(16, 185, 129, 0.2) 100%);
+  mix-blend-mode: overlay;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  opacity: 0.8;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.scroll-text {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+}
+
+.scroll-line {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  50.1% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* === SEÇÕES COMUNS === */
+.section {
+  padding: var(--spacing-xxl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 20%),
+                    radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 20%);
+  z-index: -1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-subtitle {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+}
+
+.section-subtitle::before,
+.section-subtitle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 1px;
+  background: var(--color-primary);
+}
+
+.section-subtitle::before {
+  left: -40px;
+}
+
+.section-subtitle::after {
+  right: -40px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-full);
+}
+
+/* === SOBRE MIM === */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+
+.about-image {
+  position: relative;
+  padding: var(--spacing-sm);
+}
+
+.about-img {
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal);
+}
+
+.about-img:hover {
+  transform: scale(1.02);
+}
+
+.about-image-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-lg);
+  z-index: 0;
+  transform: translate(15px, 15px);
+  transition: transform var(--transition-normal);
+}
+
+.about-image:hover .about-image-decoration {
+  transform: translate(8px, 8px);
+}
+
+.about-text {
+  padding: var(--spacing-md);
+}
+
+.about-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-paragraph {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.about-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* === HABILIDADES === */
+.skills-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+}
+.skills-category {
+  background: rgba(20, 20, 25, 0.5);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.skills-category:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl), 0 10px 20px rgba(124, 58, 237, 0.2);
+}
+
+.skills-category-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: transform var(--transition-normal);
+}
+
+.skill-item:hover {
+  transform: translateX(5px);
+}
+
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xs);
+}
+
+.skill-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skill-info {
+  flex: 1;
+}
+
+.skill-name {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xxs);
+}
+
+.skill-level {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-full);
+  transition: width 1s ease;
+}
+
+/* === PROJETOS === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.project-card {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: rgba(20, 20, 25, 0.5);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl), 0 15px 30px rgba(124, 58, 237, 0.2);
+}
+
+.project-card.featured {
+  grid-column: span 2;
+}
+
+.project-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-img, .project-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-img,
+.project-card:hover .project-video {
+  transform: scale(1.05);
+}
+
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(124, 58, 237, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: background var(--transition-normal), transform var(--transition-normal);
+  z-index: 1;
+}
+
+.video-play-button:hover {
+  background: var(--color-primary);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.project-content {
+  padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.project-description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.tech-tag {
+  padding: var(--spacing-xxs) var(--spacing-sm);
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: var(--border-radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-primary-light);
+}
+
+.project-links {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  transition: color var(--transition-normal), transform var(--transition-normal);
+}
+
+.project-link:hover {
+  color: var(--color-primary-light);
+  transform: translateX(3px);
+}
+
+.project-link svg {
+  transition: transform var(--transition-normal);
+}
+
+.project-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* === TCC === */
+.tcc-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tcc-video {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.main-video {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+}
+
+.tcc-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tcc-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.tcc-description {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+.tcc-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.tcc-detail {
+  padding: var(--spacing-md);
+  background: rgba(20, 20, 25, 0.5);
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.detail-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary-light);
+}
+
+.detail-list {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.detail-list li {
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+  padding-left: var(--spacing-md);
+}
+
+.detail-list li::before {
+  content: '';
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.tcc-download {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  transition: background var(--transition-normal), transform var(--transition-normal);
+}
+
+.tcc-download:hover {
+  background: rgba(124, 58, 237, 0.2);
+  transform: translateY(-2px);
+}
+
+.tcc-document {
+  width: 100%;
+  height: 500px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.tcc-pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* === CONTATO === */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-intro {
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text);
+}
+
+.contact-text {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: 50%;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.contact-detail {
+  flex: 1;
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xxs);
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: var(--color-text);
+  display: inline-block;
+  transition: color var(--transition-normal), transform var(--transition-normal);
+}
+
+a.detail-value:hover {
+  color: var(--color-primary-light);
+  transform: translateX(3px);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.1);
+  transition: background var(--transition-normal), transform var(--transition-normal);
+}
+
+.social-link:hover {
+  background: rgba(124, 58, 237, 0.2);
+  transform: translateY(-3px);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-primary);
+  transition: fill var(--transition-normal);
+}
+
+.social-link:hover svg {
+  fill: var(--color-primary-light);
+}
+
+.contact-form {
+  background: rgba(20, 20, 25, 0.5);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.form-input, .form-textarea {
+  padding: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-md);
+  color: var(--color-text);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  align-self: flex-start;
+  margin-top: var(--spacing-xs);
+}
+
+/* === FOOTER === */
+.footer {
+  background: rgba(10, 10, 10, 0.8);
+  padding: var(--spacing-xl) 0 var(--spacing-md);
+  margin-top: var(--spacing-xxl);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-tagline {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-link {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  transition: color var(--transition-normal), transform var(--transition-normal);
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: var(--color-primary-light);
+  transform: translateX(3px);
+}
+
+.footer-bottom {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.copyright {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* === BOTÃO VOLTAR AO TOPO === */
+.back-to-top {
+  position: fixed;
+  bottom: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: var(--z-fixed);
+  transition: transform var(--transition-normal), opacity var(--transition-normal), background var(--transition-normal);
+  opacity: 0;
+  transform: translateY(20px);
+  box-shadow: var(--shadow-lg);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-5px);
+}
+
+/* === ANIMAÇÕES === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 1200px) {
+  :root {
+    --spacing-xxl: 4rem;
+  }
+  
+  .hero-name {
+    font-size: 3.5rem;
+  }
+  
+  .hero-occupation {
+    font-size: 1.8rem;
+  }
+  
+  .image-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .project-card.featured {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 992px) {
+  :root {
+    --spacing-xl: 2.5rem;
+    --spacing-xxl: 3.5rem;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+  
+  .hero-intro {
+    padding-right: 0;
+    order: 2;
+  }
+  
+  .hero-image {
+    order: 1;
+  }
+  
+  .hero-occupation::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+  
+  .about-content,
+  .tcc-content,
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .about-text {
+    text-align: center;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+  
+  .hero-name {
+    font-size: 3rem;
+  }
+  
+  .hero-occupation {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .image-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .tcc-document {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --spacing-md: 1rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.75rem;
+    --spacing-xxl: 2.5rem;
+  }
+  
+  .hero-greeting {
+    font-size: 1.2rem;
+  }
+  
+  .hero-name {
+    font-size: 2.5rem;
+  }
+  
+  .hero-occupation {
+    font-size: 1.3rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .button {
+    width: 100%;
+  }
+  
+  .section-subtitle::before,
+  .section-subtitle::after {
+    display: none;
+  }
+  
+  .image-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .about-name {
+    font-size: 1.5rem;
+  }
+  
+  .about-image-decoration {
+    transform: translate(10px, 10px);
+  }
+  
+  .skills-category {
+    padding: var(--spacing-md);
+  }
+  
+  .project-card {
+    max-width: 100%;
+  }
+  
+  .tcc-document {
+    height: 300px;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+  
+  .footer-logo {
+    align-items: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <!-- Cursor Personalizado e Efeitos -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <!-- Overlay de carregamento -->
+  <div class="loading-overlay">
+    <div class="loader">
+      <span class="loader-text">KL</span>
+      <div class="loader-progress"></div>
     </div>
   </div>
-</div>
-</section>
-          </section>
+
+  <!-- Header e Navegação -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="#" class="logo-link">
+          <span class="logo-icon">KL</span>
+          <span class="logo-text">Kauan Lauer</span>
+        </a>
+      </div>
+      
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projetos</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Habilidades</a></li>
+          <li class="nav-item"><a href="#tcc" class="nav-link">TCC</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
+        </ul>
+      </nav>
+      
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span class="menu-toggle-bar"></span>
+        <span class="menu-toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-container">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="#about" class="mobile-nav-link">Sobre</a></li>
+        <li class="mobile-nav-item"><a href="#projects" class="mobile-nav-link">Projetos</a></li>
+        <li class="mobile-nav-item"><a href="#skills" class="mobile-nav-link">Habilidades</a></li>
+        <li class="mobile-nav-item"><a href="#tcc" class="mobile-nav-link">TCC</a></li>
+        <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contato</a></li>
+      </ul>
+      
+      <div class="mobile-social">
+        <a href="https://github.com/kauanlauer" target="_blank" class="mobile-social-link" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+        </a>
+        <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="mobile-social-link" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="mobile-social-link" aria-label="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção Hero -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="noise"></div>
+      <div class="hero-gradient"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-intro fade-in">
+          <h1 class="hero-title">
+            <span class="hero-greeting">Olá, eu sou</span>
+            <span class="hero-name">Kauan Lauer</span>
+            <span class="hero-occupation">Desenvolvedor Front-end<br>& Analista de Sistemas</span>
+          </h1>
+          
+          <p class="hero-description">
+            Transformando ideias em experiências digitais intuitivas e impactantes
+          </p>
+          
+          <div class="hero-cta">
+            <a href="#projects" class="button primary">Ver projetos</a>
+            <a href="#contact" class="button secondary">Contato</a>
+          </div>
+        </div>
+        
+        <div class="hero-image fade-in">
+          <div class="image-wrapper">
+            <img src="eu.png" alt="Kauan Lauer" class="profile-image">
+            <div class="image-decoration"></div>
+          </div>
         </div>
       </div>
     </div>
+    
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <span class="scroll-line"></span>
+    </div>
+  </section>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        content: ["./src/**/*.{html,js}"],
-        theme: {
-          name: "Custom",
-          fontFamily: {
-            sans: [
-              "Open Sans",
-              "ui-sans-serif",
-              "system-ui",
-              "sans-serif",
-              '"Apple Color Emoji"',
-              '"Segoe UI Emoji"',
-              '"Segoe UI Symbol"',
-              '"Noto Color Emoji"',
-            ],
-          },
-          extend: {
-            fontFamily: {
-              title: [
-                "Lato",
-                "ui-sans-serif",
-                "system-ui",
-                "sans-serif",
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-                '"Noto Color Emoji"',
-              ],
-              body: [
-                "Open Sans",
-                "ui-sans-serif",
-                "system-ui",
-                "sans-serif",
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-                '"Noto Color Emoji"',
-              ],
-            },
-            colors: {
-              neutral: {
-                50: "#f7f7f7",
-                100: "#eeeeee",
-                200: "#e0e0e0",
-                300: "#cacaca",
-                400: "#b1b1b1",
-                500: "#999999",
-                600: "#7f7f7f",
-                700: "#676767",
-                800: "#545454",
-                900: "#464646",
-                950: "#282828",
-              },
-              primary: {
-                50: "#f3f1ff",
-                100: "#e9e5ff",
-                200: "#d5cfff",
-                300: "#b7a9ff",
-                400: "#9478ff",
-                500: "#7341ff",
-                600: "#631bff",
-                700: "#611bf8",
-                800: "#4607d0",
-                900: "#3c08aa",
-                950: "#220174",
-                DEFAULT: "#611bf8",
-              },
-            },
-          },
-          fontSize: {
-            xs: ["12px", { lineHeight: "19.200000000000003px" }],
-            sm: ["14px", { lineHeight: "21px" }],
-            base: ["16px", { lineHeight: "25.6px" }],
-            lg: ["18px", { lineHeight: "27px" }],
-            xl: ["20px", { lineHeight: "28px" }],
-            "2xl": ["24px", { lineHeight: "31.200000000000003px" }],
-            "3xl": ["30px", { lineHeight: "36px" }],
-            "4xl": ["36px", { lineHeight: "41.4px" }],
-            "5xl": ["48px", { lineHeight: "52.800000000000004px" }],
-            "6xl": ["60px", { lineHeight: "66px" }],
-            "7xl": ["72px", { lineHeight: "75.60000000000001px" }],
-            "8xl": ["96px", { lineHeight: "100.80000000000001px" }],
-            "9xl": ["128px", { lineHeight: "134.4px" }],
-          },
-          borderRadius: {
-            none: "0px",
-            sm: "6.75px",
-            DEFAULT: "13.5px",
-            md: "20.25px",
-            lg: "27px",
-            xl: "40.5px",
-            "2xl": "54px",
-            "3xl": "81px",
-            full: "9999px",
-          },
-          spacing: {
-            0: "0px",
-            1: "4px",
-            2: "8px",
-            3: "12px",
-            4: "16px",
-            5: "20px",
-            6: "24px",
-            7: "28px",
-            8: "32px",
-            9: "36px",
-            10: "40px",
-            11: "44px",
-            12: "48px",
-            14: "56px",
-            16: "64px",
-            20: "80px",
-            24: "96px",
-            28: "112px",
-            32: "128px",
-            36: "144px",
-            40: "160px",
-            44: "176px",
-            48: "192px",
-            52: "208px",
-            56: "224px",
-            60: "240px",
-            64: "256px",
-            72: "288px",
-            80: "320px",
-            96: "384px",
-            px: "1px",
-            0.5: "2px",
-            1.5: "6px",
-            2.5: "10px",
-            3.5: "14px",
-          },
-        },
-        plugins: [],
-        important: "#webcrumbs",
-      };
-    </script>
+  <!-- Sobre Mim -->
+  <section id="about" class="section about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Quem sou</span>
+        <h2 class="section-title">Sobre Mim</h2>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-image">
+          <img src="eu2.JPG" alt="Kauan Lauer" class="about-img">
+          <div class="about-image-decoration"></div>
+        </div>
+        
+        <div class="about-text">
+          <h3 class="about-name">Erick Kauan dos Santos Pereira Lauer</h3>
+          
+          <p class="about-paragraph">
+            Olá! Sou apaixonado pelo mundo da tecnologia e desenvolvimento. Nascido em 24 de agosto 1998, em Curitiba – PR, onde atualmente resido e construo minha carreira.
+          </p>
+          
+          <p class="about-paragraph">
+            Como estudante de Análise e Desenvolvimento de Sistemas pela UniEnsino – Centro Universitário do Paraná, tenho me dedicado a aprimorar minhas habilidades técnicas e conhecimentos na área.
+          </p>
+          
+          <p class="about-paragraph">
+            Minha paixão pela tecnologia começou na adolescência e se fortaleceu ao longo da minha jornada acadêmica, onde desenvolvi habilidades em lógica de programação, algoritmos e diversas linguagens como HTML, CSS, JavaScript, C e Java.
+          </p>
+          
+          <p class="about-paragraph">
+            Encontrei minha realização profissional no desenvolvimento web e na programação em VBA do Excel, onde pude criar planilhas totalmente sistematizadas. Atualmente, estou focado em aperfeiçoar meu inglês e agregar valor ao meu trabalho, com o objetivo futuro de encontrar oportunidades no exterior.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Habilidades -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Competências</span>
+        <h2 class="section-title">Minhas Habilidades</h2>
+      </div>
+      
+      <div class="skills-content">
+        <div class="skills-category">
+          <h3 class="skills-category-title">Front-end</h3>
+          <ul class="skills-list">
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">HTML5</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+              </div>
+            </li>
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">CSS3</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+              </div>
+            </li>
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">JavaScript</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="skills-category">
+          <h3 class="skills-category-title">Back-end & Outros</h3>
+          <ul class="skills-list">
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">PHP</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 70%"></div>
+                </div>
+              </div>
+            </li>
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">MySQL</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+              </div>
+            </li>
+            <li class="skill-item">
+              <div class="skill-icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VBA Excel">
+              </div>
+              <div class="skill-info">
+                <h4 class="skill-name">VBA Excel</h4>
+                <div class="skill-level">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projetos -->
+  <section id="projects" class="section projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Meu Trabalho</span>
+        <h2 class="section-title">Projetos Recentes</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- Projeto 1 -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Metálica Colombo" class="project-img">
+          </div>
+          
+          <div class="project-content">
+            <h3 class="project-title">Metálica Colombo</h3>
+            <p class="project-description">
+              Desenvolvimento de uma solução web para gerenciamento de estoque e vendas para a empresa Metálica Colombo. O projeto incluiu interface responsiva, integração com banco de dados e automação de processos internos.
+            </p>
+            
+            <div class="project-tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://kauanlauer.github.io/gabriel/" class="project-link" target="_blank">
+                <span class="link-text">Ver site</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Projeto 2 -->
+        <article class="project-card">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" alt="Bruno e Eduardo" class="project-img">
+          </div>
+          
+          <div class="project-content">
+            <h3 class="project-title">Bruno e Eduardo</h3>
+            <p class="project-description">
+              Projeto colaborativo desenvolvido para atender às necessidades específicas dos clientes Bruno e Eduardo. Implementação de design responsivo e funcionalidades personalizadas para melhorar a experiência do usuário.
+            </p>
+            
+            <div class="project-tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+            </div>
+            
+            <div class="project-links">
+              <a href="https://kauanlauer.github.io/BrunoEeduardo/" class="project-link" target="_blank">
+                <span class="link-text">Ver site</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Projeto 3: TCC -->
+        <article class="project-card featured">
+          <div class="project-image">
+            <video class="project-video" poster="thumbnail-tcc.jpg">
+              <source src="tcc.webm" type="video/webm">
+              Seu navegador não suporta o elemento de vídeo.
+            </video>
+            <button class="video-play-button" aria-label="Play video">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+          </div>
+          
+          <div class="project-content">
+            <h3 class="project-title">Meu TCC - Análise e Desenvolvimento de Sistemas</h3>
+            <p class="project-description">
+              Trabalho de Conclusão de Curso desenvolvido como parte da graduação em Análise e Desenvolvimento de Sistemas. Implementação de um sistema completo com front-end e back-end integrados.
+            </p>
+            
+            <div class="project-tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">PHP</span>
+              <span class="tech-tag">MySQL</span>
+            </div>
+            
+            <div class="project-links">
+              <a href="#tcc" class="project-link">
+                <span class="link-text">Ver detalhes</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TCC -->
+  <section id="tcc" class="section tcc">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Pesquisa Acadêmica</span>
+        <h2 class="section-title">Meu TCC</h2>
+      </div>
+      
+      <div class="tcc-content">
+        <div class="tcc-video">
+          <video class="main-video" controls poster="thumbnail-tcc.jpg">
+            <source src="tcc.webm" type="video/webm">
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+        
+        <div class="tcc-info">
+          <h3 class="tcc-title">Sistema de Gerenciamento para Empresas</h3>
+          <p class="tcc-description">
+            Meu Trabalho de Conclusão de Curso em Análise e Desenvolvimento de Sistemas foi focado na criação de um sistema integrado para gerenciamento empresarial, com funcionalidades específicas para controle de estoque, vendas e relacionamento com clientes.
+          </p>
+          
+          <div class="tcc-details">
+            <div class="tcc-detail">
+              <h4 class="detail-title">Tecnologias utilizadas</h4>
+              <ul class="detail-list">
+                <li>Front-end: HTML5, CSS3, JavaScript</li>
+                <li>Back-end: PHP</li>
+                <li>Banco de dados: MySQL</li>
+                <li>Controle de versão: Git</li>
+              </ul>
+            </div>
+            
+            <div class="tcc-detail">
+              <h4 class="detail-title">Documentação</h4>
+              <p>Confira o pré-projeto completo:</p>
+              <a href="preprojeto_tcc.pdf" download="PreProjeto_TCC_Kauan_Lauer.pdf" class="tcc-download">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Baixar PDF</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tcc-document">
+        <iframe src="preprojeto_tcc.pdf" class="tcc-pdf" title="Pré-Projeto TCC"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Vamos Conversar</span>
+        <h2 class="section-title">Entre em Contato</h2>
+      </div>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-intro">
+            <h3 class="contact-title">Vamos trabalhar juntos?</h3>
+            <p class="contact-text">
+              Estou disponível para projetos freelance, oportunidades de trabalho e colaborações. 
+              Entre em contato para conversarmos sobre como posso ajudar a tornar sua ideia realidade.
+            </p>
+          </div>
+          
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="contact-detail">
+                <h4 class="detail-label">Email</h4>
+                <a href="mailto:erickkauanlauer@gmail.com" class="detail-value">erickkauanlauer@gmail.com</a>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="contact-detail">
+                <h4 class="detail-label">WhatsApp</h4>
+                <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="detail-value">+55 (41) 99942-6605</a>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="contact-detail">
+                <h4 class="detail-label">Localização</h4>
+                <span class="detail-value">Curitiba, Paraná - Brasil</span>
+              </div>
+            </li>
+          </ul>
+          
+          <div class="social-links">
+            <a href="https://github.com/kauanlauer" target="_blank" class="social-link" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+            </a>
+            <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="social-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="social-link" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="contactForm" class="form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Substituir com sua chave de acesso do Web3Forms -->
+            <input type="hidden" name="access_key" value="228a415b-7a3c-4dda-a183-3428a0988ce9">
+            
+            <!-- Campo oculto para definir o assunto do email -->
+            <input type="hidden" name="subject" value="Portfolio mensagem">
+            
+            <div class="form-group">
+              <label for="name" class="form-label">Nome</label>
+              <input type="text" id="name" name="name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Mensagem</label>
+              <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+            </div>
+            
+            <!-- Campo honeypot para evitar spam -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
+            <!-- Página de redirecionamento após envio (opcional) -->
+            <input type="hidden" name="redirect" value="">
+            
+            <button type="submit" class="button primary form-submit">
+              <span class="button-text">Enviar mensagem</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </form>
+        </div>
+        
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <a href="#" class="logo-link">
+            <span class="logo-icon">KL</span>
+            <span class="logo-text">Kauan Lauer</span>
+          </a>
+          <p class="footer-tagline">Desenvolvedor Front-end & Analista de Sistemas</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h3 class="footer-title">Links rápidos</h3>
+          <ul class="footer-links">
+            <li><a href="#about" class="footer-link">Sobre</a></li>
+            <li><a href="#projects" class="footer-link">Projetos</a></li>
+            <li><a href="#skills" class="footer-link">Habilidades</a></li>
+            <li><a href="#tcc" class="footer-link">TCC</a></li>
+            <li><a href="#contact" class="footer-link">Contato</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-social">
+          <h3 class="footer-title">Redes sociais</h3>
+          <div class="social-links">
+            <a href="https://github.com/kauanlauer" target="_blank" class="social-link" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+            </a>
+            <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="social-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="social-link" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="currentYear"></span> Kauan Lauer. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão Voltar ao Topo -->
+  <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Definir o ano atual no copyright
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Cursor personalizado
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
+    
+    let posX = 0, posY = 0;
+    let mouseX = 0, mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+    
+    const animateCursor = () => {
+      posX += (mouseX - posX) * 0.1;
+      posY += (mouseY - posY) * 0.1;
+      
+      follower.style.left = posX + 'px';
+      follower.style.top = posY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    };
+    
+    animateCursor();
+    
+    // Elementos clicáveis com efeito hover no cursor
+    const hoverables = document.querySelectorAll('a, button, input, textarea, .project-card, .skill-item');
+    
+    hoverables.forEach(hoverable => {
+      hoverable.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover');
+        follower.classList.add('follower-hover');
+      });
+      
+      hoverable.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover');
+        follower.classList.remove('follower-hover');
+      });
+    });
+    
+    // Animação de carregamento da página
+    window.addEventListener('load', () => {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      
+      setTimeout(() => {
+        loadingOverlay.classList.add('fade-out');
+        
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+          document.body.classList.add('loaded');
+        }, 500);
+      }, 1500);
+    });
+    
+    // Navegação mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    menuToggle.addEventListener('click', () => {
+      document.body.classList.toggle('menu-open');
+      menuToggle.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+    });
+    
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+      });
+    });
+    
+    // Vídeo do projeto
+    const videoPlayButton = document.querySelector('.video-play-button');
+    const projectVideo = document.querySelector('.project-video');
+    
+    if (videoPlayButton && projectVideo) {
+      videoPlayButton.addEventListener('click', () => {
+        projectVideo.play();
+        videoPlayButton.style.display = 'none';
+        projectVideo.setAttribute('controls', 'true');
+      });
+    }
+    
+    // Scroll suave para links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Botão voltar ao topo
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Animação de elementos no scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight * 0.85) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', fadeInOnScroll);
+    window.addEventListener('load', fadeInOnScroll);
+    
+  </script>
+  <!-- Adicione este script ao final do seu arquivo, antes do </body> -->
+<script>
+  // Manipulação do formulário usando Web3Forms
+  const contactForm = document.getElementById('contactForm');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      // Não previna o envio padrão, pois queremos que o formulário seja enviado para o Web3Forms
+      
+      const formSubmit = this.querySelector('.form-submit');
+      const originalText = formSubmit.innerHTML;
+      
+      formSubmit.innerHTML = '<span class="button-text">Enviando...</span>';
+      formSubmit.disabled = true;
+    
+    });
+  }
+</script>
   </body>
 </html>
