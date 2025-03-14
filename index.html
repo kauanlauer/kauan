@@ -1836,7 +1836,181 @@ a.detail-value:hover {
   }
 }
 
+/* === MENU MOBILE AJUSTADO === */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(10, 10, 14, 0.98); /* Fundo mais escuro e opaco */
+  z-index: 9999; /* Z-index maior para ficar acima de tudo */
+  transition: right var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu-container {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  height: 100%;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  text-align: center;
+  width: 100%;
+}
+
+.mobile-nav-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp var(--transition-normal) forwards;
+  margin-bottom: 8px; /* Espaçamento adicional entre itens */
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.mobile-nav-link {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  transition: color var(--transition-normal), transform var(--transition-normal);
+  display: inline-block;
+  color: white; /* Garantir que o texto seja branco */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para melhorar legibilidade */
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary-light);
+  transform: translateX(5px);
+}
+
+.mobile-social {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.mobile-social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.2); /* Fundo mais visível */
+  transition: background var(--transition-normal), transform var(--transition-normal);
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScale var(--transition-normal) forwards;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+.mobile-menu.active .mobile-social-link:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.mobile-social-link:hover {
+  background: rgba(124, 58, 237, 0.4);
+  transform: translateY(-5px);
+}
+
+.mobile-social-link svg {
+  width: 24px;
+  height: 24px;
+  fill: white; /* Cor branca para melhor visibilidade */
+  transition: fill var(--transition-normal);
+}
+
+.mobile-social-link:hover svg {
+  fill: var(--color-primary-light);
+}
+
+/* Menu toggle button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10000; /* Z-index maior que o menu para ficar acima */
+  transition: transform var(--transition-normal);
+}
+
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+.menu-toggle-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: var(--border-radius-full);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.menu-toggle.active {
+  transform: rotate(180deg);
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .menu-toggle-bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
   </style>
 </head>
 <body>
