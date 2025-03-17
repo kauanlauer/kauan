@@ -691,9 +691,26 @@ select,
 }
 
 .hero-intro {
-  padding-right: var(--spacing-xl);
-}
-
+    position: relative;
+    z-index: 10;
+    padding: 1.5rem;
+    border-radius: var(--border-radius-lg);
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(5px); /* Efeito de desfoque que ajuda na legibilidade */
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  /* Estilo específico para mobile para melhorar a legibilidade */
+  @media (max-width: 768px) {
+    .hero-intro {
+      background-color: rgba(0, 0, 0, 0.6); /* Fundo ainda mais escuro em mobile */
+      padding: 1rem;
+    }
+  
+    .hero-name {
+      font-size: 2.8rem; /* Texto um pouco menor */
+    }
+  }
 .hero-title {
   display: flex;
   flex-direction: column;
@@ -2873,7 +2890,58 @@ cursor-particle {
             height: 100%;
           }
 
-          /* Estilos para o vídeo de fundo */
+          /* Atualize estas regras CSS no seu arquivo styles.css */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  #hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+  }
+  
+  /* Remova estas regras se existirem */
+  .mobile-fallback-image {
+    display: none; /* Não queremos mais esta imagem */
+  }
+  
+  /* Adicione estas regras para melhorar a adaptação em dispositivos móveis */
+  @media (max-width: 768px) {
+    #hero-video {
+      object-position: center; /* Ajuste centralizado para dispositivos móveis */
+    }
+    
+    .video-overlay {
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(15, 15, 19, 0.85)); /* Overlay um pouco mais escuro em dispositivos móveis */
+    }
+  }
+
+  .video-background {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .video-background.loaded {
+    opacity: 1;
+  }
+  
+  #hero-video {
+    transition: transform 0.3s ease-out, opacity 0.5s ease;
+  }
+  /* Estilos para o vídeo de fundo */
 .video-background {
     position: absolute;
     top: 0;
@@ -2902,9 +2970,17 @@ cursor-particle {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(15, 15, 19, 0.8));
+    background: linear-gradient(135deg, rgba(5, 5, 5, 0.92), rgba(10, 10, 14, 0.92)); /* Overlay muito mais escuro */
     z-index: 1;
   }
+  /* Versão ainda mais escura para dispositivos móveis */
+@media (max-width: 768px) {
+    .video-overlay {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.94), rgba(5, 5, 10, 0.94)); /* Overlay quase preto para melhor legibilidade em mobile */
+    }
+  }
+
+  
   
   /* Ajustar z-index dos elementos internos da hero para ficarem acima do vídeo */
   .hero .container {
@@ -2914,28 +2990,4 @@ cursor-particle {
   
   .hero-bg {
     z-index: 0;
-  }
-
-  .video-background {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-  
-  .video-background.loaded {
-    opacity: 1;
-  }
-  
-  #hero-video {
-    transition: transform 0.3s ease-out, opacity 0.5s ease;
-  }
-
-  /* Estilo para a imagem de fallback em dispositivos móveis */
-.mobile-fallback-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
   }

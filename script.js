@@ -1955,7 +1955,7 @@ function initLiquidButtons() {
 // Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', initLiquidButtons);
 
-// Adicione isso ao seu arquivo script.js
+// Atualize esta parte no seu arquivo script.js
 document.addEventListener('DOMContentLoaded', function() {
   const heroVideo = document.getElementById('hero-video');
   
@@ -1964,15 +1964,16 @@ document.addEventListener('DOMContentLoaded', function() {
       // Obter a posição atual do scroll
       const scrollTop = window.scrollY;
       
-      // Calcular a quantidade de parallax (ajuste 0.4 para controlar a velocidade)
-      const parallaxOffset = scrollTop * 0.4;
+      // Calcular a quantidade de parallax (ajuste 0.3 para menos intensidade em dispositivos móveis)
+      const parallaxFactor = window.innerWidth < 768 ? 0.2 : 0.4;
+      const parallaxOffset = scrollTop * parallaxFactor;
       
       // Aplicar o efeito de parallax ao vídeo
       heroVideo.style.transform = `translateX(-50%) translateY(calc(-50% + ${parallaxOffset}px))`;
       
       // Ajustar a opacidade conforme o scroll (desvanecer gradualmente)
       const heroHeight = document.querySelector('.hero').offsetHeight;
-      const opacity = 1 - Math.min(1, scrollTop / (heroHeight * 0.8));
+      const opacity = 1 - Math.min(1, scrollTop / (heroHeight * 0.7)); // Ajuste para 0.7 para desaparecer mais rápido em mobile
       
       heroVideo.style.opacity = opacity;
     });
@@ -1991,3 +1992,46 @@ function preloadVideo() {
 
 document.addEventListener('DOMContentLoaded', preloadVideo);
 
+// Substitua a função checkForMobileAndOptimize no seu script.js pelo seguinte código:
+function optimizeVideoForAllDevices() {
+  const videoElement = document.getElementById('hero-video');
+  const videoBackground = document.querySelector('.video-background');
+  
+  if (videoElement && videoBackground) {
+    // Otimizações para todos os dispositivos
+    videoElement.setAttribute('playsinline', ''); // Importante para iOS
+    videoElement.setAttribute('preload', 'auto');
+    
+    // Em dispositivos móveis, podemos reduzir a qualidade do vídeo para melhor performance
+    if (window.innerWidth < 768) {
+      videoElement.setAttribute('poster', 'poster-image.jpg'); // Opcional: imagem de placeholder enquanto o vídeo carrega
+    }
+    
+    // Adicionar classe de carregamento quando o vídeo estiver pronto
+    videoElement.addEventListener('loadeddata', function() {
+      videoBackground.classList.add('loaded');
+    });
+  }
+}
+
+// Substitua a função preloadVideo por esta:
+function preloadVideo() {
+  const videoElement = document.getElementById('hero-video');
+  if (videoElement) {
+    videoElement.load();
+    videoElement.addEventListener('loadeddata', function() {
+      document.querySelector('.video-background').classList.add('loaded');
+    });
+    
+    // Se o vídeo demorar muito para carregar, mostramos a interface de qualquer forma após 3 segundos
+    setTimeout(function() {
+      document.querySelector('.video-background').classList.add('loaded');
+    }, 3000);
+  }
+}
+
+// Adicione este evento quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+  optimizeVideoForAllDevices();
+  preloadVideo();
+});
