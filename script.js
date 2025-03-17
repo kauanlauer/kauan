@@ -1979,18 +1979,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-// Adicione ao seu script.js
 function preloadVideo() {
   const videoElement = document.getElementById('hero-video');
-  if (videoElement) {
-    videoElement.load();
+  const videoBackground = document.querySelector('.video-background');
+  
+  if (videoElement && videoBackground) {
+    // Definir as configurações corretas para o vídeo
+    videoElement.setAttribute('playsinline', '');
+    videoElement.setAttribute('preload', 'auto');
+    videoElement.muted = true; // Importante para autoplay funcionar
+    
+    // Adicionar listener para quando o vídeo estiver pronto
     videoElement.addEventListener('loadeddata', function() {
-      document.querySelector('.video-background').classList.add('loaded');
+      videoBackground.classList.add('loaded');
+      console.log('Vídeo carregado com sucesso');
     });
+    
+    // Garantir que o vídeo seja exibido mesmo que demore para carregar
+    setTimeout(function() {
+      videoBackground.classList.add('loaded');
+      videoElement.play().catch(e => console.log('Erro ao reproduzir vídeo:', e));
+    }, 1000);
+    
+    // Tente iniciar o vídeo
+    videoElement.load();
+    videoElement.play().catch(e => console.log('Erro inicial ao reproduzir vídeo:', e));
   }
 }
-
-document.addEventListener('DOMContentLoaded', preloadVideo);
 
 // Substitua a função checkForMobileAndOptimize no seu script.js pelo seguinte código:
 function optimizeVideoForAllDevices() {
@@ -2035,3 +2050,47 @@ document.addEventListener('DOMContentLoaded', function() {
   optimizeVideoForAllDevices();
   preloadVideo();
 });
+
+// Adicione esta função ao seu script.js
+function setupResponsiveVideo() {
+  const videoElement = document.getElementById('hero-video');
+  if (!videoElement) return;
+  
+  // Função para trocar o vídeo baseado no tamanho da tela
+  function updateVideoSource() {
+    const currentSrc = videoElement.currentSrc;
+    const isMobile = window.innerWidth <= 767;
+    const mobileVideoPath = "fundo-mobile.mp4";
+    const desktopVideoPath = "fundo.mp4";
+    
+    // Verificar se precisamos trocar o vídeo
+    if ((isMobile && !currentSrc.includes(mobileVideoPath)) || 
+        (!isMobile && !currentSrc.includes(desktopVideoPath))) {
+      
+      // Preservar estado do vídeo
+      const wasPlaying = !videoElement.paused;
+      const currentTime = videoElement.currentTime;
+      
+      // Atualizar source do vídeo
+      videoElement.src = isMobile ? mobileVideoPath : desktopVideoPath;
+      
+      // Restaurar estado do vídeo após carregar
+      videoElement.addEventListener('loadedmetadata', function onceLoaded() {
+        videoElement.currentTime = currentTime;
+        if (wasPlaying) videoElement.play();
+        videoElement.removeEventListener('loadedmetadata', onceLoaded);
+      }, { once: true });
+      
+      videoElement.load();
+    }
+  }
+  
+  // Verificar na inicialização
+  updateVideoSource();
+  
+  // Verificar quando a tela for redimensionada
+  window.addEventListener('resize', updateVideoSource);
+}
+
+// Chamar a função quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', setupResponsiveVideo);
