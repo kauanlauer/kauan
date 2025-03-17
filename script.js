@@ -1536,12 +1536,7 @@ function setupDistortionEffect() {
   );
   camera.position.z = 1;
 
-  // Carregue sua imagem de perfil para usar como textura
-  const textureLoader = new THREE.TextureLoader();
-  const profileTexture = textureLoader.load('eu.png', () => {
-    // Após carregamento da textura, inicia a animação
-    animate();
-  });
+  ;
   
   // Geometria e Material
   const geometry = new THREE.PlaneGeometry(2, 2, 32, 32);
@@ -2102,7 +2097,7 @@ document.addEventListener('DOMContentLoaded', setupResponsiveVideo);
     // Elementos que precisamos ajustar
     const videoBackground = document.querySelector('.video-background');
     const heroImage = document.querySelector('.hero-image');
-    const profileImage = document.querySelector('.profile-image');
+ 
     const heroVideo = document.getElementById('hero-video');
     
     // 1. Garantir que o vídeo esteja visível e com a opacidade correta
