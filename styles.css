@@ -2991,3 +2991,24 @@ cursor-particle {
   .hero-bg {
     z-index: 0;
   }
+
+  /* Adicionando filtro para escurecer o vídeo */
+#hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+    filter: brightness(0.5) contrast(1.1); /* Escurece o vídeo e aumenta o contraste */
+  }
+  
+  /* Ainda mais escuro em mobile */
+  @media (max-width: 768px) {
+    #hero-video {
+      filter: brightness(0.4) contrast(1.2); /* Vídeo ainda mais escuro em dispositivos móveis */
+    }
+  }
