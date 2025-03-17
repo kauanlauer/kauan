@@ -3044,3 +3044,42 @@ cursor-particle {
   #hero-video {
     opacity: 1 !important;
   }
+
+  /* Adicione ao seu styles.css */
+@media (max-width: 767px) {
+    /* Corrigir o problema de fundo em dispositivos móveis */
+    .hero-bg, .hero-gradient {
+      opacity: 1 !important;
+      z-index: 0;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1c1c2e 100%);
+    }
+    
+    .profile-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+    .image-wrapper {
+      width: 120px !important;
+      height: 120px !important;
+      border-radius: 50% !important;
+      margin: 0 auto 20px !important;
+      overflow: hidden;
+    }
+    
+    /* Garantir que o conteúdo esteja acima do fundo */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+    }
+    
+    /* Tornar o overlay do vídeo mais escuro para legibilidade */
+    .video-overlay {
+      background: rgba(0, 0, 0, 0.85) !important;
+    }
+  }

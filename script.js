@@ -2094,3 +2094,49 @@ function setupResponsiveVideo() {
 
 // Chamar a função quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', setupResponsiveVideo);
+
+// Adicione esta função ao seu script.js
+function fixMobileBackground() {
+  // Verificar se é um dispositivo móvel
+  const isMobile = window.innerWidth <= 767;
+  
+  if (isMobile) {
+    // Elementos que precisamos ajustar
+    const videoBackground = document.querySelector('.video-background');
+    const heroImage = document.querySelector('.hero-image');
+    const profileImage = document.querySelector('.profile-image');
+    
+    // 1. Garantir que o vídeo esteja visível e com a opacidade correta
+    if (videoBackground) {
+      videoBackground.style.opacity = '1';
+      videoBackground.style.zIndex = '0';
+    }
+    
+    // 2. Ajustar a imagem de perfil para não ser usada como fundo
+    if (heroImage) {
+      // Reduzir o tamanho da imagem e ajustar sua posição
+      heroImage.style.position = 'relative';
+      heroImage.style.zIndex = '2';
+      heroImage.style.width = '120px';
+      heroImage.style.height = '120px';
+      heroImage.style.margin = '0 auto 20px';
+    }
+    
+    if (profileImage) {
+      // Garantir que a imagem de perfil não vaze para o fundo
+      profileImage.style.objectFit = 'cover';
+      profileImage.style.width = '100%';
+      profileImage.style.height = '100%';
+    }
+    
+    // 3. Aplicar um background temporário até que o vídeo carregue
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      heroSection.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1c1c2e 100%)';
+    }
+  }
+}
+
+// Executar quando o DOM estiver pronto e novamente quando a página estiver totalmente carregada
+document.addEventListener('DOMContentLoaded', fixMobileBackground);
+window.addEventListener('load', fixMobileBackground);
