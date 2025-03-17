@@ -752,18 +752,40 @@ select,
 }
 
 .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--border-radius-full);
-  font-weight: 500;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-full);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    z-index: 1;
+    outline: none;
+    border: none;
+  }
+
+/* Efeito de borda brilhante */
+.button::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--border-radius-full);
+    padding: 4px;
+    background: var(--gradient-primary);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
 
 .button::before {
   content: '';
@@ -777,11 +799,77 @@ select,
   opacity: 0;
 }
 
+/* Efeito de brilho no hover */
 .button.primary {
-  background: var(--gradient-primary);
-  color: white;
-  box-shadow: var(--shadow-md);
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  }
+
+  .button.primary:hover {
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6);
+    transform: translateY(-3px) scale(1.02);
+  }
+  
+  .button.primary:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+
+  * Botão secundário com borda gradiente */
+.button.secondary {
+  background: rgba(20, 20, 25, 0.5);
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
+.button.secondary::after {
+  opacity: 1;
+}
+
+.button.secondary:hover {
+  color: white;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.button.secondary:hover::after {
+  opacity: 0.8;
+}
+
+.button.secondary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Efeito de onda ao clicar */
+.button::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button.wave::before {
+  animation: buttonWave 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes buttonWave {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40);
+  }
+}
+
 
 .button.primary::before {
   background: var(--gradient-primary-hover);
@@ -2382,4 +2470,340 @@ a.detail-value:hover {
     pointer-events: none;
   }
 
+
+.parallax-element {
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+              opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.parallax-element:not(.in-viewport) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.parallax-element.in-viewport {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title, .section-subtitle, .hero-name, .hero-occupation {
+  transition: transform 0.5s ease;
+}
+
+.section > .container > *:not(.section-header) {
+  transition: transform 0.5s ease;
+}
+
+.hero-content, .hero-gradient, .noise, .image-wrapper {
+  will-change: transform;
+  transition: transform 0.2s ease;
+}
+
+cursor-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+  }
   
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+
+  /* Adicione isso ao seu CSS para centralizar o efeito de onda */
+.button::before {
+    left: var(--wave-x, 50%);
+    top: var(--wave-y, 50%);
+    transform-origin: center;
+  }
+  
+  /* Cards de projeto premium */
+  .project-card {
+    border-radius: var(--border-radius-lg);
+    background: rgba(20, 20, 25, 0.5);
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* Efeito de borda com gradiente premium */
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      180deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(124, 58, 237, 0.1) 50%,
+      rgba(16, 185, 129, 0.1) 100%
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .project-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                0 0 30px rgba(124, 58, 237, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .project-card:hover::after {
+    background: linear-gradient(
+      180deg, 
+      rgba(255, 255, 255, 0.2) 0%, 
+      rgba(124, 58, 237, 0.2) 50%,
+      rgba(16, 185, 129, 0.2) 100%
+    );
+  }
+  
+  /* Brilho ao passar o mouse */
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 0s;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .project-card:hover::before {
+    left: 150%;
+    transition: left 0.8s ease;
+  }
+  
+  /* Estilo para título e status premium */
+  .project-title {
+    position: relative;
+    z-index: 2;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--color-text) 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transform: translateZ(0); /* Fix para Safari */
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover .project-title {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .project-status {
+    position: relative;
+    border-radius: var(--border-radius-full);
+    z-index: 2;
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--color-primary-light);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover .project-status {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
+  }
+  
+  .status-featured {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.2), rgba(16, 185, 129, 0.2));
+    color: var(--color-secondary-light);
+  }
+  
+  .project-card:hover .status-featured {
+    background: var(--gradient-primary);
+    color: white;
+  }
+  
+  /* Tech Items com efeito glass premium */
+  .tech-item {
+    background: rgba(124, 58, 237, 0.05);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .tech-item:hover {
+    background: rgba(124, 58, 237, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.2);
+  }
+  
+  /* Project links premium */
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .project-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    z-index: -1;
+  }
+  
+  .project-link.primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+  }
+  
+  .project-link.secondary {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--color-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  }
+  
+  .project-link:hover::after {
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Adicione este efeito de hover para os skill cards */
+  .skills-category {
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skills-category::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      180deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(124, 58, 237, 0.1) 100%
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .skills-category:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
+                0 0 30px rgba(124, 58, 237, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .skills-category:hover .skills-category-title {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  /* Skill item com efeito premium ao passar o mouse */
+  .skill-item {
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-md);
+  }
+  
+  .skill-item:hover {
+    background: rgba(124, 58, 237, 0.05);
+    transform: translateX(8px);
+    padding-left: var(--spacing-sm);
+  }
+  
+  .skill-item:hover .skill-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+    background: var(--color-primary);
+  }
+  
+  .skill-item:hover .skill-icon img {
+    filter: brightness(1.2);
+  }
+  
+  .skill-icon {
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  /* Efeito de progresso animado */
+  .skill-item:hover .skill-progress {
+    animation: progressPulse 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes progressPulse {
+    0% {
+      box-shadow: 0 0 5px rgba(124, 58, 237, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 15px rgba(124, 58, 237, 0.8);
+    }
+  }

@@ -14,13 +14,237 @@
   <div class="cursor"></div>
   <div class="cursor-follower"></div>
   
-  <!-- Overlay de carregamento -->
-  <div class="loading-overlay">
-    <div class="loader">
-      <span class="loader-text">KL</span>
-      <div class="loader-progress"></div>
+ <!-- Substitua seu loading-overlay atual por este: -->
+<div class="loading-overlay">
+  <div class="premium-loader">
+    <svg class="logo-animation" width="150" height="150" viewBox="0 0 150 150">
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6d28d9" />
+          <stop offset="100%" stop-color="#10b981" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="5" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+      
+      <!-- Círculo de fundo -->
+      <circle cx="75" cy="75" r="65" fill="none" stroke="rgba(124, 58, 237, 0.2)" stroke-width="2" />
+      
+      <!-- Arco de progresso animado -->
+      <circle class="progress-circle" cx="75" cy="75" r="65" fill="none" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" stroke-dasharray="408" stroke-dashoffset="408" />
+      
+      <!-- Iniciais ao centro -->
+      <text x="75" y="85" font-family="Poppins, sans-serif" font-size="40" font-weight="700" text-anchor="middle" fill="url(#gradient)" filter="url(#glow)">KL</text>
+      
+      <!-- Partículas decorativas -->
+      <g class="particles">
+        <circle class="particle" cx="75" cy="10" r="3" fill="#6d28d9" />
+        <circle class="particle" cx="140" cy="75" r="3" fill="#10b981" />
+        <circle class="particle" cx="75" cy="140" r="3" fill="#6d28d9" />
+        <circle class="particle" cx="10" cy="75" r="3" fill="#10b981" />
+        <circle class="particle" cx="120" cy="30" r="2" fill="#8b5cf6" />
+        <circle class="particle" cx="120" cy="120" r="2" fill="#34d399" />
+        <circle class="particle" cx="30" cy="120" r="2" fill="#8b5cf6" />
+        <circle class="particle" cx="30" cy="30" r="2" fill="#34d399" />
+      </g>
+    </svg>
+    
+    <div class="loader-text">Carregando Experiência Premium</div>
+    <div class="loader-dots">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
   </div>
+</div>
+
+<!-- Adicione este CSS ao seu arquivo de estilos -->
+<style>
+.premium-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-animation {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.5rem;
+}
+
+.progress-circle {
+  animation: progress 2s ease-out forwards, rotation 2s linear infinite;
+  transform-origin: center;
+}
+
+.loader-text {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.5s forwards;
+}
+
+.loader-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+  background: var(--color-primary-light);
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+  background: var(--color-secondary);
+}
+
+.particles .particle {
+  opacity: 0;
+  animation: particleAnimation 3s ease-in-out infinite;
+}
+
+.particles .particle:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.particles .particle:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.particles .particle:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.particles .particle:nth-child(4) {
+  animation-delay: 1.2s;
+}
+
+.particles .particle:nth-child(5) {
+  animation-delay: 1.6s;
+}
+
+.particles .particle:nth-child(6) {
+  animation-delay: 2.0s;
+}
+
+.particles .particle:nth-child(7) {
+  animation-delay: 2.4s;
+}
+
+.particles .particle:nth-child(8) {
+  animation-delay: 2.8s;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dashoffset: 408;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes particleAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1) translateY(-10px);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1) translateY(10px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) translateY(0);
+  }
+}
+</style>
+
+<!-- Atualize a função de carregamento no seu script.js -->
+<script>
+// Substituir a função de carregamento no script.js
+window.addEventListener('load', () => {
+  const loadingOverlay = document.querySelector('.loading-overlay');
+  const progressCircle = document.querySelector('.progress-circle');
+  
+  // Resetar a animação para garantir que ela execute corretamente
+  if (progressCircle) {
+    progressCircle.style.animation = 'none';
+    void progressCircle.offsetWidth; // Trigger reflow
+    progressCircle.style.animation = 'progress 2s ease-out forwards, rotation 2s linear infinite';
+  }
+  
+  // Adicionar uma pequena demora para garantir que as animações sejam vistas
+  setTimeout(() => {
+    loadingOverlay.classList.add('fade-out');
+    
+    setTimeout(() => {
+      loadingOverlay.style.display = 'none';
+      document.body.classList.add('loaded');
+      
+      // Adicionar classe para animar elementos na página
+      document.querySelectorAll('.fade-in').forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, 100 * index);
+      });
+    }, 500);
+  }, 2500); // Duração um pouco maior para mostrar a animação
+});
+</script>
 
   <!-- Header e Navegação -->
   <header class="header">
