@@ -1991,22 +1991,3 @@ function preloadVideo() {
 
 document.addEventListener('DOMContentLoaded', preloadVideo);
 
-// Detectar dispositivos móveis e substituir o vídeo por uma imagem estática
-function checkForMobileAndOptimize() {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-  const videoBackground = document.querySelector('.video-background');
-  
-  if (isMobile && videoBackground) {
-    // Substituir o vídeo por uma imagem em dispositivos móveis
-    const video = document.getElementById('hero-video');
-    if (video) {
-      const img = document.createElement('div');
-      img.className = 'mobile-fallback-image';
-      img.style.backgroundImage = 'url(imagem-poster-do-video.jpg)';
-      videoBackground.appendChild(img);
-      video.style.display = 'none';
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded', checkForMobileAndOptimize);
