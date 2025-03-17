@@ -2060,7 +2060,7 @@ function setupResponsiveVideo() {
   function updateVideoSource() {
     const currentSrc = videoElement.currentSrc;
     const isMobile = window.innerWidth <= 767;
-    const mobileVideoPath = "fundo-mobile.mp4";
+    const mobileVideoPath = "fundo.mp4";
     const desktopVideoPath = "fundo.mp4";
     
     // Verificar se precisamos trocar o vídeo
