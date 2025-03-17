@@ -2319,3 +2319,54 @@ a.detail-value:hover {
       flex-direction: column;
     }
   }
+  /* Adicione este código ao seu arquivo styles.css */
+
+/* Ajuste para o indicador de scroll em dispositivos móveis */
+@media (max-width: 768px) {
+    .scroll-indicator {
+      display: none; /* Opção 1: Ocultar completamente em dispositivos móveis */
+    }
+  }
+  
+  /* OU use esta alternativa se preferir manter o indicador visível, mas em posição diferente */
+  @media (max-width: 768px) {
+    .scroll-indicator {
+      bottom: var(--spacing-xs); /* Posição mais próxima da borda inferior */
+      opacity: 0.5; /* Mais transparente */
+      transform: translateX(-50%) scale(0.8); /* Ligeiramente menor */
+      z-index: 0; /* Garantir que fique atrás de outros elementos */
+    }
+    
+    .scroll-text {
+      font-size: 0.7rem; /* Texto menor */
+    }
+    
+    .scroll-line {
+      height: 30px; /* Linha mais curta */
+    }
+    
+    /* Ajuste na animação para dispositivos móveis */
+    @keyframes scrollLine {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+      50.1% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .scroll-indicator {
+      display: none;
+    }
+  }
