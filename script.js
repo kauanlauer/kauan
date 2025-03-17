@@ -2133,8 +2133,3 @@ document.addEventListener('DOMContentLoaded', setupResponsiveVideo);
     }
   }
 
-
-
-// Executar quando o DOM estiver pronto e novamente quando a página estiver totalmente carregada
-document.addEventListener('DOMContentLoaded', fixMobileBackground);
-window.addEventListener('load', fixMobileBackground);
