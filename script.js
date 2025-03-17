@@ -1955,3 +1955,58 @@ function initLiquidButtons() {
 // Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', initLiquidButtons);
 
+// Adicione isso ao seu arquivo script.js
+document.addEventListener('DOMContentLoaded', function() {
+  const heroVideo = document.getElementById('hero-video');
+  
+  if (heroVideo) {
+    window.addEventListener('scroll', function() {
+      // Obter a posição atual do scroll
+      const scrollTop = window.scrollY;
+      
+      // Calcular a quantidade de parallax (ajuste 0.4 para controlar a velocidade)
+      const parallaxOffset = scrollTop * 0.4;
+      
+      // Aplicar o efeito de parallax ao vídeo
+      heroVideo.style.transform = `translateX(-50%) translateY(calc(-50% + ${parallaxOffset}px))`;
+      
+      // Ajustar a opacidade conforme o scroll (desvanecer gradualmente)
+      const heroHeight = document.querySelector('.hero').offsetHeight;
+      const opacity = 1 - Math.min(1, scrollTop / (heroHeight * 0.8));
+      
+      heroVideo.style.opacity = opacity;
+    });
+  }
+});
+// Adicione ao seu script.js
+function preloadVideo() {
+  const videoElement = document.getElementById('hero-video');
+  if (videoElement) {
+    videoElement.load();
+    videoElement.addEventListener('loadeddata', function() {
+      document.querySelector('.video-background').classList.add('loaded');
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', preloadVideo);
+
+// Detectar dispositivos móveis e substituir o vídeo por uma imagem estática
+function checkForMobileAndOptimize() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const videoBackground = document.querySelector('.video-background');
+  
+  if (isMobile && videoBackground) {
+    // Substituir o vídeo por uma imagem em dispositivos móveis
+    const video = document.getElementById('hero-video');
+    if (video) {
+      const img = document.createElement('div');
+      img.className = 'mobile-fallback-image';
+      img.style.backgroundImage = 'url(imagem-poster-do-video.jpg)';
+      videoBackground.appendChild(img);
+      video.style.display = 'none';
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', checkForMobileAndOptimize);
