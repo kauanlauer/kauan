@@ -1979,33 +1979,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-function preloadVideo() {
+document.addEventListener('DOMContentLoaded', function() {
   const videoElement = document.getElementById('hero-video');
-  const videoBackground = document.querySelector('.video-background');
   
-  if (videoElement && videoBackground) {
-    // Definir as configurações corretas para o vídeo
-    videoElement.setAttribute('playsinline', '');
-    videoElement.setAttribute('preload', 'auto');
-    videoElement.muted = true; // Importante para autoplay funcionar
+  if (videoElement) {
+    // Tentar diferentes abordagens para reproduzir o vídeo
+    videoElement.load();
     
-    // Adicionar listener para quando o vídeo estiver pronto
+    // Tentar reproduzir o vídeo após o carregamento
     videoElement.addEventListener('loadeddata', function() {
-      videoBackground.classList.add('loaded');
-      console.log('Vídeo carregado com sucesso');
+      videoElement.play().catch(function(error) {
+        console.log('Erro ao reproduzir vídeo:', error);
+        // Mostrar imagem de fallback se o vídeo falhar
+        document.querySelector('.hero-bg').style.opacity = '1';
+      });
     });
     
-    // Garantir que o vídeo seja exibido mesmo que demore para carregar
+    // Verificar se o vídeo está reproduzindo após um tempo
     setTimeout(function() {
-      videoBackground.classList.add('loaded');
-      videoElement.play().catch(e => console.log('Erro ao reproduzir vídeo:', e));
+      if (videoElement.paused) {
+        videoElement.play().catch(function() {
+          console.log('Ainda não foi possível reproduzir o vídeo');
+        });
+      }
     }, 1000);
-    
-    // Tente iniciar o vídeo
-    videoElement.load();
-    videoElement.play().catch(e => console.log('Erro inicial ao reproduzir vídeo:', e));
   }
-}
+});
 
 // Substitua a função checkForMobileAndOptimize no seu script.js pelo seguinte código:
 function optimizeVideoForAllDevices() {

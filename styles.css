@@ -2902,6 +2902,26 @@ cursor-particle {
             opacity: 1 !important; /* Garantir que seja sempre visível */
           }
   
+
+          /* Adicione ao seu CSS */
+.video-background {
+    opacity: 1 !important;
+  }
+  
+  #hero-video {
+    object-fit: cover !important;
+    opacity: 1 !important;
+  }
+  
+  /* Fallback para quando o vídeo não carrega */
+  .hero-bg {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .hero-bg.fallback-active {
+    opacity: 1;
+  }
           #hero-video {
             position: absolute;
             top: 50%;
