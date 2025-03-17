@@ -2095,8 +2095,7 @@ function setupResponsiveVideo() {
 // Chamar a função quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', setupResponsiveVideo);
 
-// Adicione esta função ao seu script.js
-function fixMobileBackground() {
+//function fixMobileBackground() {
   // Verificar se é um dispositivo móvel
   const isMobile = window.innerWidth <= 767;
   
@@ -2105,6 +2104,7 @@ function fixMobileBackground() {
     const videoBackground = document.querySelector('.video-background');
     const heroImage = document.querySelector('.hero-image');
     const profileImage = document.querySelector('.profile-image');
+    const heroVideo = document.getElementById('hero-video');
     
     // 1. Garantir que o vídeo esteja visível e com a opacidade correta
     if (videoBackground) {
@@ -2112,30 +2112,28 @@ function fixMobileBackground() {
       videoBackground.style.zIndex = '0';
     }
     
-    // 2. Ajustar a imagem de perfil para não ser usada como fundo
+    // 2. Ajustar o vídeo para cobrir toda a área
+    if (heroVideo) {
+      heroVideo.style.objectFit = 'cover';
+      heroVideo.style.width = '100%';
+      heroVideo.style.height = '100%';
+      // Remover o atributo poster para não mostrar uma imagem estática
+      heroVideo.removeAttribute('poster');
+    }
+    
+    // 3. Ocultar completamente a imagem de perfil na seção hero
     if (heroImage) {
-      // Reduzir o tamanho da imagem e ajustar sua posição
-      heroImage.style.position = 'relative';
-      heroImage.style.zIndex = '2';
-      heroImage.style.width = '120px';
-      heroImage.style.height = '120px';
-      heroImage.style.margin = '0 auto 20px';
+      heroImage.style.display = 'none';
     }
     
-    if (profileImage) {
-      // Garantir que a imagem de perfil não vaze para o fundo
-      profileImage.style.objectFit = 'cover';
-      profileImage.style.width = '100%';
-      profileImage.style.height = '100%';
-    }
-    
-    // 3. Aplicar um background temporário até que o vídeo carregue
-    const heroSection = document.querySelector('.hero');
-    if (heroSection) {
-      heroSection.style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1c1c2e 100%)';
+    // 4. Aplicar um overlay mais leve para mostrar melhor o vídeo
+    const videoOverlay = document.querySelector('.video-overlay');
+    if (videoOverlay) {
+      videoOverlay.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(5, 5, 10, 0.7))';
     }
   }
-}
+
+
 
 // Executar quando o DOM estiver pronto e novamente quando a página estiver totalmente carregada
 document.addEventListener('DOMContentLoaded', fixMobileBackground);

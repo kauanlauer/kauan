@@ -2891,27 +2891,30 @@ cursor-particle {
           }
 
           /* Atualize estas regras CSS no seu arquivo styles.css */
-.video-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 0;
-  }
+          .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 1 !important; /* Garantir que seja sempre visível */
+          }
   
-  #hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-    object-fit: cover;
-  }
+          #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            z-index: 1;
+            opacity: 1 !important; /* Garantir que seja sempre visível */
+          }
   
   /* Remova estas regras se existirem */
   .mobile-fallback-image {
@@ -2970,8 +2973,8 @@ cursor-particle {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(5, 5, 5, 0.92), rgba(10, 10, 14, 0.92)); /* Overlay muito mais escuro */
-    z-index: 1;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.75), rgba(15, 15, 19, 0.75));
+    z-index: 2;
   }
   /* Versão ainda mais escura para dispositivos móveis */
 @media (max-width: 768px) {
@@ -3013,36 +3016,52 @@ cursor-particle {
     }
   }
   
-  /* Adicione isto ao seu arquivo styles.css */
+  /* Ajustes específicos para dispositivos móveis */
 @media (max-width: 767px) {
+    /* Garantir que o vídeo seja exibido corretamente */
     #hero-video {
       object-fit: cover;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-position: center;
+      /* Ajustar brilho para melhorar legibilidade sobre o vídeo */
+      filter: brightness(0.6) contrast(1.1);
     }
     
-    .hero-image {
-      display: none; /* Oculta a imagem em dispositivos móveis quando o vídeo estiver presente */
-    }
-    
-    /* Aumentar a transparência do overlay para melhorar a legibilidade */
+    /* Tornar o overlay mais leve para mostrar mais do vídeo */
     .video-overlay {
-      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(5, 5, 10, 0.85));
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(5, 5, 10, 0.65));
     }
-  }
-  
-  /* Garante que o vídeo esteja visível */
-  .video-background {
-    opacity: 1 !important;
-  }
-  
-  #hero-video {
-    opacity: 1 !important;
+    
+    /* Ocultar completamente a imagem de perfil na seção hero */
+    .hero-image {
+      display: none !important;
+    }
+    
+    /* Garantir que o conteúdo esteja sempre visível */
+    .hero-content {
+      position: relative;
+      z-index: 5;
+    }
+    
+    /* Melhorar a legibilidade do texto sobre o vídeo */
+    .hero-intro {
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+    }
+    
+    /* Remover qualquer background que possa estar sobrepondo o vídeo */
+    .hero {
+      background: none !important;
+    }
+    
+    /* Garantir que os elementos do fundo não afetem o vídeo */
+    .hero-bg, .hero-gradient, .noise {
+      opacity: 0.3 !important;
+    }
   }
 
   /* Adicione ao seu styles.css */
