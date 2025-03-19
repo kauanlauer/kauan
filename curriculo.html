@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Erick Kauan dos Santos Pereira Lauer</title>
+    <style>
+        :root {
+            --primary-color: #1a5276;
+            --secondary-color: #2e86c1;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #34495e;
+            --text-light: #7f8c8d;
+            --spacing-unit: 0.7rem;
+            --border-radius: 6px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f8fa;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0;
+            background-color: white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        header > * {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .name {
+            font-size: 2rem;
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: calc(var(--spacing-unit) * 0.8);
+            gap: calc(var(--spacing-unit) * 0.8);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+        
+        .contact-item i {
+            margin-right: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .section {
+            padding: calc(var(--spacing-unit) * 0.7) var(--spacing-unit);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
+            opacity: 0.3;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            background-color: rgba(46, 134, 193, 0.1);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .job {
+            margin-bottom: calc(var(--spacing-unit) * 0.6);
+            padding: 6px 10px;
+            background-color: rgba(236, 240, 241, 0.3);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--secondary-color);
+        }
+        
+        .job-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark-color);
+            margin-bottom: 3px;
+        }
+        
+        .job-company {
+            font-weight: 600;
+            margin-bottom: 3px;
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
+        .job-period {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        
+        .education-item {
+            margin-bottom: calc(var(--spacing-unit) * 0.5);
+            padding: 6px 10px;
+            background-color: rgba(236, 240, 241, 0.3);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .education-title {
+            font-weight: 700;
+            margin-bottom: 3px;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+        }
+        
+        .education-institution {
+            font-style: italic;
+            margin-bottom: 3px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+        
+        .education-period {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-unit) * 0.5);
+        }
+        
+        .skill-category {
+            flex: 1 1 calc(50% - var(--spacing-unit));
+            min-width: 200px;
+            background-color: rgba(236, 240, 241, 0.3);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            border-top: 2px solid var(--accent-color);
+        }
+        
+        .skill-category h4 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(46, 134, 193, 0.2);
+        }
+        
+        .skill-list {
+            list-style-type: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+        
+        .skill-list li:before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 6px;
+        }
+        
+        .print-section {
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 1.5);
+            background-color: rgba(236, 240, 241, 0.5);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .print-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .print-btn:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .print-btn i {
+            margin-right: 8px;
+        }
+        
+        .objective-text {
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+        
+        .job-description {
+            margin-left: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .job-description ul {
+            margin-left: 15px;
+            list-style-type: disc;
+        }
+        
+        .job-description li {
+            margin-bottom: 2px;
+        }
+        
+        .previous-roles {
+            margin-top: 5px;
+        }
+        
+        .previous-role-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 3px;
+        }
+        
+        .previous-roles ul {
+            list-style-type: disc;
+            margin-left: 15px;
+        }
+        
+        .previous-roles li {
+            margin-bottom: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: calc(var(--spacing-unit) * 0.8);
+            }
+            
+            .skill-category {
+                flex: 1 1 100%;
+            }
+            
+            .section {
+                padding: var(--spacing-unit);
+            }
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                font-size: 95%;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .print-section {
+                display: none;
+            }
+            
+            header {
+                padding: calc(var(--spacing-unit) * 1.2) var(--spacing-unit);
+            }
+
+            .section {
+                padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+                page-break-inside: avoid;
+            }
+            
+            @page {
+                margin: 0.5cm;
+                size: auto;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            /* Mantém as cores ao imprimir */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="name">Erick Kauan dos Santos Pereira Lauer</h1>
+            <h2>Análise e Desenvolvimento de Sistemas</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>erickkauanlauer@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>(41) 99942-6605</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>(41) 99942-6605</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Tatuquara, Curitiba-PR</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>kauanlauer.com.br</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-id-card"></i>
+                    <span>CNH: A/B</span>
+                </div>
+            </div>
+        </header>
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-bullseye"></i>
+                Objetivo Profissional
+            </h3>
+            <p class="objective-text">
+                Estudante de Análise e Desenvolvimento de Sistemas buscando oportunidades na área de tecnologia para desenvolver habilidades práticas. Tenho interesse em posições como Assistente de TI, Analista Administrativo, onde possa aplicar e expandir meus conhecimentos iniciais em programação e suporte técnico em ambas áreas de desenvolvimento e infraestrutura.
+            </p>
+        </section>
+        
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-briefcase"></i>
+                Experiência Profissional
+            </h3>
+            <div class="job">
+                <h4 class="job-title">Analista Logístico (Função atual)</h4>
+                <div class="job-company">MANUPACKAGING FITASA DO BRASIL SA</div>
+                <div class="job-period">Ago/2021 - Atual</div>
+                <div class="job-description">
+                    <p>Evolução interna na empresa, iniciando como Auxiliar de Produção e progredindo para funções administrativas:
+                    </p>
+                    <ul>
+                        <li>Análise de dados logísticos</li>
+                        <li>Utilização de ferramentas corporativas Avançadas (Excel VBA, SAP, CRM)</li>
+                        <li>PHP, Python, HTML, CSS, VBA e JS</li>
+                        <li>Utilização de IA para sistematizar e melhorar desempenho</li>
+                        <li><p><strong>Resumo: Ao longo do crescimento na empresa fui subindo de cargo e melhorando sistemas e automações dos setores</strong></p></li>
+                    </ul>
+                    
+                    <div class="previous-roles">
+                        <div class="previous-role-title">Funções anteriores na empresa:</div>
+                        <ul>
+                            <li>Assistente Comercial (Criação de planilhas avançadas de cálculos de vendas)</li>
+                            <li>Assistente de PCP (Criação de planilhas e documentos para auditorias)</li>
+                            <li>Auxiliar Administrativo PCP (Lançamento de estoques, insumos e matéria prima)</li>
+                            <li>Auxiliar de Produção (Produção)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-graduation-cap"></i>
+                Formação Acadêmica
+            </h3>
+            <div class="education-item">
+                <div class="education-title">Análise e Desenvolvimento de Sistemas | 5º Período (Em andamento)</div>
+                <div class="education-institution">Faculdade Uniensino | Período Noturno</div>
+            </div>
+            <div class="education-item">
+                <div class="education-title">Manutenção e Montagem de Computadores</div>
+                <div class="education-institution">Faculdade Spei | 2020 | Duração: 6 meses</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-laptop-code"></i>
+                Conhecimentos Técnicos
+            </h3>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4>Desenvolvimento Web</h4>
+                    <ul class="skill-list">
+                        <li>Noções básicas de HTML, CSS, JavaScript, PHP, Mysql</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Ferramentas</h4>
+                    <ul class="skill-list">
+                        <li>Microsoft Excel (Avançado)</li>
+                        <li>Word, PowerPoint</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Outros</h4>
+                    <ul class="skill-list">
+                        <li>Formatação de computadores</li>
+                        <li>Manutenção básica de hardware</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Ferramentas de IA</h4>
+                    <ul class="skill-list">
+                        <li>Utilizo ferramentas de inteligência artificial para auxiliar em tarefas e aprendizado</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-certificate"></i>
+                Cursos Complementares
+            </h3>
+            <ul class="skill-list">
+                <li>Microsoft Excel | Hotmart | Básico e Avançado</li>
+                <li>Pacote Office Avançado | Faculdade Spei (6 meses)</li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h3 class="section-title">
+                <i class="fas fa-user"></i>
+                Habilidades e Características Pessoais
+            </h3>
+            <ul class="skill-list">
+                <li>Rápida capacidade de aprendizado e interesse contínuo por novas tecnologias</li>
+                <li>Iniciativa para buscar soluções utilizando recursos disponíveis</li>
+                <li>Adaptabilidade a novos ambientes e ferramentas</li>
+                <li>Interesse em aprender desenvolvimento de sistemas, automações e infraestrutura</li>
+                <li>Continuarei estudando na área da T.I e principalmente Inteligência artificial voltada a criação de sistemas e aplicativos</li>
+            </ul>
+        </section>
+        
+        <div class="print-section">
+            <button class="print-btn" id="printBtn">
+                <i class="fas fa-file-pdf"></i> Salvar Currículo Colorido como PDF
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('printBtn').addEventListener('click', function() {
+            // Alertar o usuário sobre manter as cores
+            alert("Para salvar com cores, certifique-se de que a opção 'Imprimir planos de fundo' ou 'Imprimir cores e imagens de fundo' esteja ativada nas configurações de impressão.");
+            
+            // Adicionar classe para garantir que caiba em uma página
+            document.body.classList.add('printing-mode');
+            window.print();
+            setTimeout(function() {
+                document.body.classList.remove('printing-mode');
+            }, 1000);
+        });
+        
+        // Script para detectar se está sendo impresso em PDF
+        function checkPrintStatus() {
+            if (document.queryCommandSupported('print')) {
+                // Adicionar classe para melhorar renderização para PDF
+                document.body.classList.add('printing');
+            }
+        }
+        
+        // Verificar status de impressão quando a página carregar
+        window.addEventListener('load', checkPrintStatus);
+        
+        // Ajuste automático para melhor visualização em dispositivos menores
+        function adjustForScreenSize() {
+            if (window.innerWidth <= 480) {
+                document.querySelectorAll('.contact-item').forEach(item => {
+                    item.style.fontSize = '0.7rem';
+                });
+            } else {
+                document.querySelectorAll('.contact-item').forEach(item => {
+                    item.style.fontSize = '0.8rem';
+                });
+            }
+        }
+        
+        // Chamar função de ajuste quando a página carregar e quando redimensionar
+        window.addEventListener('load', adjustForScreenSize);
+        window.addEventListener('resize', adjustForScreenSize);
+        
+        // Adicionar dica para o usuário sobre impressão em PDF
+        document.getElementById('printBtn').title = "Ao imprimir, selecione 'Salvar como PDF', marque 'Ajustar à página' e 'Imprimir planos de fundo' para manter as cores";
+    </script>
+ 
+</body>
+</html>
