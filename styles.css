@@ -1110,8 +1110,7 @@ select,
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--border-radius-lg);
+
   z-index: 0;
   transform: translate(15px, 15px);
   transition: transform var(--transition-normal);
