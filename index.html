@@ -971,6 +971,170 @@
       background: rgba(255,255,255,.08);
     }
 
+    .tools-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+    }
+
+    .tool-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .tool-note {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .tool-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .mini-btn {
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font: 700 .68rem/1 var(--title);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .mini-btn.primary {
+      border-color: var(--accent);
+      background: linear-gradient(130deg, rgba(87,214,255,.22), rgba(122,125,255,.2));
+    }
+
+    .tool-output {
+      border: 1px solid rgba(164,191,245,.25);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      padding: 10px;
+      color: var(--muted);
+      font-size: .84rem;
+      min-height: 70px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    .tool-list {
+      margin: 0;
+      padding-left: 16px;
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+      font-size: .84rem;
+    }
+
+    .tool-inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .tool-input,
+    .tool-select {
+      width: 100%;
+      border: 1px solid rgba(164,191,245,.3);
+      border-radius: 9px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 9px 10px;
+      font-size: .84rem;
+      outline: none;
+    }
+
+    .tool-input::placeholder { color: #9fb0d2; }
+
+    .scenario-step {
+      border: 1px solid rgba(164,191,245,.25);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      padding: 10px;
+      color: var(--muted);
+      font-size: .86rem;
+      margin-bottom: 8px;
+    }
+
+    .scenario-options {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .scenario-option {
+      text-align: left;
+      border: 1px solid rgba(164,191,245,.28);
+      border-radius: 9px;
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 9px 10px;
+      cursor: pointer;
+      font-size: .84rem;
+    }
+
+    .scenario-option:hover {
+      border-color: var(--accent);
+    }
+
+    .quiz-question {
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .compare-col {
+      border: 1px solid rgba(164,191,245,.24);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      padding: 9px;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .compare-col strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 5px;
+      font-size: .88rem;
+    }
+
+    body.motion-off * {
+      animation-duration: 0s !important;
+      transition-duration: 0s !important;
+    }
+
+    body.high-contrast {
+      --text: #ffffff;
+      --muted: #d2dcf8;
+      --line: rgba(217, 232, 255, .48);
+    }
+
     .reveal { opacity: 0; transform: translateY(16px); transition: .55s ease; }
     .reveal.show { opacity: 1; transform: translateY(0); }
 
@@ -992,6 +1156,7 @@
       .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .quick-data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tools-grid { grid-template-columns: 1fr; }
       .page { padding-top: 88px; }
       .site-footer .inner { font-size: .68rem; }
       .intel-section { margin-inline: 12px; }
@@ -1002,6 +1167,8 @@
       .contact-grid { grid-template-columns: 1fr; }
       .quick-data { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
+      .tool-inline { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
       .theme-switch button { padding: 6px 8px; }
       .btn-tech { width: 100%; justify-content: center; }
       .scroll-progress { display: none; }
@@ -1041,6 +1208,7 @@
         <a href="#about">Sobre</a>
         <a href="#stack">Stack</a>
         <a href="#architecture">Arquitetura</a>
+        <a href="#tools">Ferramentas</a>
         <a href="#lab">Tech Lab</a>
         <a href="#contact">Contato</a>
       </nav>
@@ -1185,6 +1353,120 @@
       </div>
     </section>
 
+    <section class="section" id="tools">
+      <div class="container">
+        <article class="panel reveal spotlight depth-panel">
+          <p class="tag">Labs & Ferramentas</p>
+          <h2>Ferramentas interativas para explorar, testar e brincar</h2>
+          <p class="lead-main">Experiências curtas para manter qualquer visitante engajado: leigos conseguem entender rápido, técnicos conseguem explorar profundidade.</p>
+
+          <div class="tools-grid">
+            <div class="tool-card">
+              <h3>Diagnóstico Rápido</h3>
+              <p class="tool-note">Executa um check técnico do navegador e recursos principais.</p>
+              <div class="tool-actions">
+                <button id="runDiagBtn" class="mini-btn primary" type="button">Rodar Check</button>
+              </div>
+              <div id="diagOutput" class="tool-output">Pronto para executar.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Simulador de Incidente</h3>
+              <p class="tool-note">Mini cenário de suporte para testar tomada de decisão.</p>
+              <div id="incidentStep" class="scenario-step">Clique em iniciar para simular um incidente real.</div>
+              <div id="incidentOptions" class="scenario-options"></div>
+              <div class="tool-actions">
+                <button id="incidentStartBtn" class="mini-btn primary" type="button">Iniciar Simulação</button>
+              </div>
+              <div id="incidentResult" class="tool-output">Sem execução.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Playground Visual</h3>
+              <p class="tool-note">Personalize a experiência ao vivo para testar usabilidade e estilo.</p>
+              <div class="tool-actions">
+                <button id="motionToggleBtn" class="mini-btn" type="button">Motion: On</button>
+                <button id="contrastToggleBtn" class="mini-btn" type="button">Contraste: Normal</button>
+                <button id="particlesToggleBtn" class="mini-btn" type="button">Partículas: On</button>
+              </div>
+              <div class="tool-output">Ajustes aplicados em tempo real sem recarregar a página.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Gerador de Mensagem de Contato</h3>
+              <p class="tool-note">Monte uma mensagem pronta para WhatsApp ou Email em segundos.</p>
+              <div class="tool-inline">
+                <select id="msgChannel" class="tool-select">
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="email">Email</option>
+                </select>
+                <select id="msgTopic" class="tool-select">
+                  <option value="vaga suporte">Vaga de suporte</option>
+                  <option value="projeto frontend">Projeto frontend</option>
+                  <option value="conversa tecnica">Conversa técnica</option>
+                </select>
+              </div>
+              <input id="msgName" class="tool-input" type="text" placeholder="Seu nome (opcional)">
+              <div class="tool-actions">
+                <button id="genMsgBtn" class="mini-btn primary" type="button">Gerar e Abrir</button>
+              </div>
+              <div id="msgPreview" class="tool-output">Prévia da mensagem aparece aqui.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Quiz Tech 60s</h3>
+              <p class="tool-note">Perguntas rápidas para medir perfil técnico de forma leve.</p>
+              <div id="quizQuestion" class="quiz-question">Clique em iniciar quiz.</div>
+              <div id="quizOptions" class="scenario-options"></div>
+              <div class="tool-actions">
+                <button id="quizStartBtn" class="mini-btn primary" type="button">Iniciar Quiz</button>
+              </div>
+              <div id="quizResult" class="tool-output">Resultado pendente.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Comparador de Sistemas</h3>
+              <p class="tool-note">Compare rapidamente as três experiências do portfólio.</p>
+              <div class="compare-grid">
+                <div class="compare-col"><strong>Web</strong>Leitura clara, navegação direta e conteúdo completo.</div>
+                <div class="compare-col"><strong>XP Neo</strong>Experiência desktop interativa com janelas e taskbar.</div>
+                <div class="compare-col"><strong>Pocket OS</strong>Experiência mobile touch-first com apps e notificações.</div>
+              </div>
+              <div class="tool-actions">
+                <a class="mini-btn" href="index.html">Abrir Web</a>
+                <a class="mini-btn" href="KauanWin.html" target="_blank" rel="noopener">Abrir XP</a>
+                <a class="mini-btn" href="KauanPocketOS.html" target="_blank" rel="noopener">Abrir Mobile</a>
+              </div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Calculadora de Ganho Operacional</h3>
+              <p class="tool-note">Estimador simples de impacto em tempo operacional.</p>
+              <div class="tool-inline">
+                <input id="calcCalls" class="tool-input" type="number" min="1" placeholder="Chamados por dia">
+                <input id="calcMin" class="tool-input" type="number" min="1" placeholder="Minutos economizados por chamado">
+              </div>
+              <div class="tool-actions">
+                <button id="calcRunBtn" class="mini-btn primary" type="button">Calcular</button>
+              </div>
+              <div id="calcOutput" class="tool-output">Informe os valores para calcular.</div>
+            </div>
+
+            <div class="tool-card">
+              <h3>Alerta de Segurança do Navegador</h3>
+              <p class="tool-note">Mostra apenas dados realmente acessíveis neste domínio. Cache privado de outros sites não é exposto pelo navegador.</p>
+              <div class="tool-actions">
+                <button id="cacheScanBtn" class="mini-btn primary" type="button">Analisar Exposição</button>
+              </div>
+              <ul id="cacheList" class="tool-list">
+                <li>Aguardando análise.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section" id="lab">
       <div class="intel-section reveal spotlight depth-panel">
         <p class="tag">Tech Lab</p>
@@ -1313,6 +1595,30 @@
     const tourNext = document.getElementById('tourNext');
     const tourEnd = document.getElementById('tourEnd');
     const archDetail = document.getElementById('archDetail');
+    const runDiagBtn = document.getElementById('runDiagBtn');
+    const diagOutput = document.getElementById('diagOutput');
+    const incidentStep = document.getElementById('incidentStep');
+    const incidentOptions = document.getElementById('incidentOptions');
+    const incidentStartBtn = document.getElementById('incidentStartBtn');
+    const incidentResult = document.getElementById('incidentResult');
+    const motionToggleBtn = document.getElementById('motionToggleBtn');
+    const contrastToggleBtn = document.getElementById('contrastToggleBtn');
+    const particlesToggleBtn = document.getElementById('particlesToggleBtn');
+    const msgChannel = document.getElementById('msgChannel');
+    const msgTopic = document.getElementById('msgTopic');
+    const msgName = document.getElementById('msgName');
+    const genMsgBtn = document.getElementById('genMsgBtn');
+    const msgPreview = document.getElementById('msgPreview');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizOptions = document.getElementById('quizOptions');
+    const quizStartBtn = document.getElementById('quizStartBtn');
+    const quizResult = document.getElementById('quizResult');
+    const calcCalls = document.getElementById('calcCalls');
+    const calcMin = document.getElementById('calcMin');
+    const calcRunBtn = document.getElementById('calcRunBtn');
+    const calcOutput = document.getElementById('calcOutput');
+    const cacheScanBtn = document.getElementById('cacheScanBtn');
+    const cacheList = document.getElementById('cacheList');
     const cmdPalette = document.getElementById('cmdPalette');
     const cmdInput = document.getElementById('cmdInput');
     const cmdList = document.getElementById('cmdList');
@@ -1333,6 +1639,7 @@
       { id: 'about', text: 'Sobre: resumo profissional em linguagem simples.' },
       { id: 'stack', text: 'Stack: ferramentas usadas no dia a dia.' },
       { id: 'architecture', text: 'Arquitetura: como áreas técnicas se conectam.' },
+      { id: 'tools', text: 'Ferramentas: simuladores e utilidades interativas.' },
       { id: 'lab', text: 'Tech Lab: demonstrações em tempo real.' },
       { id: 'contact', text: 'Contato: canais diretos para oportunidades.' }
     ];
@@ -1417,10 +1724,15 @@
       { label: 'Ir para Sobre', run: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Stack', run: () => document.getElementById('stack')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Arquitetura', run: () => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' }) },
+      { label: 'Ir para Ferramentas', run: () => document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Tech Lab', run: () => document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Contato', run: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Abrir KauanWin XP', run: () => window.open('KauanWin.html', '_blank', 'noopener') },
       { label: 'Abrir Kauan Pocket OS', run: () => window.open('KauanPocketOS.html', '_blank', 'noopener') },
+      { label: 'Rodar Diagnóstico Rápido', run: () => document.getElementById('runDiagBtn')?.click() },
+      { label: 'Iniciar Simulador de Incidente', run: () => document.getElementById('incidentStartBtn')?.click() },
+      { label: 'Iniciar Quiz Tech', run: () => document.getElementById('quizStartBtn')?.click() },
+      { label: 'Analisar Segurança do Navegador', run: () => document.getElementById('cacheScanBtn')?.click() },
       { label: 'Ativar/Desativar Modo Tech', run: () => { body.classList.toggle('tech-mode'); updateModeButton(); } },
       { label: 'Iniciar Tour rápido', run: () => startTour() }
     ];
@@ -1595,10 +1907,330 @@
       });
     }
 
+    let particlesEnabled = true;
+
+    function setToolOutput(el, text) {
+      if (!el) return;
+      el.textContent = text;
+    }
+
+    function updateVisualToggleLabels() {
+      if (motionToggleBtn) {
+        const motionOn = !body.classList.contains('motion-off');
+        motionToggleBtn.textContent = `Motion: ${motionOn ? 'On' : 'Off'}`;
+        motionToggleBtn.classList.toggle('on', motionOn);
+      }
+      if (contrastToggleBtn) {
+        const contrastOn = body.classList.contains('high-contrast');
+        contrastToggleBtn.textContent = `Contraste: ${contrastOn ? 'Alto' : 'Normal'}`;
+        contrastToggleBtn.classList.toggle('on', contrastOn);
+      }
+      if (particlesToggleBtn) {
+        particlesToggleBtn.textContent = `Partículas: ${particlesEnabled ? 'On' : 'Off'}`;
+        particlesToggleBtn.classList.toggle('on', particlesEnabled);
+      }
+    }
+
+    async function runQuickDiagnostic() {
+      const checks = [];
+      const canvasProbe = document.createElement('canvas');
+      const hasWebGL = !!(canvasProbe.getContext('webgl') || canvasProbe.getContext('experimental-webgl'));
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      checks.push(`Status: ${navigator.onLine ? 'ONLINE' : 'OFFLINE'}`);
+      checks.push(`Navegador: ${detectBrowser()}`);
+      checks.push(`Sistema: ${detectOS()}`);
+      checks.push(`WebGL: ${hasWebGL ? 'OK' : 'Não disponível'}`);
+      checks.push(`Touch: ${navigator.maxTouchPoints > 0 ? 'Sim' : 'Não'}`);
+      checks.push(`Service Worker: ${'serviceWorker' in navigator ? 'Suportado' : 'Não suportado'}`);
+      checks.push(`Storage API: ${navigator.storage ? 'OK' : 'Indisponível'}`);
+      checks.push(`Motion preference: ${reducedMotion ? 'Reduzida' : 'Completa'}`);
+      checks.push(`Viewport: ${window.innerWidth}x${window.innerHeight}`);
+
+      const result = checks.join('\n');
+      setToolOutput(diagOutput, result);
+      return `diagnóstico concluído: ${checks.length} verificações`;
+    }
+
+    const incidentFlow = [
+      {
+        prompt: '09:12 - Usuários relatam lentidão no ERP em toda a empresa. Qual primeiro passo?',
+        options: [
+          { label: 'Validar recursos do servidor SQL e latência da rede', score: 3 },
+          { label: 'Reiniciar todos os computadores dos usuários', score: 0 },
+          { label: 'Abrir chamado e aguardar sem diagnóstico inicial', score: -1 }
+        ]
+      },
+      {
+        prompt: '09:20 - CPU normal, mas query pesada bloqueando sessão. Próxima ação?',
+        options: [
+          { label: 'Identificar query, mitigar bloqueio e registrar evidências', score: 3 },
+          { label: 'Finalizar processo aleatório sem registrar nada', score: 0 },
+          { label: 'Ignorar porque “deve normalizar sozinho”', score: -1 }
+        ]
+      },
+      {
+        prompt: '09:40 - Serviço voltou ao normal. O que fecha bem o incidente?',
+        options: [
+          { label: 'Comunicar causa raiz, ação tomada e prevenção', score: 3 },
+          { label: 'Somente avisar “resolvido” sem detalhes', score: 0 },
+          { label: 'Não registrar no histórico', score: -1 }
+        ]
+      }
+    ];
+
+    let incidentStepIndex = -1;
+    let incidentScore = 0;
+
+    function renderIncidentStep() {
+      if (!incidentStep || !incidentOptions) return;
+      const stepData = incidentFlow[incidentStepIndex];
+      if (!stepData) return;
+      incidentStep.textContent = stepData.prompt;
+      incidentOptions.innerHTML = '';
+      stepData.options.forEach((option) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'scenario-option';
+        btn.textContent = option.label;
+        btn.addEventListener('click', () => {
+          incidentScore += option.score;
+          incidentStepIndex += 1;
+          if (incidentStepIndex >= incidentFlow.length) {
+            incidentOptions.innerHTML = '';
+            incidentStep.textContent = 'Simulação concluída.';
+            let level = 'Básico';
+            if (incidentScore >= 7) level = 'Avançado';
+            else if (incidentScore >= 4) level = 'Intermediário';
+            setToolOutput(
+              incidentResult,
+              `Score final: ${incidentScore}\nNível: ${level}\nLeitura: foco em diagnóstico, comunicação e prevenção.`
+            );
+            return;
+          }
+          renderIncidentStep();
+        });
+        incidentOptions.appendChild(btn);
+      });
+    }
+
+    function startIncidentSimulation() {
+      incidentStepIndex = 0;
+      incidentScore = 0;
+      setToolOutput(incidentResult, 'Simulação em andamento...');
+      renderIncidentStep();
+    }
+
+    const quizFlow = [
+      {
+        q: 'Em suporte corporativo, qual métrica mais ajuda a priorizar incidentes?',
+        options: [
+          { label: 'Impacto no negócio + urgência', score: 2 },
+          { label: 'Quantidade de mensagens no grupo', score: 0 },
+          { label: 'Ordem de chegada sem contexto', score: 0 }
+        ]
+      },
+      {
+        q: 'Para evitar recorrência após correção, o melhor próximo passo é:',
+        options: [
+          { label: 'Documentar causa raiz e prevenção', score: 2 },
+          { label: 'Encerrar e seguir sem registro', score: 0 },
+          { label: 'Depender da memória da equipe', score: 0 }
+        ]
+      },
+      {
+        q: 'Em frontend profissional, acessibilidade e responsividade devem ser:',
+        options: [
+          { label: 'Requisitos de base do projeto', score: 2 },
+          { label: 'Opcional se sobrar tempo', score: 0 },
+          { label: 'Só para versões futuras', score: 0 }
+        ]
+      }
+    ];
+
+    let quizIndex = -1;
+    let quizScore = 0;
+
+    function renderQuizStep() {
+      if (!quizQuestion || !quizOptions) return;
+      const item = quizFlow[quizIndex];
+      if (!item) return;
+      quizQuestion.textContent = item.q;
+      quizOptions.innerHTML = '';
+      item.options.forEach((option) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'scenario-option';
+        btn.textContent = option.label;
+        btn.addEventListener('click', () => {
+          quizScore += option.score;
+          quizIndex += 1;
+          if (quizIndex >= quizFlow.length) {
+            quizOptions.innerHTML = '';
+            quizQuestion.textContent = 'Quiz finalizado.';
+            let profile = 'Perfil em evolução';
+            if (quizScore >= 6) profile = 'Perfil técnico forte';
+            else if (quizScore >= 3) profile = 'Perfil técnico intermediário';
+            setToolOutput(
+              quizResult,
+              `Pontuação: ${quizScore}/${quizFlow.length * 2}\n${profile}\nDica: explore Stack, Architecture e Tech Lab para ver execução real.`
+            );
+            return;
+          }
+          renderQuizStep();
+        });
+        quizOptions.appendChild(btn);
+      });
+    }
+
+    function startQuiz() {
+      quizIndex = 0;
+      quizScore = 0;
+      setToolOutput(quizResult, 'Quiz em andamento...');
+      renderQuizStep();
+    }
+
+    function generateContactMessage() {
+      const channel = msgChannel?.value || 'whatsapp';
+      const topic = msgTopic?.value || 'conversa tecnica';
+      const name = (msgName?.value || '').trim();
+      const greeting = name ? `Olá Kauan, aqui é ${name}.` : 'Olá Kauan.';
+      const message = `${greeting} Vi seu portfólio e quero falar sobre ${topic}. Podemos conversar?`;
+
+      setToolOutput(msgPreview, message);
+      if (channel === 'email') {
+        const subject = encodeURIComponent(`Contato pelo portfólio - ${topic}`);
+        const bodyMsg = encodeURIComponent(message);
+        window.location.href = `mailto:erickkauanlauer@gmail.com?subject=${subject}&body=${bodyMsg}`;
+        return;
+      }
+      const url = `https://api.whatsapp.com/send?phone=5541999426605&text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener');
+    }
+
+    function runOperationalCalculator() {
+      const calls = Number(calcCalls?.value || 0);
+      const minutes = Number(calcMin?.value || 0);
+      if (!Number.isFinite(calls) || !Number.isFinite(minutes) || calls <= 0 || minutes <= 0) {
+        setToolOutput(calcOutput, 'Preencha chamados e minutos com valores maiores que zero.');
+        return;
+      }
+      const savedDailyMin = calls * minutes;
+      const savedMonthlyMin = savedDailyMin * 22;
+      const savedYearlyMin = savedMonthlyMin * 12;
+      const savedDailyHours = (savedDailyMin / 60).toFixed(1);
+      const savedMonthlyHours = (savedMonthlyMin / 60).toFixed(1);
+      const savedYearlyHours = (savedYearlyMin / 60).toFixed(1);
+      setToolOutput(
+        calcOutput,
+        `Ganho diário: ${savedDailyMin} min (${savedDailyHours} h)\n` +
+        `Ganho mensal (22 dias): ${savedMonthlyMin} min (${savedMonthlyHours} h)\n` +
+        `Ganho anual estimado: ${savedYearlyMin} min (${savedYearlyHours} h)`
+      );
+    }
+
+    async function scanBrowserExposure() {
+      if (!cacheList) return;
+      const rows = [];
+      rows.push('Este site só consegue ler dados permitidos do próprio domínio.');
+      try {
+        rows.push(`localStorage: ${window.localStorage.length} chave(s)`);
+      } catch (_) {
+        rows.push('localStorage: bloqueado neste contexto');
+      }
+      try {
+        rows.push(`sessionStorage: ${window.sessionStorage.length} chave(s)`);
+      } catch (_) {
+        rows.push('sessionStorage: bloqueado neste contexto');
+      }
+
+      const cookies = document.cookie ? document.cookie.split(';').filter(Boolean).length : 0;
+      rows.push(`Cookies deste domínio: ${cookies}`);
+
+      rows.push(`Histórico da aba: ${window.history.length} entradas`);
+      rows.push(`Performance entries: ${performance.getEntries().length}`);
+
+      if (navigator.storage?.estimate) {
+        try {
+          const estimate = await navigator.storage.estimate();
+          const used = estimate.usage ? (estimate.usage / (1024 * 1024)).toFixed(2) : '0.00';
+          const quota = estimate.quota ? (estimate.quota / (1024 * 1024)).toFixed(2) : '-';
+          rows.push(`Storage estimado: ${used}MB usados de ${quota}MB`);
+        } catch (_) {
+          rows.push('Storage estimado: indisponível');
+        }
+      } else {
+        rows.push('Storage estimado: API indisponível');
+      }
+
+      if ('caches' in window) {
+        try {
+          const keys = await caches.keys();
+          rows.push(`CacheStorage deste domínio: ${keys.length} cache(s)`);
+        } catch (_) {
+          rows.push('CacheStorage: sem permissão de leitura');
+        }
+      } else {
+        rows.push('CacheStorage: não suportado neste navegador');
+      }
+
+      if ('indexedDB' in window && window.indexedDB && typeof window.indexedDB.databases === 'function') {
+        try {
+          const dbs = await window.indexedDB.databases();
+          rows.push(`IndexedDB deste domínio: ${dbs.length} banco(s)`);
+        } catch (_) {
+          rows.push('IndexedDB: leitura indisponível');
+        }
+      } else {
+        rows.push('IndexedDB: listagem não suportada');
+      }
+
+      rows.push('Proteção ativa: cache/armazenamento de outros sites não pode ser acessado via JS.');
+      cacheList.innerHTML = rows.map((row) => `<li>${row}</li>`).join('');
+    }
+
+    if (runDiagBtn) {
+      runDiagBtn.addEventListener('click', async () => {
+        runDiagBtn.disabled = true;
+        setToolOutput(diagOutput, 'Executando checks...');
+        try {
+          await runQuickDiagnostic();
+        } finally {
+          runDiagBtn.disabled = false;
+        }
+      });
+    }
+    if (incidentStartBtn) incidentStartBtn.addEventListener('click', startIncidentSimulation);
+    if (quizStartBtn) quizStartBtn.addEventListener('click', startQuiz);
+    if (genMsgBtn) genMsgBtn.addEventListener('click', generateContactMessage);
+    if (calcRunBtn) calcRunBtn.addEventListener('click', runOperationalCalculator);
+    if (cacheScanBtn) cacheScanBtn.addEventListener('click', scanBrowserExposure);
+
+    if (motionToggleBtn) {
+      motionToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('motion-off');
+        updateVisualToggleLabels();
+      });
+    }
+    if (contrastToggleBtn) {
+      contrastToggleBtn.addEventListener('click', () => {
+        body.classList.toggle('high-contrast');
+        updateVisualToggleLabels();
+      });
+    }
+    if (particlesToggleBtn) {
+      particlesToggleBtn.addEventListener('click', () => {
+        particlesEnabled = !particlesEnabled;
+        updateVisualToggleLabels();
+      });
+    }
+    updateVisualToggleLabels();
+    scanBrowserExposure();
+
     const termOutput = document.getElementById('termOutput');
     const termInput = document.getElementById('termInput');
     const commands = {
-      help: 'comandos: help, about, stack, contact, cv, win, mobile, tour, tech, clear',
+      help: 'comandos: help, about, stack, contact, cv, win, mobile, tour, tech, tools, diag, incidente, quiz, secure, clear',
       about: 'Kauan: Técnico de TI e Suporte Headsoft.',
       stack: 'SQL Server | 3CX | Headcargo | Redes | Helpdesk | HTML/CSS/JS',
       contact: 'linkedin.com/in/kauanlauer | github.com/kauanlauer | WhatsApp 41 99942-6605'
@@ -1609,7 +2241,7 @@
       termOutput.scrollTop = termOutput.scrollHeight;
     }
 
-    termInput.addEventListener('keydown', (e) => {
+    termInput.addEventListener('keydown', async (e) => {
       if (e.key !== 'Enter') return;
       const cmd = termInput.value.trim().toLowerCase();
       if (!cmd) return;
@@ -1644,6 +2276,31 @@
         body.classList.toggle('tech-mode');
         updateModeButton();
         line(`modo tech: ${body.classList.contains('tech-mode') ? 'on' : 'off'}`);
+        return;
+      }
+      if (cmd === 'tools') {
+        document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' });
+        line('abrindo seção ferramentas...');
+        return;
+      }
+      if (cmd === 'diag') {
+        const message = await runQuickDiagnostic();
+        line(message);
+        return;
+      }
+      if (cmd === 'incidente') {
+        startIncidentSimulation();
+        line('simulador de incidente iniciado...');
+        return;
+      }
+      if (cmd === 'quiz') {
+        startQuiz();
+        line('quiz técnico iniciado...');
+        return;
+      }
+      if (cmd === 'secure') {
+        await scanBrowserExposure();
+        line('análise de exposição concluída (somente dados deste domínio).');
         return;
       }
       line(commands[cmd] || 'comando não encontrado');
@@ -1845,8 +2502,12 @@
     }
 
     function paintBg() {
-      const pal = palette();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!particlesEnabled) {
+        requestAnimationFrame(paintBg);
+        return;
+      }
+      const pal = palette();
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
