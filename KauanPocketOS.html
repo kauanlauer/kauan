@@ -3,253 +3,305 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Kauan Pocket OS | Portfólio Mobile</title>
+  <title>Kauan Pocket OS | Mobile Portfolio</title>
   <style>
     :root {
-      --bg1: #020617;
-      --bg2: #0b1630;
-      --bg3: #121f3e;
-      --line: rgba(129, 165, 255, .28);
-      --text: #ecf3ff;
-      --muted: #a8b8d7;
-      --accent: #57d6ff;
-      --accent2: #7787ff;
-      --accent3: #20d9a4;
-      --radius: 24px;
-      --safe-b: env(safe-area-inset-bottom, 0px);
+      --bg: #05070f;
+      --text: #f3f7ff;
+      --muted: #c0cceb;
+      --line: rgba(173, 196, 255, .28);
+      --glass: rgba(11, 18, 34, .58);
+      --accent: #5bd7ff;
+      --accent2: #6e8cff;
+      --accent3: #1fd9a6;
       --safe-t: env(safe-area-inset-top, 0px);
+      --safe-b: env(safe-area-inset-bottom, 0px);
     }
 
     * { box-sizing: border-box; }
 
     html, body {
+      margin: 0;
       width: 100%;
       height: 100%;
-      margin: 0;
       overflow: hidden;
-      font-family: "Segoe UI", "SF Pro Display", "Roboto", sans-serif;
+      background: radial-gradient(circle at 18% 12%, #1c2d5a, transparent 40%),
+                  radial-gradient(circle at 84% 7%, #2b1f57, transparent 36%),
+                  linear-gradient(155deg, #04060d 0%, #0a1328 55%, #101c36 100%);
       color: var(--text);
-      background: radial-gradient(circle at 10% 10%, #1d2e5d, transparent 40%),
-                  radial-gradient(circle at 90% 12%, #311f67, transparent 36%),
-                  linear-gradient(160deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    .ambient,
-    .ambient::before,
-    .ambient::after {
+    .noise,
+    .noise::before,
+    .noise::after {
       position: fixed;
-      content: "";
       inset: 0;
       pointer-events: none;
+      content: "";
     }
 
-    .ambient {
-      background-image: radial-gradient(rgba(255,255,255,.1) .6px, transparent .6px);
-      background-size: 3px 3px;
-      opacity: .16;
+    .noise {
       z-index: 0;
+      background-image: radial-gradient(rgba(255,255,255,.12) .6px, transparent .6px);
+      background-size: 3px 3px;
+      opacity: .13;
     }
 
-    .ambient::before {
-      inset: -20%;
-      background: conic-gradient(from 120deg, rgba(87,214,255,.12), transparent 35%, rgba(119,135,255,.12), transparent 72%, rgba(32,217,164,.12));
-      filter: blur(54px);
-      animation: spin 26s linear infinite;
+    .noise::before {
+      inset: -15%;
+      background: conic-gradient(from 40deg, rgba(91,215,255,.15), transparent 26%, rgba(110,140,255,.14), transparent 53%, rgba(31,217,166,.12), transparent 78%);
+      filter: blur(52px);
+      animation: spin 24s linear infinite;
+      opacity: .9;
     }
 
-    .ambient::after {
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(255,255,255,.05), transparent 18%, transparent 82%, rgba(255,255,255,.04));
-      opacity: .35;
+    .noise::after {
+      background: linear-gradient(to bottom, rgba(255,255,255,.06), transparent 20%, transparent 80%, rgba(255,255,255,.05));
+      opacity: .38;
     }
 
     @keyframes spin { to { transform: rotate(1turn); } }
 
-    .wrap {
+    .phone {
       position: relative;
       z-index: 1;
-      width: min(430px, 100vw);
-      height: min(900px, 100dvh);
+      width: min(432px, 100vw);
+      height: min(920px, 100dvh);
       margin: auto;
-      border-radius: 34px;
-      border: 1px solid rgba(186,205,255,.28);
-      background: rgba(7, 13, 27, .74);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 24px 70px rgba(0,0,0,.55);
+      border-radius: 36px;
+      border: 1px solid rgba(208, 224, 255, .26);
+      background: rgba(7, 12, 24, .72);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 28px 80px rgba(0,0,0,.55);
       overflow: hidden;
-    }
-
-    .frame {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, rgba(9, 16, 33, .58), rgba(15, 22, 38, .12));
-      overflow: hidden;
-    }
-
-    .screen {
-      position: absolute;
-      inset: 0;
-      transition: opacity .35s ease, transform .35s ease;
-    }
-
-    .hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: scale(.98);
+      isolation: isolate;
     }
 
     .wallpaper {
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(rgba(4,9,18,.56), rgba(4,9,18,.72)),
-        url("https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1200&q=80");
+      background-image: linear-gradient(rgba(4,8,16,.54), rgba(6,10,18,.75)),
+        url("https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1300&q=80");
       background-size: cover;
       background-position: center;
-      transform: scale(1.06);
-      animation: wallpaperDrift 14s ease-in-out infinite alternate;
+      transform: scale(1.08);
+      animation: drift 16s ease-in-out infinite alternate;
+      z-index: -1;
     }
 
-    @keyframes wallpaperDrift {
-      from { transform: scale(1.05) translateY(0); }
-      to { transform: scale(1.09) translateY(-10px); }
+    @keyframes drift {
+      from { transform: scale(1.06) translateY(0); }
+      to { transform: scale(1.11) translateY(-12px); }
     }
 
-    .statusbar {
+    .island {
+      position: absolute;
+      top: calc(10px + var(--safe-t));
+      left: 50%;
+      transform: translateX(-50%);
+      width: 132px;
+      height: 34px;
+      border-radius: 20px;
+      background: rgba(0,0,0,.82);
+      border: 1px solid rgba(255,255,255,.08);
+      z-index: 20;
+    }
+
+    .status {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: calc(30px + var(--safe-t));
-      padding: calc(7px + var(--safe-t)) 14px 8px;
+      height: calc(44px + var(--safe-t));
+      padding: calc(10px + var(--safe-t)) 16px 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 12px;
-      letter-spacing: .03em;
-      z-index: 5;
-      text-shadow: 0 1px 2px rgba(0,0,0,.7);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      z-index: 15;
+      text-shadow: 0 1px 2px rgba(0,0,0,.75);
     }
 
-    .signal { display: flex; align-items: center; gap: 8px; color: #d9ebff; }
+    .status-right { display: flex; align-items: center; gap: 7px; }
 
-    .badge {
-      border: 1px solid rgba(255,255,255,.28);
+    .pill {
+      border: 1px solid rgba(255,255,255,.3);
       border-radius: 999px;
       padding: 2px 7px;
-      font-size: 11px;
-      background: rgba(255,255,255,.08);
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(255,255,255,.1);
+      color: #eaf4ff;
     }
 
-    .lock-content {
+    .screen {
       position: absolute;
       inset: 0;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(.985);
+    }
+
+    .lock {
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 58px 26px 40px;
+      padding: calc(66px + var(--safe-t)) 24px calc(88px + var(--safe-b));
     }
 
-    .clock-big { font-size: clamp(44px, 13vw, 72px); font-weight: 300; line-height: 1; }
-    .date-big { margin-top: 8px; color: #b7caef; font-size: 15px; }
+    .lock h1 {
+      margin: 0;
+      font-size: clamp(48px, 14vw, 76px);
+      line-height: 1;
+      font-weight: 300;
+    }
 
-    .lock-card {
-      margin-top: 20px;
+    .lock .date {
+      margin-top: 8px;
+      font-size: 15px;
+      color: #d0ddf8;
+      letter-spacing: .01em;
+      text-transform: capitalize;
+    }
+
+    .card {
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(10, 18, 34, .52);
-      padding: 14px;
-      max-width: 320px;
-      font-size: 13px;
-      color: var(--muted);
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 26px rgba(0,0,0,.35);
     }
 
-    .unlock-btn {
-      margin-top: 22px;
+    .lock-note {
+      margin-top: 24px;
+      padding: 14px;
+      max-width: 320px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .unlock {
+      margin-top: 20px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 11px 18px;
+      padding: 12px 18px;
+      background: linear-gradient(120deg, rgba(91,215,255,.24), rgba(110,140,255,.24));
       color: #fff;
-      background: linear-gradient(120deg, rgba(87,214,255,.26), rgba(119,135,255,.26));
       font-size: 13px;
       font-weight: 700;
       cursor: pointer;
     }
 
     .home {
-      position: absolute;
-      inset: 0;
-      padding: calc(38px + var(--safe-t)) 14px calc(82px + var(--safe-b));
+      padding: calc(54px + var(--safe-t)) 14px calc(92px + var(--safe-b));
       display: grid;
-      grid-template-rows: auto auto 1fr auto;
+      grid-template-rows: auto auto auto 1fr auto;
       gap: 10px;
+      height: 100%;
     }
 
-    .top-banner {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 10px 11px;
-      background: rgba(9, 16, 32, .56);
-      backdrop-filter: blur(8px);
+    .welcome {
+      padding: 12px;
       font-size: 12px;
-      color: var(--muted);
+      color: #d7e4ff;
+      line-height: 1.45;
     }
 
-    .top-banner strong { color: var(--accent3); font-size: 12px; letter-spacing: .04em; }
+    .welcome strong { color: var(--accent3); }
 
-    .chooser {
+    .system-switch {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .chip {
+    .system-switch a {
       border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 7px 10px;
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      text-decoration: none;
       font-size: 11px;
       font-weight: 700;
-      text-decoration: none;
-      color: var(--text);
-      background: rgba(255,255,255,.04);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 8px 11px;
     }
 
-    .chip.primary { background: linear-gradient(130deg, rgba(87,214,255,.2), rgba(119,135,255,.2)); }
+    .system-switch a.primary {
+      background: linear-gradient(130deg, rgba(91,215,255,.24), rgba(110,140,255,.23));
+      border-color: rgba(118,168,255,.5);
+    }
+
+    .widget {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      font-size: 11px;
+      color: #c7d7f4;
+    }
+
+    .widget b {
+      display: block;
+      color: #f2f8ff;
+      font-size: 13px;
+      margin-top: 2px;
+    }
 
     .apps {
+      margin-top: 4px;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
       align-content: start;
-      margin-top: 6px;
     }
 
     .app {
+      border: 0;
+      background: transparent;
+      color: #eaf2ff;
       display: grid;
-      gap: 7px;
       justify-items: center;
-      text-align: center;
-      color: var(--text);
+      gap: 6px;
       font-size: 11px;
+      text-align: center;
       cursor: pointer;
+      padding: 0;
     }
 
-    .app i {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
+    .app-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 17px;
+      border: 1px solid rgba(178,199,255,.35);
+      background: linear-gradient(155deg, rgba(255,255,255,.24), rgba(255,255,255,.05));
       display: grid;
       place-items: center;
-      font-style: normal;
-      font-size: 22px;
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
-      box-shadow: 0 8px 20px rgba(0,0,0,.35);
+      box-shadow: 0 8px 20px rgba(0,0,0,.33);
+    }
+
+    .app-icon img {
+      width: 29px;
+      height: 29px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.5));
     }
 
     .dock {
-      border: 1px solid rgba(171,193,248,.35);
-      border-radius: 18px;
-      background: rgba(11, 19, 36, .58);
+      border: 1px solid rgba(173,196,255,.35);
+      border-radius: 20px;
+      background: rgba(13, 21, 40, .6);
       backdrop-filter: blur(10px);
       padding: 9px;
       display: grid;
@@ -257,82 +309,117 @@
       gap: 8px;
     }
 
-    .dock .app i { width: 50px; height: 50px; border-radius: 14px; }
+    .dock .app-icon { width: 52px; height: 52px; border-radius: 15px; }
 
-    .appview {
+    .sheet {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, rgba(8,14,28,.96), rgba(14,22,40,.88));
-      padding: calc(42px + var(--safe-t)) 14px calc(20px + var(--safe-b));
-      display: none;
-      overflow: auto;
-      z-index: 9;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: min(78dvh, 700px);
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      border: 1px solid rgba(173,196,255,.3);
+      border-bottom: 0;
+      background: linear-gradient(160deg, rgba(8,14,30,.98), rgba(13,21,39,.95));
+      backdrop-filter: blur(12px);
+      transform: translateY(105%);
+      transition: transform .35s ease;
+      z-index: 30;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
     }
 
-    .appview.open { display: block; }
+    .sheet.open { transform: translateY(0); }
 
-    .app-header {
+    .sheet-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 3;
-      padding-bottom: 6px;
-      backdrop-filter: blur(6px);
+      gap: 12px;
+      padding: 12px 14px 10px;
+      border-bottom: 1px solid rgba(173,196,255,.18);
     }
 
-    .close-app {
+    .grabber {
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.35);
+    }
+
+    .close-sheet {
       border: 1px solid var(--line);
-      border-radius: 10px;
-      background: rgba(255,255,255,.06);
+      border-radius: 11px;
+      background: rgba(255,255,255,.08);
       color: #fff;
       font-size: 12px;
+      font-weight: 700;
       padding: 8px 10px;
       cursor: pointer;
     }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,.03);
-      padding: 12px;
-      margin-bottom: 10px;
-      color: #d6e5ff;
+    .sheet-body {
+      overflow: auto;
+      padding: 12px 14px calc(20px + var(--safe-b));
     }
 
-    .card h3 { margin: 0 0 8px; color: var(--accent); font-size: 16px; }
-    .card p, .card li { margin: 0; line-height: 1.5; color: #d4def2; }
-    .card ul { margin: 0; padding-left: 17px; }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      padding: 12px;
+      margin-bottom: 10px;
+      color: #d8e4fb;
+    }
+
+    .panel h3 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 15px;
+      letter-spacing: .01em;
+    }
+
+    .panel p, .panel li {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 13px;
+      color: #d4def2;
+    }
+
+    .panel ul { margin: 0; padding-left: 17px; }
 
     .notif {
       position: absolute;
-      top: calc(30px + var(--safe-t));
+      top: calc(46px + var(--safe-t));
       left: 10px;
       right: 10px;
+      padding: 11px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(6, 13, 24, .88);
-      padding: 11px;
-      z-index: 12;
-      transform: translateY(-150%);
-      transition: transform .3s ease;
+      background: rgba(7, 14, 28, .9);
+      z-index: 28;
+      transform: translateY(-160%);
+      transition: transform .28s ease;
     }
 
     .notif.open { transform: translateY(0); }
 
-    .notif h4 { margin: 0 0 8px; font-size: 13px; color: var(--accent3); }
+    .notif h4 { margin: 0 0 8px; color: var(--accent3); font-size: 13px; }
 
     .notif-item {
-      border: 1px solid rgba(145,176,239,.24);
+      border: 1px solid rgba(158,189,255,.2);
       border-radius: 10px;
       background: rgba(255,255,255,.03);
-      padding: 9px;
-      font-size: 12px;
-      margin-bottom: 7px;
       color: var(--muted);
+      font-size: 12px;
+      padding: 9px;
+      margin-bottom: 7px;
     }
 
     .home-indicator {
@@ -340,33 +427,33 @@
       left: 50%;
       bottom: calc(8px + var(--safe-b));
       transform: translateX(-50%);
-      width: 130px;
+      width: 132px;
       height: 5px;
       border-radius: 999px;
-      background: rgba(255,255,255,.42);
-      z-index: 20;
+      background: rgba(255,255,255,.45);
+      z-index: 40;
     }
 
     .toast {
       position: absolute;
       left: 50%;
-      bottom: calc(22px + var(--safe-b));
+      bottom: calc(20px + var(--safe-b));
       transform: translateX(-50%) translateY(20px);
       border: 1px solid var(--line);
       border-radius: 10px;
-      background: rgba(8,15,30,.92);
+      background: rgba(8,15,30,.93);
       padding: 8px 10px;
       font-size: 12px;
       opacity: 0;
-      pointer-events: none;
       transition: .2s ease;
-      z-index: 30;
+      z-index: 42;
+      pointer-events: none;
     }
 
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 560px) {
-      .wrap {
+      .phone {
         width: 100vw;
         height: 100dvh;
         border-radius: 0;
@@ -376,231 +463,328 @@
   </style>
 </head>
 <body>
-  <div class="ambient"></div>
+  <div class="noise"></div>
 
-  <main class="wrap">
-    <div class="frame">
-      <div class="wallpaper"></div>
+  <main class="phone">
+    <div class="wallpaper"></div>
+    <div class="island"></div>
 
-      <div class="statusbar">
-        <div id="statusTime">00:00</div>
-        <div class="signal">
-          <span class="badge" id="statusNet">LTE</span>
-          <span class="badge" id="statusBattery">100%</span>
+    <header class="status">
+      <span id="statusTime">00:00</span>
+      <div class="status-right">
+        <span class="pill" id="statusNetwork">5G</span>
+        <span class="pill" id="statusBattery">--%</span>
+      </div>
+    </header>
+
+    <section class="screen" id="lockScreen">
+      <div class="lock">
+        <div>
+          <h1 id="lockClock">00:00</h1>
+          <div class="date" id="lockDate">segunda-feira</div>
+          <div class="card lock-note">Kauan Pocket OS: interface mobile premium para mostrar seu portfólio em formato sistema operacional touch-first.</div>
+          <button class="unlock" id="unlockBtn">Entrar no sistema</button>
         </div>
       </div>
+    </section>
 
-      <section class="screen" id="lockscreen">
-        <div class="lock-content">
-          <div>
-            <div class="clock-big" id="lockClock">00:00</div>
-            <div class="date-big" id="lockDate">segunda-feira</div>
-            <div class="lock-card">Kauan Pocket OS: experiência mobile do portfólio com apps, painéis e navegação técnica.</div>
-            <button class="unlock-btn" id="unlockBtn">Deslizar para entrar</button>
-          </div>
-        </div>
-      </section>
+    <section class="screen hidden" id="homeScreen">
+      <div class="notif" id="notifPanel">
+        <h4>Notificações</h4>
+        <div class="notif-item">Experiência mobile carregada com sucesso.</div>
+        <div class="notif-item" id="notifReco">Detectando recomendação por dispositivo...</div>
+        <div class="notif-item" id="notifDevice">Coletando dados do aparelho...</div>
+      </div>
 
-      <section class="screen hidden" id="homescreen">
-        <div class="notif" id="notifPanel">
-          <h4>Notificações</h4>
-          <div class="notif-item">Nova visita detectada no portfólio.</div>
-          <div class="notif-item">KauanWin XP disponível para teste em qualquer dispositivo.</div>
-          <div class="notif-item" id="recoNotif">Recomendação de versão carregando...</div>
+      <div class="home">
+        <div class="card welcome">
+          <strong id="recoText">Recomendação: detectando...</strong><br>
+          Você pode testar as duas versões: desktop e mobile em qualquer dispositivo.
         </div>
 
-        <div class="home">
-          <div class="top-banner">
-            <strong id="recoLabel">Recomendação: detectando dispositivo...</strong><br>
-            Você pode abrir as duas versões em qualquer dispositivo.
-          </div>
-
-          <div class="chooser">
-            <a class="chip primary" href="KauanWin.html" target="_blank" rel="noopener">Abrir KauanWin XP</a>
-            <a class="chip" href="index.html">Voltar ao Portfólio Web</a>
-          </div>
-
-          <div class="apps" id="appsGrid"></div>
-
-          <div class="dock">
-            <button class="app" data-app="contact" type="button"><i>💬</i><span>Contato</span></button>
-            <button class="app" data-app="resume" type="button"><i>📄</i><span>CV</span></button>
-            <button class="app" data-app="systems" type="button"><i>🧩</i><span>Sistemas</span></button>
-            <button class="app" id="notifToggle" type="button"><i>🔔</i><span>Notifs</span></button>
-          </div>
+        <div class="system-switch">
+          <a class="primary" href="KauanWin.html" target="_blank" rel="noopener">Abrir KauanWin XP</a>
+          <a href="index.html">Portfólio Web</a>
         </div>
-      </section>
 
-      <section class="appview" id="appview">
-        <div class="app-header">
-          <strong id="appTitle">App</strong>
-          <button class="close-app" id="closeApp">Fechar</button>
+        <div class="card widget">
+          <div>Dispositivo<b id="wgDevice">-</b></div>
+          <div>Navegador<b id="wgBrowser">-</b></div>
+          <div>Rede<b id="wgNetwork">-</b></div>
+          <div>Viewport<b id="wgViewport">-</b></div>
         </div>
-        <div id="appContent"></div>
-      </section>
 
-      <div class="toast" id="toast">Ação realizada</div>
-      <div class="home-indicator"></div>
-    </div>
+        <div class="apps" id="appsGrid"></div>
+
+        <div class="dock">
+          <button class="app" data-app="contact" type="button"><span class="app-icon"><img src="https://img.icons8.com/fluency/48/new-post.png" alt=""></span><span>Contato</span></button>
+          <button class="app" data-app="resume" type="button"><span class="app-icon"><img src="https://img.icons8.com/fluency/48/resume.png" alt=""></span><span>CV</span></button>
+          <button class="app" data-app="systems" type="button"><span class="app-icon"><img src="https://img.icons8.com/fluency/48/windows-11.png" alt=""></span><span>Sistemas</span></button>
+          <button class="app" id="notifBtn" type="button"><span class="app-icon"><img src="https://img.icons8.com/fluency/48/appointment-reminders.png" alt=""></span><span>Notifs</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sheet" id="appSheet">
+      <span class="grabber"></span>
+      <header class="sheet-head">
+        <strong id="sheetTitle">App</strong>
+        <button class="close-sheet" id="closeSheet">Fechar</button>
+      </header>
+      <div class="sheet-body" id="sheetBody"></div>
+    </section>
+
+    <div class="toast" id="toast">Ação executada</div>
+    <div class="home-indicator"></div>
   </main>
 
   <script>
-    const lockscreen = document.getElementById('lockscreen');
-    const homescreen = document.getElementById('homescreen');
+    const lockScreen = document.getElementById('lockScreen');
+    const homeScreen = document.getElementById('homeScreen');
     const unlockBtn = document.getElementById('unlockBtn');
+    const statusTime = document.getElementById('statusTime');
     const lockClock = document.getElementById('lockClock');
     const lockDate = document.getElementById('lockDate');
-    const statusTime = document.getElementById('statusTime');
-    const statusNet = document.getElementById('statusNet');
+    const statusNetwork = document.getElementById('statusNetwork');
     const statusBattery = document.getElementById('statusBattery');
     const appsGrid = document.getElementById('appsGrid');
-    const appview = document.getElementById('appview');
-    const appTitle = document.getElementById('appTitle');
-    const appContent = document.getElementById('appContent');
-    const closeApp = document.getElementById('closeApp');
-    const toast = document.getElementById('toast');
-    const notifToggle = document.getElementById('notifToggle');
+    const appSheet = document.getElementById('appSheet');
+    const sheetTitle = document.getElementById('sheetTitle');
+    const sheetBody = document.getElementById('sheetBody');
+    const closeSheet = document.getElementById('closeSheet');
     const notifPanel = document.getElementById('notifPanel');
-    const recoLabel = document.getElementById('recoLabel');
-    const recoNotif = document.getElementById('recoNotif');
+    const notifBtn = document.getElementById('notifBtn');
+    const toast = document.getElementById('toast');
+    const recoText = document.getElementById('recoText');
+    const notifReco = document.getElementById('notifReco');
+    const notifDevice = document.getElementById('notifDevice');
+    const wgDevice = document.getElementById('wgDevice');
+    const wgBrowser = document.getElementById('wgBrowser');
+    const wgNetwork = document.getElementById('wgNetwork');
+    const wgViewport = document.getElementById('wgViewport');
 
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
-    const apps = {
-      profile: {
-        title: 'Meu Perfil',
-        html: `
-          <article class="card"><h3>Erick Kauan dos Santos Pereira Lauer</h3><p>Técnico de TI, Suporte Headsoft e também desenvolvedor focado em experiência e execução técnica.</p></article>
-          <article class="card"><h3>Atuação</h3><p>Suporte avançado, redes, SQL Server, 3CX e manutenção de ambiente corporativo.</p></article>
-        `
-      },
-      skills: {
-        title: 'Stack Técnica',
-        html: `
-          <article class="card"><h3>Ferramentas</h3><ul><li>SQL Server</li><li>3CX / Teams</li><li>Headcargo</li><li>Redes e Hardware</li><li>HTML/CSS/JavaScript</li></ul></article>
-          <article class="card"><h3>Diferencial</h3><p>Combinação de suporte operacional com visão de produto e experiência digital.</p></article>
-        `
-      },
-      experience: {
-        title: 'Experiência',
-        html: `
-          <article class="card"><h3>Headsoft</h3><p><strong>Técnico de Suporte de TI</strong> • Out/2025 - Atual</p><p>Suporte avançado, banco de dados, comunicação e infraestrutura.</p></article>
-          <article class="card"><h3>MANUPACKAGING FITASA</h3><p><strong>Analista Logístico</strong> • Ago/2021 - Out/2025</p><p>Análise de dados e automações em processos operacionais.</p></article>
-        `
-      },
-      contact: {
-        title: 'Contato',
-        html: `
-          <article class="card"><h3>Canais</h3><ul><li>Email: <a href="mailto:erickkauanlauer@gmail.com">erickkauanlauer@gmail.com</a></li><li>LinkedIn: <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener">linkedin.com/in/kauanlauer</a></li><li>GitHub: <a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></li><li>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener">(41) 99942-6605</a></li></ul></article>
-        `
-      },
-      resume: {
-        title: 'Currículo',
-        html: `
-          <article class="card"><h3>Currículo Online</h3><p>Abra a versão atualizada do currículo em uma nova guia.</p><p><a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Acessar currículo</a></p></article>
-        `
-      },
-      systems: {
-        title: 'Escolher Sistema',
-        html: `
-          <article class="card"><h3>Versões disponíveis</h3><p>Você pode testar as duas experiências em qualquer dispositivo.</p><ul><li><a href="KauanWin.html" target="_blank" rel="noopener">KauanWin XP (desktop)</a></li><li><a href="KauanPocketOS.html" target="_blank" rel="noopener">Kauan Pocket OS (mobile)</a></li><li><a href="index.html">Portfólio Web principal</a></li></ul></article>
-        `
-      },
-      intel: {
-        title: 'Visitor Intel',
-        html: `
-          <article class="card"><h3>Dados do Navegador</h3><ul><li>Idioma: <strong>${navigator.language || '-'}</strong></li><li>Sistema: <strong>${navigator.platform || '-'}</strong></li><li>Núcleos de CPU: <strong>${navigator.hardwareConcurrency || '-'}</strong></li><li>Memória: <strong>${navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/d'}</strong></li><li>Rede: <strong>${connection?.effectiveType || 'n/d'}</strong></li></ul></article>
-        `
-      }
-    };
-
-    const gridApps = [
-      { key: 'profile', icon: '👤', label: 'Perfil' },
-      { key: 'skills', icon: '🛠️', label: 'Stack' },
-      { key: 'experience', icon: '📈', label: 'Experiência' },
-      { key: 'intel', icon: '🛰️', label: 'Visitor Intel' },
-      { key: 'contact', icon: '📞', label: 'Contato' },
-      { key: 'resume', icon: '📄', label: 'Currículo' },
-      { key: 'systems', icon: '🧠', label: 'Sistemas' },
-      { key: 'profile', icon: '⚙️', label: 'Config' }
+    const appList = [
+      { key: 'profile', label: 'Perfil', icon: 'https://img.icons8.com/fluency/48/user-male-circle.png' },
+      { key: 'skills', label: 'Stack', icon: 'https://img.icons8.com/fluency/48/source-code.png' },
+      { key: 'experience', label: 'Experiencia', icon: 'https://img.icons8.com/fluency/48/briefcase.png' },
+      { key: 'device', label: 'Meu Celular', icon: 'https://img.icons8.com/fluency/48/smartphone-tablet.png' },
+      { key: 'intel', label: 'Visitor Intel', icon: 'https://img.icons8.com/fluency/48/radar-plot.png' },
+      { key: 'contact', label: 'Contato', icon: 'https://img.icons8.com/fluency/48/phone-disconnected.png' },
+      { key: 'resume', label: 'Curriculo', icon: 'https://img.icons8.com/fluency/48/open-resume.png' },
+      { key: 'systems', label: 'Sistemas', icon: 'https://img.icons8.com/fluency/48/windows-11.png' }
     ];
 
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add('show');
-      clearTimeout(showToast.t);
-      showToast.t = setTimeout(() => toast.classList.remove('show'), 1700);
+    function detectBrowser() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Edg/')) return 'Edge';
+      if (ua.includes('OPR/') || ua.includes('Opera')) return 'Opera';
+      if (ua.includes('Chrome/') && !ua.includes('Edg/')) return 'Chrome';
+      if (ua.includes('Firefox/')) return 'Firefox';
+      if (ua.includes('Safari/') && !ua.includes('Chrome/')) return 'Safari';
+      return 'Desconhecido';
     }
 
-    function updateClock() {
+    function detectOS() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Android')) return 'Android';
+      if (ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
+      if (ua.includes('Windows')) return 'Windows';
+      if (ua.includes('Mac OS')) return 'macOS';
+      if (ua.includes('Linux')) return 'Linux';
+      return navigator.platform || 'Desconhecido';
+    }
+
+    function detectDeviceName() {
+      const ua = navigator.userAgent;
+      if (ua.includes('iPhone')) return 'iPhone';
+      if (ua.includes('iPad')) return 'iPad';
+      if (ua.includes('Android')) return 'Android';
+      return 'Desktop/Outro';
+    }
+
+    function isMobileDevice() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => toast.classList.remove('show'), 1600);
+    }
+
+    function updateClocks() {
       const now = new Date();
       const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
       const date = now.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
-      lockClock.textContent = time;
       statusTime.textContent = time;
+      lockClock.textContent = time;
       lockDate.textContent = date;
-      statusBattery.textContent = `${Math.floor(58 + (now.getSeconds() / 60) * 32)}%`;
     }
 
-    function openApp(key) {
-      const app = apps[key];
-      if (!app) return;
-      appTitle.textContent = app.title;
-      appContent.innerHTML = app.html;
-      appview.classList.add('open');
+    async function updateBatteryStatus() {
+      if (!navigator.getBattery) {
+        statusBattery.textContent = 'n/d';
+        return;
+      }
+      try {
+        const battery = await navigator.getBattery();
+        const level = Math.round((battery.level || 0) * 100);
+        statusBattery.textContent = `${level}%`;
+        battery.addEventListener('levelchange', () => {
+          statusBattery.textContent = `${Math.round((battery.level || 0) * 100)}%`;
+        });
+      } catch (_) {
+        statusBattery.textContent = 'n/d';
+      }
     }
 
-    function closeCurrentApp() {
-      appview.classList.remove('open');
+    function updateLiveWidget() {
+      wgDevice.textContent = `${detectDeviceName()} • ${detectOS()}`;
+      wgBrowser.textContent = detectBrowser();
+      wgNetwork.textContent = connection?.effectiveType || (navigator.onLine ? 'online' : 'offline');
+      wgViewport.textContent = `${window.innerWidth}x${window.innerHeight}`;
     }
 
-    function renderApps() {
-      gridApps.forEach((item) => {
+    async function fetchIpIntel() {
+      try {
+        const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+        if (!res.ok) throw new Error('no');
+        return await res.json();
+      } catch (_) {
+        return null;
+      }
+    }
+
+    async function storageEstimateText() {
+      if (!navigator.storage || !navigator.storage.estimate) return 'n/d';
+      try {
+        const e = await navigator.storage.estimate();
+        const used = e.usage ? (e.usage / (1024 * 1024)).toFixed(1) : '0.0';
+        const quota = e.quota ? (e.quota / (1024 * 1024)).toFixed(1) : '-';
+        return `${used}MB / ${quota}MB`;
+      } catch (_) {
+        return 'n/d';
+      }
+    }
+
+    function renderAppGrid() {
+      appList.forEach((app) => {
         const btn = document.createElement('button');
-        btn.type = 'button';
         btn.className = 'app';
-        btn.dataset.app = item.key;
-        btn.innerHTML = `<i>${item.icon}</i><span>${item.label}</span>`;
+        btn.type = 'button';
+        btn.dataset.app = app.key;
+        btn.innerHTML = `<span class="app-icon"><img src="${app.icon}" alt=""></span><span>${app.label}</span>`;
         appsGrid.appendChild(btn);
       });
     }
 
+    async function appHtml(key) {
+      const ipData = await fetchIpIntel();
+      const storage = await storageEstimateText();
+      const platform = detectOS();
+      const browser = detectBrowser();
+
+      const templates = {
+        profile: `
+          <article class="panel"><h3>Erick Kauan dos Santos Pereira Lauer</h3><p>Tecnico de TI, Suporte Headsoft e desenvolvedor focado em entregar experiencia moderna com execucao tecnica real.</p></article>
+          <article class="panel"><h3>Atuacao</h3><p>SQL Server, 3CX, Headcargo, suporte avancado, redes e melhorias continuas.</p></article>
+        `,
+        skills: `
+          <article class="panel"><h3>Stack Principal</h3><ul><li>SQL Server</li><li>3CX / Teams</li><li>Headcargo</li><li>Redes e Hardware</li><li>HTML/CSS/JavaScript</li></ul></article>
+          <article class="panel"><h3>Diferencial</h3><p>Suporte operacional com visao de produto e interface, sem layout padrao.</p></article>
+        `,
+        experience: `
+          <article class="panel"><h3>Headsoft</h3><p><strong>Tecnico de Suporte de TI</strong> • Out/2025 - Atual</p><p>Suporte tecnico de alta demanda, banco, comunicacao e ambiente corporativo.</p></article>
+          <article class="panel"><h3>MANUPACKAGING FITASA</h3><p><strong>Analista Logistico</strong> • Ago/2021 - Out/2025</p><p>Analise de dados e automacoes para ganho operacional.</p></article>
+        `,
+        device: `
+          <article class="panel"><h3>Este Dispositivo</h3><ul><li>Modelo detectado: <strong>${detectDeviceName()}</strong></li><li>Sistema: <strong>${platform}</strong></li><li>Navegador: <strong>${browser}</strong></li><li>Idioma: <strong>${navigator.language || '-'}</strong></li><li>Tela: <strong>${window.screen.width}x${window.screen.height}</strong></li><li>Viewport: <strong>${window.innerWidth}x${window.innerHeight}</strong></li><li>CPU Cores: <strong>${navigator.hardwareConcurrency || '-'}</strong></li><li>Memoria: <strong>${navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/d'}</strong></li><li>Storage usado: <strong>${storage}</strong></li></ul></article>
+          <article class="panel"><h3>Simulacao de celular pessoal</h3><p>A interface se adapta e usa os dados do navegador para refletir o aparelho atual em tempo real.</p></article>
+        `,
+        intel: `
+          <article class="panel"><h3>Visitor Intel</h3><ul><li>IP: <strong>${ipData?.ip || 'indisponivel'}</strong></li><li>Cidade: <strong>${ipData?.city || '-'}</strong></li><li>Regiao/Pais: <strong>${ipData ? `${ipData.region || '-'} / ${ipData.country_name || '-'}` : '-'}</strong></li><li>Provedor: <strong>${ipData?.org || ipData?.asn || '-'}</strong></li><li>Timezone: <strong>${ipData?.timezone || '-'}</strong></li><li>Rede: <strong>${connection?.effectiveType || 'n/d'}</strong></li><li>Downlink: <strong>${connection?.downlink ? connection.downlink + ' Mb/s' : 'n/d'}</strong></li><li>Referrer: <strong>${document.referrer ? new URL(document.referrer).hostname : 'direto'}</strong></li></ul></article>
+        `,
+        contact: `
+          <article class="panel"><h3>Contato Direto</h3><ul><li>Email: <a href="mailto:erickkauanlauer@gmail.com">erickkauanlauer@gmail.com</a></li><li>LinkedIn: <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener">linkedin.com/in/kauanlauer</a></li><li>GitHub: <a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></li><li>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener">(41) 99942-6605</a></li></ul></article>
+        `,
+        resume: `
+          <article class="panel"><h3>Curriculo Online</h3><p>Acesse a versao oficial atualizada em nova guia.</p><p><a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Abrir curriculo</a></p></article>
+        `,
+        systems: `
+          <article class="panel"><h3>Troca de Sistema</h3><p>Teste qualquer versao em qualquer dispositivo.</p><ul><li><a href="KauanWin.html" target="_blank" rel="noopener">KauanWin XP (desktop)</a></li><li><a href="KauanPocketOS.html" target="_blank" rel="noopener">Kauan Pocket OS (mobile)</a></li><li><a href="index.html">Portifolio Web principal</a></li></ul></article>
+        `
+      };
+
+      return templates[key] || '<article class="panel"><h3>App</h3><p>Conteudo indisponivel.</p></article>';
+    }
+
+    async function openApp(appKey, appLabel) {
+      sheetTitle.textContent = appLabel || 'App';
+      sheetBody.innerHTML = '<article class="panel"><h3>Carregando</h3><p>Coletando informacoes do dispositivo...</p></article>';
+      appSheet.classList.add('open');
+      sheetBody.innerHTML = await appHtml(appKey);
+    }
+
+    function closeApp() {
+      appSheet.classList.remove('open');
+    }
+
     function applyRecommendation() {
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 850px)').matches;
-      const recommendation = isMobile ? 'Recomendação: Kauan Pocket OS (mobile)' : 'Recomendação: KauanWin XP (desktop)';
-      recoLabel.textContent = recommendation;
-      recoNotif.textContent = `${recommendation}. As duas versões estão liberadas para teste.`;
-      statusNet.textContent = isMobile ? '5G' : 'LAN';
+      const mobile = isMobileDevice();
+      const recommendation = mobile
+        ? 'Recomendado para este dispositivo: Kauan Pocket OS (mobile).'
+        : 'Recomendado para este dispositivo: KauanWin XP (desktop).';
+      recoText.textContent = recommendation;
+      notifReco.textContent = recommendation + ' As duas versoes estao liberadas.';
+      statusNetwork.textContent = mobile ? '5G' : 'LAN';
+      notifDevice.textContent = `Detectado: ${detectDeviceName()} • ${detectOS()} • ${detectBrowser()}`;
     }
 
     unlockBtn.addEventListener('click', () => {
-      lockscreen.classList.add('hidden');
-      homescreen.classList.remove('hidden');
+      lockScreen.classList.add('hidden');
+      homeScreen.classList.remove('hidden');
       showToast('Pocket OS iniciado');
     });
 
-    closeApp.addEventListener('click', closeCurrentApp);
+    closeSheet.addEventListener('click', closeApp);
 
-    document.addEventListener('click', (e) => {
-      const appBtn = e.target.closest('[data-app]');
-      if (appBtn) openApp(appBtn.dataset.app);
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-app]');
+      if (btn) {
+        const label = btn.textContent.trim() || 'App';
+        await openApp(btn.dataset.app, label);
+      }
     });
 
-    notifToggle.addEventListener('click', () => {
+    notifBtn.addEventListener('click', () => {
       notifPanel.classList.toggle('open');
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeCurrentApp();
+        closeApp();
         notifPanel.classList.remove('open');
       }
     });
 
-    renderApps();
+    window.addEventListener('resize', updateLiveWidget);
+    window.addEventListener('online', updateLiveWidget);
+    window.addEventListener('offline', updateLiveWidget);
+
+    if (connection && connection.addEventListener) {
+      connection.addEventListener('change', updateLiveWidget);
+    }
+
+    renderAppGrid();
     applyRecommendation();
-    updateClock();
-    setInterval(updateClock, 1000);
+    updateClocks();
+    updateLiveWidget();
+    updateBatteryStatus();
+    setInterval(updateClocks, 1000);
+    setInterval(updateLiveWidget, 3000);
   </script>
 </body>
 </html>
