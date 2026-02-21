@@ -23,6 +23,9 @@
       --icon-w: 94px;
       --icon-h: 102px;
       --safe-b: env(safe-area-inset-bottom, 0px);
+      --anim-fast: 140ms;
+      --anim-mid: 220ms;
+      --anim-slow: 360ms;
     }
 
     * {
@@ -52,23 +55,79 @@
 
     .bg-layer {
       z-index: -3;
-      background-image: linear-gradient(rgba(6,14,30,.5), rgba(4,10,22,.55)), url("https://upload.wikimedia.org/wikipedia/en/5/5f/Bliss_%28Windows_XP%29.png");
+      background:
+        radial-gradient(88rem 44rem at 10% 10%, rgba(107, 202, 255, .35), transparent 58%),
+        radial-gradient(60rem 28rem at 88% 78%, rgba(68, 116, 255, .34), transparent 62%),
+        linear-gradient(180deg, #1d6fd2 0%, #1457ad 34%, #0d3f89 72%, #082859 100%);
       background-size: cover;
       background-position: center;
+      transform: scale(1.04);
+      transition: transform var(--anim-slow) ease;
     }
 
     .bg-layer::before {
       inset: -10%;
       background: conic-gradient(from 120deg, rgba(79,170,255,.2), transparent 30%, rgba(71,109,255,.2), transparent 65%, rgba(45,199,157,.18));
       filter: blur(70px);
-      animation: bg-spin 26s linear infinite;
-      opacity: .75;
+      animation: bg-spin 34s linear infinite;
+      opacity: .72;
     }
 
     .bg-layer::after {
       background-image: radial-gradient(rgba(255,255,255,.12) .65px, transparent .65px);
       background-size: 3px 3px;
       opacity: .15;
+    }
+
+    .boot-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 30000;
+      background: radial-gradient(circle at 35% 20%, rgba(67, 156, 255, .35), transparent 52%), linear-gradient(180deg, #08162f, #060f23 58%, #050a18);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #ddecff;
+      transition: opacity var(--anim-slow) ease, visibility var(--anim-slow) ease;
+    }
+
+    .boot-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .boot-logo {
+      font-size: clamp(24px, 4vw, 38px);
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-shadow: 0 0 24px rgba(115, 181, 255, .42);
+      margin-bottom: 8px;
+    }
+
+    .boot-sub {
+      font-size: 13px;
+      color: #a8c5f3;
+      margin-bottom: 14px;
+    }
+
+    .boot-bar {
+      width: min(360px, 74vw);
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(161, 206, 255, .45);
+      background: rgba(255,255,255,.05);
+      overflow: hidden;
+      margin-inline: auto;
+    }
+
+    .boot-bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4dd3ff, #58a0ff, #6d78ff);
+      box-shadow: 0 0 14px rgba(94, 170, 255, .6);
+      transition: width 1s ease;
     }
 
     @keyframes bg-spin { to { transform: rotate(1turn); } }
@@ -98,8 +157,8 @@
       width: var(--icon-w);
       height: var(--icon-h);
       border: 1px solid transparent;
-      border-radius: 10px;
-      background: transparent;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       color: #fff;
       display: flex;
       flex-direction: column;
@@ -109,21 +168,26 @@
       cursor: default;
       text-align: center;
       text-shadow: 0 1px 3px rgba(0,0,0,.85);
-      transition: .15s ease;
+      transition: transform var(--anim-fast) ease, border-color var(--anim-fast) ease, background var(--anim-fast) ease;
+      backdrop-filter: blur(2px);
     }
 
     .desktop-icon:hover,
     .desktop-icon.selected {
       border-color: rgba(220,238,255,.6);
-      background: rgba(45,98,178,.28);
+      background: linear-gradient(180deg, rgba(92,162,255,.42), rgba(45,98,178,.36));
+      transform: translateY(-1px) scale(1.02);
     }
 
     .desktop-icon img {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
       filter: drop-shadow(0 2px 3px rgba(0,0,0,.55));
       pointer-events: none;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,.08));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.32), 0 6px 12px rgba(0,0,0,.24);
     }
 
     .desktop-icon span {
@@ -199,11 +263,18 @@
       overflow: hidden;
       pointer-events: auto;
       transform-origin: center center;
-      transition: transform .12s ease;
+      transition: transform var(--anim-fast) ease, box-shadow var(--anim-fast) ease;
+      animation: win-in var(--anim-mid) ease;
+      resize: both;
     }
 
     .xp-window.inactive .titlebar {
       background: linear-gradient(180deg, #8aa3c9, #5f779d);
+    }
+
+    .xp-window.inactive {
+      transform: scale(.996);
+      box-shadow: 0 12px 30px rgba(0,0,0,.32);
     }
 
     .xp-window.maximized {
@@ -214,6 +285,12 @@
       border-radius: 0;
       border-left: 0;
       border-right: 0;
+      resize: none;
+    }
+
+    @keyframes win-in {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .titlebar {
@@ -281,6 +358,8 @@
       overflow: auto;
       padding: 14px;
       background: linear-gradient(180deg, #fefefe, #f0f4ff);
+      scrollbar-width: thin;
+      scrollbar-color: #5e90d6 #e6eeff;
     }
 
     .card {
@@ -304,6 +383,10 @@
       color: #1f2f4f;
       font-size: 14px;
       user-select: text;
+    }
+
+    .card a {
+      font-weight: 700;
     }
 
     .card ul { margin: 0; padding-left: 18px; }
@@ -405,6 +488,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
       text-shadow: 0 1px 1px rgba(0,0,0,.42);
+      transition: transform var(--anim-fast) ease, filter var(--anim-fast) ease;
+    }
+
+    .task-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
     }
 
     .task-btn img { width: 14px; height: 14px; object-fit: contain; }
@@ -441,9 +530,15 @@
       display: none;
       z-index: 10010;
       overflow: hidden;
+      animation: pop-in var(--anim-mid) ease;
     }
 
     .start-menu.open { display: block; }
+
+    @keyframes pop-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .start-top {
       height: 92px;
@@ -607,8 +702,8 @@
     @media (max-width: 880px) {
       :root {
         --taskbar-h: 42px;
-        --icon-w: 84px;
-        --icon-h: 94px;
+        --icon-w: 76px;
+        --icon-h: 90px;
       }
 
       .hud-panel {
@@ -625,10 +720,53 @@
 
       .task-btn { min-width: 130px; }
     }
+
+    @media (max-width: 700px) {
+      .desktop-icons {
+        padding: 10px 10px 66px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        justify-items: center;
+      }
+
+      .desktop-icon {
+        width: 100%;
+        max-width: 84px;
+      }
+
+      .desktop-icon span {
+        font-size: 11px;
+      }
+
+      .xp-window {
+        width: 100% !important;
+        height: calc(100% - var(--taskbar-h) - var(--safe-b)) !important;
+        top: 0 !important;
+        left: 0 !important;
+        border-radius: 0;
+        min-width: 0;
+        resize: none;
+      }
+
+      .start-button {
+        min-width: 88px;
+        font-size: 16px;
+      }
+
+      .tray {
+        min-width: 90px;
+        font-size: 11px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="bg-layer"></div>
+  <div class="boot-screen" id="bootScreen">
+    <div class="boot-logo">KauanWin XP Neo</div>
+    <div class="boot-sub">Inicializando ambiente de portfolio...</div>
+    <div class="boot-bar"><span id="bootBar"></span></div>
+  </div>
 
   <main class="desktop" id="desktop">
     <section class="desktop-icons" id="desktopIcons"></section>
@@ -651,7 +789,7 @@
 
   <aside class="start-menu" id="startMenu">
     <header class="start-top">
-      <img src="https://i.postimg.cc/KYyJYJjM/eu2.jpg" alt="Kauan">
+      <img src="eu2.JPG" alt="Kauan">
       <div>
         <strong>Kauan Lauer</strong>
         <span>TI • Suporte • Dev • XP Neo</span>
@@ -667,6 +805,7 @@
         <button data-action="intel">Visitor Intel</button>
         <button data-action="contact">Contato</button>
         <button data-action="systems">Sistemas</button>
+        <a href="index.html">Portifolio Web</a>
         <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Curriculo</a>
       </div>
     </div>
@@ -710,6 +849,9 @@
 
   <script>
     const desktop = document.getElementById('desktop');
+    const bgLayer = document.querySelector('.bg-layer');
+    const bootScreen = document.getElementById('bootScreen');
+    const bootBar = document.getElementById('bootBar');
     const desktopIcons = document.getElementById('desktopIcons');
     const windowLayer = document.getElementById('windowLayer');
     const taskButtons = document.getElementById('taskButtons');
@@ -731,16 +873,33 @@
 
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
+    function makeIconData(label, c1, c2) {
+      const svg = `
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
+          <defs>
+            <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+              <stop offset='0' stop-color='${c1}'/>
+              <stop offset='1' stop-color='${c2}'/>
+            </linearGradient>
+          </defs>
+          <rect x='3' y='3' width='58' height='58' rx='14' fill='url(#g)'/>
+          <rect x='8' y='8' width='48' height='20' rx='8' fill='rgba(255,255,255,.28)'/>
+          <text x='32' y='42' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='700' fill='white'>${label}</text>
+        </svg>
+      `.trim();
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    }
+
     const ICONS = {
-      about: 'https://img.icons8.com/fluency/48/user-male-circle.png',
-      skills: 'https://img.icons8.com/fluency/48/source-code.png',
-      experience: 'https://img.icons8.com/fluency/48/briefcase.png',
-      intel: 'https://img.icons8.com/fluency/48/radar-plot.png',
-      contact: 'https://img.icons8.com/fluency/48/new-post.png',
-      resume: 'https://img.icons8.com/fluency/48/resume.png',
-      github: 'https://img.icons8.com/fluency/48/github.png',
-      systems: 'https://img.icons8.com/fluency/48/windows-11.png',
-      arena: 'https://img.icons8.com/fluency/48/controller.png'
+      about: makeIconData('ME', '#55cdfa', '#2e79ff'),
+      skills: makeIconData('SK', '#3edfa2', '#1689d8'),
+      experience: makeIconData('EX', '#ffc65a', '#ef6d5a'),
+      intel: makeIconData('AI', '#6bc7ff', '#7557ff'),
+      contact: makeIconData('CT', '#7be4ff', '#1ea0ce'),
+      resume: makeIconData('CV', '#70d9a8', '#2f8f5f'),
+      github: makeIconData('GH', '#8492ff', '#2f4ea8'),
+      systems: makeIconData('OS', '#6dc7ff', '#276aff'),
+      arena: makeIconData('SOC', '#65f0d2', '#1b7b9f')
     };
 
     function detectBrowser() {
@@ -859,9 +1018,11 @@
     ];
 
     const openWindows = new Map();
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
     let zCounter = 20;
     let cascade = 0;
     let activeIcon = null;
+    let activeWindowId = null;
 
     function updateClock() {
       const d = new Date();
@@ -887,6 +1048,11 @@
         icon.classList.add('selected');
         activeIcon = icon;
 
+        if (isCoarsePointer) {
+          openApp(item.app);
+          return;
+        }
+
         if (clickTimer) {
           clearTimeout(clickTimer);
           clickTimer = null;
@@ -900,11 +1066,33 @@
     }
 
     function setActiveWindow(appId) {
+      activeWindowId = appId || null;
       openWindows.forEach((entry, id) => {
         const active = id === appId && !entry.minimized;
         entry.window.classList.toggle('inactive', !active);
         entry.task.classList.toggle('active', active);
       });
+    }
+
+    function getTopWindowId() {
+      let topId = null;
+      let topZ = -Infinity;
+      openWindows.forEach((entry, id) => {
+        if (entry.minimized) return;
+        const z = parseInt(entry.window.style.zIndex || '0', 10);
+        if (z >= topZ) {
+          topZ = z;
+          topId = id;
+        }
+      });
+      return topId;
+    }
+
+    function getTaskbarSpace() {
+      const styles = getComputedStyle(document.documentElement);
+      const taskbar = parseFloat(styles.getPropertyValue('--taskbar-h')) || 0;
+      const safe = parseFloat(styles.getPropertyValue('--safe-b')) || 0;
+      return taskbar + safe;
     }
 
     function bringToFront(appId) {
@@ -921,10 +1109,7 @@
       entry.window.remove();
       entry.task.remove();
       openWindows.delete(appId);
-      if (openWindows.size) {
-        const last = Array.from(openWindows.keys()).at(-1);
-        setActiveWindow(last);
-      }
+      setActiveWindow(getTopWindowId());
     }
 
     function minimizeWindow(appId) {
@@ -933,6 +1118,9 @@
       entry.minimized = true;
       entry.window.style.display = 'none';
       entry.task.classList.remove('active');
+      if (activeWindowId === appId) {
+        setActiveWindow(getTopWindowId());
+      }
     }
 
     function restoreWindow(appId) {
@@ -967,6 +1155,29 @@
       bringToFront(appId);
     }
 
+    function snapWindow(appId, side) {
+      const entry = openWindows.get(appId);
+      if (!entry) return;
+      const win = entry.window;
+      const top = 0;
+      const taskbarSpace = getTaskbarSpace();
+      const h = window.innerHeight - taskbarSpace;
+      const halfW = Math.floor(window.innerWidth / 2);
+      entry.restoreRect = {
+        left: win.style.left,
+        top: win.style.top,
+        width: win.style.width,
+        height: win.style.height
+      };
+      win.classList.remove('maximized');
+      win.style.top = `${top}px`;
+      win.style.height = `${h}px`;
+      win.style.width = `${halfW}px`;
+      win.style.left = side === 'left' ? '0px' : `${window.innerWidth - halfW}px`;
+      bringToFront(appId);
+      showToast(side === 'left' ? 'Janela ajustada: lado esquerdo.' : 'Janela ajustada: lado direito.');
+    }
+
     function makeWindowDraggable(appId, windowEl, titlebar) {
       let dragging = false;
       let sx = 0;
@@ -974,7 +1185,8 @@
       let sl = 0;
       let st = 0;
 
-      titlebar.addEventListener('mousedown', (e) => {
+      titlebar.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0 && e.pointerType !== 'touch') return;
         if (windowEl.classList.contains('maximized')) return;
         if (e.target.closest('.window-controls')) return;
         dragging = true;
@@ -983,21 +1195,39 @@
         sy = e.clientY;
         sl = parseFloat(windowEl.style.left || 0);
         st = parseFloat(windowEl.style.top || 0);
+        if (titlebar.setPointerCapture) titlebar.setPointerCapture(e.pointerId);
         e.preventDefault();
       });
 
-      window.addEventListener('mousemove', (e) => {
+      titlebar.addEventListener('pointermove', (e) => {
         if (!dragging) return;
         const dx = e.clientX - sx;
         const dy = e.clientY - sy;
         const maxX = window.innerWidth - windowEl.offsetWidth;
-        const maxY = window.innerHeight - parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--taskbar-h')) - windowEl.offsetHeight;
+        const maxY = window.innerHeight - getTaskbarSpace() - windowEl.offsetHeight;
         windowEl.style.left = `${Math.max(0, Math.min(maxX, sl + dx))}px`;
         windowEl.style.top = `${Math.max(0, Math.min(maxY, st + dy))}px`;
       });
 
-      window.addEventListener('mouseup', () => {
+      titlebar.addEventListener('pointerup', (e) => {
         if (!dragging) return;
+        dragging = false;
+        if (titlebar.releasePointerCapture) titlebar.releasePointerCapture(e.pointerId);
+        if (window.matchMedia('(max-width: 700px)').matches) return;
+        if (e.clientY <= 14) {
+          toggleMaximize(appId);
+          return;
+        }
+        if (e.clientX <= 14) {
+          snapWindow(appId, 'left');
+          return;
+        }
+        if (e.clientX >= window.innerWidth - 14) {
+          snapWindow(appId, 'right');
+        }
+      });
+
+      titlebar.addEventListener('pointercancel', () => {
         dragging = false;
       });
 
@@ -1038,11 +1268,13 @@
       const titleIcon = frag.querySelector('.title-info img');
       const titleText = frag.querySelector('.title-info span');
       const body = frag.querySelector('.window-body');
+      const mobileShell = window.matchMedia('(max-width: 700px)').matches;
+      const taskbarSpace = getTaskbarSpace();
 
-      const w = Math.min(app.width || 680, window.innerWidth - 20);
-      const h = Math.min(app.height || 420, window.innerHeight - 72);
-      const x = Math.max(8, 60 + (cascade * 26) % Math.max(60, window.innerWidth - w - 12));
-      const y = Math.max(8, 52 + (cascade * 18) % Math.max(60, window.innerHeight - h - 60));
+      const w = mobileShell ? window.innerWidth : Math.min(app.width || 680, window.innerWidth - 20);
+      const h = mobileShell ? (window.innerHeight - taskbarSpace) : Math.min(app.height || 420, window.innerHeight - taskbarSpace - 8);
+      const x = mobileShell ? 0 : Math.max(8, 60 + (cascade * 26) % Math.max(60, window.innerWidth - w - 12));
+      const y = mobileShell ? 0 : Math.max(8, 52 + (cascade * 18) % Math.max(60, window.innerHeight - h - taskbarSpace - 10));
       cascade += 1;
 
       win.style.width = `${w}px`;
@@ -1065,7 +1297,7 @@
       titlebar.querySelector('.max').addEventListener('click', () => toggleMaximize(appId));
       titlebar.querySelector('.close').addEventListener('click', () => closeWindow(appId));
 
-      win.addEventListener('mousedown', () => bringToFront(appId));
+      win.addEventListener('pointerdown', () => bringToFront(appId));
 
       bringToFront(appId);
       startMenu.classList.remove('open');
@@ -1084,7 +1316,59 @@
 
     function openRecommendedSystems() {
       const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 900px)').matches;
-      if (mobile) openApp('systems');
+      if (mobile) {
+        showToast('Dica: toque em Sistemas para alternar entre versoes desktop/mobile.');
+      }
+    }
+
+    function cycleWindows() {
+      if (!openWindows.size) return;
+      const ordered = Array.from(openWindows.entries())
+        .sort((a, b) => parseInt(a[1].window.style.zIndex || '0', 10) - parseInt(b[1].window.style.zIndex || '0', 10))
+        .map(([id]) => id);
+      if (!ordered.length) return;
+      const current = ordered.indexOf(activeWindowId);
+      const nextId = ordered[(current + 1) % ordered.length];
+      restoreWindow(nextId);
+      bringToFront(nextId);
+    }
+
+    function runBoot() {
+      if (!bootScreen || !bootBar) return;
+      requestAnimationFrame(() => {
+        bootBar.style.width = '100%';
+      });
+      setTimeout(() => bootScreen.classList.add('hide'), 980);
+      setTimeout(() => bootScreen.remove(), 1540);
+    }
+
+    function normalizeWindows() {
+      const mobileShell = window.matchMedia('(max-width: 700px)').matches;
+      const taskbarSpace = getTaskbarSpace();
+      const maxH = window.innerHeight - taskbarSpace;
+      openWindows.forEach((entry) => {
+        const win = entry.window;
+        if (entry.minimized) return;
+        if (mobileShell) {
+          win.classList.remove('maximized');
+          win.style.left = '0px';
+          win.style.top = '0px';
+          win.style.width = `${window.innerWidth}px`;
+          win.style.height = `${maxH}px`;
+          return;
+        }
+        if (win.classList.contains('maximized')) return;
+        const currentW = Math.min(win.offsetWidth, window.innerWidth - 10);
+        const currentH = Math.min(win.offsetHeight, maxH - 6);
+        const maxX = Math.max(0, window.innerWidth - currentW);
+        const maxY = Math.max(0, maxH - currentH);
+        const left = Math.max(0, Math.min(maxX, parseFloat(win.style.left || '0')));
+        const top = Math.max(0, Math.min(maxY, parseFloat(win.style.top || '0')));
+        win.style.width = `${currentW}px`;
+        win.style.height = `${currentH}px`;
+        win.style.left = `${left}px`;
+        win.style.top = `${top}px`;
+      });
     }
 
     startButton.addEventListener('click', (e) => {
@@ -1168,6 +1452,37 @@
       selectionBox.style.display = 'none';
     });
 
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        startMenu.classList.remove('open');
+        desktopMenu.classList.remove('open');
+      }
+      if ((e.altKey || e.metaKey) && e.key.toLowerCase() === 'tab') {
+        e.preventDefault();
+        cycleWindows();
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'w' && activeWindowId) {
+        e.preventDefault();
+        closeWindow(activeWindowId);
+      }
+      if (e.key === 'Enter' && activeIcon?.dataset?.app) {
+        openApp(activeIcon.dataset.app);
+      }
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!bgLayer) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * -8;
+      const y = (e.clientY / window.innerHeight - 0.5) * -6;
+      bgLayer.style.transform = `scale(1.04) translate(${x}px, ${y}px)`;
+    });
+
+    window.addEventListener('pointerleave', () => {
+      if (!bgLayer) return;
+      bgLayer.style.transform = 'scale(1.04) translate(0, 0)';
+    });
+
     function renderStartApps() {
       [
         { app: 'about', label: 'Meu Perfil', icon: ICONS.about },
@@ -1190,16 +1505,21 @@
     }
 
     function init() {
+      runBoot();
       desktopShortcuts.forEach((shortcut) => createDesktopIcon(shortcut));
       renderStartApps();
       updateClock();
       updateHud();
       openRecommendedSystems();
+      normalizeWindows();
       setInterval(updateClock, 1000);
       setInterval(updateHud, 3000);
     }
 
-    window.addEventListener('resize', updateHud);
+    window.addEventListener('resize', () => {
+      updateHud();
+      normalizeWindows();
+    });
     window.addEventListener('online', updateHud);
     window.addEventListener('offline', updateHud);
     if (connection && connection.addEventListener) {
