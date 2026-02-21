@@ -3,23 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KauanWin XP | Portfólio Interativo</title>
+  <title>KauanWin XP Neo | Portfólio Interativo</title>
   <style>
     :root {
-      --xp-taskbar: linear-gradient(to bottom, #4ea0f7 0%, #2f79df 45%, #1b5ec8 80%, #1b56b5 100%);
-      --xp-start: linear-gradient(to bottom, #66d957 0%, #35b448 55%, #2a9a3c 100%);
-      --xp-window: #ece9d8;
-      --xp-title: linear-gradient(to bottom, #1f7adf 0%, #0a4ea6 100%);
-      --xp-title-inactive: linear-gradient(to bottom, #7e92af 0%, #5f738e 100%);
-      --xp-border: #2456a8;
-      --shadow: 0 12px 26px rgba(0, 0, 0, 0.5);
-      --desktop-text: #ffffff;
-      --icon-w: 86px;
-      --icon-h: 92px;
-      --grid-x: 94px;
-      --grid-y: 96px;
-      --desk-padding-x: 12px;
-      --desk-padding-y: 12px;
+      --xp-blue-1: #2f83e5;
+      --xp-blue-2: #1a5dbb;
+      --xp-blue-3: #0d3f89;
+      --xp-green-1: #56c34a;
+      --xp-green-2: #2f9f3e;
+      --line: rgba(156, 196, 255, .35);
+      --glass: rgba(8, 16, 31, .6);
+      --text: #edf4ff;
+      --muted: #b8c9ea;
+      --window-bg: #f1f5ff;
+      --window-edge: #2f6cb7;
+      --shadow: 0 18px 44px rgba(0,0,0,.45);
+      --taskbar-h: 46px;
+      --desktop-pad: 14px;
+      --icon-w: 94px;
+      --icon-h: 102px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
     }
 
     * {
@@ -29,91 +32,153 @@
     }
 
     html, body {
+      margin: 0;
       width: 100%;
       height: 100%;
-      margin: 0;
       overflow: hidden;
-      font-family: Tahoma, Verdana, Segoe UI, sans-serif;
-      font-size: 13px;
+      font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+      background: #0f2f68;
+      color: #121a26;
     }
 
-    body { background: #2454a8; color: #111; }
+    .bg-layer,
+    .bg-layer::before,
+    .bg-layer::after {
+      position: fixed;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+    }
+
+    .bg-layer {
+      z-index: -3;
+      background-image: linear-gradient(rgba(6,14,30,.5), rgba(4,10,22,.55)), url("https://upload.wikimedia.org/wikipedia/en/5/5f/Bliss_%28Windows_XP%29.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .bg-layer::before {
+      inset: -10%;
+      background: conic-gradient(from 120deg, rgba(79,170,255,.2), transparent 30%, rgba(71,109,255,.2), transparent 65%, rgba(45,199,157,.18));
+      filter: blur(70px);
+      animation: bg-spin 26s linear infinite;
+      opacity: .75;
+    }
+
+    .bg-layer::after {
+      background-image: radial-gradient(rgba(255,255,255,.12) .65px, transparent .65px);
+      background-size: 3px 3px;
+      opacity: .15;
+    }
+
+    @keyframes bg-spin { to { transform: rotate(1turn); } }
 
     .desktop {
       position: fixed;
-      inset: 0 0 32px 0;
-      background-image: url('https://upload.wikimedia.org/wikipedia/en/5/5f/Bliss_%28Windows_XP%29.png');
-      background-size: cover;
-      background-position: center;
+      inset: 0 0 calc(var(--taskbar-h) + var(--safe-b)) 0;
       overflow: hidden;
       isolation: isolate;
-    }
-
-    .desktop::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 25% 18%, rgba(255,255,255,0.11), transparent 45%);
-      pointer-events: none;
-      z-index: -1;
     }
 
     .desktop-icons {
       position: absolute;
       inset: 0;
+      padding: var(--desktop-pad);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--icon-w), 1fr));
+      grid-auto-rows: var(--icon-h);
+      align-content: start;
+      justify-items: start;
+      gap: 8px 2px;
+      max-width: min(760px, 62vw);
       pointer-events: auto;
     }
 
     .desktop-icon {
-      position: absolute;
       width: var(--icon-w);
       height: var(--icon-h);
+      border: 1px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      padding: 4px 2px;
+      gap: 7px;
+      padding: 7px 5px;
       cursor: default;
-      transition: transform 0.14s ease;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,.85);
+      transition: .15s ease;
     }
 
-    .desktop-icon.dragging { transform: scale(1.03); }
-
+    .desktop-icon:hover,
     .desktop-icon.selected {
-      border-color: rgba(255,255,255,0.45);
-      background: rgba(25, 70, 150, 0.36);
+      border-color: rgba(220,238,255,.6);
+      background: rgba(45,98,178,.28);
     }
 
     .desktop-icon img {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.55));
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.55));
       pointer-events: none;
     }
 
     .desktop-icon span {
-      max-width: 78px;
       font-size: 12px;
-      color: var(--desktop-text);
-      text-align: center;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.9);
-      line-height: 1.15;
-      padding: 1px 2px;
-      border-radius: 2px;
+      line-height: 1.2;
       pointer-events: none;
+      max-width: 84px;
     }
 
-    .selection-box {
+    .hud-panel {
       position: absolute;
-      border: 1px dashed #e7f1ff;
-      background: rgba(94, 162, 255, 0.28);
-      display: none;
-      pointer-events: none;
+      top: 14px;
+      right: 14px;
+      width: min(330px, 34vw);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      padding: 12px;
       z-index: 5;
+    }
+
+    .hud-title {
+      margin: 0 0 8px;
+      color: #8de6ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .hud-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    .hud-item {
+      border: 1px solid rgba(161, 194, 250, .25);
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      padding: 7px;
+      color: var(--muted);
+    }
+
+    .hud-item b {
+      display: block;
+      margin-top: 3px;
+      color: #f1f7ff;
+      font-size: 12px;
+      font-weight: 700;
+      word-break: break-word;
     }
 
     .window-layer {
@@ -124,23 +189,26 @@
 
     .xp-window {
       position: absolute;
-      width: 620px;
-      min-width: 300px;
-      min-height: 220px;
-      background: var(--xp-window);
-      border: 1px solid var(--xp-border);
-      border-radius: 7px 7px 5px 5px;
+      width: min(760px, 72vw);
+      min-width: 320px;
+      min-height: 240px;
+      background: var(--window-bg);
+      border: 1px solid var(--window-edge);
+      border-radius: 12px 12px 10px 10px;
       box-shadow: var(--shadow);
       overflow: hidden;
       pointer-events: auto;
       transform-origin: center center;
+      transition: transform .12s ease;
     }
 
-    .xp-window.inactive .titlebar { background: var(--xp-title-inactive); }
+    .xp-window.inactive .titlebar {
+      background: linear-gradient(180deg, #8aa3c9, #5f779d);
+    }
 
     .xp-window.maximized {
       width: 100% !important;
-      height: calc(100% - 32px) !important;
+      height: calc(100% - var(--taskbar-h) - var(--safe-b)) !important;
       top: 0 !important;
       left: 0 !important;
       border-radius: 0;
@@ -148,96 +216,97 @@
       border-right: 0;
     }
 
-    .xp-window.minimizing {
-      animation: winMin .16s ease forwards;
-    }
-
-    .xp-window.restoring {
-      animation: winRestore .18s ease;
-    }
-
-    @keyframes winMin {
-      to { transform: scale(.86); opacity: 0; }
-    }
-
-    @keyframes winRestore {
-      from { transform: scale(.93); opacity: .25; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
     .titlebar {
-      height: 30px;
-      background: var(--xp-title);
+      height: 36px;
+      background: linear-gradient(180deg, var(--xp-blue-1), var(--xp-blue-2) 52%, var(--xp-blue-3));
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 4px 0 8px;
+      padding: 0 6px 0 10px;
+      border-bottom: 1px solid rgba(255,255,255,.2);
       cursor: move;
-      border-bottom: 1px solid #17407f;
       gap: 8px;
     }
 
     .title-info {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       min-width: 0;
+      font-size: 12px;
+      font-weight: 700;
+      text-shadow: 0 1px 1px rgba(0,0,0,.45);
     }
 
-    .title-info img { width: 16px; height: 16px; object-fit: contain; }
+    .title-info img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
 
     .title-info span {
-      font-weight: 700;
-      font-size: 12px;
-      white-space: nowrap;
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    .window-controls { display: flex; gap: 4px; }
+    .window-controls {
+      display: flex;
+      gap: 5px;
+    }
 
     .win-btn {
-      width: 23px;
-      height: 20px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.75);
-      background: linear-gradient(to bottom, #7eb7f7, #3f87dd);
+      width: 25px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,.7);
+      background: linear-gradient(180deg, #8fc5ff, #4f8ddf);
       color: #fff;
-      font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
       display: grid;
       place-items: center;
+      font-size: 12px;
+      font-weight: 900;
       cursor: pointer;
       padding: 0;
     }
 
-    .win-btn:active { transform: translateY(1px); }
-
     .win-btn.close {
-      background: linear-gradient(to bottom, #ff856d, #db3d1f);
-      border-color: rgba(255,220,220,0.9);
+      background: linear-gradient(180deg, #ff956e, #d43f1f);
+      border-color: rgba(255,229,220,.85);
     }
 
     .window-body {
-      height: calc(100% - 30px);
+      height: calc(100% - 36px);
       overflow: auto;
-      background: linear-gradient(to bottom, #fffdf7, #ece8d5);
       padding: 14px;
+      background: linear-gradient(180deg, #fefefe, #f0f4ff);
     }
 
-    .window-section {
+    .card {
+      border: 1px solid #b8c8e6;
+      border-radius: 10px;
       background: #fff;
-      border: 1px solid #b9c7e0;
-      border-radius: 6px;
       padding: 12px;
       margin-bottom: 10px;
     }
 
-    .window-section h3 { margin: 0 0 6px; color: #174489; font-size: 16px; }
-    .window-section p, .window-section li { margin: 0; line-height: 1.45; }
-    .window-section ul { padding-left: 18px; margin: 0; }
+    .card h3 {
+      margin: 0 0 8px;
+      color: #1450a4;
+      font-size: 17px;
+    }
+
+    .card p,
+    .card li {
+      margin: 0;
+      line-height: 1.5;
+      color: #1f2f4f;
+      font-size: 14px;
+      user-select: text;
+    }
+
+    .card ul { margin: 0; padding-left: 18px; }
 
     .skills-grid {
       display: grid;
@@ -245,25 +314,27 @@
       gap: 8px;
     }
 
-    .skill-pill {
-      border: 1px solid #b4c3de;
-      border-radius: 4px;
-      background: #f2f6fd;
+    .pill {
+      border: 1px solid #b4c6ea;
+      border-radius: 8px;
+      background: #eef4ff;
       padding: 8px;
-      font-weight: 600;
+      font-weight: 700;
+      color: #17355f;
+      font-size: 13px;
     }
 
-    .status-bar {
-      margin-top: 10px;
-      border: 1px solid #b8c7df;
-      background: #f2f7ff;
-      border-radius: 4px;
-      padding: 6px 8px;
+    .status-row {
+      border: 1px solid #b5c7e7;
+      border-radius: 8px;
+      background: #eef5ff;
+      padding: 8px;
+      font-size: 12px;
+      color: #2a4269;
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 8px;
-      font-size: 12px;
-      color: #335;
     }
 
     .taskbar {
@@ -271,113 +342,112 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 32px;
-      background: var(--xp-taskbar);
-      border-top: 1px solid #7fb3ff;
+      height: calc(var(--taskbar-h) + var(--safe-b));
+      padding-bottom: var(--safe-b);
+      background: linear-gradient(180deg, #4ea5fb, #2f7adf 55%, #1b5fc8 100%);
+      border-top: 1px solid rgba(183,219,255,.7);
       display: flex;
       align-items: stretch;
-      z-index: 9999;
+      z-index: 10000;
     }
 
     .start-button {
-      min-width: 96px;
-      max-width: 130px;
+      min-width: 115px;
       border: 0;
-      border-right: 1px solid rgba(0,0,0,0.2);
+      border-right: 1px solid rgba(0,0,0,.25);
+      border-radius: 0 12px 12px 0;
+      background: linear-gradient(180deg, #69de59, #37b448 58%, #2b9f3d);
       color: #fff;
-      font-weight: 700;
+      font-size: 18px;
       font-style: italic;
-      font-size: 15px;
-      background: var(--xp-start);
+      font-weight: 800;
+      text-shadow: 0 1px 1px rgba(0,0,0,.45);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 8px;
       cursor: pointer;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.45);
-      border-radius: 0 8px 8px 0;
-      padding-inline: 10px;
     }
 
-    .start-button .dot {
+    .start-dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
       background: #fff;
-      box-shadow: 0 0 6px rgba(255,255,255,0.8);
+      box-shadow: 0 0 8px rgba(255,255,255,.85);
     }
 
     .task-buttons {
       flex: 1;
       display: flex;
+      gap: 5px;
       align-items: center;
-      gap: 3px;
-      padding: 3px 4px;
       overflow-x: auto;
-      scrollbar-width: thin;
+      padding: 5px 6px;
     }
 
     .task-btn {
-      height: 25px;
-      min-width: 142px;
+      min-width: 152px;
       max-width: 240px;
-      border: 1px solid #174087;
-      border-radius: 4px;
-      background: linear-gradient(to bottom, #6daaf3, #3f87de);
+      height: 32px;
+      border-radius: 7px;
+      border: 1px solid #1c4c95;
+      background: linear-gradient(180deg, #6eaef5, #3f86dd);
       color: #fff;
-      font-size: 12px;
-      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       padding: 0 8px;
+      font-size: 12px;
+      font-weight: 700;
       cursor: pointer;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .task-btn.active {
-      background: linear-gradient(to bottom, #9ec7fb, #5a9bed);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.45);
+      text-shadow: 0 1px 1px rgba(0,0,0,.42);
     }
 
     .task-btn img { width: 14px; height: 14px; object-fit: contain; }
 
+    .task-btn.active {
+      background: linear-gradient(180deg, #9ac9ff, #5a9ded);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
+    }
+
     .tray {
-      min-width: 102px;
-      border-left: 1px solid rgba(0,0,0,0.25);
-      background: linear-gradient(to bottom, #4795eb, #2f73d1);
-      color: #fff;
+      min-width: 120px;
+      border-left: 1px solid rgba(0,0,0,.2);
+      background: linear-gradient(180deg, #4a9aef, #316fc8);
+      color: #f1f8ff;
       font-size: 12px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 0 8px;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.45);
+      padding-inline: 10px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.5);
     }
 
     .start-menu {
       position: fixed;
-      left: 2px;
-      bottom: 34px;
-      width: 338px;
-      height: 430px;
-      border-radius: 7px 7px 0 0;
-      overflow: hidden;
-      border: 1px solid #1a3f7f;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
-      display: none;
-      z-index: 10000;
+      left: 4px;
+      bottom: calc(var(--taskbar-h) + var(--safe-b) + 4px);
+      width: min(390px, calc(100vw - 8px));
+      height: min(520px, 70vh);
+      border-radius: 12px 12px 0 0;
+      border: 1px solid #1d4d92;
+      box-shadow: 0 18px 40px rgba(0,0,0,.5);
       background: #fff;
+      display: none;
+      z-index: 10010;
+      overflow: hidden;
     }
 
     .start-menu.open { display: block; }
 
     .start-top {
-      height: 78px;
-      background: linear-gradient(to bottom, #2f80dc, #195dbd);
+      height: 92px;
+      background: linear-gradient(180deg, #3185e2, #1e5fbf);
       color: #fff;
       padding: 12px;
       display: flex;
@@ -386,72 +456,83 @@
     }
 
     .start-top img {
-      width: 46px;
-      height: 46px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.65);
       object-fit: cover;
+      border: 2px solid rgba(255,255,255,.7);
     }
 
-    .start-top strong { display: block; font-size: 15px; }
+    .start-top strong { display: block; font-size: 16px; }
+    .start-top span { font-size: 12px; opacity: .95; }
 
     .start-body {
+      height: calc(100% - 92px);
       display: grid;
-      grid-template-columns: 1fr 120px;
-      height: calc(100% - 78px);
+      grid-template-columns: 1fr 126px;
     }
 
-    .start-apps { background: #fff; padding: 8px; overflow: auto; }
+    .start-apps {
+      background: #fff;
+      padding: 8px;
+      overflow: auto;
+    }
 
     .start-item {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
       display: flex;
       align-items: center;
       gap: 8px;
-      width: 100%;
-      border: 0;
-      background: transparent;
       text-align: left;
-      border-radius: 5px;
-      padding: 6px;
-      cursor: pointer;
       font-size: 13px;
+      font-weight: 600;
+      color: #1d355d;
+      padding: 7px;
+      cursor: pointer;
     }
 
-    .start-item:hover { background: #dbe8ff; }
-    .start-item img { width: 24px; height: 24px; object-fit: contain; }
+    .start-item img { width: 26px; height: 26px; object-fit: contain; }
+
+    .start-item:hover {
+      background: #d9e8ff;
+      color: #0e2f63;
+    }
 
     .start-side {
-      background: linear-gradient(to bottom, #d9e9ff, #b4d1f8);
-      border-left: 1px solid #97b8e9;
+      border-left: 1px solid #9bbbe8;
+      background: linear-gradient(180deg, #dbe9ff, #b9d3f6);
       padding: 8px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
     }
 
     .start-side button,
     .start-side a {
-      border: 1px solid #7f9fcc;
-      background: #f4f8ff;
-      border-radius: 4px;
-      padding: 5px;
+      border: 1px solid #7f9fcd;
+      border-radius: 7px;
+      background: #f5f9ff;
+      color: #173257;
       font-size: 12px;
       text-decoration: none;
-      color: #123;
       text-align: center;
+      padding: 6px;
       cursor: pointer;
     }
 
     .desktop-menu {
       position: fixed;
-      min-width: 190px;
-      border: 1px solid #7b95c0;
-      background: #f5f7fc;
-      box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+      min-width: 214px;
+      border: 1px solid #86a7d3;
+      border-radius: 8px;
+      background: #f5f8ff;
+      box-shadow: 0 14px 28px rgba(0,0,0,.35);
       display: none;
-      z-index: 10010;
-      font-size: 13px;
-      padding: 3px;
+      z-index: 10020;
+      padding: 4px;
     }
 
     .desktop-menu.open { display: block; }
@@ -459,110 +540,162 @@
     .desktop-menu button {
       width: 100%;
       border: 0;
+      border-radius: 6px;
       background: transparent;
       text-align: left;
-      padding: 6px 8px;
-      border-radius: 3px;
+      padding: 7px 8px;
       cursor: pointer;
       font-size: 13px;
+      color: #16345d;
     }
 
-    .desktop-menu button:hover { background: #316ac5; color: #fff; }
-    .desktop-menu hr { border: 0; border-top: 1px solid #b9c9e4; margin: 3px 0; }
+    .desktop-menu button:hover {
+      background: #2f69c5;
+      color: #fff;
+    }
+
+    .desktop-menu hr {
+      border: 0;
+      border-top: 1px solid #b8c9e5;
+      margin: 4px 0;
+    }
 
     .toast {
       position: fixed;
-      right: 14px;
-      bottom: 46px;
-      background: rgba(20, 43, 81, 0.94);
+      right: 12px;
+      bottom: calc(var(--taskbar-h) + var(--safe-b) + 12px);
+      border: 1px solid rgba(168,200,255,.5);
+      border-radius: 9px;
+      background: rgba(14, 34, 69, .92);
       color: #fff;
-      border: 1px solid rgba(173, 203, 255, 0.55);
-      border-radius: 6px;
-      padding: 8px 10px;
       font-size: 12px;
+      padding: 9px 11px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.42);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: .2s ease;
+      z-index: 10030;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .selection {
+      position: absolute;
+      border: 1px dashed #f0f6ff;
+      background: rgba(104, 173, 255, .24);
       display: none;
-      z-index: 10020;
+      z-index: 6;
+      pointer-events: none;
     }
 
-    .toast.show { display: block; animation: fade 2.2s ease forwards; }
+    a { color: #0c4ea1; }
 
-    @keyframes fade {
-      0% { opacity: 0; transform: translateY(10px); }
-      15%, 80% { opacity: 1; transform: translateY(0); }
-      100% { opacity: 0; transform: translateY(4px); }
+    @media (max-width: 1100px) {
+      .desktop-icons {
+        max-width: 100%;
+      }
+
+      .hud-panel {
+        width: min(320px, calc(100vw - 24px));
+      }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 880px) {
       :root {
-        --icon-w: 78px;
-        --icon-h: 88px;
-        --grid-x: 84px;
-        --grid-y: 92px;
+        --taskbar-h: 42px;
+        --icon-w: 84px;
+        --icon-h: 94px;
       }
 
-      .start-menu {
-        width: calc(100vw - 8px);
-        height: 56vh;
+      .hud-panel {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 12px;
+        width: auto;
       }
 
-      .task-btn { min-width: 120px; }
-      .xp-window { width: 94vw; }
+      .xp-window {
+        width: min(94vw, 760px);
+      }
+
+      .task-btn { min-width: 130px; }
     }
   </style>
 </head>
 <body>
-  <div class="desktop" id="desktop">
-    <div class="desktop-icons" id="desktopIcons"></div>
-    <div class="selection-box" id="selectionBox"></div>
-    <div class="window-layer" id="windowLayer"></div>
-  </div>
+  <div class="bg-layer"></div>
 
-  <div class="start-menu" id="startMenu">
-    <div class="start-top">
+  <main class="desktop" id="desktop">
+    <section class="desktop-icons" id="desktopIcons"></section>
+
+    <aside class="hud-panel">
+      <p class="hud-title">KauanWin XP Neo</p>
+      <div class="hud-grid">
+        <div class="hud-item">Dispositivo<b id="hudDevice">-</b></div>
+        <div class="hud-item">Navegador<b id="hudBrowser">-</b></div>
+        <div class="hud-item">Rede<b id="hudNetwork">-</b></div>
+        <div class="hud-item">Viewport<b id="hudViewport">-</b></div>
+        <div class="hud-item">Memoria<b id="hudMemory">-</b></div>
+        <div class="hud-item">CPU Cores<b id="hudCores">-</b></div>
+      </div>
+    </aside>
+
+    <div class="selection" id="selectionBox"></div>
+    <section class="window-layer" id="windowLayer"></section>
+  </main>
+
+  <aside class="start-menu" id="startMenu">
+    <header class="start-top">
       <img src="https://i.postimg.cc/KYyJYJjM/eu2.jpg" alt="Kauan">
       <div>
         <strong>Kauan Lauer</strong>
-        <span>Técnico de TI • Headsoft</span>
+        <span>TI • Suporte • Dev • XP Neo</span>
       </div>
-    </div>
+    </header>
+
     <div class="start-body">
       <div class="start-apps" id="startApps"></div>
       <div class="start-side">
         <button data-action="about">Meu Perfil</button>
-        <button data-action="skills">Competências</button>
-        <button data-action="experience">Experiência</button>
+        <button data-action="skills">Competencias</button>
+        <button data-action="experience">Experiencia</button>
+        <button data-action="intel">Visitor Intel</button>
         <button data-action="contact">Contato</button>
-        <button data-action="pocket">Pocket OS</button>
-        <button data-action="portfolio">Portfólio Web</button>
-        <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Currículo</a>
+        <button data-action="systems">Sistemas</button>
+        <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Curriculo</a>
       </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="desktop-menu" id="desktopMenu">
-    <button data-cmd="refresh">Atualizar</button>
-    <button data-cmd="arrange">Organizar Ícones</button>
+  <aside class="desktop-menu" id="desktopMenu">
+    <button data-cmd="refresh">Atualizar desktop</button>
+    <button data-cmd="arrange">Organizar icones</button>
     <hr>
-    <button data-cmd="about">Sobre o KauanWin</button>
-    <button data-cmd="properties">Propriedades</button>
-  </div>
+    <button data-cmd="about">Sobre KauanWin XP Neo</button>
+    <button data-cmd="clear">Fechar todas as janelas</button>
+  </aside>
 
   <div class="toast" id="toast"></div>
 
-  <div class="taskbar">
+  <footer class="taskbar">
     <button class="start-button" id="startButton">
-      <span class="dot"></span>
+      <span class="start-dot"></span>
       <span>start</span>
     </button>
     <div class="task-buttons" id="taskButtons"></div>
     <div class="tray"><span id="clock">00:00</span></div>
-  </div>
+  </footer>
 
   <template id="windowTemplate">
     <article class="xp-window">
-      <div class="titlebar">
+      <header class="titlebar">
         <div class="title-info">
-          <img alt="Ícone">
+          <img alt="icone">
           <span></span>
         </div>
         <div class="window-controls">
@@ -570,8 +703,8 @@
           <button class="win-btn max" title="Maximizar">□</button>
           <button class="win-btn close" title="Fechar">×</button>
         </div>
-      </div>
-      <div class="window-body"></div>
+      </header>
+      <section class="window-body"></section>
     </article>
   </template>
 
@@ -583,237 +716,169 @@
     const startButton = document.getElementById('startButton');
     const startMenu = document.getElementById('startMenu');
     const startApps = document.getElementById('startApps');
-    const selectionBox = document.getElementById('selectionBox');
     const desktopMenu = document.getElementById('desktopMenu');
-    const toast = document.getElementById('toast');
+    const selectionBox = document.getElementById('selectionBox');
     const clock = document.getElementById('clock');
+    const toast = document.getElementById('toast');
     const winTemplate = document.getElementById('windowTemplate');
 
+    const hudDevice = document.getElementById('hudDevice');
+    const hudBrowser = document.getElementById('hudBrowser');
+    const hudNetwork = document.getElementById('hudNetwork');
+    const hudViewport = document.getElementById('hudViewport');
+    const hudMemory = document.getElementById('hudMemory');
+    const hudCores = document.getElementById('hudCores');
+
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
     const ICONS = {
-      user: 'https://img.icons8.com/color/48/user-male-circle--v1.png',
-      skills: 'https://img.icons8.com/color/48/source-code.png',
-      exp: 'https://img.icons8.com/color/48/briefcase--v1.png',
-      contact: 'https://img.icons8.com/color/48/new-post.png',
-      resume: 'https://img.icons8.com/color/48/resume.png',
+      about: 'https://img.icons8.com/fluency/48/user-male-circle.png',
+      skills: 'https://img.icons8.com/fluency/48/source-code.png',
+      experience: 'https://img.icons8.com/fluency/48/briefcase.png',
+      intel: 'https://img.icons8.com/fluency/48/radar-plot.png',
+      contact: 'https://img.icons8.com/fluency/48/new-post.png',
+      resume: 'https://img.icons8.com/fluency/48/resume.png',
       github: 'https://img.icons8.com/fluency/48/github.png',
-      pocket: 'https://img.icons8.com/fluency/48/smartphone-tablet.png',
-      arena: 'https://img.icons8.com/color/48/controller.png',
-      app: 'https://img.icons8.com/color/48/windows-xp.png'
+      systems: 'https://img.icons8.com/fluency/48/windows-11.png',
+      arena: 'https://img.icons8.com/fluency/48/controller.png'
     };
+
+    function detectBrowser() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Edg/')) return 'Edge';
+      if (ua.includes('OPR/') || ua.includes('Opera')) return 'Opera';
+      if (ua.includes('Chrome/') && !ua.includes('Edg/')) return 'Chrome';
+      if (ua.includes('Firefox/')) return 'Firefox';
+      if (ua.includes('Safari/') && !ua.includes('Chrome/')) return 'Safari';
+      return 'Desconhecido';
+    }
+
+    function detectOS() {
+      const ua = navigator.userAgent;
+      if (ua.includes('Windows')) return 'Windows';
+      if (ua.includes('Mac OS')) return 'macOS';
+      if (ua.includes('Android')) return 'Android';
+      if (ua.includes('Linux')) return 'Linux';
+      if (ua.includes('iPhone') || ua.includes('iPad')) return 'iOS';
+      return navigator.platform || 'Desconhecido';
+    }
+
+    function updateHud() {
+      hudDevice.textContent = detectOS();
+      hudBrowser.textContent = detectBrowser();
+      hudNetwork.textContent = connection?.effectiveType || (navigator.onLine ? 'online' : 'offline');
+      hudViewport.textContent = `${window.innerWidth}x${window.innerHeight}`;
+      hudMemory.textContent = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : 'n/d';
+      hudCores.textContent = navigator.hardwareConcurrency || 'n/d';
+    }
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(showToast.t);
+      showToast.t = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
 
     const apps = {
       about: {
-        title: 'Meu Perfil - Kauan', icon: ICONS.user, width: 650, height: 430,
+        title: 'Meu Perfil - Kauan', icon: ICONS.about, width: 700, height: 460,
         content: `
-          <div class="window-section"><h3>Erick Kauan dos Santos Pereira Lauer</h3><p>Profissional de TI em Curitiba - PR, focado em estabilidade operacional, suporte técnico avançado e melhoria contínua de processos.</p></div>
-          <div class="window-section"><h3>Posição Atual</h3><p><strong>Técnico de Suporte de TI • Headsoft Desenvolvimento de Sistemas</strong></p><p>Atuação com SQL Server, VS Code, Headcargo, 3CX, redes, hardware e atendimento técnico de alta demanda.</p></div>
-          <div class="window-section"><h3>Formação</h3><p>Análise e Desenvolvimento de Sistemas - UniEnsino (concluído em Agosto/2025).</p></div>
-          <div class="status-bar"><span>Status do sistema: Operacional</span><span>KauanWin v2.0</span></div>
-        `,
+          <article class="card"><h3>Erick Kauan dos Santos Pereira Lauer</h3><p>Tecnico de TI, Suporte Headsoft e desenvolvedor com foco em estabilidade, produtividade e experiencia do usuario.</p></article>
+          <article class="card"><h3>Posicao atual</h3><p><strong>Tecnico de Suporte de TI • Headsoft</strong></p><p>Atuacao com SQL Server, 3CX, Headcargo, redes, manutencao e operacao tecnica de alta demanda.</p></article>
+          <article class="status-row"><span>Status do sistema</span><strong>XP Neo Online</strong></article>
+        `
       },
       skills: {
-        title: 'Competências Técnicas', icon: ICONS.skills, width: 640, height: 460,
+        title: 'Competencias Tecnicas', icon: ICONS.skills, width: 720, height: 500,
         content: `
-          <div class="window-section"><h3>Stack Principal</h3><div class="skills-grid"><div class="skill-pill">SQL Server</div><div class="skill-pill">3CX / Teams</div><div class="skill-pill">Headcargo</div><div class="skill-pill">VS Code</div><div class="skill-pill">HTML/CSS/JavaScript</div><div class="skill-pill">Suporte e Helpdesk</div><div class="skill-pill">Configuração de Redes</div><div class="skill-pill">Formatação e Hardware</div></div></div>
-          <div class="window-section"><h3>Diferencial</h3><p>Combino suporte operacional com lógica de automação, reduzindo retrabalho e aumentando previsibilidade técnica.</p></div>
-          <div class="status-bar"><span>Drivers: OK</span><span>Performance: Alta</span></div>
-        `,
+          <article class="card"><h3>Stack principal</h3><div class="skills-grid"><div class="pill">SQL Server</div><div class="pill">3CX / Teams</div><div class="pill">Headcargo</div><div class="pill">Suporte e Helpdesk</div><div class="pill">Redes e Hardware</div><div class="pill">HTML/CSS/JavaScript</div><div class="pill">VS Code</div><div class="pill">Automacao operacional</div></div></article>
+          <article class="card"><h3>Diferencial</h3><p>Combino suporte operacional com desenvolvimento para reduzir retrabalho e melhorar experiencia de uso.</p></article>
+        `
       },
       experience: {
-        title: 'Experiência Profissional', icon: ICONS.exp, width: 680, height: 470,
+        title: 'Experiencia Profissional', icon: ICONS.experience, width: 760, height: 520,
         content: `
-          <div class="window-section"><h3>Técnico de Suporte de TI</h3><p><strong>Headsoft Desenvolvimento de Sistemas</strong> • Curitiba, PR • Out/2025 - Atual</p><ul><li>Suporte técnico avançado com SQL Server e VS Code.</li><li>Gestão de comunicação via Teams e telefonia 3CX.</li><li>Manutenção de hardware, formatação e padronização de máquinas.</li><li>Suporte ao Headcargo e implementação de automações.</li></ul></div>
-          <div class="window-section"><h3>Analista Logístico</h3><p><strong>MANUPACKAGING FITASA DO BRASIL SA</strong> • Curitiba, PR • Ago/2021 - Out/2025</p><ul><li>Análise de dados com Excel VBA e SAP.</li><li>Automações para melhoria de processo em produção/logística.</li></ul></div>
-          <div class="status-bar"><span>Histórico carregado</span><span>2 posições registradas</span></div>
-        `,
+          <article class="card"><h3>Tecnico de Suporte de TI</h3><p><strong>Headsoft Desenvolvimento de Sistemas</strong> • Out/2025 - Atual</p><ul><li>Suporte tecnico avancado e resolucao de incidentes.</li><li>Operacao com SQL Server, 3CX, Headcargo e comunicacao interna.</li><li>Padronizacao de ambientes e manutencao de hardware.</li></ul></article>
+          <article class="card"><h3>Analista Logistico</h3><p><strong>MANUPACKAGING FITASA</strong> • Ago/2021 - Out/2025</p><ul><li>Analise de dados e automacoes de processo.</li><li>Melhoria operacional com foco em eficiencia.</li></ul></article>
+        `
+      },
+      intel: {
+        title: 'Visitor Intel', icon: ICONS.intel, width: 680, height: 470,
+        content: `
+          <article class="card"><h3>Dados em tempo real</h3><ul><li>SO: <strong>${detectOS()}</strong></li><li>Navegador: <strong>${detectBrowser()}</strong></li><li>Idioma: <strong>${navigator.language || '-'}</strong></li><li>Rede: <strong>${connection?.effectiveType || 'n/d'}</strong></li><li>Downlink: <strong>${connection?.downlink ? connection.downlink + ' Mb/s' : 'n/d'}</strong></li><li>Tela: <strong>${window.screen.width}x${window.screen.height}</strong></li><li>Viewport: <strong>${window.innerWidth}x${window.innerHeight}</strong></li><li>Cores CPU: <strong>${navigator.hardwareConcurrency || 'n/d'}</strong></li><li>Memoria: <strong>${navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/d'}</strong></li></ul></article>
+          <article class="status-row"><span>Coleta de dados</span><strong>Ativa</strong></article>
+        `
       },
       contact: {
-        title: 'Contato Direto', icon: ICONS.contact, width: 580, height: 380,
+        title: 'Contato Direto', icon: ICONS.contact, width: 620, height: 430,
         content: `
-          <div class="window-section"><h3>Vamos Conversar</h3><ul><li>Email: <a href="mailto:erickkauanlauer@gmail.com">erickkauanlauer@gmail.com</a></li><li>LinkedIn: <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener">linkedin.com/in/kauanlauer</a></li><li>GitHub: <a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></li><li>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener">(41) 99942-6605</a></li></ul></div>
-          <div class="window-section"><h3>Disponibilidade</h3><p>Aberto para oportunidades em suporte, infraestrutura e operações técnicas.</p></div>
-          <div class="status-bar"><span>Conectado à rede</span><span>Canal de contato ativo</span></div>
-        `,
+          <article class="card"><h3>Vamos conversar</h3><ul><li>Email: <a href="mailto:erickkauanlauer@gmail.com">erickkauanlauer@gmail.com</a></li><li>LinkedIn: <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener">linkedin.com/in/kauanlauer</a></li><li>GitHub: <a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></li><li>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener">(41) 99942-6605</a></li></ul></article>
+          <article class="status-row"><span>Canal de contato</span><strong>Disponivel</strong></article>
+        `
       },
       resume: {
-        title: 'Currículo (Web)', icon: ICONS.resume, width: 780, height: 520,
+        title: 'Curriculo Online', icon: ICONS.resume, width: 780, height: 560,
         content: `
-          <div class="window-section"><h3>Currículo Online</h3><p>Abra a versão oficial do currículo para download e visualização completa:</p><p><a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">https://kauanlauer.com.br/curriculo</a></p></div>
-          <div class="window-section"><iframe src="https://kauanlauer.com.br/curriculo" style="width:100%;height:320px;border:1px solid #9eb2d4;border-radius:4px;background:#fff;"></iframe></div>
-          <div class="status-bar"><span>Fonte externa carregada</span><span>WebView ativo</span></div>
-        `,
-      },
-      arena: {
-        title: 'SOC Arena - Simulador', icon: ICONS.arena, width: 700, height: 470,
-        content: `
-          <div class="window-section"><h3>KauanWin Defense Arena</h3><p>Modo gamer técnico: análise de incidente e tomada de decisão rápida.</p></div>
-          <div class="window-section"><img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTYweWg1bGNzY2RtZXN2NXB6eGQxM2p4MXRjM3VqM2I2YW5lMWY3eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT9IgzoKnwFNmISR8I/giphy.gif" alt="SOC GIF" style="width:100%;height:220px;object-fit:cover;border:1px solid #9eb2d4;border-radius:4px;"></div>
-          <div class="status-bar"><span>Modo Arena ativo</span><span>Latência: 12ms</span></div>
-        `,
+          <article class="card"><h3>Curriculo Oficial</h3><p>Acesse a versao atualizada para visualizacao e download.</p><p><a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Abrir curriculo</a></p></article>
+          <article class="card"><iframe src="https://kauanlauer.com.br/curriculo" style="width:100%;height:340px;border:1px solid #9fb7df;border-radius:8px;background:#fff;"></iframe></article>
+        `
       },
       github: {
-        title: 'GitHub - Repositórios', icon: ICONS.github, width: 600, height: 300,
+        title: 'GitHub', icon: ICONS.github, width: 600, height: 320,
         content: `
-          <div class="window-section"><h3>GitHub</h3><p>Acesse meus repositórios públicos:</p><p><a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></p></div>
-          <div class="status-bar"><span>Conexão segura (HTTPS)</span><span>Repositórios online</span></div>
-        `,
+          <article class="card"><h3>Repositorios</h3><p><a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></p></article>
+          <article class="status-row"><span>Conexao segura</span><strong>HTTPS</strong></article>
+        `
       },
-      pocket: {
-        title: 'Kauan Pocket OS', icon: ICONS.pocket, width: 620, height: 340,
+      systems: {
+        title: 'Escolher Sistema', icon: ICONS.systems, width: 650, height: 390,
         content: `
-          <div class="window-section"><h3>Versão Mobile do Portfólio</h3><p>Experiência estilo sistema operacional mobile com apps, notificações e navegação touch-first.</p><p><a href="KauanPocketOS.html">Abrir KauanPocketOS.html</a></p></div>
-          <div class="window-section"><p>Também disponível em nova guia:</p><p><a href="KauanPocketOS.html" target="_blank" rel="noopener">Abrir Pocket OS em nova guia</a></p></div>
-          <div class="status-bar"><span>KauanWin -> Pocket OS</span><span>Cross-platform ativo</span></div>
-        `,
+          <article class="card"><h3>Versoes disponiveis</h3><ul><li><a href="index.html">Portifolio Web Principal</a></li><li><a href="KauanWin.html" target="_blank" rel="noopener">KauanWin XP Neo</a></li><li><a href="KauanPocketOS.html" target="_blank" rel="noopener">Kauan Pocket OS</a></li></ul></article>
+          <article class="status-row"><span>Cross-platform</span><strong>Ativo</strong></article>
+        `
       },
-      portfolio: {
-        title: 'Portfólio Web (Normal)', icon: ICONS.app, width: 640, height: 350,
+      arena: {
+        title: 'SOC Arena', icon: ICONS.arena, width: 720, height: 480,
         content: `
-          <div class="window-section"><h3>Voltar ao Portfólio Normal</h3><p>Se quiser sair do modo KauanWin e ver o portfólio clássico, use o botão abaixo.</p><p><a href="index.html">Abrir index.html</a></p></div>
-          <div class="window-section"><p>Também disponível em nova guia:</p><p><a href="index.html" target="_blank" rel="noopener">Abrir em nova guia</a></p></div>
-          <div class="status-bar"><span>Navegação local</span><span>KauanWin -> Portfólio</span></div>
-        `,
-      },
+          <article class="card"><h3>KauanWin Defense Arena</h3><p>Modo tecnico-gamer para reforcar raciocinio e tomada de decisao.</p></article>
+          <article class="card"><img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" alt="SOC" style="width:100%;height:230px;object-fit:cover;border:1px solid #aac0e0;border-radius:8px;"></article>
+        `
+      }
     };
 
     const desktopShortcuts = [
       { app: 'about', label: 'Meu Perfil' },
-      { app: 'skills', label: 'Competências' },
-      { app: 'experience', label: 'Experiência' },
+      { app: 'skills', label: 'Competencias' },
+      { app: 'experience', label: 'Experiencia' },
+      { app: 'intel', label: 'Visitor Intel' },
       { app: 'contact', label: 'Contato' },
-      { app: 'resume', label: 'Currículo' },
+      { app: 'resume', label: 'Curriculo' },
+      { app: 'systems', label: 'Sistemas' },
       { app: 'arena', label: 'SOC Arena' },
-      { app: 'pocket', label: 'Pocket OS' },
-      { app: 'github', label: 'GitHub' },
-      { app: 'portfolio', label: 'Portfólio Web' },
+      { app: 'github', label: 'GitHub' }
     ];
 
     const openWindows = new Map();
-    let zCounter = 12;
+    let zCounter = 20;
+    let cascade = 0;
     let activeIcon = null;
 
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.remove('show');
-      void toast.offsetWidth;
-      toast.classList.add('show');
+    function updateClock() {
+      const d = new Date();
+      clock.textContent = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
     }
 
     function clearIconSelection() {
-      document.querySelectorAll('.desktop-icon').forEach((el) => el.classList.remove('selected'));
+      document.querySelectorAll('.desktop-icon').forEach((icon) => icon.classList.remove('selected'));
       activeIcon = null;
     }
 
-    function gridCellToXY(col, row) {
-      const gx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-x'));
-      const gy = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-y'));
-      const px = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--desk-padding-x'));
-      const py = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--desk-padding-y'));
-      return { x: px + col * gx, y: py + row * gy };
-    }
-
-    function xyToNearestGrid(x, y) {
-      const gx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-x'));
-      const gy = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-y'));
-      const px = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--desk-padding-x'));
-      const py = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--desk-padding-y'));
-      const col = Math.max(0, Math.round((x - px) / gx));
-      const row = Math.max(0, Math.round((y - py) / gy));
-      return gridCellToXY(col, row);
-    }
-
-    function placeIcon(icon, x, y) {
-      const maxX = desktop.clientWidth - icon.offsetWidth - 2;
-      const maxY = desktop.clientHeight - icon.offsetHeight - 2;
-      const nx = Math.max(0, Math.min(maxX, x));
-      const ny = Math.max(0, Math.min(maxY, y));
-      icon.style.left = nx + 'px';
-      icon.style.top = ny + 'px';
-    }
-
-    function animateIconTo(icon, targetX, targetY, withPhysics = true) {
-      if (!withPhysics) return placeIcon(icon, targetX, targetY);
-      let vx = (targetX - parseFloat(icon.style.left || 0)) * 0.16;
-      let vy = (targetY - parseFloat(icon.style.top || 0)) * 0.16;
-      let x = parseFloat(icon.style.left || 0);
-      let y = parseFloat(icon.style.top || 0);
-
-      function step() {
-        vx *= 0.82;
-        vy *= 0.82;
-        x += vx + (targetX - x) * 0.12;
-        y += vy + (targetY - y) * 0.12;
-        placeIcon(icon, x, y);
-        const done = Math.abs(targetX - x) < 0.8 && Math.abs(targetY - y) < 0.8;
-        if (!done) requestAnimationFrame(step);
-        else placeIcon(icon, targetX, targetY);
-      }
-      requestAnimationFrame(step);
-    }
-
-    function makeDesktopIconDraggable(icon) {
-      let dragging = false;
-      let moved = false;
-      let startX = 0;
-      let startY = 0;
-      let iconStartX = 0;
-      let iconStartY = 0;
-      let lastMouseX = 0;
-      let lastMouseY = 0;
-      let vx = 0;
-      let vy = 0;
-      let lastTs = 0;
-
-      icon.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return;
-        dragging = true;
-        moved = false;
-        icon.classList.add('dragging');
-        startX = e.clientX;
-        startY = e.clientY;
-        iconStartX = parseFloat(icon.style.left || 0);
-        iconStartY = parseFloat(icon.style.top || 0);
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-        lastTs = performance.now();
-        clearIconSelection();
-        icon.classList.add('selected');
-        activeIcon = icon;
-        e.preventDefault();
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!dragging) return;
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) moved = true;
-        placeIcon(icon, iconStartX + dx, iconStartY + dy);
-
-        const now = performance.now();
-        const dt = Math.max(1, now - lastTs);
-        vx = (e.clientX - lastMouseX) / dt * 12;
-        vy = (e.clientY - lastMouseY) / dt * 12;
-        lastMouseX = e.clientX;
-        lastMouseY = e.clientY;
-        lastTs = now;
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (!dragging) return;
-        dragging = false;
-        icon.classList.remove('dragging');
-
-        const currentX = parseFloat(icon.style.left || 0);
-        const currentY = parseFloat(icon.style.top || 0);
-        const inertialX = currentX + vx * 8;
-        const inertialY = currentY + vy * 8;
-        const snap = xyToNearestGrid(inertialX, inertialY);
-        animateIconTo(icon, snap.x, snap.y, true);
-
-        if (!moved) {
-          // clique simples já tratado no click
-        }
-      });
+    function createDesktopIcon(item) {
+      const icon = document.createElement('button');
+      icon.type = 'button';
+      icon.className = 'desktop-icon';
+      icon.dataset.app = item.app;
+      icon.innerHTML = `<img src="${apps[item.app].icon}" alt=""><span>${item.label}</span>`;
 
       let clickTimer = null;
       icon.addEventListener('click', (e) => {
@@ -825,214 +890,147 @@
         if (clickTimer) {
           clearTimeout(clickTimer);
           clickTimer = null;
-          openApp(icon.dataset.app);
+          openApp(item.app);
         } else {
-          clickTimer = setTimeout(() => { clickTimer = null; }, 250);
+          clickTimer = setTimeout(() => clickTimer = null, 260);
         }
       });
-    }
 
-    function createDesktopIcon(item, index) {
-      const app = apps[item.app];
-      const icon = document.createElement('button');
-      icon.type = 'button';
-      icon.className = 'desktop-icon';
-      icon.dataset.app = item.app;
-      icon.innerHTML = `<img src="${app.icon}" alt="${item.label}"><span>${item.label}</span>`;
-
-      const col = Math.floor(index / 6);
-      const row = index % 6;
-      const pos = gridCellToXY(col, row);
-      placeIcon(icon, pos.x, pos.y);
-      makeDesktopIconDraggable(icon);
       desktopIcons.appendChild(icon);
     }
 
-    function makeTaskButton(appId, title, iconUrl) {
-      const btn = document.createElement('button');
-      btn.className = 'task-btn';
-      btn.dataset.app = appId;
-      btn.innerHTML = `<img src="${iconUrl}" alt=""> <span>${title}</span>`;
-      btn.addEventListener('click', () => toggleFromTaskbar(appId));
-      taskButtons.appendChild(btn);
-      return btn;
-    }
-
     function setActiveWindow(appId) {
-      openWindows.forEach((data, id) => {
-        const active = id === appId;
-        data.window.classList.toggle('inactive', !active);
-        data.task.classList.toggle('active', active && !data.minimized);
+      openWindows.forEach((entry, id) => {
+        const active = id === appId && !entry.minimized;
+        entry.window.classList.toggle('inactive', !active);
+        entry.task.classList.toggle('active', active);
       });
     }
 
     function bringToFront(appId) {
-      const data = openWindows.get(appId);
-      if (!data) return;
+      const entry = openWindows.get(appId);
+      if (!entry) return;
       zCounter += 1;
-      data.window.style.zIndex = zCounter;
-      data.minimized = false;
-      data.window.style.display = 'block';
-      data.window.classList.add('restoring');
-      setTimeout(() => data.window.classList.remove('restoring'), 180);
+      entry.window.style.zIndex = zCounter;
       setActiveWindow(appId);
     }
 
     function closeWindow(appId) {
-      const data = openWindows.get(appId);
-      if (!data) return;
-      data.window.remove();
-      data.task.remove();
+      const entry = openWindows.get(appId);
+      if (!entry) return;
+      entry.window.remove();
+      entry.task.remove();
       openWindows.delete(appId);
-      const last = Array.from(openWindows.keys()).pop();
-      if (last) bringToFront(last);
+      if (openWindows.size) {
+        const last = Array.from(openWindows.keys()).at(-1);
+        setActiveWindow(last);
+      }
     }
 
     function minimizeWindow(appId) {
-      const data = openWindows.get(appId);
-      if (!data || data.minimized) return;
-      data.minimized = true;
-      data.window.classList.add('minimizing');
-      setTimeout(() => {
-        data.window.style.display = 'none';
-        data.window.classList.remove('minimizing');
-      }, 160);
-      data.task.classList.remove('active');
-      const lastVisible = Array.from(openWindows.entries()).findLast(([, d]) => !d.minimized);
-      if (lastVisible) setActiveWindow(lastVisible[0]);
+      const entry = openWindows.get(appId);
+      if (!entry) return;
+      entry.minimized = true;
+      entry.window.style.display = 'none';
+      entry.task.classList.remove('active');
+    }
+
+    function restoreWindow(appId) {
+      const entry = openWindows.get(appId);
+      if (!entry) return;
+      entry.minimized = false;
+      entry.window.style.display = 'block';
+      bringToFront(appId);
     }
 
     function toggleMaximize(appId) {
-      const data = openWindows.get(appId);
-      if (!data) return;
-      const win = data.window;
+      const entry = openWindows.get(appId);
+      if (!entry) return;
+      const win = entry.window;
       if (!win.classList.contains('maximized')) {
-        data.restore = { top: win.style.top, left: win.style.left, width: win.style.width, height: win.style.height };
+        entry.restoreRect = {
+          left: win.style.left,
+          top: win.style.top,
+          width: win.style.width,
+          height: win.style.height
+        };
         win.classList.add('maximized');
       } else {
         win.classList.remove('maximized');
-        if (data.restore) {
-          win.style.top = data.restore.top;
-          win.style.left = data.restore.left;
-          win.style.width = data.restore.width;
-          win.style.height = data.restore.height;
+        if (entry.restoreRect) {
+          win.style.left = entry.restoreRect.left;
+          win.style.top = entry.restoreRect.top;
+          win.style.width = entry.restoreRect.width;
+          win.style.height = entry.restoreRect.height;
         }
       }
       bringToFront(appId);
     }
 
-    function snapWindow(win, appId) {
-      const rect = win.getBoundingClientRect();
-      const margin = 18;
-      const desktopH = window.innerHeight - 32;
-      if (rect.top <= margin) {
-        toggleMaximize(appId);
-        return;
-      }
-
-      if (rect.left <= margin) {
-        win.classList.remove('maximized');
-        win.style.top = '0px';
-        win.style.left = '0px';
-        win.style.width = Math.floor(window.innerWidth / 2) + 'px';
-        win.style.height = desktopH + 'px';
-        return;
-      }
-
-      if (rect.right >= window.innerWidth - margin) {
-        win.classList.remove('maximized');
-        win.style.top = '0px';
-        win.style.left = Math.floor(window.innerWidth / 2) + 'px';
-        win.style.width = Math.ceil(window.innerWidth / 2) + 'px';
-        win.style.height = desktopH + 'px';
-      }
-    }
-
-    function toggleFromTaskbar(appId) {
-      const data = openWindows.get(appId);
-      if (!data) return;
-      if (!data.minimized && !data.window.classList.contains('inactive')) minimizeWindow(appId);
-      else bringToFront(appId);
-    }
-
-    function makeDraggable(win, handle, appId) {
+    function makeWindowDraggable(appId, windowEl, titlebar) {
       let dragging = false;
-      let offsetX = 0;
-      let offsetY = 0;
-      let lastX = 0;
-      let lastY = 0;
-      let vx = 0;
-      let vy = 0;
-      let lastTs = 0;
+      let sx = 0;
+      let sy = 0;
+      let sl = 0;
+      let st = 0;
 
-      handle.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return;
-        if (win.classList.contains('maximized')) return;
+      titlebar.addEventListener('mousedown', (e) => {
+        if (windowEl.classList.contains('maximized')) return;
+        if (e.target.closest('.window-controls')) return;
         dragging = true;
         bringToFront(appId);
-        const rect = win.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        lastTs = performance.now();
+        sx = e.clientX;
+        sy = e.clientY;
+        sl = parseFloat(windowEl.style.left || 0);
+        st = parseFloat(windowEl.style.top || 0);
         e.preventDefault();
       });
 
       window.addEventListener('mousemove', (e) => {
         if (!dragging) return;
-        const maxX = window.innerWidth - win.offsetWidth;
-        const maxY = window.innerHeight - 32 - win.offsetHeight;
-        const left = Math.max(0, Math.min(maxX, e.clientX - offsetX));
-        const top = Math.max(0, Math.min(maxY, e.clientY - offsetY));
-        win.style.left = left + 'px';
-        win.style.top = top + 'px';
-
-        const now = performance.now();
-        const dt = Math.max(1, now - lastTs);
-        vx = (e.clientX - lastX) / dt * 14;
-        vy = (e.clientY - lastY) / dt * 14;
-        lastX = e.clientX;
-        lastY = e.clientY;
-        lastTs = now;
+        const dx = e.clientX - sx;
+        const dy = e.clientY - sy;
+        const maxX = window.innerWidth - windowEl.offsetWidth;
+        const maxY = window.innerHeight - parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--taskbar-h')) - windowEl.offsetHeight;
+        windowEl.style.left = `${Math.max(0, Math.min(maxX, sl + dx))}px`;
+        windowEl.style.top = `${Math.max(0, Math.min(maxY, st + dy))}px`;
       });
 
       window.addEventListener('mouseup', () => {
         if (!dragging) return;
         dragging = false;
+      });
 
-        let x = parseFloat(win.style.left || 0);
-        let y = parseFloat(win.style.top || 0);
-        const maxX = window.innerWidth - win.offsetWidth;
-        const maxY = window.innerHeight - 32 - win.offsetHeight;
-        let frames = 0;
-
-        function inertia() {
-          frames += 1;
-          vx *= 0.86;
-          vy *= 0.86;
-          x += vx;
-          y += vy;
-          x = Math.max(0, Math.min(maxX, x));
-          y = Math.max(0, Math.min(maxY, y));
-          win.style.left = x + 'px';
-          win.style.top = y + 'px';
-
-          if (frames < 22 && (Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5)) {
-            requestAnimationFrame(inertia);
-          } else {
-            snapWindow(win, appId);
-          }
-        }
-
-        requestAnimationFrame(inertia);
+      titlebar.addEventListener('dblclick', (e) => {
+        if (e.target.closest('.window-controls')) return;
+        toggleMaximize(appId);
       });
     }
 
+    function makeTaskButton(appId, title, icon) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'task-btn';
+      btn.innerHTML = `<img src="${icon}" alt=""><span>${title}</span>`;
+      btn.addEventListener('click', () => {
+        const entry = openWindows.get(appId);
+        if (!entry) return;
+        if (entry.minimized) restoreWindow(appId);
+        else if (btn.classList.contains('active')) minimizeWindow(appId);
+        else bringToFront(appId);
+      });
+      taskButtons.appendChild(btn);
+      return btn;
+    }
+
     function openApp(appId) {
+      if (openWindows.has(appId)) {
+        restoreWindow(appId);
+        return;
+      }
+
       const app = apps[appId];
       if (!app) return;
-      if (openWindows.has(appId)) return bringToFront(appId);
 
       const frag = winTemplate.content.cloneNode(true);
       const win = frag.querySelector('.xp-window');
@@ -1041,69 +1039,71 @@
       const titleText = frag.querySelector('.title-info span');
       const body = frag.querySelector('.window-body');
 
+      const w = Math.min(app.width || 680, window.innerWidth - 20);
+      const h = Math.min(app.height || 420, window.innerHeight - 72);
+      const x = Math.max(8, 60 + (cascade * 26) % Math.max(60, window.innerWidth - w - 12));
+      const y = Math.max(8, 52 + (cascade * 18) % Math.max(60, window.innerHeight - h - 60));
+      cascade += 1;
+
+      win.style.width = `${w}px`;
+      win.style.height = `${h}px`;
+      win.style.left = `${x}px`;
+      win.style.top = `${y}px`;
+
       titleIcon.src = app.icon;
       titleText.textContent = app.title;
       body.innerHTML = app.content;
 
-      win.style.width = (app.width || 620) + 'px';
-      win.style.height = (app.height || 420) + 'px';
-      win.style.top = (48 + Math.random() * 70) + 'px';
-      win.style.left = (120 + Math.random() * 140) + 'px';
-      win.style.zIndex = ++zCounter;
+      const task = makeTaskButton(appId, app.title, app.icon);
 
-      frag.querySelector('.win-btn.close').addEventListener('click', () => closeWindow(appId));
-      frag.querySelector('.win-btn.min').addEventListener('click', () => minimizeWindow(appId));
-      frag.querySelector('.win-btn.max').addEventListener('click', () => toggleMaximize(appId));
+      windowLayer.appendChild(win);
+      openWindows.set(appId, { window: win, task, minimized: false, restoreRect: null });
+
+      makeWindowDraggable(appId, win, titlebar);
+
+      titlebar.querySelector('.min').addEventListener('click', () => minimizeWindow(appId));
+      titlebar.querySelector('.max').addEventListener('click', () => toggleMaximize(appId));
+      titlebar.querySelector('.close').addEventListener('click', () => closeWindow(appId));
 
       win.addEventListener('mousedown', () => bringToFront(appId));
-      titlebar.addEventListener('dblclick', () => toggleMaximize(appId));
 
-      makeDraggable(win, titlebar, appId);
-      windowLayer.appendChild(win);
-
-      const task = makeTaskButton(appId, app.title, app.icon);
-      openWindows.set(appId, { window: win, task, minimized: false, restore: null });
-      setActiveWindow(appId);
-
-      closeContextMenus();
+      bringToFront(appId);
       startMenu.classList.remove('open');
     }
 
-    function closeContextMenus() { desktopMenu.classList.remove('open'); }
-
     function arrangeIcons() {
-      const icons = Array.from(desktopIcons.children).sort((a, b) => a.dataset.app.localeCompare(b.dataset.app));
-      icons.forEach((icon, idx) => {
-        const col = Math.floor(idx / 6);
-        const row = idx % 6;
-        const pos = gridCellToXY(col, row);
-        animateIconTo(icon, pos.x, pos.y, true);
-      });
-      showToast('Ícones organizados por nome.');
+      const ordered = Array.from(desktopIcons.children).sort((a, b) => a.dataset.app.localeCompare(b.dataset.app));
+      ordered.forEach((el) => desktopIcons.appendChild(el));
+      showToast('Icones organizados.');
     }
 
-    function refreshDesktop() {
-      desktopIcons.style.opacity = '0.45';
-      setTimeout(() => desktopIcons.style.opacity = '1', 180);
-      showToast('KauanWin foi atualizado.');
+    function closeAllWindows() {
+      Array.from(openWindows.keys()).forEach((id) => closeWindow(id));
+      showToast('Todas as janelas foram fechadas.');
+    }
+
+    function openRecommendedSystems() {
+      const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 900px)').matches;
+      if (mobile) openApp('systems');
     }
 
     startButton.addEventListener('click', (e) => {
       e.stopPropagation();
       startMenu.classList.toggle('open');
-      closeContextMenus();
+      desktopMenu.classList.remove('open');
     });
 
     startMenu.addEventListener('click', (e) => {
-      const appBtn = e.target.closest('[data-action]');
-      if (!appBtn) return;
-      openApp(appBtn.dataset.action);
+      const action = e.target.closest('[data-action]')?.dataset.action;
+      if (action) openApp(action);
     });
 
     desktop.addEventListener('click', (e) => {
-      if (!e.target.closest('.desktop-icon') && !e.target.closest('.xp-window') && !e.target.closest('.start-menu')) clearIconSelection();
-      closeContextMenus();
+      if (!e.target.closest('.desktop-icon') && !e.target.closest('.xp-window') && !e.target.closest('.start-menu')) {
+        clearIconSelection();
+      }
       if (!e.target.closest('.start-menu') && !e.target.closest('.start-button')) startMenu.classList.remove('open');
+      if (!e.target.closest('.desktop-menu')) desktopMenu.classList.remove('open');
     });
 
     desktop.addEventListener('contextmenu', (e) => {
@@ -1111,95 +1111,102 @@
       e.preventDefault();
       startMenu.classList.remove('open');
       desktopMenu.classList.add('open');
-      desktopMenu.style.left = `${Math.min(e.clientX, window.innerWidth - 210)}px`;
-      desktopMenu.style.top = `${Math.min(e.clientY, window.innerHeight - 190)}px`;
+      desktopMenu.style.left = `${Math.min(e.clientX, window.innerWidth - 220)}px`;
+      desktopMenu.style.top = `${Math.min(e.clientY, window.innerHeight - 220)}px`;
     });
 
     desktopMenu.addEventListener('click', (e) => {
-      const cmdBtn = e.target.closest('button[data-cmd]');
-      if (!cmdBtn) return;
-      const cmd = cmdBtn.dataset.cmd;
-      if (cmd === 'refresh') refreshDesktop();
+      const cmd = e.target.closest('[data-cmd]')?.dataset.cmd;
+      if (!cmd) return;
+      desktopMenu.classList.remove('open');
+      if (cmd === 'refresh') showToast('KauanWin XP Neo atualizado.');
       if (cmd === 'arrange') arrangeIcons();
-      if (cmd === 'about') showToast('KauanWin XP - Portfólio interativo do Kauan.');
-      if (cmd === 'properties') openApp('about');
-      closeContextMenus();
+      if (cmd === 'about') showToast('KauanWin XP Neo: XP classico com motor moderno.');
+      if (cmd === 'clear') closeAllWindows();
     });
 
     let selecting = false;
-    let startX = 0;
-    let startY = 0;
+    let sX = 0;
+    let sY = 0;
 
     desktop.addEventListener('mousedown', (e) => {
       if (e.button !== 0) return;
-      if (e.target.closest('.desktop-icon') || e.target.closest('.xp-window') || e.target.closest('.taskbar') || e.target.closest('.start-menu')) return;
+      if (e.target.closest('.desktop-icon') || e.target.closest('.xp-window') || e.target.closest('.taskbar') || e.target.closest('.start-menu') || e.target.closest('.hud-panel')) return;
       selecting = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      selectionBox.style.display = 'block';
-      selectionBox.style.left = `${startX}px`;
-      selectionBox.style.top = `${startY}px`;
+      sX = e.clientX;
+      sY = e.clientY;
+      selectionBox.style.left = `${sX}px`;
+      selectionBox.style.top = `${sY}px`;
       selectionBox.style.width = '0px';
       selectionBox.style.height = '0px';
+      selectionBox.style.display = 'block';
       clearIconSelection();
     });
 
     window.addEventListener('mousemove', (e) => {
       if (!selecting) return;
-      const x = Math.min(e.clientX, startX);
-      const y = Math.min(e.clientY, startY);
-      const w = Math.abs(e.clientX - startX);
-      const h = Math.abs(e.clientY - startY);
+      const x = Math.min(e.clientX, sX);
+      const y = Math.min(e.clientY, sY);
+      const w = Math.abs(e.clientX - sX);
+      const h = Math.abs(e.clientY - sY);
       selectionBox.style.left = `${x}px`;
       selectionBox.style.top = `${y}px`;
       selectionBox.style.width = `${w}px`;
       selectionBox.style.height = `${h}px`;
 
-      const selRect = selectionBox.getBoundingClientRect();
+      const box = selectionBox.getBoundingClientRect();
       document.querySelectorAll('.desktop-icon').forEach((icon) => {
         const r = icon.getBoundingClientRect();
-        const intersects = !(selRect.right < r.left || selRect.left > r.right || selRect.bottom < r.top || selRect.top > r.bottom);
-        icon.classList.toggle('selected', intersects);
+        const hit = r.left < box.right && r.right > box.left && r.top < box.bottom && r.bottom > box.top;
+        icon.classList.toggle('selected', hit);
       });
     });
 
     window.addEventListener('mouseup', () => {
-      if (selecting) {
-        selecting = false;
-        selectionBox.style.display = 'none';
-      }
+      if (!selecting) return;
+      selecting = false;
+      selectionBox.style.display = 'none';
     });
 
-    function updateClock() {
-      const d = new Date();
-      const hh = String(d.getHours()).padStart(2, '0');
-      const mm = String(d.getMinutes()).padStart(2, '0');
-      clock.textContent = `${hh}:${mm}`;
+    function renderStartApps() {
+      [
+        { app: 'about', label: 'Meu Perfil', icon: ICONS.about },
+        { app: 'skills', label: 'Competencias', icon: ICONS.skills },
+        { app: 'experience', label: 'Experiencia', icon: ICONS.experience },
+        { app: 'intel', label: 'Visitor Intel', icon: ICONS.intel },
+        { app: 'contact', label: 'Contato', icon: ICONS.contact },
+        { app: 'resume', label: 'Curriculo', icon: ICONS.resume },
+        { app: 'systems', label: 'Sistemas', icon: ICONS.systems },
+        { app: 'arena', label: 'SOC Arena', icon: ICONS.arena },
+        { app: 'github', label: 'GitHub', icon: ICONS.github }
+      ].forEach((item) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'start-item';
+        btn.dataset.action = item.app;
+        btn.innerHTML = `<img src="${item.icon}" alt=""> <span>${item.label}</span>`;
+        startApps.appendChild(btn);
+      });
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
+    function init() {
+      desktopShortcuts.forEach((shortcut) => createDesktopIcon(shortcut));
+      renderStartApps();
+      updateClock();
+      updateHud();
+      openRecommendedSystems();
+      setInterval(updateClock, 1000);
+      setInterval(updateHud, 3000);
+    }
 
-    desktopShortcuts.forEach((item, idx) => createDesktopIcon(item, idx));
+    window.addEventListener('resize', updateHud);
+    window.addEventListener('online', updateHud);
+    window.addEventListener('offline', updateHud);
+    if (connection && connection.addEventListener) {
+      connection.addEventListener('change', updateHud);
+    }
 
-    [
-      { app: 'about', label: 'Meu Perfil', icon: ICONS.user },
-      { app: 'skills', label: 'Competências', icon: ICONS.skills },
-      { app: 'experience', label: 'Experiência', icon: ICONS.exp },
-      { app: 'contact', label: 'Contato', icon: ICONS.contact },
-      { app: 'arena', label: 'SOC Arena', icon: ICONS.arena },
-      { app: 'pocket', label: 'Pocket OS', icon: ICONS.pocket },
-      { app: 'github', label: 'GitHub', icon: ICONS.github },
-      { app: 'portfolio', label: 'Portfólio Web', icon: ICONS.app },
-    ].forEach((item) => {
-      const btn = document.createElement('button');
-      btn.className = 'start-item';
-      btn.dataset.action = item.app;
-      btn.innerHTML = `<img src="${item.icon}" alt=""> <span>${item.label}</span>`;
-      startApps.appendChild(btn);
-    });
-
-    // KauanWin inicia com desktop limpo, sem janelas abertas.
+    init();
   </script>
 </body>
 </html>
