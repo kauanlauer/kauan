@@ -532,6 +532,7 @@
         <button data-action="skills">Competências</button>
         <button data-action="experience">Experiência</button>
         <button data-action="contact">Contato</button>
+        <button data-action="pocket">Pocket OS</button>
         <button data-action="portfolio">Portfólio Web</button>
         <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Currículo</a>
       </div>
@@ -595,6 +596,7 @@
       contact: 'https://img.icons8.com/color/48/new-post.png',
       resume: 'https://img.icons8.com/color/48/resume.png',
       github: 'https://img.icons8.com/fluency/48/github.png',
+      pocket: 'https://img.icons8.com/fluency/48/smartphone-tablet.png',
       arena: 'https://img.icons8.com/color/48/controller.png',
       app: 'https://img.icons8.com/color/48/windows-xp.png'
     };
@@ -656,6 +658,14 @@
           <div class="status-bar"><span>Conexão segura (HTTPS)</span><span>Repositórios online</span></div>
         `,
       },
+      pocket: {
+        title: 'Kauan Pocket OS', icon: ICONS.pocket, width: 620, height: 340,
+        content: `
+          <div class="window-section"><h3>Versão Mobile do Portfólio</h3><p>Experiência estilo sistema operacional mobile com apps, notificações e navegação touch-first.</p><p><a href="KauanPocketOS.html">Abrir KauanPocketOS.html</a></p></div>
+          <div class="window-section"><p>Também disponível em nova guia:</p><p><a href="KauanPocketOS.html" target="_blank" rel="noopener">Abrir Pocket OS em nova guia</a></p></div>
+          <div class="status-bar"><span>KauanWin -> Pocket OS</span><span>Cross-platform ativo</span></div>
+        `,
+      },
       portfolio: {
         title: 'Portfólio Web (Normal)', icon: ICONS.app, width: 640, height: 350,
         content: `
@@ -673,6 +683,7 @@
       { app: 'contact', label: 'Contato' },
       { app: 'resume', label: 'Currículo' },
       { app: 'arena', label: 'SOC Arena' },
+      { app: 'pocket', label: 'Pocket OS' },
       { app: 'github', label: 'GitHub' },
       { app: 'portfolio', label: 'Portfólio Web' },
     ];
@@ -1177,6 +1188,7 @@
       { app: 'experience', label: 'Experiência', icon: ICONS.exp },
       { app: 'contact', label: 'Contato', icon: ICONS.contact },
       { app: 'arena', label: 'SOC Arena', icon: ICONS.arena },
+      { app: 'pocket', label: 'Pocket OS', icon: ICONS.pocket },
       { app: 'github', label: 'GitHub', icon: ICONS.github },
       { app: 'portfolio', label: 'Portfólio Web', icon: ICONS.app },
     ].forEach((item) => {

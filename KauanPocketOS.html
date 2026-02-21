@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kauan Pocket OS | Portfólio Mobile</title>
+  <style>
+    :root {
+      --bg1: #020617;
+      --bg2: #0b1630;
+      --bg3: #121f3e;
+      --line: rgba(129, 165, 255, .28);
+      --text: #ecf3ff;
+      --muted: #a8b8d7;
+      --accent: #57d6ff;
+      --accent2: #7787ff;
+      --accent3: #20d9a4;
+      --radius: 24px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-t: env(safe-area-inset-top, 0px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Segoe UI", "SF Pro Display", "Roboto", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at 10% 10%, #1d2e5d, transparent 40%),
+                  radial-gradient(circle at 90% 12%, #311f67, transparent 36%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2) 45%, var(--bg3));
+    }
+
+    .ambient,
+    .ambient::before,
+    .ambient::after {
+      position: fixed;
+      content: "";
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .ambient {
+      background-image: radial-gradient(rgba(255,255,255,.1) .6px, transparent .6px);
+      background-size: 3px 3px;
+      opacity: .16;
+      z-index: 0;
+    }
+
+    .ambient::before {
+      inset: -20%;
+      background: conic-gradient(from 120deg, rgba(87,214,255,.12), transparent 35%, rgba(119,135,255,.12), transparent 72%, rgba(32,217,164,.12));
+      filter: blur(54px);
+      animation: spin 26s linear infinite;
+    }
+
+    .ambient::after {
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,.05), transparent 18%, transparent 82%, rgba(255,255,255,.04));
+      opacity: .35;
+    }
+
+    @keyframes spin { to { transform: rotate(1turn); } }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(430px, 100vw);
+      height: min(900px, 100dvh);
+      margin: auto;
+      border-radius: 34px;
+      border: 1px solid rgba(186,205,255,.28);
+      background: rgba(7, 13, 27, .74);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 70px rgba(0,0,0,.55);
+      overflow: hidden;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(9, 16, 33, .58), rgba(15, 22, 38, .12));
+      overflow: hidden;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(.98);
+    }
+
+    .wallpaper {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(4,9,18,.56), rgba(4,9,18,.72)),
+        url("https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+      animation: wallpaperDrift 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes wallpaperDrift {
+      from { transform: scale(1.05) translateY(0); }
+      to { transform: scale(1.09) translateY(-10px); }
+    }
+
+    .statusbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(30px + var(--safe-t));
+      padding: calc(7px + var(--safe-t)) 14px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      letter-spacing: .03em;
+      z-index: 5;
+      text-shadow: 0 1px 2px rgba(0,0,0,.7);
+    }
+
+    .signal { display: flex; align-items: center; gap: 8px; color: #d9ebff; }
+
+    .badge {
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      padding: 2px 7px;
+      font-size: 11px;
+      background: rgba(255,255,255,.08);
+    }
+
+    .lock-content {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 58px 26px 40px;
+    }
+
+    .clock-big { font-size: clamp(44px, 13vw, 72px); font-weight: 300; line-height: 1; }
+    .date-big { margin-top: 8px; color: #b7caef; font-size: 15px; }
+
+    .lock-card {
+      margin-top: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(10, 18, 34, .52);
+      padding: 14px;
+      max-width: 320px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .unlock-btn {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 11px 18px;
+      color: #fff;
+      background: linear-gradient(120deg, rgba(87,214,255,.26), rgba(119,135,255,.26));
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .home {
+      position: absolute;
+      inset: 0;
+      padding: calc(38px + var(--safe-t)) 14px calc(82px + var(--safe-b));
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+    }
+
+    .top-banner {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 11px;
+      background: rgba(9, 16, 32, .56);
+      backdrop-filter: blur(8px);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .top-banner strong { color: var(--accent3); font-size: 12px; letter-spacing: .04em; }
+
+    .chooser {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+
+    .chip.primary { background: linear-gradient(130deg, rgba(87,214,255,.2), rgba(119,135,255,.2)); }
+
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      align-content: start;
+      margin-top: 6px;
+    }
+
+    .app {
+      display: grid;
+      gap: 7px;
+      justify-items: center;
+      text-align: center;
+      color: var(--text);
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .app i {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-style: normal;
+      font-size: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      box-shadow: 0 8px 20px rgba(0,0,0,.35);
+    }
+
+    .dock {
+      border: 1px solid rgba(171,193,248,.35);
+      border-radius: 18px;
+      background: rgba(11, 19, 36, .58);
+      backdrop-filter: blur(10px);
+      padding: 9px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .dock .app i { width: 50px; height: 50px; border-radius: 14px; }
+
+    .appview {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(8,14,28,.96), rgba(14,22,40,.88));
+      padding: calc(42px + var(--safe-t)) 14px calc(20px + var(--safe-b));
+      display: none;
+      overflow: auto;
+      z-index: 9;
+    }
+
+    .appview.open { display: block; }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      padding-bottom: 6px;
+      backdrop-filter: blur(6px);
+    }
+
+    .close-app {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      font-size: 12px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+      margin-bottom: 10px;
+      color: #d6e5ff;
+    }
+
+    .card h3 { margin: 0 0 8px; color: var(--accent); font-size: 16px; }
+    .card p, .card li { margin: 0; line-height: 1.5; color: #d4def2; }
+    .card ul { margin: 0; padding-left: 17px; }
+
+    .notif {
+      position: absolute;
+      top: calc(30px + var(--safe-t));
+      left: 10px;
+      right: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(6, 13, 24, .88);
+      padding: 11px;
+      z-index: 12;
+      transform: translateY(-150%);
+      transition: transform .3s ease;
+    }
+
+    .notif.open { transform: translateY(0); }
+
+    .notif h4 { margin: 0 0 8px; font-size: 13px; color: var(--accent3); }
+
+    .notif-item {
+      border: 1px solid rgba(145,176,239,.24);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      padding: 9px;
+      font-size: 12px;
+      margin-bottom: 7px;
+      color: var(--muted);
+    }
+
+    .home-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: calc(8px + var(--safe-b));
+      transform: translateX(-50%);
+      width: 130px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.42);
+      z-index: 20;
+    }
+
+    .toast {
+      position: absolute;
+      left: 50%;
+      bottom: calc(22px + var(--safe-b));
+      transform: translateX(-50%) translateY(20px);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(8,15,30,.92);
+      padding: 8px 10px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 30;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 560px) {
+      .wrap {
+        width: 100vw;
+        height: 100dvh;
+        border-radius: 0;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient"></div>
+
+  <main class="wrap">
+    <div class="frame">
+      <div class="wallpaper"></div>
+
+      <div class="statusbar">
+        <div id="statusTime">00:00</div>
+        <div class="signal">
+          <span class="badge" id="statusNet">LTE</span>
+          <span class="badge" id="statusBattery">100%</span>
+        </div>
+      </div>
+
+      <section class="screen" id="lockscreen">
+        <div class="lock-content">
+          <div>
+            <div class="clock-big" id="lockClock">00:00</div>
+            <div class="date-big" id="lockDate">segunda-feira</div>
+            <div class="lock-card">Kauan Pocket OS: experiência mobile do portfólio com apps, painéis e navegação técnica.</div>
+            <button class="unlock-btn" id="unlockBtn">Deslizar para entrar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen hidden" id="homescreen">
+        <div class="notif" id="notifPanel">
+          <h4>Notificações</h4>
+          <div class="notif-item">Nova visita detectada no portfólio.</div>
+          <div class="notif-item">KauanWin XP disponível para teste em qualquer dispositivo.</div>
+          <div class="notif-item" id="recoNotif">Recomendação de versão carregando...</div>
+        </div>
+
+        <div class="home">
+          <div class="top-banner">
+            <strong id="recoLabel">Recomendação: detectando dispositivo...</strong><br>
+            Você pode abrir as duas versões em qualquer dispositivo.
+          </div>
+
+          <div class="chooser">
+            <a class="chip primary" href="KauanWin.html" target="_blank" rel="noopener">Abrir KauanWin XP</a>
+            <a class="chip" href="index.html">Voltar ao Portfólio Web</a>
+          </div>
+
+          <div class="apps" id="appsGrid"></div>
+
+          <div class="dock">
+            <button class="app" data-app="contact" type="button"><i>💬</i><span>Contato</span></button>
+            <button class="app" data-app="resume" type="button"><i>📄</i><span>CV</span></button>
+            <button class="app" data-app="systems" type="button"><i>🧩</i><span>Sistemas</span></button>
+            <button class="app" id="notifToggle" type="button"><i>🔔</i><span>Notifs</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="appview" id="appview">
+        <div class="app-header">
+          <strong id="appTitle">App</strong>
+          <button class="close-app" id="closeApp">Fechar</button>
+        </div>
+        <div id="appContent"></div>
+      </section>
+
+      <div class="toast" id="toast">Ação realizada</div>
+      <div class="home-indicator"></div>
+    </div>
+  </main>
+
+  <script>
+    const lockscreen = document.getElementById('lockscreen');
+    const homescreen = document.getElementById('homescreen');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const lockClock = document.getElementById('lockClock');
+    const lockDate = document.getElementById('lockDate');
+    const statusTime = document.getElementById('statusTime');
+    const statusNet = document.getElementById('statusNet');
+    const statusBattery = document.getElementById('statusBattery');
+    const appsGrid = document.getElementById('appsGrid');
+    const appview = document.getElementById('appview');
+    const appTitle = document.getElementById('appTitle');
+    const appContent = document.getElementById('appContent');
+    const closeApp = document.getElementById('closeApp');
+    const toast = document.getElementById('toast');
+    const notifToggle = document.getElementById('notifToggle');
+    const notifPanel = document.getElementById('notifPanel');
+    const recoLabel = document.getElementById('recoLabel');
+    const recoNotif = document.getElementById('recoNotif');
+
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+    const apps = {
+      profile: {
+        title: 'Meu Perfil',
+        html: `
+          <article class="card"><h3>Erick Kauan dos Santos Pereira Lauer</h3><p>Técnico de TI, Suporte Headsoft e também desenvolvedor focado em experiência e execução técnica.</p></article>
+          <article class="card"><h3>Atuação</h3><p>Suporte avançado, redes, SQL Server, 3CX e manutenção de ambiente corporativo.</p></article>
+        `
+      },
+      skills: {
+        title: 'Stack Técnica',
+        html: `
+          <article class="card"><h3>Ferramentas</h3><ul><li>SQL Server</li><li>3CX / Teams</li><li>Headcargo</li><li>Redes e Hardware</li><li>HTML/CSS/JavaScript</li></ul></article>
+          <article class="card"><h3>Diferencial</h3><p>Combinação de suporte operacional com visão de produto e experiência digital.</p></article>
+        `
+      },
+      experience: {
+        title: 'Experiência',
+        html: `
+          <article class="card"><h3>Headsoft</h3><p><strong>Técnico de Suporte de TI</strong> • Out/2025 - Atual</p><p>Suporte avançado, banco de dados, comunicação e infraestrutura.</p></article>
+          <article class="card"><h3>MANUPACKAGING FITASA</h3><p><strong>Analista Logístico</strong> • Ago/2021 - Out/2025</p><p>Análise de dados e automações em processos operacionais.</p></article>
+        `
+      },
+      contact: {
+        title: 'Contato',
+        html: `
+          <article class="card"><h3>Canais</h3><ul><li>Email: <a href="mailto:erickkauanlauer@gmail.com">erickkauanlauer@gmail.com</a></li><li>LinkedIn: <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener">linkedin.com/in/kauanlauer</a></li><li>GitHub: <a href="https://github.com/kauanlauer" target="_blank" rel="noopener">github.com/kauanlauer</a></li><li>WhatsApp: <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener">(41) 99942-6605</a></li></ul></article>
+        `
+      },
+      resume: {
+        title: 'Currículo',
+        html: `
+          <article class="card"><h3>Currículo Online</h3><p>Abra a versão atualizada do currículo em uma nova guia.</p><p><a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Acessar currículo</a></p></article>
+        `
+      },
+      systems: {
+        title: 'Escolher Sistema',
+        html: `
+          <article class="card"><h3>Versões disponíveis</h3><p>Você pode testar as duas experiências em qualquer dispositivo.</p><ul><li><a href="KauanWin.html" target="_blank" rel="noopener">KauanWin XP (desktop)</a></li><li><a href="KauanPocketOS.html" target="_blank" rel="noopener">Kauan Pocket OS (mobile)</a></li><li><a href="index.html">Portfólio Web principal</a></li></ul></article>
+        `
+      },
+      intel: {
+        title: 'Visitor Intel',
+        html: `
+          <article class="card"><h3>Dados do Navegador</h3><ul><li>Idioma: <strong>${navigator.language || '-'}</strong></li><li>Sistema: <strong>${navigator.platform || '-'}</strong></li><li>Núcleos de CPU: <strong>${navigator.hardwareConcurrency || '-'}</strong></li><li>Memória: <strong>${navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'n/d'}</strong></li><li>Rede: <strong>${connection?.effectiveType || 'n/d'}</strong></li></ul></article>
+        `
+      }
+    };
+
+    const gridApps = [
+      { key: 'profile', icon: '👤', label: 'Perfil' },
+      { key: 'skills', icon: '🛠️', label: 'Stack' },
+      { key: 'experience', icon: '📈', label: 'Experiência' },
+      { key: 'intel', icon: '🛰️', label: 'Visitor Intel' },
+      { key: 'contact', icon: '📞', label: 'Contato' },
+      { key: 'resume', icon: '📄', label: 'Currículo' },
+      { key: 'systems', icon: '🧠', label: 'Sistemas' },
+      { key: 'profile', icon: '⚙️', label: 'Config' }
+    ];
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast.t);
+      showToast.t = setTimeout(() => toast.classList.remove('show'), 1700);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+      const date = now.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
+      lockClock.textContent = time;
+      statusTime.textContent = time;
+      lockDate.textContent = date;
+      statusBattery.textContent = `${Math.floor(58 + (now.getSeconds() / 60) * 32)}%`;
+    }
+
+    function openApp(key) {
+      const app = apps[key];
+      if (!app) return;
+      appTitle.textContent = app.title;
+      appContent.innerHTML = app.html;
+      appview.classList.add('open');
+    }
+
+    function closeCurrentApp() {
+      appview.classList.remove('open');
+    }
+
+    function renderApps() {
+      gridApps.forEach((item) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'app';
+        btn.dataset.app = item.key;
+        btn.innerHTML = `<i>${item.icon}</i><span>${item.label}</span>`;
+        appsGrid.appendChild(btn);
+      });
+    }
+
+    function applyRecommendation() {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 850px)').matches;
+      const recommendation = isMobile ? 'Recomendação: Kauan Pocket OS (mobile)' : 'Recomendação: KauanWin XP (desktop)';
+      recoLabel.textContent = recommendation;
+      recoNotif.textContent = `${recommendation}. As duas versões estão liberadas para teste.`;
+      statusNet.textContent = isMobile ? '5G' : 'LAN';
+    }
+
+    unlockBtn.addEventListener('click', () => {
+      lockscreen.classList.add('hidden');
+      homescreen.classList.remove('hidden');
+      showToast('Pocket OS iniciado');
+    });
+
+    closeApp.addEventListener('click', closeCurrentApp);
+
+    document.addEventListener('click', (e) => {
+      const appBtn = e.target.closest('[data-app]');
+      if (appBtn) openApp(appBtn.dataset.app);
+    });
+
+    notifToggle.addEventListener('click', () => {
+      notifPanel.classList.toggle('open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCurrentApp();
+        notifPanel.classList.remove('open');
+      }
+    });
+
+    renderApps();
+    applyRecommendation();
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>

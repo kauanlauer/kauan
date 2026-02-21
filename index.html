@@ -676,7 +676,7 @@
     .contact-grid {
       margin-top: 16px;
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 10px;
     }
 
@@ -762,6 +762,27 @@
       display: inline-block;
       margin-right: 8px;
       margin-bottom: 8px;
+    }
+
+    .os-choice {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      color: var(--text);
+      text-decoration: none;
+      font: 700 .78rem/1 var(--title);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .os-choice.recommended {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(87,214,255,.2);
+      background: linear-gradient(130deg, rgba(87,214,255,.22), rgba(119,135,255,.2));
     }
 
     .reveal { opacity: 0; transform: translateY(16px); transition: .55s ease; }
@@ -863,6 +884,7 @@
               <ul class="hero-list">
                 <li><strong>Currículo:</strong> versão atual online.</li>
                 <li><strong>KauanWin:</strong> experiência estilo sistema operacional.</li>
+                <li><strong>Pocket OS:</strong> experiência mobile autoral.</li>
                 <li><strong>Tech Lab:</strong> comandos e runtime do navegador.</li>
               </ul>
               <div class="tech-atlas spotlight" id="techAtlas" aria-hidden="true">
@@ -884,7 +906,7 @@
           <div class="actions">
             <a href="#contact" class="btn-tech primary magnetic">Entrar em contato</a>
             <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener" class="btn-tech magnetic">Abrir currículo</a>
-            <button type="button" id="openKWinModal" class="btn-tech magnetic">Experimentar KauanWin</button>
+            <button type="button" id="openKWinModal" class="btn-tech magnetic">Escolher Sistema Interativo</button>
           </div>
 
           <div class="quick-data">
@@ -993,6 +1015,7 @@
             <a href="https://github.com/kauanlauer" target="_blank" rel="noopener" class="contact-link">GitHub</a>
             <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener" class="contact-link">WhatsApp</a>
             <a href="KauanWin.html" target="_blank" rel="noopener" class="contact-link">KauanWin XP</a>
+            <a href="KauanPocketOS.html" target="_blank" rel="noopener" class="contact-link">Kauan Pocket OS</a>
           </div>
 
         </article>
@@ -1004,18 +1027,20 @@
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title fs-5" id="kWinModalLabel">Quer ver a versão estilo sistema operacional?</h2>
+          <h2 class="modal-title fs-5" id="kWinModalLabel">Escolha seu sistema do portfólio</h2>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
-          <p class="mb-3">A <strong>KauanWin</strong> é uma experiência interativa inspirada em desktop, com janelas, barra de tarefas e navegação por apps do seu portfólio.</p>
+          <p class="mb-2"><strong id="osRecommendation">Detectando dispositivo para recomendação...</strong></p>
+          <p class="mb-3">As duas experiências funcionam em qualquer dispositivo. Você pode testar desktop e mobile quando quiser.</p>
           <span class="modal-chip">UI Interativa</span>
           <span class="modal-chip">Estilo OS</span>
           <span class="modal-chip">Portfólio Experimental</span>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn-tech" data-bs-dismiss="modal">Continuar neste site</button>
-          <a href="KauanWin.html" target="_blank" rel="noopener" class="btn-tech primary" id="goKWinNow">Abrir KauanWin agora</a>
+          <a href="KauanWin.html" target="_blank" rel="noopener" class="os-choice" id="goKWinNow">Abrir KauanWin XP</a>
+          <a href="KauanPocketOS.html" target="_blank" rel="noopener" class="os-choice" id="goPocketNow">Abrir Kauan Pocket OS</a>
         </div>
       </div>
     </div>
@@ -1117,7 +1142,27 @@
 
     const openKWinModal = document.getElementById('openKWinModal');
     const kWinModalEl = document.getElementById('kWinModal');
+    const osRecommendation = document.getElementById('osRecommendation');
+    const goKWinNow = document.getElementById('goKWinNow');
+    const goPocketNow = document.getElementById('goPocketNow');
     let kWinModal = null;
+
+    function isMobileDevice() {
+      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia('(max-width: 900px)').matches;
+    }
+
+    function updateOSRecommendation() {
+      const mobile = isMobileDevice();
+      if (osRecommendation) {
+        osRecommendation.textContent = mobile
+          ? 'Recomendado para seu dispositivo: Kauan Pocket OS (mobile).'
+          : 'Recomendado para seu dispositivo: KauanWin XP (desktop).';
+      }
+      if (goKWinNow && goPocketNow) {
+        goKWinNow.classList.toggle('recommended', !mobile);
+        goPocketNow.classList.toggle('recommended', mobile);
+      }
+    }
 
     if (kWinModalEl && window.bootstrap && window.bootstrap.Modal) {
       kWinModal = new window.bootstrap.Modal(kWinModalEl, {
@@ -1126,6 +1171,7 @@
         focus: true
       });
 
+      updateOSRecommendation();
       setTimeout(() => kWinModal.show(), 900);
     }
 
@@ -1142,7 +1188,7 @@
     const termOutput = document.getElementById('termOutput');
     const termInput = document.getElementById('termInput');
     const commands = {
-      help: 'comandos: help, about, stack, contact, cv, win, clear',
+      help: 'comandos: help, about, stack, contact, cv, win, mobile, clear',
       about: 'Kauan: Técnico de TI e Suporte Headsoft.',
       stack: 'SQL Server | 3CX | Headcargo | Redes | Helpdesk | HTML/CSS/JS',
       contact: 'linkedin.com/in/kauanlauer | github.com/kauanlauer | WhatsApp 41 99942-6605'
@@ -1172,6 +1218,11 @@
       if (cmd === 'win') {
         window.open('KauanWin.html', '_blank', 'noopener');
         line('abrindo KauanWin...');
+        return;
+      }
+      if (cmd === 'mobile') {
+        window.open('KauanPocketOS.html', '_blank', 'noopener');
+        line('abrindo Kauan Pocket OS...');
         return;
       }
       line(commands[cmd] || 'comando não encontrado');
@@ -1293,6 +1344,7 @@
     window.addEventListener('resize', runtimeUpdate);
     window.addEventListener('online', runtimeUpdate);
     window.addEventListener('offline', runtimeUpdate);
+    window.addEventListener('resize', updateOSRecommendation);
     setInterval(runtimeUpdate, 1000);
     runtimeUpdate();
     updateVisitorIntel();
