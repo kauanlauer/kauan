@@ -1,1171 +1,1445 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kauan Lauer | Developer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kauan Lauer - Técnico de TI e Suporte Headsoft. Portfólio gamer-profissional com desafio SOC interativo.">
+  <title>Kauan Lauer | Técnico de TI & Suporte Headsoft</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --bg: #05070f;
+      --bg-2: #0c1221;
+      --card: rgba(17, 24, 39, 0.82);
+      --line: rgba(132, 149, 186, 0.32);
+      --text: #e8eefc;
+      --muted: #97a6c5;
+      --primary: #7c5cff;
+      --secondary: #0ee6b8;
+      --accent: #3ec9ff;
+      --danger: #ff6b82;
+      --warning: #ffd166;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(80rem 50rem at 85% -10%, rgba(124, 92, 255, 0.24), transparent 60%),
+        radial-gradient(70rem 45rem at -10% 20%, rgba(14, 230, 184, 0.16), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-top: 82px;
+      padding-bottom: 98px;
+    }
+
+    h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .kicker, .dock-title {
+      font-family: "Sora", sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .fx-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: radial-gradient(circle at center, black 52%, transparent 100%);
+      z-index: -4;
+      pointer-events: none;
+    }
+
+    .fx-orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -2;
+      pointer-events: none;
+      opacity: .45;
+      animation: drift 16s ease-in-out infinite alternate;
+    }
+    .fx-orb.one { background: #6f5dff; top: -120px; right: -90px; }
+    .fx-orb.two { background: #08c6a2; left: -130px; top: 38%; animation-duration: 18s; }
+
+    @keyframes drift {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(30px,-15px,0) scale(1.08); }
+    }
+
+    #particleCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .3;
+    }
+
+    .top-nav {
+      background: rgba(6, 8, 15, .74);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(134,149,186,.25);
+      transition: all .25s ease;
+    }
+
+    .top-nav.scrolled {
+      background: rgba(6, 8, 15, .92);
+      border-bottom-color: rgba(134,149,186,.45);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+
+    .brand-chip {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      box-shadow: 0 14px 30px rgba(79,70,229,.55);
+    }
+
+    .nav-link {
+      color: #b8c4df;
+      font-weight: 600;
+      border-radius: 10px;
+      padding-inline: 12px !important;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #fff;
+      background: rgba(124,92,255,.2);
+    }
+
+    .btn-main {
+      border: 0;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #5a4ef5);
+      box-shadow: 0 16px 34px rgba(90,78,245,.5);
+    }
+
+    .btn-main:hover {
+      color: #fff;
+      transform: translateY(-1px);
+      background: linear-gradient(135deg, #6d4ffa, #4a3ff0);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(62,201,255,.55);
+      color: #9de5ff;
+      background: rgba(62,201,255,.08);
+    }
+
+    .btn-ghost:hover {
+      color: #09121d;
+      border-color: #6ee6ff;
+      background: #6ee6ff;
+    }
+
+    .hero {
+      position: relative;
+      padding: 6rem 0 4.5rem;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .2;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      filter: saturate(108%) contrast(110%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6,8,15,.66), rgba(11,16,32,.94));
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 700;
+      color: #b7eaff;
+      border: 1px solid rgba(62,201,255,.45);
+      background: rgba(62,201,255,.14);
+      border-radius: 999px;
+      padding: .45rem .78rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 4.7rem);
+      line-height: 1.02;
+      font-weight: 800;
+      margin: 1rem 0 1.1rem;
+      text-wrap: balance;
+    }
+
+    .hero-title .gradient {
+      background: linear-gradient(90deg, #fff 10%, #b2d2ff 45%, #9de9ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      margin-top: 1.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .kauanwin-promo {
+      margin-top: 1rem;
+      border: 1px solid rgba(62,201,255,.35);
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(18, 29, 50, .88), rgba(12, 18, 33, .95));
+      padding: .85rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+
+    .kauanwin-promo p {
+      margin: 0;
+      font-size: .9rem;
+      color: #cae9ff;
+    }
+
+    .btn-kauanwin {
+      border: 1px solid rgba(255,255,255,.45);
+      background: linear-gradient(135deg, #4a8cf2, #2f65cf);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 10px 24px rgba(32, 79, 170, .45);
+    }
+
+    .btn-kauanwin:hover {
+      color: #fff;
+      background: linear-gradient(135deg, #5a9cff, #3a72dd);
+    }
+
+    .hero-metrics {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .72rem;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      background: linear-gradient(170deg, rgba(22,31,51,.88), rgba(12,18,33,.92));
+      border-radius: 13px;
+      padding: .85rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric strong {
+      display: block;
+      font-family: "Sora", sans-serif;
+      font-size: 1.1rem;
+    }
+
+    .metric span { font-size: .85rem; color: var(--muted); }
+
+    .profile-card {
+      border: 1px solid rgba(136,149,186,.35);
+      background: linear-gradient(165deg, rgba(21,30,49,.9), rgba(11,16,32,.95));
+      border-radius: 24px;
+      padding: .95rem;
+      box-shadow: 0 30px 85px rgba(0,0,0,.55);
+      position: relative;
+      transition: transform .2s ease;
+      transform-style: preserve-3d;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(120deg, rgba(124,92,255,.6), rgba(14,230,184,.4), rgba(62,201,255,.55));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: .75;
+    }
+
+    .profile-image {
+      width: 100%;
+      max-height: 460px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(124,137,173,.4);
+    }
+
+    .badge-stack {
+      margin-top: .85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .pill {
+      font-size: .75rem;
+      font-weight: 700;
+      color: #d8e6ff;
+      border-radius: 999px;
+      padding: .33rem .62rem;
+      border: 1px solid rgba(124,92,255,.5);
+      background: rgba(124,92,255,.16);
+    }
+
+    section { padding: 5.2rem 0; }
+
+    .section-head { margin-bottom: 2rem; }
+
+    .section-tag {
+      font-family: "Sora", sans-serif;
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      color: #99defd;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
+      margin-top: .4rem;
+      font-weight: 800;
+    }
+
+    .surface {
+      border: 1px solid var(--line);
+      background: linear-gradient(165deg, rgba(20,29,46,.9), rgba(13,18,31,.95));
+      border-radius: var(--radius);
+    }
+
+    .about-card { padding: 1.2rem; height: 100%; }
+    .soft { color: var(--muted); }
+
+    .focus-box {
+      border-radius: 14px;
+      border: 1px solid rgba(14,230,184,.38);
+      background: rgba(14,230,184,.1);
+      color: #b7ffe9;
+      padding: 1rem;
+    }
+
+    .skills-grid .col { display: flex; }
+
+    .skill-card {
+      width: 100%;
+      padding: 1.1rem;
+      transition: all .24s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,92,255,.65);
+      box-shadow: 0 16px 35px rgba(0,0,0,.35);
+    }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      color: #93e8ff;
+      border: 1px solid rgba(62,201,255,.4);
+      background: rgba(62,201,255,.12);
+      margin-bottom: .8rem;
+    }
+
+    .skill-title {
+      font-family: "Sora", sans-serif;
+      font-weight: 700;
+      margin-bottom: .4rem;
+      font-size: 1rem;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: .95rem;
+      padding-left: 1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .6rem;
+      bottom: .6rem;
+      width: 2px;
+      background: linear-gradient(var(--primary), rgba(124,92,255,.2));
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-left: .7rem;
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(17,24,39,.85);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.35rem;
+      top: 1.18rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 0 4px rgba(14,230,184,.2);
+    }
+
+    .timeline-role { font-family: "Sora", sans-serif; font-weight: 700; margin-bottom: .1rem; font-size: 1.08rem; }
+    .timeline-company { color: #bfd2ff; font-weight: 700; }
+    .timeline-time { font-size: .84rem; color: #8ea3d2; margin-bottom: .45rem; }
+    .timeline-item ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+
+    .arena-card {
+      border: 1px solid rgba(62,201,255,.35);
+      border-radius: 18px;
+      background: linear-gradient(160deg, rgba(9,20,37,.9), rgba(12,17,32,.95));
+      padding: 1rem;
+      height: 100%;
+    }
+
+    .arena-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .6rem;
+      align-items: center;
+      margin-bottom: .8rem;
+      flex-wrap: wrap;
+    }
+
+    .arena-stats {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: .28rem .62rem;
+      border: 1px solid rgba(132,149,186,.35);
+      background: rgba(17,24,39,.8);
+      color: #d4e7ff;
+    }
+
+    .arena-gif {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(132,149,186,.35);
+      margin-bottom: .8rem;
+      background: rgba(15,21,34,.7);
+    }
+
+    .arena-title { font-family: "Sora", sans-serif; font-size: 1.08rem; margin-bottom: .35rem; }
+
+    .arena-desc {
+      color: var(--muted);
+      font-size: .94rem;
+      margin-bottom: .8rem;
+      min-height: 56px;
+    }
+
+    .arena-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .55rem;
+    }
+
+    .arena-option {
+      text-align: left;
+      border: 1px solid rgba(132,149,186,.35);
+      border-radius: 12px;
+      background: rgba(17,24,39,.82);
+      color: #dbe5ff;
+      font-weight: 600;
+      padding: .68rem .75rem;
+      transition: all .2s ease;
+    }
+
+    .arena-option:hover {
+      border-color: rgba(124,92,255,.68);
+      background: rgba(27,35,56,.95);
+    }
+
+    .arena-option.good {
+      border-color: rgba(14,230,184,.75);
+      background: rgba(14,230,184,.15);
+      color: #c1ffeb;
+    }
+
+    .arena-option.bad {
+      border-color: rgba(255,107,130,.82);
+      background: rgba(255,107,130,.14);
+      color: #ffd6de;
+    }
+
+    .arena-log {
+      margin-top: .8rem;
+      border-radius: 12px;
+      border: 1px solid rgba(132,149,186,.35);
+      background: rgba(8,12,20,.82);
+      color: #9ad3ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .85rem;
+      padding: .72rem;
+      min-height: 62px;
+    }
+
+    .arena-progress {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(120,137,177,.25);
+      overflow: hidden;
+      margin-top: .7rem;
+    }
+
+    .arena-progress > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--warning), var(--danger));
+      transition: width .2s linear;
+    }
+
+    .arena-start {
+      margin-top: .75rem;
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+    }
+
+    .rank-box {
+      border: 1px solid rgba(14,230,184,.42);
+      background: rgba(14,230,184,.12);
+      color: #bbffe8;
+      border-radius: 12px;
+      padding: .7rem;
+      margin-top: .75rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .contact-cta {
+      padding: 1.35rem;
+      border-radius: 18px;
+      border: 1px solid rgba(62,201,255,.28);
+      background: linear-gradient(140deg, rgba(17,24,39,.94), rgba(12,18,31,.98));
+    }
+
+    .contact-tile {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      width: 100%;
+      text-decoration: none;
+      color: #e9efff;
+      font-weight: 600;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(19,27,43,.9);
+      padding: .92rem;
+      transition: all .22s ease;
+    }
+
+    .contact-tile i { color: #b8cdff; font-size: 1.2rem; }
+
+    .contact-tile:hover {
+      color: #fff;
+      transform: translateY(-3px);
+      border-color: rgba(124,92,255,.65);
+      background: rgba(26,35,56,.95);
+    }
+
+    .contact-pulse {
+      animation: pulseContact 1.6s ease-in-out infinite;
+      border-color: rgba(14,230,184,.65) !important;
+      box-shadow: 0 0 0 0 rgba(14,230,184,.35);
+    }
+
+    @keyframes pulseContact {
+      0% { box-shadow: 0 0 0 0 rgba(14,230,184,.32); }
+      70% { box-shadow: 0 0 0 14px rgba(14,230,184,0); }
+      100% { box-shadow: 0 0 0 0 rgba(14,230,184,0); }
+    }
+
+    .footer {
+      padding: 2rem 0;
+      border-top: 1px solid rgba(134,149,186,.3);
+      background: rgba(8,11,20,.82);
+    }
+
+    .footer-social { display: flex; gap: .75rem; }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #c7d5f5;
+      border: 1px solid rgba(134,149,186,.35);
+      background: rgba(17,24,39,.82);
+      text-decoration: none;
+      transition: all .22s ease;
+    }
+
+    .footer-social a:hover {
+      color: #fff;
+      border-color: rgba(124,92,255,.65);
+      background: rgba(124,92,255,.22);
+    }
+
+    .dock {
+      position: fixed;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: min(980px, calc(100vw - 18px));
+      z-index: 1029;
+      border-radius: 16px;
+      border: 1px solid rgba(132,149,186,.36);
+      background: rgba(7, 11, 20, .84);
+      backdrop-filter: blur(10px);
+      padding: .62rem .7rem;
+      box-shadow: 0 18px 38px rgba(0,0,0,.42);
+    }
+
+    .dock-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .6rem;
+      align-items: center;
+    }
+
+    .dock-title { font-size: .83rem; font-weight: 700; }
+    .dock-mini { font-size: .75rem; color: var(--muted); }
+
+    .xp-track {
+      margin-top: .45rem;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(120,137,177,.25);
+      overflow: hidden;
+    }
+
+    .xp-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      transition: width .35s ease;
+    }
+
+    .mission-chips {
+      margin-top: .5rem;
+      display: flex;
+      gap: .45rem;
+      flex-wrap: wrap;
+    }
+
+    .mission-chip {
+      font-size: .72rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: .24rem .56rem;
+      color: #9fb0d4;
+      border: 1px solid rgba(132,149,186,.32);
+      background: rgba(17,24,39,.72);
+      display: inline-flex;
+      align-items: center;
+      gap: .28rem;
+    }
+
+    .mission-chip.done {
+      color: #b8ffe8;
+      border-color: rgba(14,230,184,.58);
+      background: rgba(14,230,184,.14);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all .6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-top {
+      position: fixed;
+      right: 18px;
+      bottom: 104px;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(145deg, var(--primary), #4f46e5);
+      box-shadow: 0 14px 34px rgba(42,33,103,.65);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all .22s ease;
+      z-index: 1030;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 991.98px) {
+      body {
+        padding-top: 75px;
+        padding-bottom: 112px;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .arena-gif {
+        height: 170px;
+      }
+
+      .dock {
+        width: calc(100vw - 12px);
+        bottom: 6px;
+      }
+
+      .dock-title {
+        font-size: .78rem;
+      }
+
+      .dock-mini {
+        font-size: .7rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Cursor Personalizado e Efeitos -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
-  
- <!-- Substitua seu loading-overlay atual por este: -->
-<div class="loading-overlay">
-  <div class="premium-loader">
-    <svg class="logo-animation" width="150" height="150" viewBox="0 0 150 150">
-      <defs>
-        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#6d28d9" />
-          <stop offset="100%" stop-color="#10b981" />
-        </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
-      </defs>
-      
-      <!-- Círculo de fundo -->
-      <circle cx="75" cy="75" r="65" fill="none" stroke="rgba(124, 58, 237, 0.2)" stroke-width="2" />
-      
-      <!-- Arco de progresso animado -->
-      <circle class="progress-circle" cx="75" cy="75" r="65" fill="none" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" stroke-dasharray="408" stroke-dashoffset="408" />
-      
-      <!-- Iniciais ao centro -->
-      <text x="75" y="85" font-family="Poppins, sans-serif" font-size="40" font-weight="700" text-anchor="middle" fill="url(#gradient)" filter="url(#glow)">KL</text>
-      
-      <!-- Partículas decorativas -->
-      <g class="particles">
-        <circle class="particle" cx="75" cy="10" r="3" fill="#6d28d9" />
-        <circle class="particle" cx="140" cy="75" r="3" fill="#10b981" />
-        <circle class="particle" cx="75" cy="140" r="3" fill="#6d28d9" />
-        <circle class="particle" cx="10" cy="75" r="3" fill="#10b981" />
-        <circle class="particle" cx="120" cy="30" r="2" fill="#8b5cf6" />
-        <circle class="particle" cx="120" cy="120" r="2" fill="#34d399" />
-        <circle class="particle" cx="30" cy="120" r="2" fill="#8b5cf6" />
-        <circle class="particle" cx="30" cy="30" r="2" fill="#34d399" />
-      </g>
-    </svg>
-    
-    <div class="loader-text">Carregando Portifolio</div>
-    <div class="loader-dots">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </div>
-</div>
+  <div class="fx-grid" aria-hidden="true"></div>
+  <div class="fx-orb one" aria-hidden="true"></div>
+  <div class="fx-orb two" aria-hidden="true"></div>
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
 
-<!-- Adicione este CSS ao seu arquivo de estilos -->
-<style>
-.premium-loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-animation {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 1.5rem;
-}
-
-.progress-circle {
-  animation: progress 2s ease-out forwards, rotation 2s linear infinite;
-  transform-origin: center;
-}
-
-.loader-text {
-  font-family: var(--font-primary);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--color-text);
-  margin-bottom: 1rem;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  opacity: 0;
-  animation: fadeIn 0.5s ease 0.5s forwards;
-}
-
-.loader-dots {
-  display: flex;
-  gap: 8px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  animation: dotPulse 1.5s ease-in-out infinite;
-}
-
-.dot:nth-child(2) {
-  animation-delay: 0.2s;
-  background: var(--color-primary-light);
-}
-
-.dot:nth-child(3) {
-  animation-delay: 0.4s;
-  background: var(--color-secondary);
-}
-
-.particles .particle {
-  opacity: 0;
-  animation: particleAnimation 3s ease-in-out infinite;
-}
-
-.particles .particle:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.particles .particle:nth-child(2) {
-  animation-delay: 0.4s;
-}
-
-.particles .particle:nth-child(3) {
-  animation-delay: 0.8s;
-}
-
-.particles .particle:nth-child(4) {
-  animation-delay: 1.2s;
-}
-
-.particles .particle:nth-child(5) {
-  animation-delay: 1.6s;
-}
-
-.particles .particle:nth-child(6) {
-  animation-delay: 2.0s;
-}
-
-.particles .particle:nth-child(7) {
-  animation-delay: 2.4s;
-}
-
-.particles .particle:nth-child(8) {
-  animation-delay: 2.8s;
-}
-
-@keyframes progress {
-  0% {
-    stroke-dashoffset: 408;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes dotPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 1;
-  }
-}
-
-@keyframes particleAnimation {
-  0% {
-    opacity: 0;
-    transform: scale(0) translateY(0);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1) translateY(-10px);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(1) translateY(10px);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0) translateY(0);
-  }
-}
-</style>
-
-<!-- Atualize a função de carregamento no seu script.js -->
-<script>
-// Substituir a função de carregamento no script.js
-window.addEventListener('load', () => {
-  const loadingOverlay = document.querySelector('.loading-overlay');
-  const progressCircle = document.querySelector('.progress-circle');
-  
-  // Resetar a animação para garantir que ela execute corretamente
-  if (progressCircle) {
-    progressCircle.style.animation = 'none';
-    void progressCircle.offsetWidth; // Trigger reflow
-    progressCircle.style.animation = 'progress 2s ease-out forwards, rotation 2s linear infinite';
-  }
-  
-  // Adicionar uma pequena demora para garantir que as animações sejam vistas
-  setTimeout(() => {
-    loadingOverlay.classList.add('fade-out');
-    
-    setTimeout(() => {
-      loadingOverlay.style.display = 'none';
-      document.body.classList.add('loaded');
-      
-      // Adicionar classe para animar elementos na página
-      document.querySelectorAll('.fade-in').forEach((el, index) => {
-        setTimeout(() => {
-          el.classList.add('visible');
-        }, 100 * index);
-      });
-    }, 500);
-  }, 2500); // Duração um pouco maior para mostrar a animação
-});
-</script>
-
-  <!-- Header e Navegação -->
-  <header class="header">
+  <nav class="navbar navbar-expand-lg fixed-top top-nav" id="mainNav">
     <div class="container">
-      <div class="logo">
-        <a href="#" class="logo-link">
-          <span class="logo-icon">KL</span>
-          <span class="logo-text">Kauan Lauer</span>
-        </a>
-      </div>
-      
-      <nav class="nav">
-  <ul class="nav-list">
-    <li class="nav-item"><a href="#about" class="nav-link">Sobre</a></li>
-    <li class="nav-item"><a href="#projects" class="nav-link">Projetos</a></li>
-    <li class="nav-item"><a href="#skills" class="nav-link">Habilidades</a></li>
-    <li class="nav-item"><a href="curriculo.html" class="nav-link" target="_blank">Currículo</a></li>
-    <li class="nav-item"><a href="#tcc" class="nav-link">TCC</a></li>
-    <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li>
-  </ul>
-</nav>
-      
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span class="menu-toggle-bar"></span>
-        <span class="menu-toggle-bar"></span>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+        <span class="brand-chip">KL</span>
+        <span class="fw-bold text-light">Kauan Lauer</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Abrir menu">
+        <i class="bi bi-list fs-2 text-light"></i>
       </button>
+
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mt-3 mt-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#habilidades">Habilidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experiencia">Experiência</a></li>
+          <li class="nav-item"><a class="nav-link" href="#challenge">SOC Arena</a></li>
+          <li class="nav-item"><a class="nav-link" href="KauanWin.html">KauanWin XP</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-main btn-sm" href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Currículo</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-video-wrap" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="fundo.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <span class="kicker reveal"><i class="bi bi-cpu"></i> Técnico de TI & Suporte Headsoft</span>
+          <h1 class="hero-title reveal"><span class="gradient">Da falha crítica ao sistema estável. Rápido, técnico, sem achismo.</span></h1>
+          <p class="hero-sub reveal">Especialista em suporte técnico, manutenção e automação. Atualmente garantindo a estabilidade de sistemas na <strong>Headsoft</strong> com foco em <strong>SQL Server</strong>, <strong>Redes</strong>, <strong>Helpdesk</strong>, <strong>3CX</strong> e <strong>Headcargo</strong>.</p>
+
+          <div class="hero-actions reveal">
+            <a href="#contato" class="btn btn-main btn-lg" id="ctaContato">Fale comigo</a>
+            <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Ver currículo</a>
+          </div>
+
+          <div class="kauanwin-promo reveal">
+            <p><strong>Novo:</strong> experimente meu portfólio em modo sistema operacional no <strong>KauanWin XP</strong>.</p>
+            <a href="KauanWin.html" class="btn btn-kauanwin" target="_blank" rel="noopener">Abrir KauanWin</a>
+          </div>
+
+          <div class="hero-metrics reveal">
+            <div class="metric"><strong>SQL Server</strong><span>Consultas e manutenção</span></div>
+            <div class="metric"><strong>3CX + Teams</strong><span>Telefonia e comunicação</span></div>
+            <div class="metric"><strong>Helpdesk</strong><span>Suporte com SLA eficiente</span></div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="profile-card reveal" id="tiltCard">
+            <img class="profile-image" src="eu2.JPG" alt="Kauan Lauer">
+            <div class="badge-stack">
+              <span class="pill">SQL Server</span>
+              <span class="pill">3CX</span>
+              <span class="pill">Headcargo</span>
+              <span class="pill">Redes</span>
+              <span class="pill">Suporte TI</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Menu Mobile -->
-  <div class="mobile-menu">
-    <div class="mobile-menu-container">
-      <ul class="mobile-nav-list">
-        <li class="mobile-nav-item"><a href="#about" class="mobile-nav-link">Sobre</a></li>
-        <li class="mobile-nav-item"><a href="#projects" class="mobile-nav-link">Projetos</a></li>
-        <li class="mobile-nav-item"><a href="#skills" class="mobile-nav-link">Habilidades</a></li>
-        <li class="mobile-nav-item"><a href="#tcc" class="mobile-nav-link">TCC</a></li>
-        <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contato</a></li>
-      </ul>
-      
-      <div class="mobile-social">
-        <a href="https://github.com/kauanlauer" target="_blank" class="mobile-social-link" aria-label="GitHub">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-        </a>
-        <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="mobile-social-link" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
-        </a>
-        <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="mobile-social-link" aria-label="WhatsApp">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Seção Hero -->
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="noise"></div>
-      <div class="hero-gradient"></div>
-    </div>
-
-    <div id="hero-canvas-container" class="hero-canvas-container"></div>
-
-    <div class="video-background">
-      <video autoplay muted loop playsinline id="hero-video">
-        <source src="./fundo.mp4" type="video/mp4">
-      </video>
-      <div class="video-overlay"></div>
-    </div>
-
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-intro fade-in">
-          <h1 class="hero-title">
-            <span class="hero-greeting">Olá, eu sou</span>
-            <span class="hero-name">Kauan Lauer</span>
-            <span class="hero-occupation">Desenvolvedor Front-end<br>& Analista de Sistemas</span>
-          </h1>
-          
-          <p class="hero-description">
-            Transformando ideias em experiências digitais intuitivas e impactantes
-          </p>
-          
-          <div class="hero-cta">
-            <a href="#projects" class="button primary">Ver projetos</a>
-            <a href="#contact" class="button secondary">Contato</a>
-          </div>
+  <main>
+    <section id="sobre">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag mb-2">Quem sou</p>
+          <h2 class="section-title mb-0">Perfil técnico atualizado</h2>
         </div>
-        
-        <div class="hero-image fade-in">
-          <div class="image-wrapper">
-            <img src="eu.png" alt="Kauan Lauer" class="profile-image">
-            <div class="image-decoration"></div>
+
+        <div class="row g-3">
+          <div class="col-lg-8">
+            <article class="surface about-card reveal">
+              <p class="soft">Sou <strong>Erick Kauan dos Santos Pereira Lauer</strong>, profissional de TI residente em Curitiba - PR. Minha atuação é voltada à estabilidade de ambientes corporativos, resolução de incidentes e melhoria contínua de processos.</p>
+              <p class="soft mb-0">Graduado em <strong>Análise e Desenvolvimento de Sistemas</strong> (conclusão em <strong>Agosto de 2025</strong>), conecto visão técnica com execução prática para manter operação sem interrupções.</p>
+            </article>
+          </div>
+          <div class="col-lg-4">
+            <article class="surface about-card reveal">
+              <h3 class="h5 mb-3">Foco atual</h3>
+              <p class="focus-box mb-0">Na <strong>Headsoft</strong>, atuo com <strong>SQL Server</strong>, <strong>VS Code</strong>, <strong>Headcargo</strong> e <strong>3CX</strong> para garantir disponibilidade de sistemas e suporte técnico de alto padrão.</p>
+            </article>
           </div>
         </div>
       </div>
-    </div>
-    <br><br>
-    <div class="scroll-indicator">
-      <span class="scroll-text">Scroll</span>
-      <span class="scroll-line"></span>
-    </div>
-  </section>
+    </section>
 
-  <!-- Sobre Mim -->
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Quem sou</span>
-        <h2 class="section-title">Sobre Mim</h2>
-      </div>
-      
-      <div class="about-content">
-        <div class="about-image">
-          <img src="tela.gif" alt="Kauan Lauer" class="about-img">
-          <div class="about-image-decoration"></div>
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag mb-2">Stack Tecnológica</p>
+          <h2 class="section-title mb-0">Habilidades que geram resultado</h2>
         </div>
-        
-        <div class="about-text">
-          <h3 class="about-name">Erick Kauan dos Santos Pereira Lauer</h3>
-          
-          <p class="about-paragraph">
-            Olá! Sou apaixonado pelo mundo da tecnologia e desenvolvimento. Nascido em 24 de agosto 1998, em Curitiba – PR, onde atualmente resido e construo minha carreira.
-          </p>
-          
-          <p class="about-paragraph">
-            Como estudante de Análise e Desenvolvimento de Sistemas pela UniEnsino – Centro Universitário do Paraná, tenho me dedicado a aprimorar minhas habilidades técnicas e conhecimentos na área.
-          </p>
-          
-          <p class="about-paragraph">
-            Minha paixão pela tecnologia começou na adolescência e se fortaleceu ao longo da minha jornada acadêmica, onde desenvolvi habilidades em lógica de programação, algoritmos e diversas linguagens como HTML, CSS, JavaScript, C e Java.
-          </p>
-          
-          <p class="about-paragraph">
-            Encontrei minha realização profissional no desenvolvimento web e na programação em VBA do Excel, onde pude criar planilhas totalmente sistematizadas. Atualmente, estou focado em aperfeiçoar meu inglês e agregar valor ao meu trabalho, com o objetivo futuro de encontrar oportunidades no exterior.
-          </p>
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 skills-grid">
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-database"></i></div><div class="skill-title">SQL Server</div><p class="soft mb-0">Administração, consultas e suporte a dados críticos.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-telephone-forward"></i></div><div class="skill-title">3CX & Teams</div><p class="soft mb-0">Telefonia VOIP e comunicação corporativa.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-code-slash"></i></div><div class="skill-title">VS Code & Web</div><p class="soft mb-0">Scripts e automações com HTML, CSS e JS.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-box-seam"></i></div><div class="skill-title">Headcargo</div><p class="soft mb-0">Operação e suporte especializado no sistema.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-hdd-stack"></i></div><div class="skill-title">Formatação</div><p class="soft mb-0">Instalação de Windows, drivers e manutenção.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-router"></i></div><div class="skill-title">Redes</div><p class="soft mb-0">Configuração de conectividade e suporte local.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-life-preserver"></i></div><div class="skill-title">Helpdesk</div><p class="soft mb-0">Diagnóstico ágil com foco em resolução.</p></article></div>
+          <div class="col reveal"><article class="surface skill-card"><div class="skill-icon"><i class="bi bi-speedometer2"></i></div><div class="skill-title">Performance</div><p class="soft mb-0">Otimização de rotina e redução de retrabalho.</p></article></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Habilidades -->
-  <section id="skills" class="section skills">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Competências</span>
-        <h2 class="section-title">Minhas Habilidades</h2>
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag mb-2">Trajetória</p>
+          <h2 class="section-title mb-0">Experiência profissional</h2>
+        </div>
+
+        <div class="timeline reveal">
+          <article class="timeline-item">
+            <div class="timeline-role">Técnico de Suporte de TI</div>
+            <div class="timeline-company">Headsoft Desenvolvimento de Sistemas</div>
+            <div class="timeline-time">Curitiba, PR | Out/2025 - Atual</div>
+            <ul>
+              <li>Suporte técnico avançado com SQL Server e VS Code.</li>
+              <li>Gestão de comunicação via Teams e telefonia 3CX.</li>
+              <li>Manutenção de hardware, formatação e padronização de máquinas.</li>
+              <li>Suporte ao Headcargo e implementação de automações.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-role">Analista Logístico</div>
+            <div class="timeline-company">MANUPACKAGING FITASA DO BRASIL SA</div>
+            <div class="timeline-time">Curitiba, PR | Ago/2021 - Out/2025</div>
+            <ul>
+              <li>Análise de dados com Excel VBA e SAP.</li>
+              <li>Automações para ganho operacional em produção e logística.</li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-role">Análise e Desenvolvimento de Sistemas</div>
+            <div class="timeline-company">Faculdade Uniensino</div>
+            <div class="timeline-time">Concluído em Ago/2025</div>
+          </article>
+        </div>
       </div>
-      
-      <div class="skills-content">
-        <div class="skills-category">
-          <h3 class="skills-category-title">Front-end</h3>
-          <ul class="skills-list">
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">HTML5</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 90%"></div>
+    </section>
+
+    <section id="challenge">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag mb-2">SOC Arena</p>
+          <h2 class="section-title mb-0">Simulador de Incidentes (modo entrevistador)</h2>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-lg-8 reveal">
+            <article class="arena-card" id="arenaCard">
+              <div class="arena-head">
+                <div>
+                  <h3 class="h5 mb-0">Round <span id="roundIndex">0</span>/<span id="roundTotal">0</span></h3>
+                  <small class="soft">Escolha a melhor ação técnica para cada cenário.</small>
+                </div>
+                <div class="arena-stats">
+                  <span class="stat-badge">Score: <span id="scoreValue">0</span></span>
+                  <span class="stat-badge">Combo: <span id="comboValue">0</span></span>
+                  <span class="stat-badge">Tempo: <span id="timeValue">0</span>s</span>
                 </div>
               </div>
-            </li>
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">CSS3</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 90%"></div>
-                </div>
-              </div>
-            </li>
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">JavaScript</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 80%"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="skills-category">
-          <h3 class="skills-category-title">Back-end & Outros</h3>
-          <ul class="skills-list">
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">PHP</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 80%"></div>
-                </div>
-              </div>
-            </li>
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">MySQL</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 50%"></div>
-                </div>
-              </div>
-            </li>
-            <li class="skill-item">
-              <div class="skill-icon">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VBA Excel">
-              </div>
-              <div class="skill-info">
-                <h4 class="skill-name">VBA Excel</h4>
-                <div class="skill-level">
-                  <div class="skill-progress" style="width: 90%"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Projetos -->
-  <section id="projects" class="section projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Meu Trabalho</span>
-        <h2 class="section-title">Projetos Recentes</h2>
-      </div>
-      
-      <!-- SUBSTITUA TODO O CONTEÚDO DA DIV "projects-grid" POR ESTE CÓDIGO -->
-<div class="projects-grid">
-  <!-- Projeto 1 -->
-   
-  <article class="project-card">
-    <div class="project-top">
-      <div class="project-header">
-        <h3 class="project-title">Metálica Colombo</h3>
-        <span class="project-status">Concluído</span>
-      </div>
-      
-      <div class="project-details">
-        <div class="project-detail">
-          <span class="detail-label">Tipo</span>
-          <span class="detail-value">Sistema de Gerenciamento</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Cliente</span>
-          <span class="detail-value">Metálica Colombo</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Data</span>
-          <span class="detail-value">2024</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-content">
-      <div class="project-tech-showcase">
-        <h4 class="tech-title">Tecnologias</h4>
-        <div class="tech-grid">
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-            </span>
-            <span class="tech-name">HTML5</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-            </span>
-            <span class="tech-name">CSS3</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-            </span>
-            <span class="tech-name">JavaScript</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-description-container">
-        <h4 class="description-title">Sobre o Projeto</h4>
-        <p class="project-description">
-          Desenvolvimento de uma solução web completa para gerenciamento de estoque e vendas para a empresa Metálica Colombo. O sistema permite controle total do inventário, processamento de pedidos e geração de relatórios personalizados.
-        </p>
-        
-        <div class="project-highlights">
-          <h4 class="highlights-title">Destaques</h4>
-          <ul class="highlights-list">
-            <li>Interface responsiva otimizada para desktop e dispositivos móveis</li>
-            <li>Sistema de autenticação seguro com múltiplos níveis de acesso</li>
-            <li>Painel administrativo intuitivo para gerenciamento de produtos</li>
-            <li>Integração com banco de dados para armazenamento eficiente</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="project-actions">
-        <a href="https://kauanlauer.github.io/gabriel/" class="project-link primary" target="_blank">
-          <span class="link-text">Ver Demonstração</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-       
-      </div>
-    </div>
-  </article>
-  
-  <!-- Projeto 2 -->
-  <article class="project-card">
-    <div class="project-top">
-      <div class="project-header">
-        <h3 class="project-title">Bruno e Eduardo</h3>
-        <span class="project-status">Em Dsenvolvimento</span>
-      </div>
-      
-      <div class="project-details">
-        <div class="project-detail">
-          <span class="detail-label">Tipo</span>
-          <span class="detail-value">Website Responsivo</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Cliente</span>
-          <span class="detail-value">Bruno e Eduardo</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Data</span>
-          <span class="detail-value">2025</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-content">
-      <div class="project-tech-showcase">
-        <h4 class="tech-title">Tecnologias</h4>
-        <div class="tech-grid">
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-            </span>
-            <span class="tech-name">HTML5</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-            </span>
-            <span class="tech-name">CSS3</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-            </span>
-            <span class="tech-name">JavaScript</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-description-container">
-        <h4 class="description-title">Sobre o Projeto</h4>
-        <p class="project-description">
-          Projeto colaborativo desenvolvido para atender às necessidades específicas de Bruno e Eduardo. O site apresenta design moderno e responsivo, com foco na experiência do usuário e no desempenho em dispositivos móveis.
-        </p>
-        
-        <div class="project-highlights">
-          <h4 class="highlights-title">Destaques</h4>
-          <ul class="highlights-list">
-            <li>Design responsivo com abordagem mobile-first</li>
-            <li>Animações suaves e interativas com JavaScript puro</li>
-            <li>Otimização de performance com carregamento assíncrono</li>
-            <li>Layout moderno adaptado às necessidades específicas do cliente</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="project-actions">
-        <a href="https://kauanlauer.github.io/BrunoEeduardo/" class="project-link primary" target="_blank">
-          <span class="link-text">Ver Demonstração</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-        
-      </div>
-    </div>
-  </article>
+              <img id="scenarioGif" class="arena-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTYweWg1bGNzY2RtZXN2NXB6eGQxM2p4MXRjM3VqM2I2YW5lMWY3eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT9IgzoKnwFNmISR8I/giphy.gif" alt="Cenário tecnológico animado">
 
-<!-- Adicione este card de projeto à div "projects-grid" no seu HTML -->
-<article class="project-card">
-  <div class="project-top">
-    <div class="project-header">
-      <h3 class="project-title">Delícia D'Brownie</h3>
-      <span class="project-status">Concluído</span>
-    </div>
-    
-    <div class="project-details">
-      <div class="project-detail">
-        <span class="detail-label">Tipo</span>
-        <span class="detail-value">Sistema de Cardápio</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Cliente</span>
-        <span class="detail-value">Loja de Brownies</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Data</span>
-        <span class="detail-value">2025</span>
-      </div>
-    </div>
-  </div>
-  
-  <div class="project-content">
-    <div class="project-tech-showcase">
-      <h4 class="tech-title">Tecnologias</h4>
-      <div class="tech-grid">
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-          </span>
-          <span class="tech-name">HTML5</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-          </span>
-          <span class="tech-name">CSS3</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-          </span>
-          <span class="tech-name">JavaScript</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.337.405.83.61 1.48.61.246 0 .48-.033.7-.098l1.278.704.38-.697zm-2.986-2.057c-.21-.3-.316-.834-.316-1.6 0-.764.098-1.32.295-1.666.21-.376.505-.56.883-.56.38 0 .678.18.876.53.206.37.31.895.31 1.582 0 .812-.1 1.393-.295 1.743-.216.35-.518.524-.91.524-.28 0-.527-.13-.735-.386zm-8.58-2.473h.886c-.04-.773-.303-1.11-.793-1.11-.236 0-.437.082-.606.247-.16.165-.254.38-.275.642zm-4.39 2.656c-.104-.3-.156-.708-.156-1.227 0-.55.07-.97.2-1.272.13-.295.32-.506.57-.627-.112-.072-.206-.152-.285-.24-.114-.124-.164-.27-.164-.443 0-.124.035-.25.105-.375-.114-.072-.178-.17-.198-.293a.678.678 0 01.004-.146c0-.322.196-.55.59-.686.106-.036.27-.056.486-.056.563 0 .997.156 1.29.47.133.148.238.342.317.582.062.17.096.36.104.58l.01.24c0 .32-.113.55-.338.686-.14.08-.373.125-.695.133.318.106.523.283.617.53.077.202.115.432.115.69 0 .236-.037.452-.113.645a1.292 1.292 0 01-.334.53 1.257 1.257 0 01-.536.262c-.226.048-.536.072-.933.072-.38 0-.663-.026-.85-.08-.187-.053-.322-.16-.4-.313-.08-.164-.12-.405-.12-.722v-.102c0-.218.033-.376.097-.474.064-.096.193-.17.39-.216l.086-.02c.205-.047.454-.09.745-.12.157-.022.286-.048.39-.08.067-.02.127-.05.18-.084.054-.036.1-.08.138-.13zm.763-1.63c-.145.026-.31.05-.496.07l-.324.036c-.083.01-.146.018-.193.02-.049.004-.098.01-.145.018-.19.032-.295.134-.31.308v.393c0 .245.096.407.29.486.142.063.363.094.666.094.22 0 .406-.014.558-.044a.778.778 0 00.344-.164.467.467 0 00.178-.298c.014-.076.02-.18.02-.316 0-.21-.043-.363-.127-.454a.497.497 0 00-.38-.175l-.08.002z"></path></svg>
-          </span>
-          <span class="tech-name">SQL</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-description-container">
-      <h4 class="description-title">Sobre o Projeto</h4>
-      <p class="project-description">
-        Desenvolvimento de um sistema de cardápio digital completo para a Delícia D'Brownie, com banco de dados SQL para gerenciamento de produtos. O sistema inclui funcionalidades de e-commerce, permitindo aos clientes realizar pedidos online com rastreamento em tempo real.
-      </p>
-      
-      <div class="project-highlights">
-        <h4 class="highlights-title">Principais Funcionalidades</h4>
-        <ul class="highlights-list">
-          <li>Cardápio digital completo com categorias e filtragem</li>
-          <li>Sistema de carrinho de compras e checkout</li>
-          <li>Geração de links de rastreamento de pedidos para os clientes</li>
-          <li>Painel administrativo completo para a gerência da loja</li>
-          <li>Banco de dados SQL para gerenciamento de produtos e pedidos</li>
-          <li>Design responsivo para acesso em qualquer dispositivo</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="project-actions">
-      <a href="https://kauanlauer.github.io/reh" class="project-link primary" target="_blank">
-        <span class="link-text">Ver Demonstração</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-      </a>
-    
-    </div>
-  </div>
-</article>
-  
-  <!-- Projeto43: Renata, final - novos projetos abaixo! -->
+              <div class="arena-title" id="scenarioTitle">Clique em iniciar</div>
+              <p class="arena-desc" id="scenarioDesc">Você vai enfrentar 4 incidentes reais de operação e suporte.</p>
 
+              <div class="arena-options" id="arenaOptions"></div>
 
-<!-- CRM Project -->
-<article class="project-card">
-  <div class="project-top">
-    <div class="project-header">
-      <h3 class="project-title">Sistema CRM Completo</h3>
-      <span class="project-status">Concluído</span>
-    </div>
-    
-    <div class="project-details">
-      <div class="project-detail">
-        <span class="detail-label">Tipo</span>
-        <span class="detail-value">Sistema Empresarial</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Cliente</span>
-        <span class="detail-value">Múltiplas Empresas</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Data</span>
-        <span class="detail-value">2024</span>
-      </div>
-    </div>
-  </div>
-  
-  <div class="project-content">
-    <div class="project-tech-showcase">
-      <h4 class="tech-title">Tecnologias</h4>
-      <div class="tech-grid">
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-          </span>
-          <span class="tech-name">HTML5</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-          </span>
-          <span class="tech-name">CSS3</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-          </span>
-          <span class="tech-name">JavaScript</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 0 1-.305.847c-.143.255-.33.49-.561.703zm4.024.715l.543-2.799c.063-.318.039-.536-.068-.651-.107-.116-.336-.174-.687-.174H11.46l-.704 3.625H9.388l1.23-6.327h1.367l-.327 1.682h1.218c.767 0 1.295.134 1.586.401s.378.7.263 1.299l-.572 2.944h-1.389zm7.597-2.265a2.782 2.782 0 0 1-.305.847c-.143.255-.33.49-.561.703a2.44 2.44 0 0 1-.917.551c-.336.108-.765.164-1.286.164h-1.18l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.417.477 1.001.331 1.751zM17.766 10.207h-.943l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.551-1.049.092-.47.049-.802-.125-.995s-.524-.29-1.047-.29z"></path></svg>
-          </span>
-          <span class="tech-name">PHP</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.337.405.83.61 1.48.61.246 0 .48-.033.7-.098l1.278.704.38-.697zm-2.986-2.057c-.21-.3-.316-.834-.316-1.6 0-.764.098-1.32.295-1.666.21-.376.505-.56.883-.56.38 0 .678.18.876.53.206.37.31.895.31 1.582 0 .812-.1 1.393-.295 1.743-.216.35-.518.524-.91.524-.28 0-.527-.13-.735-.386zm-8.58-2.473h.886c-.04-.773-.303-1.11-.793-1.11-.236 0-.437.082-.606.247-.16.165-.254.38-.275.642zm-4.39 2.656c-.104-.3-.156-.708-.156-1.227 0-.55.07-.97.2-1.272.13-.295.32-.506.57-.627-.112-.072-.206-.152-.285-.24-.114-.124-.164-.27-.164-.443 0-.124.035-.25.105-.375-.114-.072-.178-.17-.198-.293a.678.678 0 01.004-.146c0-.322.196-.55.59-.686.106-.036.27-.056.486-.056.563 0 .997.156 1.29.47.133.148.238.342.317.582.062.17.096.36.104.58l.01.24c0 .32-.113.55-.338.686-.14.08-.373.125-.695.133.318.106.523.283.617.53.077.202.115.432.115.69 0 .236-.037.452-.113.645a1.292 1.292 0 01-.334.53 1.257 1.257 0 01-.536.262c-.226.048-.536.072-.933.072-.38 0-.663-.026-.85-.08-.187-.053-.322-.16-.4-.313-.08-.164-.12-.405-.12-.722v-.102c0-.218.033-.376.097-.474.064-.096.193-.17.39-.216l.086-.02c.205-.047.454-.09.745-.12.157-.022.286-.048.39-.08.067-.02.127-.05.18-.084.054-.036.1-.08.138-.13zm.763-1.63c-.145.026-.31.05-.496.07l-.324.036c-.083.01-.146.018-.193.02-.049.004-.098.01-.145.018-.19.032-.295.134-.31.308v.393c0 .245.096.407.29.486.142.063.363.094.666.094.22 0 .406-.014.558-.044a.778.778 0 00.344-.164.467.467 0 00.178-.298c.014-.076.02-.18.02-.316 0-.21-.043-.363-.127-.454a.497.497 0 00-.38-.175l-.08.002z"></path></svg>
-          </span>
-          <span class="tech-name">MySQL</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-description-container">
-      <h4 class="description-title">Sobre o Projeto</h4>
-      <p class="project-description">
-        Sistema CRM (Customer Relationship Management) completo desenvolvido para gerenciamento de usuários, pedidos, ordem de serviços, garantia e controle financeiro. Este projeto integra um banco de dados MySQL para armazenamento e recuperação de dados em tempo real.
-      </p>
-      
-      <div class="project-highlights">
-        <h4 class="highlights-title">Principais Funcionalidades</h4>
-        <ul class="highlights-list">
-          <li>Cadastro e gestão completa de clientes com histórico de interações</li>
-          <li>Sistema de ordens de serviço com controle de status e prazos</li>
-          <li>Emissão e controle de garantias de produtos e serviços</li>
-          <li>Dashboard financeiro com indicadores de desempenho</li>
-          <li>Relatórios personalizados para análise de dados</li>
-          <li>Níveis de acesso diferenciados por perfil de usuário</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="project-actions">
-      <a href="https://kauanlauer.github.io/CRM/" class="project-link primary" target="_blank">
-        <span class="link-text">Ver Demonstração</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-      </a>
-    </div>
-  </div>
-</article>
+              <div class="arena-log" id="arenaLog">Aguardando inicialização da missão.</div>
+              <div class="arena-progress"><span id="arenaTimerBar"></span></div>
 
-<!-- Sistema de Cardápio de Páscoa Project -->
-<article class="project-card">
-  <div class="project-top">
-    <div class="project-header">
-      <h3 class="project-title">Sistema de Cardápio para Páscoa</h3>
-      <span class="project-status">Concluído</span>
-    </div>
-    
-    <div class="project-details">
-      <div class="project-detail">
-        <span class="detail-label">Tipo</span>
-        <span class="detail-value">E-commerce Sazonal</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Cliente</span>
-        <span class="detail-value">Confeitaria</span>
-      </div>
-      <div class="project-detail">
-        <span class="detail-label">Data</span>
-        <span class="detail-value">2024</span>
-      </div>
-    </div>
-  </div>
-  
-  <div class="project-content">
-    <div class="project-tech-showcase">
-      <h4 class="tech-title">Tecnologias</h4>
-      <div class="tech-grid">
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-          </span>
-          <span class="tech-name">HTML5</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-          </span>
-          <span class="tech-name">CSS3</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-          </span>
-          <span class="tech-name">JavaScript</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
-          </span>
-          <span class="tech-name">WhatsApp API</span>
-        </div>
-        <div class="tech-item">
-          <span class="tech-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 0 1-.305.847c-.143.255-.33.49-.561.703zm4.024.715l.543-2.799c.063-.318.039-.536-.068-.651-.107-.116-.336-.174-.687-.174H11.46l-.704 3.625H9.388l1.23-6.327h1.367l-.327 1.682h1.218c.767 0 1.295.134 1.586.401s.378.7.263 1.299l-.572 2.944h-1.389zm7.597-2.265a2.782 2.782 0 0 1-.305.847c-.143.255-.33.49-.561.703a2.44 2.44 0 0 1-.917.551c-.336.108-.765.164-1.286.164h-1.18l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.417.477 1.001.331 1.751zM17.766 10.207h-.943l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.551-1.049.092-.47.049-.802-.125-.995s-.524-.29-1.047-.29z"></path></svg>
-          </span>
-          <span class="tech-name">PHP</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-description-container">
-      <h4 class="description-title">Sobre o Projeto</h4>
-      <p class="project-description">
-        Sistema de cardápio digital para a temporada de Páscoa, com integração ao WhatsApp e funcionalidade de carrinho de compras. Este projeto permite que os clientes visualizem os produtos disponíveis, adicionem ao carrinho e finalizem o pedido diretamente pelo WhatsApp do estabelecimento.
-      </p>
-      
-      <div class="project-highlights">
-        <h4 class="highlights-title">Principais Funcionalidades</h4>
-        <ul class="highlights-list">
-          <li>Catálogo de produtos festivos com imagens e descrições detalhadas</li>
-          <li>Sistema de carrinho de compras interativo e responsivo</li>
-          <li>Integração direta com WhatsApp para finalização dos pedidos</li>
-          <li>Painel administrativo com CRUD completo para gerenciamento de produtos</li>
-          <li>Design temático sazonal adaptável para diferentes épocas do ano</li>
-          <li>Funcionalidade de busca e filtragem de produtos por categoria</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="project-actions">
-      <a href="https://kauanlauer.github.io/reh/pascoa.html" class="project-link primary" target="_blank">
-        <span class="link-text">Ver Demonstração</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-      </a>
-    </div>
-  </div>
-</article>
-
-
-
-  
-  <!-- Projeto 3: TCC (destaque) -->
-  <article class="project-card featured">
-    <div class="project-top">
-      <div class="project-header">
-        <h3 class="project-title">Meu TCC - Análise e Desenvolvimento de Sistemas</h3>
-        <span class="project-status status-featured">Destaque</span>
-      </div>
-      
-      <div class="project-details">
-        <div class="project-detail">
-          <span class="detail-label">Tipo</span>
-          <span class="detail-value">Sistema Completo</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Instituição</span>
-          <span class="detail-value">UniEnsino</span>
-        </div>
-        <div class="project-detail">
-          <span class="detail-label">Data</span>
-          <span class="detail-value">2024</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="project-content">
-      <div class="project-tech-showcase">
-        <h4 class="tech-title">Tecnologias</h4>
-        <div class="tech-grid">
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z"></path></svg>
-            </span>
-            <span class="tech-name">HTML5</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm17.09 4.413L5.41 4.41l.213 2.622 10.125.002-.255 2.716h-6.64l.24 2.573h6.182l-.366 3.523-2.91.804-2.956-.81-.188-2.11h-2.61l.29 3.855L12 19.288l5.373-1.53L18.59 4.414v-.001z"></path></svg>
-            </span>
-            <span class="tech-name">CSS3</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"></path></svg>
-            </span>
-            <span class="tech-name">JavaScript</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.01 10.207h-.944l-.515 2.648h.838c.556 0 .97-.105 1.242-.314.272-.21.455-.559.55-1.049.092-.47.05-.802-.124-.995-.175-.193-.523-.29-1.047-.29zM12 5.688C5.373 5.688 0 8.514 0 12s5.373 6.313 12 6.313S24 15.486 24 12c0-3.486-5.373-6.312-12-6.312zm-3.26 7.451c-.261.25-.575.438-.917.551-.336.108-.765.164-1.285.164H5.357l-.327 1.681H3.652l1.23-6.326h2.65c.797 0 1.378.209 1.744.628.366.418.476 1.002.33 1.752a2.836 2.836 0 0 1-.305.847c-.143.255-.33.49-.561.703zm4.024.715l.543-2.799c.063-.318.039-.536-.068-.651-.107-.116-.336-.174-.687-.174H11.46l-.704 3.625H9.388l1.23-6.327h1.367l-.327 1.682h1.218c.767 0 1.295.134 1.586.401s.378.7.263 1.299l-.572 2.944h-1.389zm7.597-2.265a2.782 2.782 0 0 1-.305.847c-.143.255-.33.49-.561.703a2.44 2.44 0 0 1-.917.551c-.336.108-.765.164-1.286.164h-1.18l-.327 1.682h-1.378l1.23-6.326h2.649c.797 0 1.378.209 1.744.628.366.417.477 1.001.331 1.751zM17.766 10.207h-.943l-.516 2.648h.838c.557 0 .971-.105 1.242-.314.272-.21.455-.559.551-1.049.092-.47.049-.802-.125-.995s-.524-.29-1.047-.29z"></path></svg>
-            </span>
-            <span class="tech-name">PHP</span>
-          </div>
-          <div class="tech-item">
-            <span class="tech-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.337.405.83.61 1.48.61.246 0 .48-.033.7-.098l1.278.704.38-.697zm-2.986-2.057c-.21-.3-.316-.834-.316-1.6 0-.764.098-1.32.295-1.666.21-.376.505-.56.883-.56.38 0 .678.18.876.53.206.37.31.895.31 1.582 0 .812-.1 1.393-.295 1.743-.216.35-.518.524-.91.524-.28 0-.527-.13-.735-.386zm-8.58-2.473h.886c-.04-.773-.303-1.11-.793-1.11-.236 0-.437.082-.606.247-.16.165-.254.38-.275.642zm-4.39 2.656c-.104-.3-.156-.708-.156-1.227 0-.55.07-.97.2-1.272.13-.295.32-.506.57-.627-.112-.072-.206-.152-.285-.24-.114-.124-.164-.27-.164-.443 0-.124.035-.25.105-.375-.114-.072-.178-.17-.198-.293a.678.678 0 01.004-.146c0-.322.196-.55.59-.686.106-.036.27-.056.486-.056.563 0 .997.156 1.29.47.133.148.238.342.317.582.062.17.096.36.104.58l.01.24c0 .32-.113.55-.338.686-.14.08-.373.125-.695.133.318.106.523.283.617.53.077.202.115.432.115.69 0 .236-.037.452-.113.645a1.292 1.292 0 01-.334.53 1.257 1.257 0 01-.536.262c-.226.048-.536.072-.933.072-.38 0-.663-.026-.85-.08-.187-.053-.322-.16-.4-.313-.08-.164-.12-.405-.12-.722v-.102c0-.218.033-.376.097-.474.064-.096.193-.17.39-.216l.086-.02c.205-.047.454-.09.745-.12.157-.022.286-.048.39-.08.067-.02.127-.05.18-.084.054-.036.1-.08.138-.13zm.763-1.63c-.145.026-.31.05-.496.07l-.324.036c-.083.01-.146.018-.193.02-.049.004-.098.01-.145.018-.19.032-.295.134-.31.308v.393c0 .245.096.407.29.486.142.063.363.094.666.094.22 0 .406-.014.558-.044a.778.778 0 00.344-.164.467.467 0 00.178-.298c.014-.076.02-.18.02-.316 0-.21-.043-.363-.127-.454a.497.497 0 00-.38-.175l-.08.002z"></path></svg>
-            </span>
-            <span class="tech-name">MySQL</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="project-description-container">
-        <h4 class="description-title">Sobre o Projeto</h4>
-        <p class="project-description">
-          Meu Trabalho de Conclusão de Curso em Análise e Desenvolvimento de Sistemas foi focado na criação de um sistema integrado para gerenciamento empresarial, com funcionalidades específicas para controle de estoque, vendas e relacionamento com clientes.
-        </p>
-        
-        <div class="project-highlights">
-          <h4 class="highlights-title">Principais Características</h4>
-          <ul class="highlights-list">
-            <li>Sistema completo com front-end responsivo e back-end integrado</li>
-            <li>Banco de dados relacional com modelagem eficiente</li>
-            <li>Arquitetura MVC implementada com PHP</li>
-            <li>APIs RESTful para comunicação entre cliente e servidor</li>
-            <li>Sistema de autenticação e controle de acesso</li>
-            <li>Geração de relatórios e dashboards analíticos</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="project-actions">
-       
-        <a href="preprojeto_tcc.pdf" download="PreProjeto_TCC_Kauan_Lauer.pdf" class="project-link secondary">
-          <span class="link-text">Baixar Documentação</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-        </a>
-      </div>
-    </div>
-  </article>
-
-</div>
-
-      
-      <div class="tcc-document">
-        <iframe src="preprojeto_tcc.pdf" class="tcc-pdf" title="Pré-Projeto TCC"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contato -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Vamos Conversar</span>
-        <h2 class="section-title">Entre em Contato</h2>
-      </div>
-      
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="contact-intro">
-            <h3 class="contact-title">Vamos trabalhar juntos?</h3>
-            <p class="contact-text">
-              Estou disponível para projetos freelance, oportunidades de trabalho e colaborações. 
-              Entre em contato para conversarmos sobre como posso ajudar a tornar sua ideia realidade.
-            </p>
-          </div>
-          
-          <ul class="contact-list">
-            <li class="contact-item">
-              <div class="contact-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <div class="arena-start">
+                <button type="button" class="btn btn-main" id="startArenaBtn"><i class="bi bi-controller"></i> Iniciar missão</button>
+                <button type="button" class="btn btn-ghost" id="restartArenaBtn"><i class="bi bi-arrow-repeat"></i> Reiniciar</button>
               </div>
-              <div class="contact-detail">
-                <h4 class="detail-label">Email</h4>
-                <a href="mailto:erickkauanlauer@gmail.com" class="detail-value">erickkauanlauer@gmail.com</a>
-              </div>
-            </li>
-            <li class="contact-item">
-              <div class="contact-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-              </div>
-              <div class="contact-detail">
-                <h4 class="detail-label">WhatsApp</h4>
-                <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="detail-value">+55 (41) 99942-6605</a>
-              </div>
-            </li>
-            <li class="contact-item">
-              <div class="contact-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-              </div>
-              <div class="contact-detail">
-                <h4 class="detail-label">Localização</h4>
-                <span class="detail-value">Curitiba, Paraná - Brasil</span>
-              </div>
-            </li>
-          </ul>
-          
-          <div class="social-links">
-            <a href="https://github.com/kauanlauer" target="_blank" class="social-link" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="social-link" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
-            </a>
-            <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="social-link" aria-label="WhatsApp">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
-            </a>
+
+              <div class="rank-box" id="rankBox"></div>
+            </article>
+          </div>
+
+          <div class="col-lg-4 reveal">
+            <article class="surface about-card">
+              <h3 class="h5 mb-2">Como funciona</h3>
+              <p class="soft mb-2">Você recebe incidentes e precisa escolher a melhor resposta técnica.</p>
+              <ul class="soft mb-0">
+                <li>Resposta certa: +score e combo</li>
+                <li>Resposta errada: quebra combo</li>
+                <li>Tempo menor: pontuação maior</li>
+                <li>Rank final desbloqueia badge e bônus no XP</li>
+              </ul>
+            </article>
           </div>
         </div>
-        
-        <div class="contact-form">
-          <form id="contactForm" class="form">
-            <!-- Substituir com sua chave de acesso do Web3Forms -->
-            <input type="hidden" name="access_key" value="228a415b-7a3c-4dda-a183-3428a0988ce9">
-            
-            <!-- Campo oculto para definir o assunto do email -->
-            <input type="hidden" name="subject" value="Portfolio mensagem">
-            
-            <div class="form-group">
-              <label for="name" class="form-label">Nome</label>
-              <input type="text" id="name" name="name" class="form-input" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" name="email" class="form-input" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="message" class="form-label">Mensagem</label>
-              <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
-            </div>
-            
-            <!-- Campo honeypot para evitar spam -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-            
-            <div class="form-status" style="display: none; margin-bottom: 15px;">
-              <div class="success-message" style="display: none; color: #10b981; font-weight: 500;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Mensagem enviada com sucesso! Obrigado pelo contato.
-              </div>
-              <div class="error-message" style="display: none; color: #ef4444; font-weight: 500;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente.
-              </div>
-            </div>
-            
-            <button type="submit" class="button primary form-submit">
-              <span class="button-text">Enviar mensagem</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-          </form>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-tag mb-2">Vamos conversar</p>
+          <h2 class="section-title mb-0">Aberto para oportunidades e projetos</h2>
         </div>
-        
-  
-  <!-- Footer -->
+
+        <div class="contact-cta reveal mb-3">
+          <p class="soft mb-0">Contato direto para suporte, colaboração técnica e propostas profissionais.</p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-3 reveal"><a class="contact-tile" href="mailto:erickkauanlauer@gmail.com"><i class="bi bi-envelope"></i> Email</a></div>
+          <div class="col-md-6 col-lg-3 reveal"><a class="contact-tile" href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a></div>
+          <div class="col-md-6 col-lg-3 reveal"><a class="contact-tile" href="https://github.com/kauanlauer" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a></div>
+          <div class="col-md-6 col-lg-3 reveal"><a class="contact-tile" href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> WhatsApp</a></div>
+          <div class="col-12 reveal"><a class="contact-tile" href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener"><i class="bi bi-file-earmark-arrow-down"></i> Acessar página de currículo atualizada</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <a href="#" class="logo-link">
-            <span class="logo-icon">KL</span>
-            <span class="logo-text">Kauan Lauer</span>
-          </a>
-          <p class="footer-tagline">Desenvolvedor Front-end & Analista de Sistemas</p>
-        </div>
-        
-        <div class="footer-nav">
-          <h3 class="footer-title">Links rápidos</h3>
-          <ul class="footer-links">
-            <li><a href="#about" class="footer-link">Sobre</a></li>
-            <li><a href="#projects" class="footer-link">Projetos</a></li>
-            <li><a href="#skills" class="footer-link">Habilidades</a></li>
-            <li><a href="#tcc" class="footer-link">TCC</a></li>
-            <li><a href="#contact" class="footer-link">Contato</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-social">
-          <h3 class="footer-title">Redes sociais</h3>
-          <div class="social-links">
-            <a href="https://github.com/kauanlauer" target="_blank" class="social-link" aria-label="GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-            </a>
-            <a href="https://linkedin.com/in/kauanlauer" target="_blank" class="social-link" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path></svg>
-            </a>
-            <a href="https://api.whatsapp.com/send?phone=554199426605" target="_blank" class="social-link" aria-label="WhatsApp">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p class="copyright">© <span id="currentYear"></span> Kauan Lauer. Todos os direitos reservados.</p>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <p class="mb-0 text-secondary">© <span id="currentYear"></span> Kauan Lauer</p>
+      <div class="footer-social">
+        <a href="https://github.com/kauanlauer" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
       </div>
     </div>
   </footer>
 
-  <div class="generative-decoration" id="generative-hero"></div>
-<div class="generative-decoration" id="generative-about"></div>
-<div class="generative-decoration" id="generative-skills"></div>
-<div class="generative-decoration" id="generative-contact"></div>
+  <aside class="dock" aria-live="polite">
+    <div class="dock-top">
+      <div>
+        <div class="dock-title">Missão do Visitante</div>
+        <div class="dock-mini">Explore, jogue a SOC Arena e desbloqueie o nível máximo.</div>
+      </div>
+      <div class="dock-mini"><span id="xpLabel">XP 0%</span> • <span id="levelLabel">Nível 0</span></div>
+    </div>
+    <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+    <div class="mission-chips" id="missionList">
+      <span class="mission-chip" data-mission="sobre" data-label="Sobre"><i class="bi bi-circle"></i> Sobre</span>
+      <span class="mission-chip" data-mission="habilidades" data-label="Stack"><i class="bi bi-circle"></i> Stack</span>
+      <span class="mission-chip" data-mission="experiencia" data-label="Experiência"><i class="bi bi-circle"></i> Experiência</span>
+      <span class="mission-chip" data-mission="challenge" data-label="SOC Arena"><i class="bi bi-circle"></i> SOC Arena</span>
+      <span class="mission-chip" data-mission="contato" data-label="Contato"><i class="bi bi-circle"></i> Contato</span>
+    </div>
+  </aside>
 
-  <!-- Botão Voltar ao Topo -->
-  <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-  </button>
-    <script src="script.js"></script>
-   </body>
+  <button id="backTop" class="back-top" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    const nav = document.getElementById('mainNav');
+    const backTop = document.getElementById('backTop');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...document.querySelectorAll('main section, header.hero')];
+
+    function onScroll() {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 16);
+      backTop.classList.toggle('show', y > 520);
+
+      let activeId = 'inicio';
+      sections.forEach((sec) => {
+        if (y >= sec.offsetTop - 140) activeId = sec.id;
+      });
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href').replace('#', '');
+        link.classList.toggle('active', href === activeId);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+    revealElements.forEach((el) => observer.observe(el));
+
+    const tiltCard = document.getElementById('tiltCard');
+    tiltCard.addEventListener('mousemove', (e) => {
+      const rect = tiltCard.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      const rx = (0.5 - y) * 7;
+      const ry = (x - 0.5) * 9;
+      tiltCard.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    tiltCard.addEventListener('mouseleave', () => { tiltCard.style.transform = 'rotateX(0deg) rotateY(0deg)'; });
+
+    const missions = { sobre: false, habilidades: false, experiencia: false, challenge: false, contato: false };
+    const missionMap = {
+      sobre: document.getElementById('sobre'),
+      habilidades: document.getElementById('habilidades'),
+      experiencia: document.getElementById('experiencia'),
+      contato: document.getElementById('contato'),
+    };
+
+    const xpFill = document.getElementById('xpFill');
+    const xpLabel = document.getElementById('xpLabel');
+    const levelLabel = document.getElementById('levelLabel');
+    const missionList = document.getElementById('missionList');
+    const ctaContato = document.getElementById('ctaContato');
+
+    function updateHUD() {
+      const doneCount = Object.values(missions).filter(Boolean).length;
+      const total = Object.keys(missions).length;
+      const pct = Math.round((doneCount / total) * 100);
+      xpFill.style.width = pct + '%';
+      xpLabel.textContent = `XP ${pct}%`;
+      levelLabel.textContent = `Nível ${doneCount}`;
+
+      missionList.querySelectorAll('.mission-chip').forEach((item) => {
+        const key = item.getAttribute('data-mission');
+        const done = missions[key];
+        const label = item.getAttribute('data-label') || key;
+        item.classList.toggle('done', done);
+        item.innerHTML = `<i class="bi ${done ? 'bi-check-circle-fill' : 'bi-circle'}"></i> ${label}`;
+      });
+
+      if (pct >= 100) ctaContato.classList.add('contact-pulse');
+    }
+
+    const missionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          if (missions[id] === false) {
+            missions[id] = true;
+            updateHUD();
+          }
+        }
+      });
+    }, { threshold: .45 });
+
+    Object.values(missionMap).forEach((el) => missionObserver.observe(el));
+
+    const rounds = [
+      {
+        title: 'Alerta de lentidão no ERP',
+        desc: 'Usuários relatam travamento geral no sistema. CPU do servidor SQL normal, I/O em pico.',
+        gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYTYweWg1bGNzY2RtZXN2NXB6eGQxM2p4MXRjM3VqM2I2YW5lMWY3eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT9IgzoKnwFNmISR8I/giphy.gif',
+        options: [
+          'Reiniciar o servidor imediatamente.',
+          'Coletar wait stats e queries lentas antes de qualquer ação disruptiva.',
+          'Formatar as máquinas dos usuários afetados.',
+          'Desativar antivírus em todos os endpoints.',
+        ],
+        correct: 1,
+        success: 'Correto: diagnóstico guiado por evidências evita downtime desnecessário.',
+        fail: 'Não ideal: ação sem diagnóstico aumenta risco operacional.'
+      },
+      {
+        title: 'Telefonia 3CX sem áudio',
+        desc: 'Chamadas conectam, mas sem áudio bidirecional em parte dos ramais.',
+        gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXE3em9kNGRnYzNoeXN0M2x6YTYxZzRuZXh2d3NqaDl6MWVjdnBvNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/mCRJDo24UvJMA/giphy.gif',
+        options: [
+          'Verificar NAT/SIP ALG e regras RTP no firewall.',
+          'Trocar os headsets de todos os usuários.',
+          'Apagar o banco do 3CX.',
+          'Atualizar o Windows de todos os PCs.',
+        ],
+        correct: 0,
+        success: 'Correto: problema típico de rota/voz em firewall/NAT.',
+        fail: 'Não ideal: correção deve começar pela camada de rede/voz.'
+      },
+      {
+        title: 'Falha de autenticação em lote',
+        desc: 'Múltiplos usuários não autenticam no sistema interno após deploy.',
+        gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjBjMHh2aWk5a2J3Yzh4eWJ6dWJhaXk5bGQ4ejRkb2k3N3c5aWNsYiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/26tn33aiTi1jkl6H6/giphy.gif',
+        options: [
+          'Reverter deploy, validar logs de autenticação e dependências.',
+          'Desabilitar senha para liberar acesso.',
+          'Reiniciar roteadores do prédio.',
+          'Solicitar que todos troquem de navegador.',
+        ],
+        correct: 0,
+        success: 'Correto: rollback controlado + logs reduz MTTR com segurança.',
+        fail: 'Não ideal: segurança e rastreabilidade são obrigatórias.'
+      },
+      {
+        title: 'Fila de chamados explodindo',
+        desc: 'Volume alto de tickets repetidos sobre mesmo comportamento em Headcargo.',
+        gif: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHNkOWJjNjZxMjQ4N2ppb2xqdjA4ejNyb3V4Z3N3MWk2ZXF3cnF4ZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l0HlQ7LRalQqdWfao/giphy.gif',
+        options: [
+          'Criar workaround documentado, comunicado único e correção de causa raiz.',
+          'Responder os chamados um a um sem padronização.',
+          'Encerrar chamados automaticamente.',
+          'Parar o sistema para forçar silêncio da fila.',
+        ],
+        correct: 0,
+        success: 'Correto: comunicação + padrão + causa raiz é gestão madura de suporte.',
+        fail: 'Não ideal: sem estratégia, a fila volta a crescer rapidamente.'
+      }
+    ];
+
+    const roundIndex = document.getElementById('roundIndex');
+    const roundTotal = document.getElementById('roundTotal');
+    const scoreValue = document.getElementById('scoreValue');
+    const comboValue = document.getElementById('comboValue');
+    const timeValue = document.getElementById('timeValue');
+    const scenarioGif = document.getElementById('scenarioGif');
+    const scenarioTitle = document.getElementById('scenarioTitle');
+    const scenarioDesc = document.getElementById('scenarioDesc');
+    const arenaOptions = document.getElementById('arenaOptions');
+    const arenaLog = document.getElementById('arenaLog');
+    const arenaTimerBar = document.getElementById('arenaTimerBar');
+    const startArenaBtn = document.getElementById('startArenaBtn');
+    const restartArenaBtn = document.getElementById('restartArenaBtn');
+    const rankBox = document.getElementById('rankBox');
+
+    let currentRound = -1;
+    let score = 0;
+    let combo = 0;
+    let timeLeft = 18;
+    let timer = null;
+    let playing = false;
+
+    roundTotal.textContent = rounds.length;
+
+    function renderRound() {
+      const round = rounds[currentRound];
+      roundIndex.textContent = currentRound + 1;
+      scenarioTitle.textContent = round.title;
+      scenarioDesc.textContent = round.desc;
+      scenarioGif.src = round.gif;
+      arenaOptions.innerHTML = '';
+      timeLeft = 18;
+      timeValue.textContent = timeLeft;
+      arenaTimerBar.style.width = '100%';
+
+      round.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'arena-option';
+        btn.textContent = opt;
+        btn.addEventListener('click', () => chooseOption(idx, btn));
+        arenaOptions.appendChild(btn);
+      });
+
+      clearInterval(timer);
+      timer = setInterval(() => {
+        timeLeft -= 1;
+        timeValue.textContent = Math.max(0, timeLeft);
+        arenaTimerBar.style.width = `${(timeLeft / 18) * 100}%`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          combo = 0;
+          comboValue.textContent = combo;
+          arenaLog.textContent = 'Tempo esgotado. Round perdido.';
+          setTimeout(nextRound, 900);
+        }
+      }, 1000);
+    }
+
+    function chooseOption(index, btn) {
+      if (!playing) return;
+      const round = rounds[currentRound];
+      clearInterval(timer);
+
+      const allBtns = arenaOptions.querySelectorAll('.arena-option');
+      allBtns.forEach((b, i) => {
+        b.disabled = true;
+        if (i === round.correct) b.classList.add('good');
+      });
+
+      if (index === round.correct) {
+        btn.classList.add('good');
+        combo += 1;
+        score += 60 + timeLeft * 4 + combo * 6;
+        arenaLog.textContent = round.success;
+      } else {
+        btn.classList.add('bad');
+        combo = 0;
+        score = Math.max(0, score - 10);
+        arenaLog.textContent = round.fail;
+      }
+
+      scoreValue.textContent = score;
+      comboValue.textContent = combo;
+      setTimeout(nextRound, 1000);
+    }
+
+    function getRank(value) {
+      if (value >= 360) return 'S';
+      if (value >= 290) return 'A';
+      if (value >= 210) return 'B';
+      return 'C';
+    }
+
+    function finishGame() {
+      playing = false;
+      clearInterval(timer);
+      arenaOptions.innerHTML = '';
+      const rank = getRank(score);
+      rankBox.style.display = 'block';
+      rankBox.innerHTML = `Resultado final: <strong>Rank ${rank}</strong> • Score ${score}`;
+      arenaLog.textContent = `Missão encerrada. Rank ${rank} obtido.`;
+
+      if (score >= 210) {
+        missions.challenge = true;
+        updateHUD();
+      }
+    }
+
+    function nextRound() {
+      currentRound += 1;
+      if (currentRound >= rounds.length) {
+        finishGame();
+        return;
+      }
+      renderRound();
+    }
+
+    function startGame() {
+      if (playing) return;
+      playing = true;
+      score = 0;
+      combo = 0;
+      currentRound = -1;
+      rankBox.style.display = 'none';
+      scoreValue.textContent = score;
+      comboValue.textContent = combo;
+      arenaLog.textContent = 'Missão iniciada. Analise e responda rápido.';
+      nextRound();
+    }
+
+    function restartGame() {
+      playing = false;
+      clearInterval(timer);
+      score = 0;
+      combo = 0;
+      currentRound = -1;
+      scoreValue.textContent = score;
+      comboValue.textContent = combo;
+      timeValue.textContent = '0';
+      roundIndex.textContent = '0';
+      scenarioTitle.textContent = 'Clique em iniciar';
+      scenarioDesc.textContent = 'Você vai enfrentar 4 incidentes reais de operação e suporte.';
+      arenaOptions.innerHTML = '';
+      arenaTimerBar.style.width = '0%';
+      arenaLog.textContent = 'Missão reiniciada. Pronto para nova tentativa.';
+      rankBox.style.display = 'none';
+    }
+
+    startArenaBtn.addEventListener('click', startGame);
+    restartArenaBtn.addEventListener('click', restartGame);
+
+    updateHUD();
+
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      particles = Array.from({ length: Math.min(75, Math.floor(window.innerWidth / 20)) }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - .5) * .3,
+        vy: (Math.random() - .5) * .3,
+        r: Math.random() * 1.5 + .6,
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 110) {
+          p.vx -= dx * 0.000018;
+          p.vy -= dy * 0.000018;
+        }
+
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(110, 210, 255, 0.5)';
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 78) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(124, 92, 255, ${0.1 * (1 - d / 78)})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+  </script>
+</body>
 </html>
