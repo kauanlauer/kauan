@@ -532,6 +532,7 @@
         <button data-action="skills">Competências</button>
         <button data-action="experience">Experiência</button>
         <button data-action="contact">Contato</button>
+        <button data-action="portfolio">Portfólio Web</button>
         <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener">Currículo</a>
       </div>
     </div>
@@ -655,6 +656,14 @@
           <div class="status-bar"><span>Conexão segura (HTTPS)</span><span>Repositórios online</span></div>
         `,
       },
+      portfolio: {
+        title: 'Portfólio Web (Normal)', icon: ICONS.app, width: 640, height: 350,
+        content: `
+          <div class="window-section"><h3>Voltar ao Portfólio Normal</h3><p>Se quiser sair do modo KauanWin e ver o portfólio clássico, use o botão abaixo.</p><p><a href="index.html">Abrir index.html</a></p></div>
+          <div class="window-section"><p>Também disponível em nova guia:</p><p><a href="index.html" target="_blank" rel="noopener">Abrir em nova guia</a></p></div>
+          <div class="status-bar"><span>Navegação local</span><span>KauanWin -> Portfólio</span></div>
+        `,
+      },
     };
 
     const desktopShortcuts = [
@@ -665,6 +674,7 @@
       { app: 'resume', label: 'Currículo' },
       { app: 'arena', label: 'SOC Arena' },
       { app: 'github', label: 'GitHub' },
+      { app: 'portfolio', label: 'Portfólio Web' },
     ];
 
     const openWindows = new Map();
@@ -1168,6 +1178,7 @@
       { app: 'contact', label: 'Contato', icon: ICONS.contact },
       { app: 'arena', label: 'SOC Arena', icon: ICONS.arena },
       { app: 'github', label: 'GitHub', icon: ICONS.github },
+      { app: 'portfolio', label: 'Portfólio Web', icon: ICONS.app },
     ].forEach((item) => {
       const btn = document.createElement('button');
       btn.className = 'start-item';
@@ -1176,8 +1187,7 @@
       startApps.appendChild(btn);
     });
 
-    openApp('about');
-    openApp('skills');
+    // KauanWin inicia com desktop limpo, sem janelas abertas.
   </script>
 </body>
 </html>
