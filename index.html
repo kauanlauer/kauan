@@ -723,6 +723,127 @@
       gap: 10px;
     }
 
+    .cred-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1.4fr .9fr;
+      gap: 10px;
+    }
+
+    .cred-panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px;
+    }
+
+    .cred-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .cred-kpi {
+      border: 1px solid rgba(164,191,245,.24);
+      border-radius: 10px;
+      padding: 10px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .cred-kpi span {
+      display: block;
+      color: var(--accent-2);
+      font: 700 .64rem/1 var(--title);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+
+    .cred-kpi strong {
+      display: block;
+      color: var(--text);
+      font: 700 1.06rem/1.1 var(--title);
+    }
+
+    .cred-kpi small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.35;
+    }
+
+    .cred-list {
+      margin: 10px 0 0;
+      padding-left: 1rem;
+      color: var(--muted);
+      display: grid;
+      gap: 7px;
+      font-size: .9rem;
+    }
+
+    .cred-side-title {
+      margin: 0 0 10px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .cred-actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .cred-action {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 11px;
+      font: 700 .74rem/1 var(--title);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: .2s ease;
+    }
+
+    .cred-action:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      color: var(--text);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 16px;
+      bottom: 72px;
+      z-index: 130;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(57, 231, 160, .42);
+      border-radius: 999px;
+      padding: 10px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(19,160,102,.94), rgba(12,128,79,.94));
+      box-shadow: 0 12px 28px rgba(0,0,0,.32);
+      font: 700 .78rem/1 var(--title);
+      letter-spacing: .04em;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(0,0,0,.38);
+      color: #fff;
+    }
+
+    .whatsapp-float svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
     .clients-inline {
       margin-top: 8px;
       display: inline-flex;
@@ -1251,6 +1372,8 @@
       .hero-grid,
       .lab-grid { grid-template-columns: 1fr; }
       .stack-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cred-grid { grid-template-columns: 1fr; }
+      .cred-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .quick-data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1265,6 +1388,7 @@
         align-items: flex-start;
         flex-direction: column;
       }
+      .cred-kpis { grid-template-columns: 1fr; }
       .stack-wrap { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .quick-data { grid-template-columns: 1fr; }
@@ -1277,6 +1401,15 @@
       .cursor-aura { display: none; }
       .floaters { display: none; }
       .tour-bar { bottom: 62px; }
+      .whatsapp-float {
+        right: 10px;
+        bottom: 66px;
+        width: 46px;
+        height: 46px;
+        justify-content: center;
+        padding: 0;
+      }
+      .whatsapp-float span { display: none; }
     }
   </style>
 </head>
@@ -1309,6 +1442,7 @@
         <a href="#home" class="active">Home</a>
         <a href="#about">Sobre</a>
         <a href="#stack">Stack</a>
+        <a href="#credibility">Credibilidade</a>
         <a href="#architecture">Arquitetura</a>
         <a href="#tools">Ferramentas</a>
         <a href="#clients">Clientes</a>
@@ -1365,8 +1499,8 @@
           </div>
 
           <div class="actions">
-            <a href="#contact" class="btn-tech primary magnetic">Entrar em contato</a>
-            <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener" class="btn-tech magnetic">Abrir currículo</a>
+            <a href="#contact" class="btn-tech primary magnetic" data-track-click="hero_contact_anchor">Entrar em contato</a>
+            <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener" class="btn-tech magnetic" data-track-click="hero_curriculo">Abrir currículo</a>
             <button type="button" id="openKWinModal" class="btn-tech magnetic">Escolher Sistema Interativo</button>
             <button type="button" id="tourBtn" class="btn-tech magnetic">Tour rápido (60s)</button>
             <button type="button" id="modeTechBtn" class="btn-tech magnetic mode-toggle">Modo Tech: Off</button>
@@ -1430,7 +1564,52 @@
       </div>
     </section>
 
-    <section class="section" id="architecture">
+    <section class="section" id="credibility" data-track-section="credibility">
+      <div class="container">
+        <article class="panel reveal spotlight depth-panel">
+          <p class="tag">Credibilidade</p>
+          <h2>Base profissional comprovada para entrega com previsibilidade</h2>
+
+          <div class="cred-grid">
+            <div class="cred-panel">
+              <div class="cred-kpis">
+                <div class="cred-kpi">
+                  <span>Experiência</span>
+                  <strong>4+ anos</strong>
+                  <small>Operação e suporte em ambiente corporativo.</small>
+                </div>
+                <div class="cred-kpi">
+                  <span>Formação</span>
+                  <strong>ADS 08/2025</strong>
+                  <small>Análise e Desenvolvimento de Sistemas concluído.</small>
+                </div>
+                <div class="cred-kpi">
+                  <span>Stack validada</span>
+                  <strong>SQL • 3CX • Redes</strong>
+                  <small>Uso recorrente com foco em estabilidade.</small>
+                </div>
+              </div>
+              <ul class="cred-list">
+                <li>Atuação contínua em suporte técnico de alta demanda.</li>
+                <li>Experiência prática com incidentes, diagnóstico e prevenção.</li>
+                <li>Integração entre operação, dados e experiência do usuário.</li>
+              </ul>
+            </div>
+
+            <aside class="cred-panel">
+              <h3 class="cred-side-title">Validação Profissional</h3>
+              <div class="cred-actions">
+                <a href="https://kauanlauer.com.br/curriculo" target="_blank" rel="noopener" class="cred-action" data-track-click="cred_curriculo">Currículo atualizado</a>
+                <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener" class="cred-action" data-track-click="cred_linkedin">LinkedIn profissional</a>
+                <a href="https://github.com/kauanlauer" target="_blank" rel="noopener" class="cred-action" data-track-click="cred_github">Portfólio GitHub</a>
+              </div>
+            </aside>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="architecture" data-track-section="architecture">
       <div class="container">
         <article class="panel reveal spotlight depth-panel">
           <p class="tag">Architecture View</p>
@@ -1464,7 +1643,7 @@
       </div>
     </section>
 
-    <section class="section" id="tools">
+    <section class="section" id="tools" data-track-section="tools">
       <div class="container">
         <article class="panel reveal spotlight depth-panel">
           <p class="tag">Labs & Ferramentas</p>
@@ -1586,7 +1765,7 @@
       </div>
     </section>
 
-    <section class="section" id="lab">
+    <section class="section" id="lab" data-track-section="lab">
       <div class="intel-section reveal spotlight depth-panel">
         <p class="tag">Tech Lab</p>
         <div class="section-head">
@@ -1636,41 +1815,41 @@
       </div>
     </section>
 
-    <section class="section" id="clients">
+    <section class="section" id="clients" data-track-section="clients">
       <div class="container">
         <article class="reveal">
           <p class="tag">Clientes</p>
           <div class="clients-inline" aria-label="Logos de clientes">
             <div class="clients-logos">
-              <a class="client-dot" href="https://advogadobrunomiranda.com.br/" target="_blank" rel="noopener" aria-label="Abrir site do Advogado Bruno Miranda">
+              <a class="client-dot" href="https://advogadobrunomiranda.com.br/" target="_blank" rel="noopener" aria-label="Abrir site do Advogado Bruno Miranda" data-track-click="client_bruno_miranda">
                 <img src="https://advogadobrunomiranda.com.br/logo.png" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?sz=256&domain=advogadobrunomiranda.com.br';" alt="Advogado Bruno Miranda" loading="lazy">
               </a>
-              <a class="client-dot" href="https://deliciadebrowniecuritiba.com.br/" target="_blank" rel="noopener" aria-label="Abrir site da Delicia de Brownie Curitiba">
+              <a class="client-dot" href="https://deliciadebrowniecuritiba.com.br/" target="_blank" rel="noopener" aria-label="Abrir site da Delicia de Brownie Curitiba" data-track-click="client_brownie_curitiba">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZdouJiN7wv8xOFSdHUYOF8r4ENB75Rx87FQ&s" onerror="this.onerror=null;this.src='https://img.icons8.com/fluency/96/cupcake.png';" alt="Delicia de Brownie Curitiba" loading="lazy">
               </a>
             </div>
             <div class="client-rating" aria-label="Avaliação de clientes">
               <span>&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-              <small>(100)</small>
+              <small>(98)</small>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section" id="contact">
+    <section class="section" id="contact" data-track-section="contact">
       <div class="container">
         <article class="panel reveal spotlight depth-panel">
           <p class="tag">Contato</p>
           <h2>Canal direto para oportunidades</h2>
 
           <div class="contact-grid">
-            <a href="mailto:erickkauanlauer@gmail.com" class="contact-link">Email</a>
-            <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener" class="contact-link">LinkedIn</a>
-            <a href="https://github.com/kauanlauer" target="_blank" rel="noopener" class="contact-link">GitHub</a>
-            <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener" class="contact-link">WhatsApp</a>
-            <a href="KauanWin.html" target="_blank" rel="noopener" class="contact-link">KauanWin XP</a>
-            <a href="KauanPocketOS.html" target="_blank" rel="noopener" class="contact-link">Kauan Pocket OS</a>
+            <a href="mailto:erickkauanlauer@gmail.com" class="contact-link" data-track-click="contact_email">Email</a>
+            <a href="https://linkedin.com/in/kauanlauer" target="_blank" rel="noopener" class="contact-link" data-track-click="contact_linkedin">LinkedIn</a>
+            <a href="https://github.com/kauanlauer" target="_blank" rel="noopener" class="contact-link" data-track-click="contact_github">GitHub</a>
+            <a href="https://api.whatsapp.com/send?phone=5541999426605" target="_blank" rel="noopener" class="contact-link" data-track-click="contact_whatsapp">WhatsApp</a>
+            <a href="KauanWin.html" target="_blank" rel="noopener" class="contact-link" data-track-click="contact_kauanwin">KauanWin XP</a>
+            <a href="KauanPocketOS.html" target="_blank" rel="noopener" class="contact-link" data-track-click="contact_pocketos">Kauan Pocket OS</a>
           </div>
 
         </article>
@@ -1700,6 +1879,19 @@
       </div>
     </div>
   </div>
+
+  <a
+    href="https://api.whatsapp.com/send?phone=5541999426605&text=Ol%C3%A1%20Kauan%2C%20vim%20pelo%20site%20e%20quero%20falar%20sobre%20um%20projeto."
+    target="_blank"
+    rel="noopener"
+    class="whatsapp-float"
+    aria-label="Falar no WhatsApp"
+    data-track-click="whatsapp_float_cta">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.05 0C5.52 0 .22 5.3.22 11.83c0 2.08.54 4.11 1.58 5.9L0 24l6.45-1.7a11.8 11.8 0 0 0 5.6 1.43h.01c6.53 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.37-8.42Zm-8.47 18.25h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.83 1 1.02-3.73-.23-.38a9.92 9.92 0 0 1-1.53-5.2C2.07 6.4 6.62 1.85 12.05 1.85c2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 7c0 5.43-4.46 9.98-9.89 9.98Zm5.43-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.23-.65.08-.3-.15-1.26-.47-2.41-1.5-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.2 3.08c.15.2 2.08 3.18 5.04 4.46.7.3 1.24.47 1.66.6.7.22 1.33.19 1.84.11.56-.08 1.77-.72 2.02-1.42.25-.69.25-1.28.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
+    </svg>
+    <span>Falar no WhatsApp</span>
+  </a>
 
   <footer class="site-footer">
     <div class="container inner">
@@ -1772,6 +1964,72 @@
     const cmdInput = document.getElementById('cmdInput');
     const cmdList = document.getElementById('cmdList');
     const themeSwitch = document.getElementById('themeSwitch');
+
+    const ANALYTICS_MEASUREMENT_ID = window.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+
+    function initAnalytics() {
+      if (!ANALYTICS_MEASUREMENT_ID || ANALYTICS_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
+      if (typeof window.gtag === 'function') return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+
+      const gaScript = document.createElement('script');
+      gaScript.async = true;
+      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ANALYTICS_MEASUREMENT_ID)}`;
+      document.head.appendChild(gaScript);
+
+      window.gtag('js', new Date());
+      window.gtag('config', ANALYTICS_MEASUREMENT_ID, {
+        anonymize_ip: true,
+        send_page_view: true
+      });
+    }
+
+    function trackEvent(eventName, params = {}) {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', eventName, params);
+    }
+
+    function initClickTracking() {
+      document.addEventListener('click', (event) => {
+        const el = event.target.closest('[data-track-click]');
+        if (!el) return;
+        const clickId = el.getAttribute('data-track-click') || 'unknown_click';
+        const href = el.getAttribute('href') || '';
+        const isLead = clickId.includes('whatsapp') || href.includes('api.whatsapp.com');
+
+        trackEvent(isLead ? 'generate_lead' : 'select_content', {
+          click_id: clickId,
+          link_url: href
+        });
+      });
+    }
+
+    function initSectionTracking() {
+      if (!('IntersectionObserver' in window)) return;
+      const seen = new Set();
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const sectionId = entry.target.getAttribute('data-track-section');
+          if (!sectionId || seen.has(sectionId)) return;
+          seen.add(sectionId);
+          trackEvent('view_item', {
+            section_id: sectionId
+          });
+        });
+      }, { threshold: .45 });
+
+      document.querySelectorAll('[data-track-section]').forEach((el) => obs.observe(el));
+    }
+
+    initAnalytics();
+    initClickTracking();
+    initSectionTracking();
+
     themeSwitch.addEventListener('click', (e) => {
       const btn = e.target.closest('button[data-theme]');
       if (!btn) return;
@@ -1787,6 +2045,7 @@
       { id: 'home', text: 'Início: visão geral do perfil e atalhos.' },
       { id: 'about', text: 'Sobre: resumo profissional em linguagem simples.' },
       { id: 'stack', text: 'Stack: ferramentas usadas no dia a dia.' },
+      { id: 'credibility', text: 'Credibilidade: provas técnicas e validação profissional.' },
       { id: 'architecture', text: 'Arquitetura: como áreas técnicas se conectam.' },
       { id: 'tools', text: 'Ferramentas: simuladores e utilidades interativas.' },
       { id: 'lab', text: 'Tech Lab: demonstrações em tempo real.' },
@@ -1845,6 +2104,10 @@
           toggle.classList.toggle('is-open', next);
           target.hidden = !next;
           if (label) label.textContent = next ? 'Fechar' : 'Ver';
+          trackEvent('select_content', {
+            click_id: `toggle_${targetId}`,
+            state: next ? 'open' : 'closed'
+          });
         });
       });
     }
@@ -1898,6 +2161,7 @@
       { label: 'Ir para Home', run: () => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Sobre', run: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Stack', run: () => document.getElementById('stack')?.scrollIntoView({ behavior: 'smooth' }) },
+      { label: 'Ir para Credibilidade', run: () => document.getElementById('credibility')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Arquitetura', run: () => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Ferramentas', run: () => document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth' }) },
       { label: 'Ir para Tech Lab', run: () => document.getElementById('lab')?.scrollIntoView({ behavior: 'smooth' }) },
@@ -2273,6 +2537,11 @@
       const message = `${greeting} Vi seu portfólio e quero falar sobre ${topic}. Podemos conversar?`;
 
       setToolOutput(msgPreview, message);
+      trackEvent('generate_lead', {
+        source: 'message_generator',
+        channel
+      });
+
       if (channel === 'email') {
         const subject = encodeURIComponent(`Contato pelo portfólio - ${topic}`);
         const bodyMsg = encodeURIComponent(message);
