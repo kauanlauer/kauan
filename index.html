@@ -680,6 +680,79 @@
       gap: 10px;
     }
 
+    .clients-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+      gap: 14px;
+    }
+
+    .client-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .client-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 36px rgba(0,0,0,.25);
+    }
+
+    .client-logo-wrap {
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      display: grid;
+      place-items: center;
+    }
+
+    .client-logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .client-name {
+      margin: 0;
+      font: 700 1rem/1.2 var(--title);
+      color: var(--text);
+    }
+
+    .client-site {
+      margin: 0;
+      color: var(--muted);
+      font: 600 .85rem/1.35 var(--mono);
+      word-break: break-word;
+    }
+
+    .client-link {
+      justify-self: start;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 9px 12px;
+      color: var(--text);
+      font: 700 .74rem/1 var(--title);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      background: rgba(255,255,255,.03);
+      transition: .2s ease;
+    }
+
+    .client-link:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
     .contact-link {
       text-decoration: none;
       color: var(--text);
@@ -1154,6 +1227,7 @@
       .lab-grid { grid-template-columns: 1fr; }
       .stack-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .clients-grid { grid-template-columns: minmax(0, 1fr); }
       .quick-data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .tools-grid { grid-template-columns: 1fr; }
@@ -1209,6 +1283,7 @@
         <a href="#stack">Stack</a>
         <a href="#architecture">Arquitetura</a>
         <a href="#tools">Ferramentas</a>
+        <a href="#clients">Clientes</a>
         <a href="#lab">Tech Lab</a>
         <a href="#contact">Contato</a>
       </nav>
@@ -1506,6 +1581,36 @@
             <button type="button" id="geoBtn" class="intel-btn">Usar localização precisa (GPS)</button>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="clients">
+      <div class="container">
+        <article class="panel reveal spotlight depth-panel">
+          <p class="tag">Clientes</p>
+          <h2>Quem confia no meu trabalho</h2>
+          <p class="lead-main">Projetos reais com foco em resultado e presença digital profissional.</p>
+
+          <div class="clients-grid">
+            <article class="client-card">
+              <div class="client-logo-wrap">
+                <img
+                  class="client-logo"
+                  src="https://logo.clearbit.com/advogadobrunomiranda.com.br"
+                  onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?sz=256&domain=advogadobrunomiranda.com.br';"
+                  alt="Logo do site Advogado Bruno Miranda"
+                  loading="lazy">
+              </div>
+              <h3 class="client-name">Advogado Bruno Miranda</h3>
+              <p class="client-site">advogadobrunomiranda.com.br</p>
+              <a
+                href="https://advogadobrunomiranda.com.br/"
+                target="_blank"
+                rel="noopener"
+                class="client-link">Visitar site</a>
+            </article>
+          </div>
+        </article>
       </div>
     </section>
 
