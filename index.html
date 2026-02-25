@@ -600,6 +600,49 @@
       max-width: 70ch;
     }
 
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .section-toggle {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font: 700 .72rem/1 var(--title);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: .2s ease;
+      flex-shrink: 0;
+    }
+
+    .section-toggle:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .section-toggle-icon {
+      font-size: .9rem;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .section-toggle.is-open .section-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .collapsible-body {
+      margin-top: 14px;
+    }
+
     .terminal {
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -684,47 +727,50 @@
       margin-top: 8px;
       display: inline-flex;
       flex-direction: column;
-      gap: 10px;
-      padding: 8px 0;
+      gap: 11px;
+      padding: 10px 0;
     }
 
     .clients-logos {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .client-dot {
-      width: 44px;
-      height: 44px;
+      width: 50px;
+      height: 50px;
       border-radius: 999px;
-      border: 2px solid rgba(214, 228, 255, .85);
+      border: 2px solid rgba(224, 236, 255, .9);
       background: rgba(8, 16, 34, .92);
       display: grid;
       place-items: center;
       text-decoration: none;
-      transition: transform .18s ease, border-color .18s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,.28);
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     }
 
     .client-dot:hover {
-      transform: translateY(-1px);
+      transform: translateY(-1px) scale(1.04);
       border-color: #6cd6ff;
+      box-shadow: 0 8px 18px rgba(16, 133, 199, .28);
     }
 
     .client-dot img {
-      width: 78%;
-      height: 78%;
-      object-fit: cover;
+      width: 74%;
+      height: 74%;
+      object-fit: contain;
       border-radius: 999px;
     }
 
     .client-rating {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       color: #f7bf43;
-      font: 700 1.1rem/1 var(--title);
-      letter-spacing: .02em;
+      font: 700 1.08rem/1 var(--title);
+      letter-spacing: .03em;
+      text-shadow: 0 0 8px rgba(247, 191, 67, .22);
     }
 
     .client-rating small {
@@ -1215,6 +1261,10 @@
     }
 
     @media (max-width: 576px) {
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
       .stack-wrap { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
       .quick-data { grid-template-columns: 1fr; }
@@ -1384,22 +1434,30 @@
       <div class="container">
         <article class="panel reveal spotlight depth-panel">
           <p class="tag">Architecture View</p>
-          <h2>Como minha atuação conecta operação, desenvolvimento e resultado</h2>
-          <div class="architecture">
-            <div class="arch-canvas">
-              <svg class="arch-svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M120 150 L300 70 L500 150 L700 90 L880 150" stroke="rgba(91,215,255,.55)" stroke-width="2" fill="none"/>
-                <path d="M300 70 L300 230 L500 150 L700 230 L700 90" stroke="rgba(122,125,255,.45)" stroke-width="2" fill="none"/>
-              </svg>
-              <button class="arch-node active" style="left:12%;top:50%" data-arch="support">Suporte</button>
-              <button class="arch-node" style="left:30%;top:24%" data-arch="infra">Infra & Redes</button>
-              <button class="arch-node" style="left:50%;top:50%" data-arch="db">Dados / SQL</button>
-              <button class="arch-node" style="left:70%;top:30%" data-arch="dev">Frontend / UX</button>
-              <button class="arch-node" style="left:88%;top:50%" data-arch="result">Resultado</button>
-            </div>
-            <div class="arch-detail" id="archDetail">Suporte: atendimento técnico com foco em resolver incidentes com agilidade e previsibilidade.</div>
-            <div class="tech-only">
-              <div class="arch-detail">Modo Tech ativo: arquitetura orientada a fluxo operacional, telemetria de navegador e interface de alto desempenho.</div>
+          <div class="section-head">
+            <h2>Como minha atuação conecta operação, desenvolvimento e resultado</h2>
+            <button type="button" class="section-toggle" data-collapsible-toggle="architectureBody" aria-expanded="false">
+              <span class="section-toggle-label">Ver</span>
+              <span class="section-toggle-icon">▾</span>
+            </button>
+          </div>
+          <div class="collapsible-body" id="architectureBody" hidden>
+            <div class="architecture">
+              <div class="arch-canvas">
+                <svg class="arch-svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M120 150 L300 70 L500 150 L700 90 L880 150" stroke="rgba(91,215,255,.55)" stroke-width="2" fill="none"/>
+                  <path d="M300 70 L300 230 L500 150 L700 230 L700 90" stroke="rgba(122,125,255,.45)" stroke-width="2" fill="none"/>
+                </svg>
+                <button class="arch-node active" style="left:12%;top:50%" data-arch="support">Suporte</button>
+                <button class="arch-node" style="left:30%;top:24%" data-arch="infra">Infra & Redes</button>
+                <button class="arch-node" style="left:50%;top:50%" data-arch="db">Dados / SQL</button>
+                <button class="arch-node" style="left:70%;top:30%" data-arch="dev">Frontend / UX</button>
+                <button class="arch-node" style="left:88%;top:50%" data-arch="result">Resultado</button>
+              </div>
+              <div class="arch-detail" id="archDetail">Suporte: atendimento técnico com foco em resolver incidentes com agilidade e previsibilidade.</div>
+              <div class="tech-only">
+                <div class="arch-detail">Modo Tech ativo: arquitetura orientada a fluxo operacional, telemetria de navegador e interface de alto desempenho.</div>
+              </div>
             </div>
           </div>
         </article>
@@ -1410,110 +1468,118 @@
       <div class="container">
         <article class="panel reveal spotlight depth-panel">
           <p class="tag">Labs & Ferramentas</p>
-          <h2>Ferramentas interativas para explorar, testar e brincar</h2>
-          <p class="lead-main">Experiências curtas para manter qualquer visitante engajado: leigos conseguem entender rápido, técnicos conseguem explorar profundidade.</p>
+          <div class="section-head">
+            <h2>Ferramentas interativas para explorar, testar e brincar</h2>
+            <button type="button" class="section-toggle" data-collapsible-toggle="toolsBody" aria-expanded="false">
+              <span class="section-toggle-label">Ver</span>
+              <span class="section-toggle-icon">▾</span>
+            </button>
+          </div>
+          <div class="collapsible-body" id="toolsBody" hidden>
+            <p class="lead-main">Experiências curtas para manter qualquer visitante engajado: leigos conseguem entender rápido, técnicos conseguem explorar profundidade.</p>
 
-          <div class="tools-grid">
-            <div class="tool-card">
-              <h3>Diagnóstico Rápido</h3>
-              <p class="tool-note">Executa um check técnico do navegador e recursos principais.</p>
-              <div class="tool-actions">
-                <button id="runDiagBtn" class="mini-btn primary" type="button">Rodar Check</button>
+            <div class="tools-grid">
+              <div class="tool-card">
+                <h3>Diagnóstico Rápido</h3>
+                <p class="tool-note">Executa um check técnico do navegador e recursos principais.</p>
+                <div class="tool-actions">
+                  <button id="runDiagBtn" class="mini-btn primary" type="button">Rodar Check</button>
+                </div>
+                <div id="diagOutput" class="tool-output">Pronto para executar.</div>
               </div>
-              <div id="diagOutput" class="tool-output">Pronto para executar.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Simulador de Incidente</h3>
-              <p class="tool-note">Mini cenário de suporte para testar tomada de decisão.</p>
-              <div id="incidentStep" class="scenario-step">Clique em iniciar para simular um incidente real.</div>
-              <div id="incidentOptions" class="scenario-options"></div>
-              <div class="tool-actions">
-                <button id="incidentStartBtn" class="mini-btn primary" type="button">Iniciar Simulação</button>
+              <div class="tool-card">
+                <h3>Simulador de Incidente</h3>
+                <p class="tool-note">Mini cenário de suporte para testar tomada de decisão.</p>
+                <div id="incidentStep" class="scenario-step">Clique em iniciar para simular um incidente real.</div>
+                <div id="incidentOptions" class="scenario-options"></div>
+                <div class="tool-actions">
+                  <button id="incidentStartBtn" class="mini-btn primary" type="button">Iniciar Simulação</button>
+                </div>
+                <div id="incidentResult" class="tool-output">Sem execução.</div>
               </div>
-              <div id="incidentResult" class="tool-output">Sem execução.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Playground Visual</h3>
-              <p class="tool-note">Personalize a experiência ao vivo para testar usabilidade e estilo.</p>
-              <div class="tool-actions">
-                <button id="motionToggleBtn" class="mini-btn" type="button">Motion: On</button>
-                <button id="contrastToggleBtn" class="mini-btn" type="button">Contraste: Normal</button>
-                <button id="particlesToggleBtn" class="mini-btn" type="button">Partículas: On</button>
+              <div class="tool-card">
+                <h3>Playground Visual</h3>
+                <p class="tool-note">Personalize a experiência ao vivo para testar usabilidade e estilo.</p>
+                <div class="tool-actions">
+                  <button id="motionToggleBtn" class="mini-btn" type="button">Motion: On</button>
+                  <button id="contrastToggleBtn" class="mini-btn" type="button">Contraste: Normal</button>
+                  <button id="particlesToggleBtn" class="mini-btn" type="button">Partículas: On</button>
+                </div>
+                <div class="tool-output">Ajustes aplicados em tempo real sem recarregar a página.</div>
               </div>
-              <div class="tool-output">Ajustes aplicados em tempo real sem recarregar a página.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Gerador de Mensagem de Contato</h3>
-              <p class="tool-note">Monte uma mensagem pronta para WhatsApp ou Email em segundos.</p>
-              <div class="tool-inline">
-                <select id="msgChannel" class="tool-select">
-                  <option value="whatsapp">WhatsApp</option>
-                  <option value="email">Email</option>
-                </select>
-                <select id="msgTopic" class="tool-select">
-                  <option value="vaga suporte">Vaga de suporte</option>
-                  <option value="projeto frontend">Projeto frontend</option>
-                  <option value="conversa tecnica">Conversa técnica</option>
-                </select>
+              <div class="tool-card">
+                <h3>Gerador de Mensagem de Contato</h3>
+                <p class="tool-note">Monte uma mensagem pronta para WhatsApp ou Email em segundos.</p>
+                <div class="tool-inline">
+                  <select id="msgChannel" class="tool-select">
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="email">Email</option>
+                  </select>
+                  <select id="msgTopic" class="tool-select">
+                    <option value="vaga suporte">Vaga de suporte</option>
+                    <option value="projeto frontend">Projeto frontend</option>
+                    <option value="conversa tecnica">Conversa técnica</option>
+                  </select>
+                </div>
+                <input id="msgName" class="tool-input" type="text" placeholder="Seu nome (opcional)">
+                <div class="tool-actions">
+                  <button id="genMsgBtn" class="mini-btn primary" type="button">Gerar e Abrir</button>
+                </div>
+                <div id="msgPreview" class="tool-output">Prévia da mensagem aparece aqui.</div>
               </div>
-              <input id="msgName" class="tool-input" type="text" placeholder="Seu nome (opcional)">
-              <div class="tool-actions">
-                <button id="genMsgBtn" class="mini-btn primary" type="button">Gerar e Abrir</button>
-              </div>
-              <div id="msgPreview" class="tool-output">Prévia da mensagem aparece aqui.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Quiz Tech 60s</h3>
-              <p class="tool-note">Perguntas rápidas para medir perfil técnico de forma leve.</p>
-              <div id="quizQuestion" class="quiz-question">Clique em iniciar quiz.</div>
-              <div id="quizOptions" class="scenario-options"></div>
-              <div class="tool-actions">
-                <button id="quizStartBtn" class="mini-btn primary" type="button">Iniciar Quiz</button>
+              <div class="tool-card">
+                <h3>Quiz Tech 60s</h3>
+                <p class="tool-note">Perguntas rápidas para medir perfil técnico de forma leve.</p>
+                <div id="quizQuestion" class="quiz-question">Clique em iniciar quiz.</div>
+                <div id="quizOptions" class="scenario-options"></div>
+                <div class="tool-actions">
+                  <button id="quizStartBtn" class="mini-btn primary" type="button">Iniciar Quiz</button>
+                </div>
+                <div id="quizResult" class="tool-output">Resultado pendente.</div>
               </div>
-              <div id="quizResult" class="tool-output">Resultado pendente.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Comparador de Sistemas</h3>
-              <p class="tool-note">Compare rapidamente as três experiências do portfólio.</p>
-              <div class="compare-grid">
-                <div class="compare-col"><strong>Web</strong>Leitura clara, navegação direta e conteúdo completo.</div>
-                <div class="compare-col"><strong>XP Neo</strong>Experiência desktop interativa com janelas e taskbar.</div>
-                <div class="compare-col"><strong>Pocket OS</strong>Experiência mobile touch-first com apps e notificações.</div>
+              <div class="tool-card">
+                <h3>Comparador de Sistemas</h3>
+                <p class="tool-note">Compare rapidamente as três experiências do portfólio.</p>
+                <div class="compare-grid">
+                  <div class="compare-col"><strong>Web</strong>Leitura clara, navegação direta e conteúdo completo.</div>
+                  <div class="compare-col"><strong>XP Neo</strong>Experiência desktop interativa com janelas e taskbar.</div>
+                  <div class="compare-col"><strong>Pocket OS</strong>Experiência mobile touch-first com apps e notificações.</div>
+                </div>
+                <div class="tool-actions">
+                  <a class="mini-btn" href="index.html">Abrir Web</a>
+                  <a class="mini-btn" href="KauanWin.html" target="_blank" rel="noopener">Abrir XP</a>
+                  <a class="mini-btn" href="KauanPocketOS.html" target="_blank" rel="noopener">Abrir Mobile</a>
+                </div>
               </div>
-              <div class="tool-actions">
-                <a class="mini-btn" href="index.html">Abrir Web</a>
-                <a class="mini-btn" href="KauanWin.html" target="_blank" rel="noopener">Abrir XP</a>
-                <a class="mini-btn" href="KauanPocketOS.html" target="_blank" rel="noopener">Abrir Mobile</a>
-              </div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Calculadora de Ganho Operacional</h3>
-              <p class="tool-note">Estimador simples de impacto em tempo operacional.</p>
-              <div class="tool-inline">
-                <input id="calcCalls" class="tool-input" type="number" min="1" placeholder="Chamados por dia">
-                <input id="calcMin" class="tool-input" type="number" min="1" placeholder="Minutos economizados por chamado">
+              <div class="tool-card">
+                <h3>Calculadora de Ganho Operacional</h3>
+                <p class="tool-note">Estimador simples de impacto em tempo operacional.</p>
+                <div class="tool-inline">
+                  <input id="calcCalls" class="tool-input" type="number" min="1" placeholder="Chamados por dia">
+                  <input id="calcMin" class="tool-input" type="number" min="1" placeholder="Minutos economizados por chamado">
+                </div>
+                <div class="tool-actions">
+                  <button id="calcRunBtn" class="mini-btn primary" type="button">Calcular</button>
+                </div>
+                <div id="calcOutput" class="tool-output">Informe os valores para calcular.</div>
               </div>
-              <div class="tool-actions">
-                <button id="calcRunBtn" class="mini-btn primary" type="button">Calcular</button>
-              </div>
-              <div id="calcOutput" class="tool-output">Informe os valores para calcular.</div>
-            </div>
 
-            <div class="tool-card">
-              <h3>Alerta de Segurança do Navegador</h3>
-              <p class="tool-note">Mostra apenas dados realmente acessíveis neste domínio. Cache privado de outros sites não é exposto pelo navegador.</p>
-              <div class="tool-actions">
-                <button id="cacheScanBtn" class="mini-btn primary" type="button">Analisar Exposição</button>
+              <div class="tool-card">
+                <h3>Alerta de Segurança do Navegador</h3>
+                <p class="tool-note">Mostra apenas dados realmente acessíveis neste domínio. Cache privado de outros sites não é exposto pelo navegador.</p>
+                <div class="tool-actions">
+                  <button id="cacheScanBtn" class="mini-btn primary" type="button">Analisar Exposição</button>
+                </div>
+                <ul id="cacheList" class="tool-list">
+                  <li>Aguardando análise.</li>
+                </ul>
               </div>
-              <ul id="cacheList" class="tool-list">
-                <li>Aguardando análise.</li>
-              </ul>
             </div>
           </div>
         </article>
@@ -1523,41 +1589,49 @@
     <section class="section" id="lab">
       <div class="intel-section reveal spotlight depth-panel">
         <p class="tag">Tech Lab</p>
-        <h2 class="intel-headline">Inteligência em tempo real de quem está navegando</h2>
-        <p class="intel-sub">Dados exibidos em tempo real com APIs públicas e recursos nativos do navegador, sem instalar nada e sem quebrar a experiência.</p>
+        <div class="section-head">
+          <h2 class="intel-headline">Inteligência em tempo real de quem está navegando</h2>
+          <button type="button" class="section-toggle" data-collapsible-toggle="labBody" aria-expanded="false">
+            <span class="section-toggle-label">Ver</span>
+            <span class="section-toggle-icon">▾</span>
+          </button>
+        </div>
+        <div class="collapsible-body" id="labBody" hidden>
+          <p class="intel-sub">Dados exibidos em tempo real com APIs públicas e recursos nativos do navegador, sem instalar nada e sem quebrar a experiência.</p>
 
-        <div class="lab-grid">
-          <div class="terminal">
-            <div class="term-head">KauanDevShell</div>
-            <div class="term-output" id="termOutput">$ shell iniciada.<br>$ digite <b>help</b></div>
-            <input id="termInput" class="term-input" type="text" autocomplete="off" placeholder="comando...">
+          <div class="lab-grid">
+            <div class="terminal">
+              <div class="term-head">KauanDevShell</div>
+              <div class="term-output" id="termOutput">$ shell iniciada.<br>$ digite <b>help</b></div>
+              <input id="termInput" class="term-input" type="text" autocomplete="off" placeholder="comando...">
+            </div>
+
+            <aside class="runtime">
+              <div class="intel-head">Visitor Intel</div>
+              <ul>
+                <li>IP público: <strong id="rtIp">-</strong></li>
+                <li>Cidade: <strong id="rtCity">-</strong></li>
+                <li>Região/País: <strong id="rtRegion">-</strong></li>
+                <li>Fuso horário: <strong id="rtTimezone">-</strong></li>
+                <li>Provedor: <strong id="rtIsp">-</strong></li>
+                <li>Conexão: <strong id="rtOnline">-</strong></li>
+                <li>Tipo de rede: <strong id="rtNetType">-</strong></li>
+                <li>Downlink: <strong id="rtDownlink">-</strong></li>
+                <li>Viewport: <strong id="rtViewport">-</strong></li>
+                <li>Tela: <strong id="rtScreen">-</strong></li>
+                <li>Idioma: <strong id="rtLang">-</strong></li>
+                <li>Navegador: <strong id="rtBrowser">-</strong></li>
+                <li>Sistema: <strong id="rtPlatform">-</strong></li>
+                <li>CPU Cores: <strong id="rtCores">-</strong></li>
+                <li>Memória: <strong id="rtMemory">-</strong></li>
+                <li class="tech-only">Storage usado: <strong id="rtStorage">-</strong></li>
+                <li class="tech-only">Páginas no histórico: <strong id="rtHistory">-</strong></li>
+                <li class="tech-only">Referrer: <strong id="rtReferrer">-</strong></li>
+                <li>Hora local: <strong id="rtTime">-</strong></li>
+              </ul>
+              <button type="button" id="geoBtn" class="intel-btn">Usar localização precisa (GPS)</button>
+            </aside>
           </div>
-
-          <aside class="runtime">
-            <div class="intel-head">Visitor Intel</div>
-            <ul>
-              <li>IP público: <strong id="rtIp">-</strong></li>
-              <li>Cidade: <strong id="rtCity">-</strong></li>
-              <li>Região/País: <strong id="rtRegion">-</strong></li>
-              <li>Fuso horário: <strong id="rtTimezone">-</strong></li>
-              <li>Provedor: <strong id="rtIsp">-</strong></li>
-              <li>Conexão: <strong id="rtOnline">-</strong></li>
-              <li>Tipo de rede: <strong id="rtNetType">-</strong></li>
-              <li>Downlink: <strong id="rtDownlink">-</strong></li>
-              <li>Viewport: <strong id="rtViewport">-</strong></li>
-              <li>Tela: <strong id="rtScreen">-</strong></li>
-              <li>Idioma: <strong id="rtLang">-</strong></li>
-              <li>Navegador: <strong id="rtBrowser">-</strong></li>
-              <li>Sistema: <strong id="rtPlatform">-</strong></li>
-              <li>CPU Cores: <strong id="rtCores">-</strong></li>
-              <li>Memória: <strong id="rtMemory">-</strong></li>
-              <li class="tech-only">Storage usado: <strong id="rtStorage">-</strong></li>
-              <li class="tech-only">Páginas no histórico: <strong id="rtHistory">-</strong></li>
-              <li class="tech-only">Referrer: <strong id="rtReferrer">-</strong></li>
-              <li>Hora local: <strong id="rtTime">-</strong></li>
-            </ul>
-            <button type="button" id="geoBtn" class="intel-btn">Usar localização precisa (GPS)</button>
-          </aside>
         </div>
       </div>
     </section>
@@ -1750,6 +1824,32 @@
       tourBar.classList.remove('open');
       tourIndex = -1;
     }
+
+    function initCollapsibleSections() {
+      const toggles = document.querySelectorAll('[data-collapsible-toggle]');
+      toggles.forEach((toggle) => {
+        const targetId = toggle.getAttribute('data-collapsible-toggle');
+        const target = targetId ? document.getElementById(targetId) : null;
+        const label = toggle.querySelector('.section-toggle-label');
+        if (!target) return;
+
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        target.hidden = !expanded;
+        toggle.classList.toggle('is-open', expanded);
+        if (label) label.textContent = expanded ? 'Fechar' : 'Ver';
+
+        toggle.addEventListener('click', () => {
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          const next = !isOpen;
+          toggle.setAttribute('aria-expanded', String(next));
+          toggle.classList.toggle('is-open', next);
+          target.hidden = !next;
+          if (label) label.textContent = next ? 'Fechar' : 'Ver';
+        });
+      });
+    }
+
+    initCollapsibleSections();
 
     if (modeTechBtn) {
       modeTechBtn.addEventListener('click', () => {
